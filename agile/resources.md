@@ -366,16 +366,16 @@ MAKE_PATH=./libs/libft
 cd .. ; ls && make -C $MAKE_PATH ; ./minshell
 ```
 
+### Expansor
+
+- https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
+- https://pubs.opengroup.org/onlinepubs/9699919799.2008edition/utilities/V3_chap02.html
+
 ### Parser
 
 - https://dev.to/oyagci/generating-a-parse-tree-from-a-shell-grammar-f1
 - https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/
 - https://www.cs.princeton.edu/courses/archive/spring20/cos320/LR0/
-
-### Expansor
-
-- https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
-- https://pubs.opengroup.org/onlinepubs/9699919799.2008edition/utilities/V3_chap02.html
 
 ### Executor
 

@@ -9,8 +9,8 @@
 - [ ] `.linux` file (42 Workspaces)
 - [ ] Prompt
 - [ ] Lexer
-- [ ] Parser
 - [ ] Expansor
+- [ ] Parser
 - [ ] Executor
 
 # Bonus
