@@ -11,7 +11,7 @@ bin/foo  # in the PWD (current dir)
 
 ### Meta Characters
 
-- `'` `"` `\` `$` ````` `=` `\*` `@` `~` `?` `<` `>` `(` `)` `!` `|` `&` `;` `space` `newline`
+- `'` `"` `\` `$` <code>\`</code> `=` `*` `@` `~` `?` `<` `>` `(` `)` `!` `|` `&` `;` `space` `newline`
 
 ### Quotes
 
