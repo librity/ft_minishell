@@ -38,6 +38,21 @@ foo \$bar
 foo "baz$bar"
 ```
 
+---
+
+## Pipes & Redirectors
+
+- https://wikiless.org/wiki/Pipeline\_(Unix)?lang=en
+- https://wikiless.org/wiki/Unix_philosophy?lang=en
+- https://devhints.io/bash
+- https://stackoverflow.com/questions/9834086/what-is-a-simple-explanation-for-how-pipes-work-in-bash
+- https://stackoverflow.com/questions/21287848/function-to-find-the-maximum-number-of-pipes
+- https://linuxconfig.org/introduction-to-named-pipes-on-bash-shell
+- https://linuxhint.com/bash_pipe_tutorial/
+- https://www.delftstack.com/howto/linux/pipes-in-bash/
+- https://devdocs.io/bash/
+- https://dev.to/oyagci/shell-redirections-explained-2h9
+
 ### File Redirection
 
 - Redirects a command’s `STDIN`, `STDOUT` or `STDERR` a file or files
@@ -54,6 +69,28 @@ foo "baz$bar"
 # Redirect STDIN to read from notes.txt
 # Redirect STDOUT to write to /dev/null
 foo bar 35 <notes.txt >/dev/null
+```
+
+### `< infile cmd`
+
+Redirect `infile` ’s contents to `cmd` ’s `STDIN`
+
+```bash
+python hello.py < foo.txt      # feed foo.txt to stdin for python
+diff <(ls -r) <(ls)            # Compare two stdout without files
+```
+
+### `cmd > outfile`
+
+Truncates `outfile` with `cmd` ’s `STDOUT`
+
+```bash
+ls > output.txt   # stdout to (file)
+ls >> output.txt  # stdout to (file), append
+ls 2> error.log   # stderr to (file)
+ls 2>&1           # stderr to stdout
+ls 2>/dev/null    # stderr to (null)
+ls &>/dev/null    # stdout and stderr to (null)
 ```
 
 ### Pipeline
@@ -80,6 +117,16 @@ ls -la bin | less
 ls -la > result.txt | cat
 ```
 
+### `cmd1 | cmd2`
+
+Redirects previous `cmd1`'s `STDOUT` to `cmd2` ’s `STDIN`
+
+```bash
+ls -la | wc -l
+```
+
+---
+
 ### Command-list
 
 - One or more pipelines separated and terminated by `;` `&` `&&` `||` or `newline`
@@ -104,6 +151,14 @@ foo || bar
 # In all cases, foo and bar can be single commands or pipelines.
 foo | bar ; fizz | buzz
 ```
+
+### Pipeline/Command-list Priority
+
+- https://www.gnu.org/software/bash/manual/html_node/Pipelines.html
+- https://www.gnu.org/software/bash/manual/html_node/Lists.html
+- https://stackoverflow.com/questions/66511243/bash-pipe-execution-order
+- https://unix.stackexchange.com/questions/37508/in-what-order-do-piped-commands-run
+- https://linuxhint.com/bash_pipe_tutorial/
 
 ### Exit code/status
 
@@ -170,7 +225,7 @@ echo $?
 baz () { cd $2; return 1 }
 ```
 
-### Function/Command Call Priority
+### _Function/Command Call Priority_
 
 1. Function call
 2. Built-in command
@@ -230,7 +285,7 @@ echo foo?bar
 echo foo*
 ```
 
-### Expansion/Substitution Priority
+### _Expansion/Substitution Priority_
 
 1. Brace expansion
 2. Tilde expansion

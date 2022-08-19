@@ -1,5 +1,6 @@
-# Built-ins
+# Bash Built-ins
 
+- https://www.makeuseof.com/shell-builtin-commands-in-linux/
 - Executed in the shell or subshell
 - Can be redirected/piped like a process command
   - Built-ins receive a duplicate of `STDIN`, `STDOUT` and `STDERR`
@@ -26,6 +27,8 @@ echo foo 3245 -n
 
 ### `cd`
 
+- https://unix.stackexchange.com/questions/50022/why-cant-i-redirect-a-path-name-output-from-one-command-to-cd
+- https://www.geeksforgeeks.org/chdir-in-c-language-with-examples/
 - Set the shell’s current working directory
 - Forks and subshells inherit the parent’s working directory
 
@@ -35,6 +38,7 @@ echo foo 3245 -n
 
 ### `export`
 
+- https://unix.stackexchange.com/questions/130985/if-processes-inherit-the-parents-environment-why-do-we-need-export
 - Marks a shell variable as an environment variable
 - Forks and subshells inherit environment variables
 
@@ -105,7 +109,7 @@ env | grep bozia
 
 ### `jobs`, `bg` and `fg`
 
-![Shell Session and Jobs](./bash_jobs.png)
+![Shell Session and Jobs](./jobs.png)
 
 - Shell starts as a session with one foreground job in the controlling terminal
 - Background jobs receive the `SIGTTIN` when they try to read from the controlling terminal
