@@ -140,6 +140,10 @@ Wait for a process to change state.
 - https://web.mit.edu/gnu/doc/html/rlman_2.html#SEC31
 - https://www.gnu.org/software/bash/manual/html_node/Readline-Interaction.html
 
+```bash
+$ sudo apt-get install libreadline-dev
+```
+
 ### `rl_clear_history()`
 
 ### `rl_on_new_line()`
