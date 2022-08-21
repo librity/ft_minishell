@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/20 22:47:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:24:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ MU_TEST_SUITE(lexer_suite)
 	MU_RUN_TEST(pipes_tokens);
 	MU_RUN_TEST(squoutes_tokens);
 	MU_RUN_TEST(dquoutes_tokens);
+	// MU_RUN_TEST(mixed_quoutes_tokens);
 }
 
 int main(void)
