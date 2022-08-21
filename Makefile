@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/20 21:16:33 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/08/20 21:50:11 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CC_FULL = $(CC_STRICT) \
 CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(INCLUDES_PATH)
 CCF_STRICT = -Wall -Wextra -Werror
 CCF_OPTIMIZATION = -O3
-CCF_DEBUG = -g -fsanitize=leak
+CCF_DEBUG = -g# -fsanitize=leak
 
 MAKE_EXTERNAL = make -C
 SAFE_MAKEDIR = mkdir -p
