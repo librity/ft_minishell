@@ -66,7 +66,13 @@ $ ./scripts/run.sh
 You can run all tests with:
 
 ```bash
-$ make -s test
+$ make -s tests
+```
+
+Or individual tests with:
+
+```bash
+$ make -s test t=lexer
 ```
 
 ## 📝 Notes <a name = "notes"></a>

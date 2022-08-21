@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/21 00:27:16 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/08/21 11:29:46 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,11 +138,13 @@ $(TESTS_PATH)/%.out: $(TESTS_PATH)/%.c
 		$< \
 		$(M_ARCHIVES) \
 		-o $@
-	@printf "$(YB)"
+	@printf "$(BB)=== RUNNING $@ ===$(RC)\n"
+	@printf "$(Y)"
 	./$@
-	@printf "$(C)=== TEST END ===$(RC)\n"
 
-test: re tests_clean $(TESTS)
+tests: re tests_clean $(TESTS)
+
+test: re tests_clean $(TESTS_PATH)/$t.out
 
 tests_clean:
 	$(REMOVE_RECURSIVE) $(TESTS)
@@ -247,7 +249,7 @@ tclean \
 \
 libft_clean clean_libs \
 \
-test tests_clean \
+tests test tests_clean \
 \
 example build_example example_clean \
 \
