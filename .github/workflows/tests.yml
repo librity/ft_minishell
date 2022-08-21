@@ -1,4 +1,4 @@
-name: Test
+name: Tests
 
 on: push
 
@@ -17,4 +17,4 @@ jobs:
           git submodule sync --recursive
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
       - name: Build and run tests with make
-        run: make -s test
+        run: make -s tests

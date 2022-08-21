@@ -14,7 +14,7 @@
 <div align="center">
 
 [![Build](https://github.com/librity/ft_minishell/actions/workflows/build.yml/badge.svg)](https://github.com/librity/ft_minishell/actions/workflows/build.yml)
-[![Build](https://github.com/librity/ft_minishell/actions/workflows/test.yml/badge.svg)](https://github.com/librity/ft_minishell/actions/workflows/test.yml)
+[![Build](https://github.com/librity/ft_minishell/actions/workflows/tests.yml/badge.svg)](https://github.com/librity/ft_minishell/actions/workflows/tests.yml)
 [![Norminette v3](https://github.com/librity/ft_minishell/actions/workflows/norminette_v3.yml/badge.svg)](https://github.com/librity/ft_minishell/actions/workflows/norminette_v3.yml)
 
 </div>
