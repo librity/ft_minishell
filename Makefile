@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/20 22:00:59 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/08/21 00:27:16 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,21 +131,21 @@ clean_libs: libft_clean
 TESTS_PATH = ./tests
 
 TEST_SOURCES = $(wildcard $(TESTS_PATH)/*.c)
-# CCF_TEST_LIBS = -lrt -lm
-EXECUTE_TESTS = ./test
+TESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.out, $(TEST_SOURCES))
 
-build_tests: re
+$(TESTS_PATH)/%.out: $(TESTS_PATH)/%.c
 	$(CC_BASIC) \
-		$(TEST_SOURCES) \
+		$< \
 		$(M_ARCHIVES) \
-		$(CCF_TEST_LIBS) \
-		-o $(EXECUTE_TESTS)
+		-o $@
+	@printf "$(YB)"
+	./$@
+	@printf "$(C)=== TEST END ===$(RC)\n"
 
-test: build_tests
-	$(EXECUTE_TESTS)
+test: re tests_clean $(TESTS)
 
 tests_clean:
-	$(REMOVE_RECURSIVE) $(EXECUTE_TESTS)
+	$(REMOVE_RECURSIVE) $(TESTS)
 
 ################################################################################
 # EXAMPLE
@@ -247,7 +247,7 @@ tclean \
 \
 libft_clean clean_libs \
 \
-build_tests test tests_clean \
+test tests_clean \
 \
 example build_example example_clean \
 \

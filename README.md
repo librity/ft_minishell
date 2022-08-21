@@ -29,6 +29,7 @@
 - [About](#about)
 - [Checklist](#checklist)
 - [Getting Started](#getting_started)
+- [Tests](#tests)
 - [Notes](#notes)
 - [42 São Paulo](#ft_sp)
 - [Resources](#resources)
@@ -51,6 +52,14 @@ Clone the repo and build with `make`:
 $ git clone https://github.com/librity/ft_minishell.git
 $ cd ft_minishell
 $ make
+```
+
+## 🧪 Tests <a name = "tests"></a>
+
+You can run all tests with:
+
+```bash
+$ make -s test
 ```
 
 ## 📝 Notes <a name = "notes"></a>

@@ -6,12 +6,10 @@
 - https://nlp.stanford.edu/IR-book/html/htmledition/tokenization-1.html
 - https://www.youtube.com/watch?v=SNyh-cubxaU
 
-### Tokens
+### Finite State Machine
 
-```bash
-MAKE_PATH=./libs/libft
-cd .. ; ls && make -C $MAKE_PATH ; ./minshell
-```
+- https://stackoverflow.com/questions/5491775/how-to-write-a-shell-lexer-by-hand
+- https://en.wikipedia.org/wiki/Finite-state_machine
 
 ### LEX (Lexer)
 
