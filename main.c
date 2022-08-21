@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/21 00:55:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:13:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	repl(void)
 	lex("infile   < tr a   \'  \"   \' |   tr \' \"      x > outfile");
 	lex("inf'ile");
 	lex("MAKE_PATH=./libs/libft ; cd .. ; ls && make -C $MAKE_PATH ; ./minshell");
+	lex(".gitignore < tr ex ' X' | tr pi 'P ' > outfile");
 }
 
 static void	cleanup(void)
