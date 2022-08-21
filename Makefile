@@ -6,15 +6,17 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/20 21:50:11 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/08/20 22:00:59 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc
-CC_STRICT = $(CC) \
-	$(CCF_INCLUDES) \
+CC_BASIC = $(CC) \
+	$(CCF_INCLUDES)
+
+CC_STRICT = $(CC_BASIC) \
 	$(CCF_STRICT)
 
 CC_FULL = $(CC_STRICT) \
@@ -129,11 +131,11 @@ clean_libs: libft_clean
 TESTS_PATH = ./tests
 
 TEST_SOURCES = $(wildcard $(TESTS_PATH)/*.c)
-CCF_TEST_LIBS = -lrt -lm
+# CCF_TEST_LIBS = -lrt -lm
 EXECUTE_TESTS = ./test
 
 build_tests: re
-	$(CC_FULL) \
+	$(CC_BASIC) \
 		$(TEST_SOURCES) \
 		$(M_ARCHIVES) \
 		$(CCF_TEST_LIBS) \

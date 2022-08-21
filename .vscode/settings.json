@@ -16,6 +16,8 @@
     "minishell.h": "c",
     "defines.h": "c",
     "chrono": "c",
-    "libft.h": "c"
+    "libft.h": "c",
+    "tests.h": "c",
+    "ostream": "c"
   }
 }

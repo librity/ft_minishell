@@ -6,18 +6,17 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/20 21:49:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/20 22:47:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minunit.h"
-#include <fcntl.h>
-#include <minishell.h>
+#include "tests.h"
 
-void	assert_strarr_eq(char **expected, char **result)
+void assert_strarr_eq(char **expected, char **result)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	while (i < (int)ft_strarr_size(expected))
 	{
 		mu_assert_string_eq(expected[i], result[i]);
@@ -25,14 +24,14 @@ void	assert_strarr_eq(char **expected, char **result)
 	}
 }
 
-void	setup(void)
+void lexer_setup(void)
 {
 }
-void	teardown(void)
+void lexer_teardown(void)
 {
 }
 
-MU_TEST(simple_lexer)
+MU_TEST(simple_tokens)
 {
 	char *raw_input = "ls -la ..";
 	char *expected[] = {"ls", "-la", "..", NULL};
@@ -41,27 +40,59 @@ MU_TEST(simple_lexer)
 	assert_strarr_eq(expected, tokens);
 }
 
-// MU_TEST(pipes_lexer)
-// {
-// 	char *raw_input = "ls -la .. | cat -e | wc -l";
-// 	char **tokens = lex_input(raw_input);
-
-// 	mu_assert_string_eq("ls", tokens[0]);
-// 	mu_assert_string_eq("-la", tokens[1]);
-// 	mu_assert_string_eq("..", tokens[2]);
-// 	mu_assert_string_eq("..", tokens[2]);
-// 	mu_assert_string_eq(NULL, tokens[3]);
-// }
-
-MU_TEST_SUITE(test_suite_tokens)
+MU_TEST(pipes_tokens)
 {
-	MU_SUITE_CONFIGURE(&setup, &teardown);
-	MU_RUN_TEST(simple_lexer);
+	char *raw_input = "ls -la .. | cat -e | wc -l";
+	char *expected[] = {
+		"ls", "-la", "..", "|",
+		"cat", "-e", "|",
+		"wc", "-l",
+		NULL};
+	char **tokens = lex_input(raw_input);
+
+	assert_strarr_eq(expected, tokens);
 }
 
-int	main(void)
+MU_TEST(squoutes_tokens)
 {
-	MU_RUN_SUITE(test_suite_tokens);
+	char *raw_input = "infile   < tr a '   ' |   tr ' ' x > outfile";
+	char *expected[] = {
+		"infile", "<",
+		"tr", "a", "'   '", "|",
+		"tr", "' '", "x",
+		">", "outfile",
+		NULL};
+	char **tokens = lex_input(raw_input);
+
+	assert_strarr_eq(expected, tokens);
+}
+
+MU_TEST(dquoutes_tokens)
+{
+	char *raw_input = "infile   < tr a \"   \" |   tr \" \" x > outfile";
+	char *expected[] = {
+		"infile", "<",
+		"tr", "a", "\"   \"", "|",
+		"tr", "\" \"", "x",
+		">", "outfile",
+		NULL};
+	char **tokens = lex_input(raw_input);
+
+	assert_strarr_eq(expected, tokens);
+}
+
+MU_TEST_SUITE(lexer_suite)
+{
+	MU_SUITE_CONFIGURE(&lexer_setup, &lexer_teardown);
+	MU_RUN_TEST(simple_tokens);
+	MU_RUN_TEST(pipes_tokens);
+	MU_RUN_TEST(squoutes_tokens);
+	MU_RUN_TEST(dquoutes_tokens);
+}
+
+int main(void)
+{
+	MU_RUN_SUITE(lexer_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

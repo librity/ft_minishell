@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.c                                           :+:      :+:    :+:   */
+/*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 21:36:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/20 22:33:21 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/20 22:06:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef TESTS_H
+# define TESTS_H
 
-char	**lex_input(char *raw_input)
-{
-	char	**tokens;
+# include "minunit.h"
+# include <fcntl.h>
+# include <minishell.h>
 
-	tokens = ft_split(raw_input, ' ');
-	return (tokens);
-}
+#endif
