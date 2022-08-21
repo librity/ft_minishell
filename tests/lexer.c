@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/21 00:01:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/21 00:42:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void assert_strarr_eq(char **expected, char **result)
 
 static void test_tokens(char **expected, char *raw_input)
 {
-	char **tokens = lex_input(raw_input);
+	char **tokens = tokenize(raw_input);
 
 	assert_strarr_eq(expected, tokens);
 }

@@ -19,14 +19,38 @@
 
 typedef struct s_minishell
 {
+	bool	debug;
+
+	int		argc;
+	char	**argv;
+	char	**envp;
+
 	t_list	*lalloc;
 }			t_minishell;
+
+/******************************************************************************\
+ * CONTROL
+\******************************************************************************/
+
+t_minishell	*c(void);
+void		initialize_control(int argc, char **argv, char **envp);
+
+bool		debug(void);
+void		set_debug(bool verbose);
+
+int			argc(void);
+char		**argv(void);
+char		**envp(void);
+
+t_list		**lalloc(void);
+void		free_memory(void);
 
 /******************************************************************************\
  * LEXER
 \******************************************************************************/
 
-char		**lex_input(char *raw_input);
+char		**lex(char *input);
+char		**tokenize(char *input);
 
 /******************************************************************************\
  * ERRORS

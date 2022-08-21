@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:36:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/20 23:22:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/21 00:42:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static void	restore_spaces(char **tokens)
 	}
 }
 
-char	**lex_input(char *raw_input)
+char	**tokenize(char *input)
 {
 	char	*free_me;
 	char	**tokens;
 
-	free_me = ft_strdup(raw_input);
+	free_me = ft_strdup(input);
 	subvert_spaces(free_me);
 	tokens = ft_split(free_me, SPACE);
 	restore_spaces(tokens);

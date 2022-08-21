@@ -1,3 +1,7 @@
+### `make` and Makefile
+
+- https://makefiletutorial.com/#string-substitution
+
 ### Computer History
 
 - https://en.wikipedia.org/wiki/Computer_terminal
