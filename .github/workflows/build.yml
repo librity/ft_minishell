@@ -3,7 +3,7 @@ name: Build
 on: push
 
 jobs:
-  linter:
+  builder:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project repo

@@ -3,7 +3,7 @@ name: Test
 on: push
 
 jobs:
-  linter:
+  tester:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project repo
