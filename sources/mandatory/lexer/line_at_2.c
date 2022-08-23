@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delimiters.c                                       :+:      :+:    :+:   */
+/*   line_at_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:14:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 19:49:31 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/23 20:01:14 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/23 20:02:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*insert_around_two(char *line)
+bool	at_truncate(char *line)
 {
-	insert_delimiter_around_2(line);
-	return (line + 2);
+	return (*line == GREATER_THAN);
 }
 
-char	*insert_around_one(char *line)
+bool	at_append(char *line)
 {
-	insert_delimiter_around(line);
-	return (line + 1);
+	return (*line == GREATER_THAN && *(line + 1) == GREATER_THAN);
 }
 
-char	*insert_delimiter(char *line)
+bool	at_read_file(char *line)
 {
-	*line = DELIMITER;
-	return (line);
+	return (*line == LESS_THAN);
+}
+
+bool	at_heredoc(char *line)
+{
+	return (*line == LESS_THAN && *(line + 1) == LESS_THAN);
 }

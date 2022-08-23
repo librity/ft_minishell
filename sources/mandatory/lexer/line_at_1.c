@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delimiters.c                                       :+:      :+:    :+:   */
+/*   line_at_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:14:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 19:49:31 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/23 20:01:14 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/23 20:02:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*insert_around_two(char *line)
+bool	at_single_quote(char *line)
 {
-	insert_delimiter_around_2(line);
-	return (line + 2);
+	return (*line == SINGLE_QUOTE);
 }
 
-char	*insert_around_one(char *line)
+bool	at_double_quote(char *line)
 {
-	insert_delimiter_around(line);
-	return (line + 1);
+	return (*line == DOUBLE_QUOTE);
 }
 
-char	*insert_delimiter(char *line)
+bool	at_pipe(char *line)
 {
-	*line = DELIMITER;
-	return (line);
+	return (*line == VERTICAL_BAR);
+}
+
+bool	at_space(char *line)
+{
+	return (*line == SPACE);
 }

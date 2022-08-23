@@ -63,10 +63,10 @@
 - [ ] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
 - [ ] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
 - [ ] Handle `"` (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for `$` (dollar sign).
-- [ ] Casos:
+- [x] Casos:
   - [x] Tokenização simples
-  - [x] Tokenização com aspas simples
-  - [x] Tokenização com aspas duplas
+  - [x] Tokenização com aspas simples `'`
+  - [x] Tokenização com aspas duplas `"`
   - [x] Tokenização com aspas misturadas
   - [x] Tokenização com aspas intercaladas
   - [x] Tokenização com aspa avulsa

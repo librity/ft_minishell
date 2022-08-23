@@ -13,7 +13,7 @@
 => "infile", "<", "tr", "a", "'   '", "|", "tr", "' '", "x", ">", "outfile"
 ```
 
-## Tokenização com aspas simples
+## Tokenização com aspas simples `'`
 
 ```c
 "infile   < tr a '   ' |   tr ' ' x > outfile"
@@ -23,7 +23,7 @@
 => ".gitignore", "<", "tr", "ex", "' X'", "|", "tr", "pi", "'P '", ">", "outfile"
 ```
 
-## Tokenização com aspas duplas
+## Tokenização com aspas duplas `"`
 
 ```c
 "infile   < tr a \"   \" |   tr \" \" x > outfile"

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 18:07:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:57:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define VERTICAL_BAR '|'
 
 # define GREATER_THAN '>'
-# define APPEND ">"
-# define TRUNCATE ">>"
+# define TRUNCATE ">"
+# define APPEND ">>"
 
 # define LESS_THAN '<'
 # define READ_FILE "<"

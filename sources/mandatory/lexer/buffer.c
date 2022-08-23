@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 19:11:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:44:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	insert_in_buffer(char *buffer, char c)
+static void	strbuff_insert(char *buffer, char insert_me)
 {
 	char	*reverser;
 
@@ -22,21 +22,27 @@ static void	insert_in_buffer(char *buffer, char c)
 		*(reverser + 1) = *reverser;
 		reverser--;
 	}
-	*buffer = c;
+	*buffer = insert_me;
 }
 
-void	insert_char_before(char *buffer, char c)
+void	strbuff_insert_before(char *buffer, char insert_me)
 {
-	insert_in_buffer(buffer, c);
+	strbuff_insert(buffer, insert_me);
 }
 
-void	insert_char_after(char *buffer, char c)
+void	strbuff_insert_after(char *buffer, char insert_me)
 {
-	insert_in_buffer(buffer + 1, c);
+	strbuff_insert(buffer + 1, insert_me);
 }
 
-void	insert_char_around(char *buffer, char c)
+void	strbuff_insert_around(char *buffer, char insert_me)
 {
-	insert_char_after(buffer, c);
-	insert_char_before(buffer, c);
+	strbuff_insert_after(buffer, insert_me);
+	strbuff_insert_before(buffer, insert_me);
+}
+
+void	strbuff_insert_around_2(char *buffer, char insert_me)
+{
+	strbuff_insert_after(buffer + 1, insert_me);
+	strbuff_insert_before(buffer, insert_me);
 }

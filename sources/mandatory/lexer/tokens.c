@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:36:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 19:19:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:03:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 static char	*skip_or_delimit(char *line)
 {
-	if (*line == SINGLE_QUOTE)
-		return (skip_single_quotes(line));
-	if (*line == DOUBLE_QUOTE)
-		return (skip_double_quotes(line));
-	if (*line == VERTICAL_BAR)
-		return (insert_pipe_delimiters(line));
-	if (*line == GREATER_THAN)
-		return (insert_greater_than_delimiters(line));
-	if (*line == LESS_THAN)
-		return (insert_less_than_delimiters(line));
-	if (*line == SPACE)
+	if (at_space(line))
 		return (insert_delimiter(line));
+	if (at_single_quote(line))
+		return (skip_single_quotes(line));
+	if (at_double_quote(line))
+		return (skip_double_quotes(line));
+	if (at_append(line) || at_heredoc(line))
+		return (insert_around_two(line));
+	if (at_pipe(line) || at_truncate(line) || at_read_file(line))
+		return (insert_around_one(line));
 	return (line);
 }
 

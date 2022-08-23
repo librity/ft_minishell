@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delimiters.c                                       :+:      :+:    :+:   */
+/*   delimiter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:14:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 19:49:31 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/23 19:44:19 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/23 19:45:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*insert_around_two(char *line)
+void	insert_delimiter_before(char *buffer)
 {
-	insert_delimiter_around_2(line);
-	return (line + 2);
+	strbuff_insert_before(buffer, DELIMITER);
 }
 
-char	*insert_around_one(char *line)
+void	insert_delimiter_after(char *buffer)
 {
-	insert_delimiter_around(line);
-	return (line + 1);
+	strbuff_insert_after(buffer, DELIMITER);
 }
 
-char	*insert_delimiter(char *line)
+void	insert_delimiter_around(char *buffer)
 {
-	*line = DELIMITER;
-	return (line);
+	strbuff_insert_around(buffer, DELIMITER);
+}
+
+void	insert_delimiter_around_2(char *buffer)
+{
+	strbuff_insert_around_2(buffer, DELIMITER);
 }
