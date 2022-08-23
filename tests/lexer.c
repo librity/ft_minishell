@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/23 18:38:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:57:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,10 @@ MU_TEST(heredoc_tokens)
 	expected = (char *[]){"<<", ".", "cat", NULL};
 	test_tokens(expected, raw_input);
 
+	raw_input = "<<. cat<<";
+	expected = (char *[]){"<<", ".", "cat", "<<", NULL};
+	test_tokens(expected, raw_input);
+
 	raw_input = "cat<<.";
 	expected = (char *[]){"cat", "<<", ".", NULL};
 	test_tokens(expected, raw_input);
@@ -294,8 +298,8 @@ MU_TEST_SUITE(lexer_suite)
 	MU_RUN_TEST(truncate_tokens);
 	MU_RUN_TEST(append_tokens);
 
-	// MU_RUN_TEST(infile_tokens);
-	// MU_RUN_TEST(heredoc_tokens);
+	MU_RUN_TEST(infile_tokens);
+	MU_RUN_TEST(heredoc_tokens);
 }
 
 int main(void)

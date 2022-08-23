@@ -39,6 +39,7 @@ echo foo 3245 -n
 ## `export`
 
 - https://unix.stackexchange.com/questions/130985/if-processes-inherit-the-parents-environment-why-do-we-need-export
+- https://superuser.com/questions/821094/what-is-the-difference-between-set-env-declare-and-export-when-setting-a-varia/1404741#1404741
 - Marks a shell variable as an environment variable
 - Forks and subshells inherit environment variables
 

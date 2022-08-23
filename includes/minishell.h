@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/21 11:44:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:19:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,18 @@ void		free_memory(void);
 
 char		**lex(char *input);
 char		**tokenize(char *input);
+
+char		*skip_single_quotes(char *line);
+char		*skip_double_quotes(char *line);
+
+char		*insert_pipe_delimiters(char *line);
+char		*insert_greater_than_delimiters(char *line);
+char		*insert_less_than_delimiters(char *line);
+char		*insert_delimiter(char *line);
+
+void		insert_char_before(char *buffer, char c);
+void		insert_char_after(char *buffer, char c);
+void		insert_char_around(char *buffer, char c);
 
 /******************************************************************************\
  * ERRORS

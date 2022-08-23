@@ -70,11 +70,11 @@
   - [x] Tokenização com aspas misturadas
   - [x] Tokenização com aspas intercaladas
   - [x] Tokenização com aspa avulsa
-  - [ ] Tokenização por pipe `|`
-  - [ ] Tokenização por redireção truncada `>`
-  - [ ] Tokenização por redireção de entrada `<`
-  - [ ] Tokenização por redireção concatenada `>>`
-  - [ ] Tokenização por redireção heredoc `<<`
+  - [x] Tokenização por pipe `|`
+  - [x] Tokenização por redireção truncada `>`
+  - [x] Tokenização por redireção de entrada `<`
+  - [x] Tokenização por redireção concatenada `>>`
+  - [x] Tokenização por redireção heredoc `<<`
   - [ ] (OPCIONAL) Tokenização por comentário `#`
 
 ## Expansor
