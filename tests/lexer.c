@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/23 17:54:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:38:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,16 +181,59 @@ MU_TEST(pipe_tokens)
 	raw_input = "help|rg unset";
 	expected = (char *[]){"help", "|", "rg", "unset", NULL};
 	test_tokens(expected, raw_input);
+
+	raw_input = "|help|rg unset";
+	expected = (char *[]){"|", "help", "|", "rg", "unset", NULL};
+	test_tokens(expected, raw_input);
+
+	raw_input = "|help|rg unset|";
+	expected = (char *[]){"|", "help", "|", "rg", "unset", "|", NULL};
+	test_tokens(expected, raw_input);
 }
 
 MU_TEST(truncate_tokens)
 {
+	raw_input = "     ls >out";
+	expected = (char *[]){"ls", ">", "out", NULL};
+	test_tokens(expected, raw_input);
+
 	raw_input = "     ls> out";
 	expected = (char *[]){"ls", ">", "out", NULL};
 	test_tokens(expected, raw_input);
 
 	raw_input = "      ls>out      ";
 	expected = (char *[]){"ls", ">", "out", NULL};
+	test_tokens(expected, raw_input);
+
+	raw_input = ">ls>out      ";
+	expected = (char *[]){">", "ls", ">", "out", NULL};
+	test_tokens(expected, raw_input);
+
+	raw_input = ">ls>out>";
+	expected = (char *[]){">", "ls", ">", "out", ">", NULL};
+	test_tokens(expected, raw_input);
+}
+
+MU_TEST(append_tokens)
+{
+	raw_input = "rg a >>out";
+	expected = (char *[]){"rg", "a", ">>", "out", NULL};
+	test_tokens(expected, raw_input);
+
+	raw_input = "rg a>> out";
+	expected = (char *[]){"rg", "a", ">>", "out", NULL};
+	test_tokens(expected, raw_input);
+
+	raw_input = "rg a>>out";
+	expected = (char *[]){"rg", "a", ">>", "out", NULL};
+	test_tokens(expected, raw_input);
+
+	raw_input = ">>rg a>>out";
+	expected = (char *[]){">>", "rg", "a", ">>", "out", NULL};
+	test_tokens(expected, raw_input);
+
+	raw_input = "rg a>>out>>";
+	expected = (char *[]){"rg", "a", ">>", "out", ">>", NULL};
 	test_tokens(expected, raw_input);
 }
 
@@ -211,20 +254,9 @@ MU_TEST(infile_tokens)
 	raw_input = "<out rg '.'";
 	expected = (char *[]){"<", "out", "rg", "'.'", NULL};
 	test_tokens(expected, raw_input);
-}
 
-MU_TEST(append_tokens)
-{
-	raw_input = "rg a >>out";
-	expected = (char *[]){"rg", "a", ">>", "out", NULL};
-	test_tokens(expected, raw_input);
-
-	raw_input = "rg a>> out";
-	expected = (char *[]){"rg", "a", ">>", "out", NULL};
-	test_tokens(expected, raw_input);
-
-	raw_input = "rg a>>out";
-	expected = (char *[]){"rg", "a", ">>", "out", NULL};
+	raw_input = "<out rg '.'<";
+	expected = (char *[]){"<", "out", "rg", "'.'", "<", NULL};
 	test_tokens(expected, raw_input);
 }
 
@@ -244,19 +276,25 @@ MU_TEST_SUITE(lexer_suite)
 	MU_SUITE_CONFIGURE(&lexer_setup, &lexer_teardown);
 
 	MU_RUN_TEST(simple_tokens);
+
 	MU_RUN_TEST(squoutes_tokens);
 	MU_RUN_TEST(dquoutes_tokens);
+
 	MU_RUN_TEST(mixed_quoutes_tokens);
 	MU_RUN_TEST(nested_quoute_tokens);
 	MU_RUN_TEST(char_quoute_tokens);
 	MU_RUN_TEST(inception_quoute_tokens);
 	MU_RUN_TEST(bad_quoute_tokens);
 	MU_RUN_TEST(lonely_quoute_tokens);
+
 	MU_RUN_TEST(variable_tokens);
+
 	MU_RUN_TEST(pipe_tokens);
-	// MU_RUN_TEST(truncate_tokens);
+
+	MU_RUN_TEST(truncate_tokens);
+	MU_RUN_TEST(append_tokens);
+
 	// MU_RUN_TEST(infile_tokens);
-	// MU_RUN_TEST(append_tokens);
 	// MU_RUN_TEST(heredoc_tokens);
 }
 

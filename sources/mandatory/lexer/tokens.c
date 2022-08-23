@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:36:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 18:01:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:38:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,36 @@ static char	*insert_pipe_delimiters(char *line)
 	return (line + 1);
 }
 
+static char	*insert_gt_delimiters(char *line)
+{
+	if (*(line + 1) == GREATER_THAN)
+	{
+		insert_char_after(line + 1, DELIMITER);
+		insert_char_before(line, DELIMITER);
+		return (line + 2);
+	}
+	insert_char_around(line, DELIMITER);
+	return (line + 1);
+}
+
+static char	*insert_delimiter(char *line)
+{
+	*line = DELIMITER;
+	return (line);
+}
+
 static char	*skip_or_delimit(char *line)
 {
 	if (*line == SINGLE_QUOTE)
 		return (skip_squote_enclosed(line));
 	if (*line == DOUBLE_QUOTE)
 		return (skip_dquote_enclosed(line));
-	if (*line == PIPE)
+	if (*line == VERTICAL_BAR)
 		return (insert_pipe_delimiters(line));
-	if (*line == PIPE)
-		return (insert_pipe_delimiters(line));
+	if (*line == GREATER_THAN)
+		return (insert_gt_delimiters(line));
 	if (*line == SPACE)
-		*line = DELIMITER;
+		return (insert_delimiter(line));
 	return (line);
 }
 

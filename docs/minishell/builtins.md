@@ -40,5 +40,17 @@
 ## `export`
 
 ```c
-"export foo=4 bar=2"
+// One variable
+"export foo=4"
+
+// Multiple variable
+"export foo=4 bar=2 baz=fizz"
+
+// Print all exported vars (like env but with the "declare -x")
+"export"
+=> "declare -x ALACRITTY_LOG=\"/tmp/Alacritty-3396198.log\"
+declare -x ALACRITTY_SOCKET=\"/run/user/1000/Alacritty-:1-3396198.sock\"
+declare -x COLORTERM=\"truecolor\"
+...
+"
 ```
