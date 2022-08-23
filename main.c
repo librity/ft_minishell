@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/21 11:44:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 01:59:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	initialize(int argc, char **argv, char **envp)
 
 static void	repl(void)
 {
+	lex("ls> out");
 	lex("ls -la ..");
 	lex("ls -la .. | cat -e | wc -l");
 	lex("infile   < tr a '   ' |   tr ' ' x > outfile");

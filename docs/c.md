@@ -72,3 +72,7 @@ $ errno -l
 ### Max File Descriptors
 
 - https://docs.oracle.com/cd/E19476-01/821-0505/file-descriptor-requirements.html
+
+### Arrays vs. Pointers
+
+- https://stackoverflow.com/questions/8108416/excess-elements-of-scalar-initializer-for-pointer-to-array-of-ints
