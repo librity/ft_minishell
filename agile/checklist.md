@@ -1,6 +1,6 @@
 # Mandatory
 
-- [ ] Don't turn in libs as sobmodules.
+- [ ] Don't turn in libs as submodules.
 - [ ] Makefile should explicitly name all source files (`make dump_sources`).
 - [ ] Make must compile without relinking
   - [ ] `make all` shouldn't recompile/rearchive any objects or sources.
@@ -16,7 +16,7 @@
   - [ ] Check memory leaks with `valgrind`.
 - [ ] `.linux` file (42 Workspaces)
 - [ ] Test in workspaces
-- [ ] Program name `minishell`
+- [ ] Program name `myshell`
 - [ ] Turn in `Makefile`, `*.h`, `*.c` , `.linux` , `.gitignore`
 - [ ] Allowed functions:
   - [ ] `readline` `rl_clear_history` `rl_on_new_line` `rl_replace_line`
@@ -30,7 +30,7 @@
   - [ ] `libft` allowed
 - [ ] Not use more than one global variable. Think about it. You will have to explain its purpose.
 - [ ] Pass all testers
-  - [ ] https://github.com/LucasKuhn/minishell_tester
+  - [ ] https://github.com/LucasKuhn/myshell_tester
 
 ### Prompt
 
@@ -47,11 +47,40 @@
 - [ ] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
 - [ ] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
 - [ ] Handle `"` (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for `$` (dollar sign).
+- [ ] Casos:
+  - [x] Tokenização simples
+  - [x] Tokenização com aspas simples
+  - [x] Tokenização com aspas duplas
+  - [x] Tokenização com aspas misturadas
+  - [x] Tokenização com aspas intercaladas
+  - [x] Tokenização com aspa avulsa
+  - [ ] Tokenização por pipe `|`
+  - [ ] Tokenização por redireção truncada `>`
+  - [ ] Tokenização por redireção de entrada `<`
+  - [ ] Tokenização por redireção concatenada `>>`
+  - [ ] Tokenização por redireção heredoc `<<`
+  - [ ] (OPCIONAL) Tokenização por comentário `#`
 
 ### Expansor
 
 - [ ] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [ ] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
+- [ ] Colocar as variáveis de ambiente em uma Hash Table
+- [ ] Casos:
+  - [ ] Sem variáveis
+  - [ ] Variáveis de ambiente
+  - [ ] Variáveis dentro de aspas simples
+  - [ ] Variáveis dentro de aspas duplas
+  - [ ] Variáveis dentro de aspas simples e duplas
+  - [ ] (OPCIONAL) Variáveis locais/do processo
+
+### Trimmer
+
+- [ ] Remover aspas para o parser.
+- [ ] Casos:
+  - [ ] Remover aspas simples
+  - [ ] Remover aspas duplas
+  - [ ] Remover aspas simples e duplas
 
 ### Parser
 
@@ -65,7 +94,7 @@
 ### Executor
 
 - [ ] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
-- [ ] Your shell must implement the following builtins:
+- [ ] Your shell must implement the following built-ins:
   - [ ] `echo` with option `-n`
   - [ ] `cd` with only a relative or absolute path
   - [ ] `pwd` with no options

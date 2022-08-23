@@ -1,14 +1,14 @@
 # Tutorials
 
-- https://harm-smits.github.io/42docs/projects/minishell
-- https://www.notion.so/Acelera-Minishell-f6c3f8463e3e4580b4e61f4886036faf
+- https://harm-smits.github.io/42docs/projects/myshell
+- https://www.notion.so/Acelera-myshell-f6c3f8463e3e4580b4e61f4886036faf
 - https://www.geeksforgeeks.org/making-linux-shell-c/
 - https://linuxgazette.net/111/ramankutty.html
 - https://www.3till7.net/2008/11/29/c-shell-with-forks-and-pipes/index.html
 - https://gist.github.com/parse/966049
 - https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
-- https://velog.io/@hidaehyunlee/minishell-1.-과제소개-및-선행지식
-- http://www.staroceans.org/minishell.htm
+- https://velog.io/@hidaehyunlee/myshell-1.-과제소개-및-선행지식
+- http://www.staroceans.org/myshell.htm
 - https://brennan.io/2015/01/16/write-a-shell-in-c/
 - https://www.youtube.com/watch?v=k6TTj4C0LF0
 

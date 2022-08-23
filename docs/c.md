@@ -4,6 +4,16 @@
 - https://people.cs.rutgers.edu/~pxk/416/notes/c-tutorials/index.html
 - https://www.geeksforgeeks.org/strtok-strtok_r-functions-c-examples/
 
+### Data Types, `limits.h` and `stdint.h`
+
+- https://en.wikipedia.org/wiki/C_data_types
+- https://www.geeksforgeeks.org/data-types-in-c/
+- https://stackoverflow.com/questions/2053843/min-and-max-value-of-data-type-in-c
+- https://stackoverflow.com/questions/1577172/cross-platform-selecting-data-types-to-use-32-64-bit
+- The standard only specifies the minimum int size.
+- 32-bit compiler `int` = 16 bits (2 bytes)
+- 64-bit compiler `int` = 32 bits (4 bytes)
+
 ### `UNIX` Processes
 
 - https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY

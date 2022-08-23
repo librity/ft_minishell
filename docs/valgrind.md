@@ -9,13 +9,13 @@ Publicado pelo Denny no Discord, link pra msg original:
 
 - https://discord.com/channels/706206701598277681/805218563194355732/923621489079615489
 
-Para ajudar na verificação dos leaks no minishell com o Valgrind,
+Para ajudar na verificação dos leaks no myshell com o Valgrind,
 eu montei um arquivo de supressão que limpa os erros que vêm do Readline.
-À princípio está suprimindo 100% dos leaks do Readline no nosso minishell,
+À princípio está suprimindo 100% dos leaks do Readline no nosso myshell,
 mas se ainda retornar algum leak nas funções dessa família,
 me mandem pra gente ir atualizando esse arquivo e deixá-lo mais completo.
 O uso é bem simples, só salvar o arquivo como **readline.supp** no diretório
-do minishell e adicionar a flag abaixo quando chamar o valgrind:
+do myshell e adicionar a flag abaixo quando chamar o valgrind:
 **`--suppressions=readline.supp`**
 
 ```bash
