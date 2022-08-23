@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/21 11:29:46 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/08/22 23:31:56 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,8 +138,7 @@ $(TESTS_PATH)/%.out: $(TESTS_PATH)/%.c
 		$< \
 		$(M_ARCHIVES) \
 		-o $@
-	@printf "$(BB)=== RUNNING $@ ===$(RC)\n"
-	@printf "$(Y)"
+	@printf "\n$(PB)===================== RUNNING $@ =====================$(RC)\n"
 	./$@
 
 tests: re tests_clean $(TESTS)
