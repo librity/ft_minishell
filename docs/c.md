@@ -76,3 +76,9 @@ $ errno -l
 ### Arrays vs. Pointers
 
 - https://stackoverflow.com/questions/8108416/excess-elements-of-scalar-initializer-for-pointer-to-array-of-ints
+
+### `ARG_MAX`
+
+- https://askubuntu.com/questions/14081/what-is-the-maximum-length-of-command-line-arguments-in-gnome-terminal
+- https://stackoverflow.com/questions/46714/why-is-arg-max-not-defined-via-limits-h
+- https://unix.stackexchange.com/questions/120642/what-defines-the-maximum-size-for-a-command-single-argument

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/22 23:33:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:01:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,19 @@
 # define NOT_ASCII -42
 # define DELIMITER -42
 # define SPACE ' '
+
 # define SINGLE_QUOTE '\''
 # define DOUBLE_QUOTE '\"'
+
+# define PIPE '|'
+
+# define TO_FILE '>'
+# define APPEND ">"
+# define TRUNCATE ">>"
+
+# define FROM_FILE '<'
+# define READ_FILE "<"
+# define HEREDOC "<<"
 
 /******************************************************************************\
  * ERRORS

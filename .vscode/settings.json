@@ -18,6 +18,8 @@
     "chrono": "c",
     "libft.h": "c",
     "tests.h": "c",
-    "ostream": "c"
+    "ostream": "c",
+    "strings.h": "c",
+    "limits.h": "c"
   }
 }

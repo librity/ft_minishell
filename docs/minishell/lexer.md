@@ -141,6 +141,8 @@ e basta considerar o token com a aspa avulsa.
 - https://en.wikipedia.org/wiki/Extended_ASCII
 - https://en.wikipedia.org/wiki/Input_method
 - https://en.wikipedia.org/wiki/Unicode
+- https://medium.com/bobble-engineering/emojis-from-a-programmers-eye-ca65dc2acef0
+- https://en.wikipedia.org/wiki/Emoji
 
 ### Finite State Machine
 
