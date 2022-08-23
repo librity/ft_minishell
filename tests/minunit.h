@@ -143,7 +143,7 @@ static void (*minunit_teardown)(void) = NULL;
 	minunit_run++;\
 	if (minunit_status) {\
 		minunit_fail++;\
-		printf(RB "F" RC);\
+		printf(RB "F");\
 		printf("\n%s\n", minunit_last_message);\
 	}\
 	fflush(stdout);\

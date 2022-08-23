@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/21 01:15:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 00:38:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,6 @@ MU_TEST(nested_quoute_tokens)
 	test_tokens(expected, raw_input);
 }
 
-MU_TEST(inception_quoute_tokens)
-{
-	char *raw_input = "infile   < tr a   \'  \"   \' |   tr \' \"     \' x > outfile";
-	char *expected[] = {
-		"infile", "<",
-		"tr", "a", "\'  \"   \' |   tr \' \"     \'", "x",
-		">", "outfile",
-		NULL};
-
-	test_tokens(expected, raw_input);
-}
 
 MU_TEST(char_quoute_tokens)
 {
@@ -133,12 +122,26 @@ MU_TEST(char_quoute_tokens)
 	test_tokens(expected, raw_input);
 }
 
+MU_TEST(inception_quoute_tokens)
+{
+	char *raw_input = "infile   < tr a   \'  \"   \' |   tr \' \"     \' x > outfile";
+	char *expected[] = {
+		"infile", "<",
+		"tr", "a", "\'  \"   \'", "|",
+		"tr", "\' \"     \'", "x",
+		">", "outfile",
+		NULL};
+
+	test_tokens(expected, raw_input);
+}
+
 MU_TEST(bad_quoute_tokens)
 {
 	char *raw_input = "infile   < tr a   \'  \"   \' |   tr \' \"      x > outfile";
 	char *expected[] = {
 		"infile", "<",
-		"tr", "a", "\'  \"   \' |   tr \' \"      x > outfile",
+		"tr", "a", "\'  \"   \'", "|",
+		"tr", "\' \"      x > outfile",
 		NULL};
 
 	test_tokens(expected, raw_input);
@@ -176,8 +179,8 @@ MU_TEST_SUITE(lexer_suite)
 	MU_RUN_TEST(dquoutes_tokens);
 	MU_RUN_TEST(mixed_quoutes_tokens);
 	MU_RUN_TEST(nested_quoute_tokens);
-	MU_RUN_TEST(inception_quoute_tokens);
 	MU_RUN_TEST(char_quoute_tokens);
+	MU_RUN_TEST(inception_quoute_tokens);
 	MU_RUN_TEST(bad_quoute_tokens);
 	MU_RUN_TEST(lonely_quoute_tokens);
 	MU_RUN_TEST(variable_tokens);

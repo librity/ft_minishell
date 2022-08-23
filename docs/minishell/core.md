@@ -1,5 +1,10 @@
 # Minishell
 
+- [Variables](./variables.md)
+- [Built-ins](./built-ins.md)
+
+## Interpreter
+
 1. [Prompt](./prompt.md)
 2. [Lexer](./lexer.md)
 3. [Expansor](./expansor.md)

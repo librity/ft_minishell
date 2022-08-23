@@ -6,52 +6,30 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:36:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/21 00:42:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/23 00:48:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	subvert_spaces_within_delimiter(char *str, char delimiter)
+static char	*delimit_or_skip(char *input)
 {
-	str = ft_strchr(str, delimiter);
-	while (str != NULL && *str != '\0')
-	{
-		str++;
-		while (*str != delimiter && *str != '\0')
-		{
-			if (*str == SPACE)
-				*str = NOT_ASCII;
-			str++;
-		}
-		if (*str == delimiter)
-		{
-			str++;
-			str = ft_strchr(str, delimiter);
-		}
-	}
+	if (*input == SINGLE_QUOTE)
+		return (ft_strchr(++input, SINGLE_QUOTE));
+	if (*input == DOUBLE_QUOTE)
+		return (ft_strchr(++input, DOUBLE_QUOTE));
+	if (*input == SPACE)
+		*input = DELIMITER;
+	return (input);
 }
 
-static void	subvert_spaces(char *str)
+static void	insert_trivial_delimiters(char *input)
 {
-	subvert_spaces_within_delimiter(str, SINGLE_QUOTE);
-	subvert_spaces_within_delimiter(str, DOUBLE_QUOTE);
-}
-
-static void	restore_spaces(char **tokens)
-{
-	char	*token;
-
-	while (*tokens != NULL)
+	while (input != NULL && *input != '\0')
 	{
-		token = *tokens;
-		while (*token != '\0')
-		{
-			if (*token == NOT_ASCII)
-				*token = SPACE;
-			token++;
-		}
-		tokens++;
+		input = delimit_or_skip(input);
+		if (input != NULL)
+			input++;
 	}
 }
 
@@ -61,9 +39,8 @@ char	**tokenize(char *input)
 	char	**tokens;
 
 	free_me = ft_strdup(input);
-	subvert_spaces(free_me);
-	tokens = ft_split(free_me, SPACE);
-	restore_spaces(tokens);
+	insert_trivial_delimiters(free_me);
+	tokens = ft_split(free_me, DELIMITER);
 	free(free_me);
 	return (tokens);
 }

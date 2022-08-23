@@ -32,7 +32,23 @@
 - [ ] Pass all testers
   - [ ] https://github.com/LucasKuhn/myshell_tester
 
-### Prompt
+## Variáveis
+
+- [ ] Colocar as variáveis de ambiente em uma Hash Table
+
+## Built-ins
+
+- [ ] Your shell must implement the following built-ins:
+  - [ ] `echo` with option `-n`
+  - [ ] `cd` with only a relative or absolute path
+  - [ ] `pwd` with no options
+  - [ ] `export` with no options
+  - [ ] `unset` with no options
+  - [ ] `env` with no options or arguments
+  - [ ] `exit` with no options
+  - [ ] (OPTIONAL) `help` prints a help message listing all commands
+
+## Prompt
 
 - [ ] Display a prompt when waiting for a new command.
 - [ ] Have a working history.
@@ -42,7 +58,7 @@
   - [ ] `Ctrl-D` exits the shell.
   - [ ] `Ctrl-\` does nothing.
 
-### Lexer
+## Lexer
 
 - [ ] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
 - [ ] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
@@ -61,11 +77,10 @@
   - [ ] Tokenização por redireção heredoc `<<`
   - [ ] (OPCIONAL) Tokenização por comentário `#`
 
-### Expansor
+## Expansor
 
 - [ ] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [ ] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
-- [ ] Colocar as variáveis de ambiente em uma Hash Table
 - [ ] Casos:
   - [ ] Sem variáveis
   - [ ] Variáveis de ambiente
@@ -74,7 +89,7 @@
   - [ ] Variáveis dentro de aspas simples e duplas
   - [ ] (OPCIONAL) Variáveis locais/do processo
 
-### Trimmer
+## Trimmer
 
 - [ ] Remover aspas para o parser.
 - [ ] Casos:
@@ -82,7 +97,7 @@
   - [ ] Remover aspas duplas
   - [ ] Remover aspas simples e duplas
 
-### Parser
+## Parser
 
 - [ ] Implement pipes (`|` character). The output of each command in the pipeline is connected to the input of the next command via a pipe.
 - [ ] Implement redirections:
@@ -91,17 +106,9 @@
   - [ ] `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
   - [ ] `>>` should redirect output in append mode.
 
-### Executor
+## Executor
 
 - [ ] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
-- [ ] Your shell must implement the following built-ins:
-  - [ ] `echo` with option `-n`
-  - [ ] `cd` with only a relative or absolute path
-  - [ ] `pwd` with no options
-  - [ ] `export` with no options
-  - [ ] `unset` with no options
-  - [ ] `env` with no options or arguments
-  - [ ] `exit` with no options
 
 # Bonus
 
