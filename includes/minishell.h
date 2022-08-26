@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 20:03:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/26 19:52:07 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 # define MINISHELL_H
 
 # include <libft.h>
-
 # include <defines.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
 
 typedef struct s_minishell
 {
@@ -27,6 +31,24 @@ typedef struct s_minishell
 
 	t_list	*lalloc;
 }			t_minishell;
+
+# define MAX_PATH 256
+
+/******************************************************************************\
+ * Colors
+\******************************************************************************/
+
+#define NOC "\033[0m"
+#define BOLD "\033[1m"
+#define UNDERLINE "\033[4m"
+#define BLACK "\033[1;30m"
+#define RED "\033[1;31m"
+#define GREEN "\033[1;32m"
+#define YELLOW "\033[1;33m"
+#define BLUE "\033[1;34m"
+#define VIOLET "\033[1;35m"
+#define CYAN "\033[1;36m"
+#define WHITE "\033[1;37m"
 
 /******************************************************************************\
  * CONTROL
