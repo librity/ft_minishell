@@ -153,3 +153,4 @@ e basta considerar o token com a aspa avulsa.
 
 - https://en.wikipedia.org/wiki/Lex\_(software)
 - https://github.com/ckshitij/LEX-AND-YACC
+- https://www.youtube.com/watch?v=KqNXeaewzmo

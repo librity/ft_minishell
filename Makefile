@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/22 23:31:56 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/08/26 16:44:21 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -178,14 +178,18 @@ CC_VG = $(CC) \
 	$(CCF_STRICT)
 
 VG = valgrind
-VG_FLAGS = --leak-check=full --show-leak-kinds=all --trace-children=yes
+VG_FLAGS = --leak-check=full\
+	--show-leak-kinds=all\
+	--trace-children=yes\
+	--suppressions=readline.supp
 VG_LOG = valgrind_leaks.log
 VG_LOG_FLAGS = --log-file=$(VG_LOG) \
 	--leak-check=full \
 	--show-leak-kinds=all \
 	--trace-children=yes \
 	--track-origins=yes \
-	--verbose
+	--verbose \
+	--suppressions=readline.supp
 
 VG_TARGET = ./minishell
 

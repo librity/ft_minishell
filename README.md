@@ -50,7 +50,7 @@
 Clone the repo and build with `make`:
 
 ```bash
-$ git clone https://github.com/librity/ft_minishell.git
+$ git clone --recurse-submodules https://github.com/librity/ft_minishell.git
 $ cd ft_minishell
 $ make
 ```
