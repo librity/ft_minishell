@@ -1,6 +1,6 @@
 # Mandatory
 
-- [ ] Don't turn in libs as sobmodules.
+- [ ] Don't turn in libs as submodules.
 - [ ] Makefile should explicitly name all source files (`make dump_sources`).
 - [ ] Make must compile without relinking
   - [ ] `make all` shouldn't recompile/rearchive any objects or sources.
@@ -16,11 +16,9 @@
   - [ ] Check memory leaks with `valgrind`.
 - [ ] `.linux` file (42 Workspaces)
 - [ ] Test in workspaces
-
-- [ ] Program name `minishell`
+- [ ] Program name `myshell`
 - [ ] Turn in `Makefile`, `*.h`, `*.c` , `.linux` , `.gitignore`
 - [ ] Allowed functions:
-
   - [ ] `readline` `rl_clear_history` `rl_on_new_line` `rl_replace_line`
   - [ ] `rl_redisplay` `add_history` `printf` `malloc` `free` `write` `access`
   - [ ] `open` `read` `close` `fork` `wait` `waitpid` `wait3` `wait4` `signal`
@@ -30,29 +28,17 @@
   - [ ] `ioctl` `getenv` `tcsetattr` `tcgetattr` `tgetent` `tgetflag` `tgetnum`
   - [ ] `tgetstr` `tgoto` `tputs`
   - [ ] `libft` allowed
-
-- [ ] Display a prompt when waiting for a new command.
-- [ ] Have a working history.
-- [ ] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
 - [ ] Not use more than one global variable. Think about it. You will have to explain its purpose.
-- [ ] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
-- [ ] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
-- [ ] Handle `"` (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for `$` (dollar sign).
-- [ ] Implement redirections:
-  - [ ] `<` should redirect input.
-  - [ ] `>` should redirect output.
-  - [ ] `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
-  - [ ] `>>` should redirect output in append mode.
-- [ ] Implement pipes (`|` character). The output of each command in the pipeline is connected to the input of the next command via a pipe.
-- [ ] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
-- [ ] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
-- [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
-- [ ] In interactive mode:
-  - [ ] `Ctrl-C` displays a new prompt on a new line.
-  - [ ] `Ctrl-D` exits the shell.
-  - [ ] `Ctrl-\` does nothing.
-- [ ] Your shell must implement the following builtins:
+- [ ] Pass all testers
+  - [ ] https://github.com/LucasKuhn/myshell_tester
 
+## Variáveis
+
+- [ ] Colocar as variáveis de ambiente em uma Hash Table
+
+## Built-ins
+
+- [ ] Your shell must implement the following built-ins:
   - [ ] `echo` with option `-n`
   - [ ] `cd` with only a relative or absolute path
   - [ ] `pwd` with no options
@@ -60,15 +46,69 @@
   - [ ] `unset` with no options
   - [ ] `env` with no options or arguments
   - [ ] `exit` with no options
+  - [ ] (OPTIONAL) `help` prints a help message listing all commands
 
-- [ ] Prompt
-- [ ] Lexer
-- [ ] Expansor
-- [ ] Parser
-- [ ] Executor
+## Prompt
 
-- [ ] Pass all testers
-  - [ ] https://github.com/LucasKuhn/minishell_tester
+- [ ] Display a prompt when waiting for a new command.
+- [ ] Have a working history.
+- [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
+- [ ] In interactive mode:
+  - [ ] `Ctrl-C` displays a new prompt on a new line.
+  - [ ] `Ctrl-D` exits the shell.
+  - [ ] `Ctrl-\` does nothing.
+
+## Lexer
+
+- [ ] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
+- [ ] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
+- [ ] Handle `"` (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for `$` (dollar sign).
+- [x] Casos:
+  - [x] Tokenização simples
+  - [x] Tokenização com aspas simples `'`
+  - [x] Tokenização com aspas duplas `"`
+  - [x] Tokenização com aspas misturadas
+  - [x] Tokenização com aspas intercaladas
+  - [x] Tokenização com aspa avulsa
+  - [x] Tokenização por pipe `|`
+  - [x] Tokenização por redireção truncada `>`
+  - [x] Tokenização por redireção de entrada `<`
+  - [x] Tokenização por redireção concatenada `>>`
+  - [x] Tokenização por redireção heredoc `<<`
+  - [ ] (OPCIONAL) Tokenização por comentário `#`
+
+## Expansor
+
+- [ ] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
+- [ ] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
+- [ ] Casos:
+  - [ ] Sem variáveis
+  - [ ] Variáveis de ambiente
+  - [ ] Variáveis dentro de aspas simples
+  - [ ] Variáveis dentro de aspas duplas
+  - [ ] Variáveis dentro de aspas simples e duplas
+  - [ ] (OPCIONAL) Variáveis locais/do processo
+
+## Trimmer
+
+- [ ] Remover aspas para o parser.
+- [ ] Casos:
+  - [ ] Remover aspas simples
+  - [ ] Remover aspas duplas
+  - [ ] Remover aspas simples e duplas
+
+## Parser
+
+- [ ] Implement pipes (`|` character). The output of each command in the pipeline is connected to the input of the next command via a pipe.
+- [ ] Implement redirections:
+  - [ ] `<` should redirect input.
+  - [ ] `>` should redirect output.
+  - [ ] `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
+  - [ ] `>>` should redirect output in append mode.
+
+## Executor
+
+- [ ] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
 
 # Bonus
 

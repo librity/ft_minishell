@@ -5,12 +5,12 @@
 - Can be redirected/piped like a process command
   - Built-ins receive a duplicate of `STDIN`, `STDOUT` and `STDERR`
 
-### `help`
+## `help`
 
 - Prints the general usage and lists built-ins
 - Can also print built-in-specific help: `help echo`
 
-### `echo`
+## `echo`
 
 - https://unix.stackexchange.com/questions/63658/redirecting-the-content-of-a-file-to-the-command-echo
 - Writes arguments to `STDOUT`
@@ -25,20 +25,21 @@ echo -n foo 3245
 echo foo 3245 -n
 ```
 
-### `cd`
+## `cd`
 
 - https://unix.stackexchange.com/questions/50022/why-cant-i-redirect-a-path-name-output-from-one-command-to-cd
 - https://www.geeksforgeeks.org/chdir-in-c-language-with-examples/
 - Set the shell’s current working directory
 - Forks and subshells inherit the parent’s working directory
 
-### `pwd`
+## `pwd`
 
 - Print the shell’s current directory
 
-### `export`
+## `export`
 
 - https://unix.stackexchange.com/questions/130985/if-processes-inherit-the-parents-environment-why-do-we-need-export
+- https://superuser.com/questions/821094/what-is-the-difference-between-set-env-declare-and-export-when-setting-a-varia/1404741#1404741
 - Marks a shell variable as an environment variable
 - Forks and subshells inherit environment variables
 
@@ -67,7 +68,36 @@ foo=10
 run_in_tandem
 ```
 
-### `unset`
+### Arguments
+
+```bash
+# One variable
+$ export foo=4
+
+# Multiple variable
+$ export foo=4 bar=2 baz=fizz
+
+# Print all exported vars (like env but with the "declare -x")
+$ export
+declare -x ALACRITTY_LOG=/tmp/Alacritty-3396198.log
+declare -x ALACRITTY_SOCKET=/run/user/1000/Alacritty-:1-3396198.sock
+declare -x COLORTERM=truecolor
+...
+
+# Empty exported variables show up on export but not on env
+$ export empty
+$ export | grep empty
+declare -x empty
+$ env | grep empty
+
+$ export not_empty=42
+$ export | grep not_empty
+declare -x not_empty="42"
+$ env | grep not_empty
+not_empty=42
+```
+
+## `unset`
 
 - Uninitializes variable: removes it from local variables and environment variables
 
@@ -83,7 +113,7 @@ unset buzz
 echo $buzz
 ```
 
-### `env`
+## `env`
 
 - Prints all environment variables
 - Not a built-in in Ubuntu
@@ -101,13 +131,13 @@ unset bozia
 env | grep bozia
 ```
 
-### `exit`
+## `exit`
 
 - Exits the shell
 - C `exit()`
 - Same as `Ctrl+D`
 
-### `jobs`, `bg` and `fg`
+## `jobs`, `bg` and `fg`
 
 ![Shell Session and Jobs](./jobs.png)
 
@@ -118,7 +148,7 @@ env | grep bozia
 - `bg job_number` send `SIGCONT` to a background job
 - `fg job_number` send `SIGCONT` to a background job and move it to the foreground
 
-### `source`
+## `source`
 
 - Executes commands from the file in the current shell
 
@@ -127,7 +157,7 @@ env | grep bozia
 source ~/.bashrc
 ```
 
-### Shebang
+## Shebang
 
 - Tells the executor to run the script with the specified interpreter
 

@@ -4,6 +4,16 @@
 - https://people.cs.rutgers.edu/~pxk/416/notes/c-tutorials/index.html
 - https://www.geeksforgeeks.org/strtok-strtok_r-functions-c-examples/
 
+### Data Types, `limits.h` and `stdint.h`
+
+- https://en.wikipedia.org/wiki/C_data_types
+- https://www.geeksforgeeks.org/data-types-in-c/
+- https://stackoverflow.com/questions/2053843/min-and-max-value-of-data-type-in-c
+- https://stackoverflow.com/questions/1577172/cross-platform-selecting-data-types-to-use-32-64-bit
+- The standard only specifies the minimum int size.
+- 32-bit compiler `int` = 16 bits (2 bytes)
+- 64-bit compiler `int` = 32 bits (4 bytes)
+
 ### `UNIX` Processes
 
 - https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY
@@ -62,3 +72,13 @@ $ errno -l
 ### Max File Descriptors
 
 - https://docs.oracle.com/cd/E19476-01/821-0505/file-descriptor-requirements.html
+
+### Arrays vs. Pointers
+
+- https://stackoverflow.com/questions/8108416/excess-elements-of-scalar-initializer-for-pointer-to-array-of-ints
+
+### `ARG_MAX`
+
+- https://askubuntu.com/questions/14081/what-is-the-maximum-length-of-command-line-arguments-in-gnome-terminal
+- https://stackoverflow.com/questions/46714/why-is-arg-max-not-defined-via-limits-h
+- https://unix.stackexchange.com/questions/120642/what-defines-the-maximum-size-for-a-command-single-argument

@@ -1,0 +1,1 @@
+# Minishell Syntax Validator

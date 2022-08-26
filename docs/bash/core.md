@@ -6,5 +6,10 @@
 - https://opensource.com/resources/what-bash
 - https://opensource.com/sites/default/files/gated-content/cheat_sheet_bash.pdf
 - https://www.tutorialspoint.com/unix_commands/bash.htm
-- https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
 - https://datacadamia.com/lang/bash/start#grammar
+
+### The Linux Documentation Project Guides
+
+- https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
+- https://tldp.org/LDP/abs/html/index.html
+- https://tldp.org/LDP/abs/html/special-chars.html
