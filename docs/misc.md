@@ -19,4 +19,3 @@
 - https://stackoverflow.com/questions/34618383/vscode-regex-find-replace-submatch-math
 - https://stackoverflow.com/questions/64907922/vs-code-regex-replace-part-of-string-and-keep-other
 - https://stackoverflow.com/questions/41150941/multi-line-regular-expressions-in-visual-studio-code
-`\n/\*\n[\s\S\r]*\n\*\/\n`

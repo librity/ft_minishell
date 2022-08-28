@@ -21,6 +21,24 @@
     "ostream": "c",
     "strings.h": "c",
     "limits.h": "c",
-    "internals.h": "c"
+    "internals.h": "c",
+    "stdint.h": "c",
+    "bit": "c",
+    "*.tcc": "c",
+    "cstdlib": "c",
+    "string": "c",
+    "exception": "c",
+    "memory_resource": "c",
+    "cmath": "c",
+    "functional": "c",
+    "new": "c",
+    "numeric": "c",
+    "string_view": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "typeinfo": "c",
+    "utility": "c",
+    "algorithm": "c",
+    "random": "c"
   }
 }

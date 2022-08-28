@@ -92,3 +92,7 @@ $ errno -l
 
 - https://en.wikipedia.org/wiki/C_string_handling
 - https://www.tutorialspoint.com/cprogramming/c_strings.htm
+
+### Unions
+
+- https://www.tutorialspoint.com/cprogramming/c_unions.htm
