@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 00:55:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/28 13:36:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #define ONE_BIT 0b10000000
 #define NULL_BYTE 0b00000000
 
-static int	*bit_shifts(void)
+static int *bit_shifts(void)
 {
-	static int	_bit_shifts[] = {
+	static int _bit_shifts[] = {
 		7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
 		5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
 		4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
@@ -27,9 +27,9 @@ static int	*bit_shifts(void)
 	return (_bit_shifts);
 }
 
-static int	*sines(void)
+static int *sines(void)
 {
-	static int	_sines[] = {
+	static int _sines[] = {
 		0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
 		0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
 		0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
@@ -50,9 +50,43 @@ static int	*sines(void)
 	return (_sines);
 }
 
-#include <stdio.h>
+typedef union u_byte_word_ui32
+{
+	uint32_t	word;
+	uint8_t		bytes[4];
+} t_byte_word_ui32;
 
-char *md5(char *message)
+void print_md5(uint32_t *digest)
+{
+	int j;
+	int k;
+	t_byte_word_ui32 bw;
+
+
+	for (j = 0; j < 4; j++)
+	{
+		bw.word = digest[j];
+		for (k = 0; k < 4; k++)
+			ft_printf("%02x", bw.bytes[k]);
+	}
+}
+
+void inspect_md5(char *message, uint32_t *digest)
+{
+	ft_printf("\'%s\' => ", message);
+	print_md5(digest);
+	ft_printf("\n");
+}
+
+typedef union uwb
+{
+
+   unsigned w;
+   unsigned char b[4];
+} WBunion;
+
+
+uint32_t *md5(char *message)
 {
 
 	uint32_t chunks;
@@ -60,6 +94,7 @@ char *md5(char *message)
 	uint8_t *_message;
 	size_t org_length;
 	org_length = ft_strlen(message);
+
 
 	chunks = 1 + (org_length + 8) / 64;
 	_message = ft_salloc(64 * chunks);
@@ -146,15 +181,21 @@ char *md5(char *message)
 	}
 	free(_message);
 
-	printf("%02x%02x%02x%02x\n", a0, b0, c0, d0);
+	uint32_t *digest;
+	digest = ft_salloc(sizeof(uint32_t) * 4);
+	ft_memcpy(digest + 0, &a0, 4);
+	ft_memcpy(digest + 1, &b0, 4);
+	ft_memcpy(digest + 2, &c0, 4);
+	ft_memcpy(digest + 3, &d0, 4);
 
-	char *digest;
-	digest = malloc(sizeof(char) * 13);
-	ft_memcpy(digest + 4 * 0, &a0, 4);
-	ft_memcpy(digest + 4 * 1, &b0, 4);
-	ft_memcpy(digest + 4 * 2, &c0, 4);
-	ft_memcpy(digest + 4 * 3, &d0, 4);
-	digest[16] = '\0';
+	inspect_md5(message, digest);
 
 	return (digest);
+}
+
+
+char		*md5_hex(char *message)
+{
+	md5(message);
+	return ("BAD MD5 HEX");
 }

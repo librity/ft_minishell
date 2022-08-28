@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/28 00:40:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/28 01:31:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,23 @@ static void example_teardown(void)
 
 MU_TEST(md5_test)
 {
-	// digest = md5("The quick brown fox jumps over the lazy dog");
+	// digest = md5_hex("The quick brown fox jumps over the lazy dog");
 	// expected = "9e107d9d372bb6826bd81d3542a419d6";
 	// mu_assert_string_eq(expected, digest);
 
-	// digest = md5("The quick brown fox jumps over the lazy dog.");
+	// digest = md5_hex("The quick brown fox jumps over the lazy dog.");
 	// expected = "e4d909c290d0fb1ca068ffaddf22cbd0";
 	// mu_assert_string_eq(expected, digest);
 
-	digest = md5("");
+	digest = md5_hex("");
 	expected = "d41d8cd98f00b204e9800998ecf8427e";
 	mu_assert_string_eq(expected, digest);
 
-	// digest = md5("ca sad asdas da asd a");
+	// digest = md5_hex("ca sad asdas da asd a");
 	// expected = "ee123eff2ad7fffcc6e8866acc300ea9";
 	// mu_assert_string_eq(expected, digest);
 
-// 	digest = md5("r ewreworwjprjpwejr wer wo rwfcf def ef sdgsfdgdfg sfgsfssdfg\
+// 	digest = md5_hex("r ewreworwjprjpwejr wer wo rwfcf def ef sdgsfdgdfg sfgsfssdfg\
 // fs gerfffffffffffffffffffffdfffffffffffffffffffffffffffffffffffffffffffffffffff\
 // fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\
 // fffffffffffffffffffffffff");
