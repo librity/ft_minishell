@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/26 16:09:53 by wjuneo-f          #+#    #+#             */
-/*   Updated: 2022/08/27 18:24:10 by wjuneo-f         ###   ########.fr       */
+/*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/08/28 00:03:26 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <minishell.h>
 
@@ -17,7 +18,7 @@ void	get_tokens(t_data *data);
 
 void	init_data(t_minishell *data, int argc, char **argv, char **envp)
 {
-	data->argc = argc;
+	data->argc = argc;	
 	data->argv = argv;
 	data->envp = envp;
 	printf("\e[1;1H\e[2J");
