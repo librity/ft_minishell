@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/08/28 17:56:39 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:05:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	init_shell(void)
 		// Trimmer
 		// Parser
 		// Executor
-		free(line_cmd());
+		destroy_line_cmd();
 		printf("\n");
 	}
 	return (0);

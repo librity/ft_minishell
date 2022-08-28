@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:39:57 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:40:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:05:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,9 @@ char	*line_cmd(void)
 void	set_line_cmd(char *input)
 {
 	c()->line_cmd = input;
+}
+
+void	destroy_line_cmd(void)
+{
+	ft_strdel(&c()->line_cmd);
 }

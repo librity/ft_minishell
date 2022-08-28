@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:47:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/28 18:05:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char		**envp(void);
 
 char		*line_cmd(void);
 void		set_line_cmd(char *input);
+void		destroy_line_cmd(void);
 
 t_list		**lalloc(void);
 void		free_memory(void);
