@@ -3,59 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/08/28 00:03:26 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/08/28 17:56:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <minishell.h>
 
-void	get_line(t_data *data);
-void	get_tokens(t_data *data);
-
-void	init_data(t_minishell *data, int argc, char **argv, char **envp)
-{
-	data->argc = argc;	
-	data->argv = argv;
-	data->envp = envp;
-	printf("\e[1;1H\e[2J");
-}
-
-int init_shell(int argc, char **argv, char **envp)
-{
-	t_minishell	tmp;
-	t_data		data;
-
-	init_data(&tmp, argc, argv, envp);
-	while(1)
-	{
-		get_tokens(&data);
-		free(data.line_cmd);
-		printf("\n");
-	}
-	return (0);
-}
-
-void	get_tokens(t_data *data)
+static void	get_tokens(void)
 {
 	char	path[MAX_PATH];
 	char	*tmp;
 
 	getcwd(path, MAX_PATH);
 	tmp = ft_strjoin(path, "$ ");
-	data->line_cmd = ft_strdup("");
-	while (!*data->line_cmd)
+	set_line_cmd(ft_strdup(""));
+	while (!*line_cmd())
 	{
-		free(data->line_cmd);
-		printf(GREEN "%s " WHITE "in ", getenv("USER"));
-		data->line_cmd = readline(tmp);
-		if (!ft_strncmp(data->line_cmd, "exit", 6))
+		free(line_cmd());
+		printf(GB "%s " WB "in ", getenv("USER"));
+		set_line_cmd(readline(tmp));
+		if (ft_streq(line_cmd(), "exit"))
 			exit(0);
 	}
-	add_history(data->line_cmd);
-	//tokenize(data->line_cmd, data);
+	add_history(line_cmd());
+	c()->tokens = lex();
 	free(tmp);
 }
+
+int	init_shell(void)
+{
+	printf("\e[1;1H\e[2J");
+	while (1)
+	{
+		get_tokens();
+		// Expansor
+		// Syntax Validator
+		// Trimmer
+		// Parser
+		// Executor
+		free(line_cmd());
+		printf("\n");
+	}
+	return (0);
+}
+
+

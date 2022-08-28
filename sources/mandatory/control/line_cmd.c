@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arguments.c                                        :+:      :+:    :+:   */
+/*   line_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 16:14:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:05:50 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/28 17:39:57 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 17:40:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	argc(void)
+char	*line_cmd(void)
 {
-	return (c()->argc);
+	return (c()->line_cmd);
 }
 
-char	**argv(void)
+void	set_line_cmd(char *input)
 {
-	return (c()->argv);
-}
-
-char	**envp(void)
-{
-	return (c()->envp);
+	c()->line_cmd = input;
 }

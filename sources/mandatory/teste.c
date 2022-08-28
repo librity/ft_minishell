@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arguments.c                                        :+:      :+:    :+:   */
+/*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 16:14:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:05:50 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/28 16:39:46 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 17:41:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	argc(void)
+char *get_user_line(void)
 {
-	return (c()->argc);
-}
+	char	*buffer;
+	int		size;
 
-char	**argv(void)
-{
-	return (c()->argv);
-}
-
-char	**envp(void)
-{
-	return (c()->envp);
+	buffer = (char *)ft_salloc(FT_ARG_MAX);
+	size = read(STDIN_FILENO, buffer, FT_ARG_MAX);
+	buffer[size - 1] = '\0';
+	return(buffer);
 }

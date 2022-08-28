@@ -3,29 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/27 11:35:42 by wjuneo-f         ###   ########.fr       */
+/*   Updated: 2022/08/28 17:47:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <libft.h>
-# include <defines.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
 
-typedef struct s_data
-{
-	char	*line_cmd;
-	char	**tokens;
-}	t_data;
+# include <libft.h>
+
+# include <defines.h>
 
 typedef struct s_minishell
 {
@@ -35,32 +28,11 @@ typedef struct s_minishell
 	char	**argv;
 	char	**envp;
 
+	char	*line_cmd;
+	char	**tokens;
+
 	t_list	*lalloc;
 }			t_minishell;
-
-/******************************************************************************\
- readline
-\******************************************************************************/
-
-int init_shell(int argc, char **argv, char **envp);
-
-# define MAX_PATH 256
-
-/******************************************************************************\
- * Colors
-\******************************************************************************/
-
-#define NOC "\033[0m"
-#define BOLD "\033[1m"
-#define UNDERLINE "\033[4m"
-#define BLACK "\033[1;30m"
-#define RED "\033[1;31m"
-#define GREEN "\033[1;32m"
-#define YELLOW "\033[1;33m"
-#define BLUE "\033[1;34m"
-#define VIOLET "\033[1;35m"
-#define CYAN "\033[1;36m"
-#define WHITE "\033[1;37m"
 
 /******************************************************************************\
  * CONTROL
@@ -76,14 +48,23 @@ int			argc(void);
 char		**argv(void);
 char		**envp(void);
 
+char		*line_cmd(void);
+void		set_line_cmd(char *input);
+
 t_list		**lalloc(void);
 void		free_memory(void);
+
+/******************************************************************************\
+ * READLINE
+\******************************************************************************/
+
+int			init_shell(void);
 
 /******************************************************************************\
  * LEXER
 \******************************************************************************/
 
-char		**lex(char *input);
+char		**lex(void);
 char		**tokenize(char *input);
 
 char		*skip_single_quotes(char *line);
