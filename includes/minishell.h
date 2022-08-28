@@ -6,7 +6,7 @@
 /*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/26 19:52:07 by wjuneo-f         ###   ########.fr       */
+/*   Updated: 2022/08/27 11:35:42 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+typedef struct s_data
+{
+	char	*line_cmd;
+	char	**tokens;
+}	t_data;
+
 typedef struct s_minishell
 {
 	bool	debug;
@@ -31,6 +37,12 @@ typedef struct s_minishell
 
 	t_list	*lalloc;
 }			t_minishell;
+
+/******************************************************************************\
+ readline
+\******************************************************************************/
+
+int init_shell(int argc, char **argv, char **envp);
 
 # define MAX_PATH 256
 

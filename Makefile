@@ -6,7 +6,7 @@
 #    By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/26 20:13:18 by wjuneo-f         ###   ########.fr        #
+#    Updated: 2022/08/27 12:33:50 by wjuneo-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,13 +73,13 @@ $(NAME): $(LIBFT) $(M_ARCHIVE)
 	$(CC_FULL) \
 		$(M_MAIN) \
 		$(M_ARCHIVES) \
-		-o $(NAME)
+		-o $(NAME) -lreadline
 
 $(M_ARCHIVE): $(M_HEADER) $(M_OBJECTS)
 	$(ARCHIVE_AND_INDEX) $(M_ARCHIVE) $(M_OBJECTS)
 
 $(M_OBJECTS_PATH)/%.o: $(M_SOURCES_PATH)/%.c
-	$(CC_FULL) -c -o $@ $<
+	$(CC_FULL) -c -o $@ $< -lreadline
 
 clean:
 	$(REMOVE) $(M_OBJECTS)
