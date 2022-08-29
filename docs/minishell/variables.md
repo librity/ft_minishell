@@ -8,6 +8,14 @@
 - https://stackoverflow.com/questions/730620/how-does-a-hash-table-work
 - https://benhoyt.com/writings/hash-table-in-c/
 
+### Hash Functions
+
+- https://en.wikipedia.org/wiki/One-way_function
+- https://en.wikipedia.org/wiki/Cryptographic_hash_function
+- https://en.wikipedia.org/wiki/Comparison_of_cryptographic_hash_functions
+- https://en.wikipedia.org/wiki/SHA-1
+- https://en.wikipedia.org/wiki/SHA-2
+
 ### MD5
 
 - https://en.wikipedia.org/wiki/MD5#Pseudocode
@@ -16,3 +24,9 @@
 - https://github.com/Zunawe/md5-c/blob/main/md5.c
 - https://medium.com/a-42-journey/implementing-the-sha256-and-md5-hash-functions-in-c-78c17e657794
 - https://rosettacode.org/wiki/MD5#C
+- https://github.com/ryankurte/cryptlib/blob/master/context/ctx_md5.c
+
+### Bit vs. Byte Endianess
+
+- https://stackoverflow.com/questions/8859604/confused-with-endianess-bits-or-bytes
+- https://en.wikipedia.org/wiki/Endianness

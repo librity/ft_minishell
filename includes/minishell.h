@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 00:31:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:18:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,22 @@ bool		at_heredoc(char *line);
  * CRYPTO
 \******************************************************************************/
 
-uint32_t	*md5(void *message, size_t mlength);
+uint32_t	*md5_little_endian(void *message, size_t msg_length);
+uint32_t	*md5_big_endian(void *message, size_t msg_length);
+
+void		inspect_md5(char *message, uint32_t *digest);
+void		print_md5(uint32_t *digest);
+
 char		*md5_hex(char *message);
+char		*md5_digest_to_hex(uint32_t *digest);
+
+uint32_t	*md5(void *message, size_t msg_length);
+void		md5_pad_message(t_md5 *m);
+void		md5_calculate_digest(t_md5	*m);
+
+uint32_t	*md5_rotations(void);
+uint32_t	*md5_sines(void);
+uint32_t	*md5_initial_digest(void);
 
 /******************************************************************************\
  * ERRORS

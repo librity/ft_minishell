@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   md5.c                                              :+:      :+:    :+:   */
+/*   md5_padding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 16:02:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:51:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	init(t_md5 *m, void *message, size_t msg_length)
+void	md5_pad_message(t_md5 *m)
 {
-	m->message = message;
-	m->msg_length = msg_length;
-}
+	uint64_t	length_bits;
+	uint32_t	i;
 
-static void	init_digest(t_md5 *m)
-{
-	m->digest = ft_salloc(MD5_DIGEST_SIZE);
-	ft_memcpy(m->digest, md5_initial_digest(), MD5_DIGEST_SIZE);
-}
-
-static void	cleanup(t_md5 *m)
-{
-	free(m->padded_message);
-}
-
-uint32_t	*md5(void *message, size_t msg_length)
-{
-	t_md5	m;
-
-	init(&m, message, msg_length);
-	md5_pad_message(&m);
-	init_digest(&m);
-	md5_calculate_digest(&m);
-	cleanup(&m);
-	return (m.digest);
+	m->chunks = 1 + (m->msg_length + 8) / 64;
+	m->padded_message = ft_salloc(64 * m->chunks);
+	ft_memcpy(m->padded_message, m->message, m->msg_length);
+	m->padded_message[m->msg_length] = ONE_BIT;
+	i = m->msg_length + 1;
+	while (i < 64 * m->chunks)
+	{
+		m->padded_message[i] = NULL_BYTE;
+		i++;
+	}
+	length_bits = 8 * m->msg_length % ULLONG_MAX;
+	i -= 8;
+	ft_memcpy(m->padded_message + i, &length_bits, 8);
 }

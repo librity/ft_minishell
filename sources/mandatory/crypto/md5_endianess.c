@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   md5_endianess.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 16:20:28 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/29 15:43:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+void	md5_switch_endianess(uint32_t *digest)
 {
-	initialize_control(argc, argv, envp);
+	int	word;
+
+	word = 0;
+	while (word < 4)
+	{
+		digest[word] = ft_switch_byte_endianess_ui32(digest[word]);
+		word++;
+	}
 }
 
-static void	repl(void)
+uint32_t	*md5_little_endian(void *message, size_t msg_length)
 {
+	return (md5(message, msg_length));
 }
 
-static void	cleanup(void)
+uint32_t	*md5_big_endian(void *message, size_t msg_length)
 {
-	free_memory();
-}
+	uint32_t	*digest;
 
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	digest = md5(message, msg_length);
+	md5_switch_endianess(digest);
+	return (digest);
 }

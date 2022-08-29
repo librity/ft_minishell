@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/29 00:25:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:32:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,23 @@ MU_TEST(md5_test)
 		"The external scars tell only part of the story.");
 
 	test_md5(
+		"b5af5a347ef00ab5d24796d5d6ec853f",
+		"Sometimes the light's all shinin' on me Other times I can barely see Lately it occurs to me What a long, strange trip it's been");
+
+	test_md5(
 		"ee123eff2ad7fffcc6e8866acc300ea9",
 		"ca sad asdas da asd a");
+
+	test_md5(
+		"625d65ac781b40f2f9ec6bc283b6408e",
+		"https://md5calc.com/hash");
+
+	test_md5(
+		"88525c36145ce7a99cc3956a74b73fe7",
+		"b5af5a347ef00ab5d24796d5d6ec853f2367e09ee21ae1e4b8d412b34f0c0df35b7919\
+c3fca98084dbf2bfdccf0cefb368252fe6a8b823215cc6bae394cfbcef03e99d0d7664dc43b53cd\
+0adc94130d7055735c09a4b2e1751a9478667f61699c4919605acf4255e1f3ac3d4ad9608abfe4f\
+2414b6ac4379039efa341077965e8bfe574cc30ce1a24263e268f311df83");
 
 	test_md5(
 		"a088672c20cee82993621b050c0d0460",
