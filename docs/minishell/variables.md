@@ -26,7 +26,13 @@
 - https://rosettacode.org/wiki/MD5#C
 - https://github.com/ryankurte/cryptlib/blob/master/context/ctx_md5.c
 
-### Bit vs. Byte Endianess
+```bash
+$ md5sum
+Homesickness became contagious in the young campers' cabin.CTRL+D
+d9f45b8d75b8dda1f4d8976e6eea0483
+```
+
+### Bit Endianess vs. Byte Endianess
 
 - https://stackoverflow.com/questions/8859604/confused-with-endianess-bits-or-bytes
 - https://en.wikipedia.org/wiki/Endianness

@@ -1,4 +1,6 @@
-### Dicas do `anjose-d`
+# Dicas do `anjose-d`
+
+### Ordem das etapas:
 
 1. Lexer
 2. Parser
@@ -8,7 +10,11 @@
 6. Heredoc
 7. Readline ou implementação própia
 
-### Dicas do `vwildner`
+### Tamanho da Hash Table
+
+8000+ items.
+
+# Dicas do `vwildner`
 
 - Erro quando recebe argumento `if (argc != 1) ft_die();`.
 - Usar `enum` já no lexer para escapar metacharacters.

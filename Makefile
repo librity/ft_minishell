@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/28 23:56:27 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/08/29 17:42:13 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,7 +134,7 @@ TEST_SOURCES = $(wildcard $(TESTS_PATH)/*.c)
 TESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.out, $(TEST_SOURCES))
 
 $(TESTS_PATH)/%.out: $(TESTS_PATH)/%.c
-	$(CC_FULL) \
+	$(CC_BASIC) $(CCF_DEBUG)\
 		$< \
 		$(M_ARCHIVES) \
 		-o $@
