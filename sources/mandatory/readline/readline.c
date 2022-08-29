@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/08/28 00:03:26 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/08/28 12:30:38 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_tokens(t_data *data);
 
 void	init_data(t_minishell *data, int argc, char **argv, char **envp)
 {
-	data->argc = argc;	
+	data->argc = argc;
 	data->argv = argv;
 	data->envp = envp;
 	printf("\e[1;1H\e[2J");
@@ -33,7 +33,12 @@ int init_shell(int argc, char **argv, char **envp)
 	while(1)
 	{
 		get_tokens(&data);
-		free(data.line_cmd);
+		//variaveis
+		//expansor
+		//sintax valid
+		//treamer
+		//paser
+		//execve
 		printf("\n");
 	}
 	return (0);
@@ -56,6 +61,6 @@ void	get_tokens(t_data *data)
 			exit(0);
 	}
 	add_history(data->line_cmd);
-	//tokenize(data->line_cmd, data);
+	data->tokens = lex(data->line_cmd);
 	free(tmp);
 }
