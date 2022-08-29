@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/28 21:04:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:36:56 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,25 @@ MU_TEST(line_cmd_1)
 	mu_assert_string_eq(expected, result);
 }
 
+MU_TEST(verific_asp_line_cmd_1)
+{
+	mu_assert(verific_asp_line_cmd(" \'dsadasdasd \"\"\"\' ") == true, "Has valid quotes.");
+}
+
+MU_TEST(verific_asp_line_cmd_2)
+{
+	mu_assert(verific_asp_line_cmd(" \'dsadasdasd \"\"\"\'\" ") == false, "Does notHas valid quotes.");
+}
+
 MU_TEST_SUITE(example_suite)
 {
 	MU_SUITE_CONFIGURE(&example_setup, &example_teardown);
 	MU_RUN_TEST(get_user_line_1);
 	MU_RUN_TEST(get_user_line_2);
 	MU_RUN_TEST(get_user_line_3);
-	MU_RUN_TEST(get_user_line_4);
+
+	MU_RUN_TEST(verific_asp_line_cmd_1);
+	MU_RUN_TEST(verific_asp_line_cmd_2);
 	MU_RUN_TEST(line_cmd_1);
 }
 

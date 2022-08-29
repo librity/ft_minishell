@@ -6,11 +6,14 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/08/29 11:10:10 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:15:56 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+
+void	Syntax_Validator(void);
 
 static void	get_tokens(void)
 {
@@ -28,11 +31,31 @@ static void	get_tokens(void)
 		if (ft_streq(line_cmd(), "exit"))
 			exit(0);
 	}
+	verific_asp_line_cmd(line_cmd());
 	add_history(line_cmd());
 	c()->tokens = lex();
 	free(tmp);
 }
 
+bool	verific_asp_line_cmd(char	*line)
+{
+	int	single;
+	int	doub;
+
+	single = 0;
+	doub = 0;
+	while(*line++)
+	{
+		if (*line == SINGLE_QUOTE && doub % 2 == 0)
+			single++;
+		if (*line == DOUBLE_QUOTE && single % 2 == 0)
+			doub++;
+	}
+	if (single % 2 == 1 || doub % 2 == 1)
+		return (false);
+	return (true);
+}
+
 int	init_shell(void)
 {
 	printf("\e[1;1H\e[2J");
@@ -40,7 +63,7 @@ int	init_shell(void)
 	{
 		get_tokens();
 		// Expansor
-		// Syntax Validator
+		Syntax_Validator();
 		// Trimmer
 		// Parser
 		// Executor
@@ -50,23 +73,23 @@ int	init_shell(void)
 	return (0);
 }
 
-
-
-int	init_shell(void)
+void	Syntax_Validator(void)
 {
-	printf("\e[1;1H\e[2J");
-	while (1)
+	int		index;
+
+	index = 0;
+	while(token_index(index))
 	{
-		get_tokens();
-		// Expansor
-		// Syntax Validator
-		// Trimmer
-		// Parser
-		// Executor
-		destroy_line_cmd();
-		printf("\n");
+		if (token_index(index)[0] == SINGLE_QUOTE)
+			token_edit(index, ft_strtrim(c()->tokens[index], "\'"));
+		else if (token_index(index)[0] == DOUBLE_QUOTE)
+			token_edit(index, ft_strtrim(c()->tokens[index], "\""));
+		index++;
 	}
-	return (0);
+	index = 0;
+	while(token_index(index))
+	{
+		printf("tokens = %s\n",  token_index(index));
+		index++;
+	}
 }
-
-

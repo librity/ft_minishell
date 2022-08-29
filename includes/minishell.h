@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 21:02:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:17:28 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ char		*line_cmd(void);
 void		set_line_cmd(char *input);
 void		destroy_line_cmd(void);
 
+char		**tokens(void);
+char		*token_index(int index);
+void		token_edit(int index, char *str);
+
 t_list		**lalloc(void);
 void		free_memory(void);
 
@@ -63,6 +67,9 @@ void		free_memory(void);
 
 int			init_shell(void);
 char		*get_user_line(void);
+bool		verific_asp_line_cmd(char	*line);
+void		Syntax_Validator(void);
+
 
 /******************************************************************************\
  * LEXER
