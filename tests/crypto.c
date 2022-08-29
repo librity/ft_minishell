@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/29 00:08:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 00:25:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,94 @@ MU_TEST(md5_test)
 	test_md5(
 		"d41d8cd98f00b204e9800998ecf8427e",
 		"");
+
+	test_md5(
+		"6e8fe3fa3d1ef606acbdc948ea590df5",
+		"I really want to go to work, but I am too sick to drive.");
+
+	test_md5(
+		"f84789d6c6603b4bb6ea7bc860d15cad",
+		"I hear that Nancy is very pretty.");
+
+	test_md5(
+		"41ebec28f8dab794365bad9e178ace1a",
+		"She was sad to hear that fireflies are facing extinction due to artificial light, habitat loss, and pesticides.");
+
+	test_md5(
+		"32b3ef796c28447af80a9492ab087f64",
+		"I made myself a peanut butter sandwich as I didn't want to subsist on veggie crackers.");
+
+	test_md5(
+		"cc2fa1a51d9bf47748ca37a52fc7ed88",
+		"Three years later, the coffin was still full of Jello.");
+
+	test_md5(
+		"454cc13bdee37176a2dd0bd050951d85",
+		"Henry couldn't decide if he was an auto mechanic or a priest.");
+
+	test_md5(
+		"b3121cbfa23a09d0031f7262cb63c5b6",
+		"He found the chocolate covered roaches quite tasty.");
+
+	test_md5(
+		"c002022c1251bb171767cf1520e569c5",
+		"His ultimate dream fantasy consisted of being content and sleeping eight hours in a row.");
+
+	test_md5(
+		"d9f45b8d75b8dda1f4d8976e6eea0483",
+		"Homesickness became contagious in the young campers' cabin.");
+
+	test_md5(
+		"4d116053d4a115b197ef9a86a07fa17a",
+		"I felt then dead like the men who slept 'neath fields of Garryowen.");
+
+	test_md5(
+		"27643c200c897a5d88502a4895b807dc",
+		"She looked into the mirror and saw another person.");
+
+	test_md5(
+		"08b765f9c63d5f9149e9e4506dee7f7e",
+		"It's a skateboarding penguin with a sunhat!");
+
+	test_md5(
+		"9db823121b78dd8bdbef43ba5c1f8414",
+		"Bill ran from the giraffe toward the dolphin.");
+
+	test_md5(
+		"82a5218cae8be045f56d45ef931b520c",
+		"Kevin embraced his ability to be at the wrong place at the wrong time.");
+
+	test_md5(
+		"d3c2db0f36d06b3b0b05cc36b82f399e",
+		"She hadn't had her cup of coffee, and that made things all the worse.");
+
+	test_md5(
+		"d7ca9f90df7551f1f32c84b741def313",
+		"I'm worried by the fact that my daughter looks to the local carpet seller as a role model.");
+
+	test_md5(
+		"79516e4d0112b3ac4c68b5da1f174c0d",
+		"He invested some skill points in Charisma and Strength.");
+
+	test_md5(
+		"647f49fefd74fdfc2fbfe79d76962a0c",
+		"I cheated while playing the darts tournament by using a longbow.");
+
+	test_md5(
+		"b253b2723573e25edbd2701600117005",
+		"He barked orders at his daughters but they just stared back with amusement.");
+
+	test_md5(
+		"1fe435bb2235eaeed0cacc93b02998d3",
+		"Fhir a' bhata, 'S tric mi sealltainn on chnoc as airde (Gach ait' an teid thu...) Dh'fheuch am faic mi fear a' bhata. (Gach ait' an teid thu...)");
+
+	test_md5(
+		"13c5de82cf6b393d2f650a1e28e7374c",
+		"I was fishing for compliments and accidentally caught a trout.");
+
+	test_md5(
+		"d3ae33d3f1bf9de074e1567470b7e789",
+		"The external scars tell only part of the story.");
 
 	test_md5(
 		"ee123eff2ad7fffcc6e8866acc300ea9",
