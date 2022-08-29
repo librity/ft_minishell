@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 16:17:17 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:42:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	calculate_f_and_g(uint32_t i, uint32_t *f, uint32_t *g,
 	*g = (7 * i) % 16;
 }
 
-static void	scramble(uint32_t i,
+static void	scramble_chunk_digest(uint32_t i,
 						uint32_t words[16],
 						uint32_t _[4])
 {
@@ -100,7 +100,7 @@ void	md5_calculate_digest(t_md5 *m)
 		i = 0;
 		while (i < 64)
 		{
-			scramble(i, words, _);
+			scramble_chunk_digest(i, words, _);
 			i++;
 		}
 		add_to_digest(m, _);

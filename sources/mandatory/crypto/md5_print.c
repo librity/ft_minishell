@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 12:57:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:41:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,12 @@
 
 void	print_md5(uint32_t *digest)
 {
-	int					word;
-	int					byte;
-	t_byte_word_ui32	bw;
-
-	word = 0;
-	while (word < 4)
-	{
-		bw.word = digest[word];
-		byte = 0;
-		while (byte < 4)
-		{
-			ft_printf("%02x", bw.bytes[byte]);
-			byte++;
-		}
-		word++;
-	}
+	ft_printf("\"%08x%08x%08x%08x\"", digest[0], digest[1], digest[2], digest[3]);
 }
 
 void	inspect_md5(char *message, uint32_t *digest)
 {
-	ft_printf("\"%s\" => ", message);
+	ft_printf("md5(\"%s\") => ", message);
 	print_md5(digest);
 	ft_printf("\n");
 }

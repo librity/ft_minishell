@@ -6,20 +6,28 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 14:59:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:34:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+static char	*new_hex_string(void)
+{
+	char	*hex;
+
+	hex = ft_salloc(MD5_HASH_SIZE);
+	ft_memset(hex, '0', MD5_HASH_SIZE);
+	return (hex);
+}
+
 char	*md5_digest_to_hex(uint32_t *digest)
 {
-	char				*hex;
-	int					word;
-	int					offset;
+	char	*hex;
+	int		word;
+	int		offset;
 
-	hex = ft_scalloc(sizeof(char), MD5_HASH_SIZE);
-	ft_memset(hex, '0', MD5_HASH_SIZE);
+	hex = new_hex_string();
 	word = 0;
 	while (word < 4)
 	{
