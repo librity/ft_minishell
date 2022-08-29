@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   stdout.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:59:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/01 19:28:03 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+void	stdout_to_pipe(int pipe_fds[2])
 {
-	initialize_control(argc, argv, envp);
+	dup2(pipe_fds[PIPE_WRITE], STDOUT_FILENO);
 }
 
-static void	repl(void)
+void	pipe_to_stdout(int pipe_fds[2])
 {
-	init_shell();
-}
-
-static void	cleanup(void)
-{
-	free_memory();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	dup2(pipe_fds[PIPE_READ], STDOUT_FILENO);
 }

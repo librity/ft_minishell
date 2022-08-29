@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:59:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/01 19:29:53 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 21:01:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+pid_t	fork_or_die(void)
 {
-	initialize_control(argc, argv, envp);
-}
+	pid_t	pid;
 
-static void	repl(void)
-{
-	init_shell();
-}
-
-static void	cleanup(void)
-{
-	free_memory();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	pid = fork();
+	if (pid < 0)
+		die(FORK_ERR);
+	return (pid);
 }

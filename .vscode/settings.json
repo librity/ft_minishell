@@ -20,6 +20,7 @@
     "tests.h": "c",
     "ostream": "c",
     "strings.h": "c",
-    "limits.h": "c"
+    "limits.h": "c",
+    "stdbool.h": "c"
   }
 }
