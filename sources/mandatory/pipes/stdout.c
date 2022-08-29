@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   stdout.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 16:39:46 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 20:10:32 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/01 19:28:03 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*get_user_line(void)
+void	stdout_to_pipe(int pipe_fds[2])
 {
-	char	*line;
+	dup2(pipe_fds[PIPE_WRITE], STDOUT_FILENO);
+}
 
-	line = readline(">");
-	return (line);
+void	pipe_to_stdout(int pipe_fds[2])
+{
+	dup2(pipe_fds[PIPE_READ], STDOUT_FILENO);
 }

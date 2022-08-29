@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 16:39:46 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 20:10:32 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/01 19:28:03 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*get_user_line(void)
+void	file_to_stdin(int infile_fd)
 {
-	char	*line;
+	dup2(infile_fd, STDIN_FILENO);
+}
 
-	line = readline(">");
-	return (line);
+void	stdout_to_file(int outfile_fd)
+{
+	dup2(outfile_fd, STDOUT_FILENO);
 }

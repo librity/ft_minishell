@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 18:05:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/28 21:02:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/wait.h>
 
 # include <libft.h>
 
 # include <defines.h>
+# include <errors.h>
 
 typedef struct s_minishell
 {
@@ -60,6 +62,7 @@ void		free_memory(void);
 \******************************************************************************/
 
 int			init_shell(void);
+char		*get_user_line(void);
 
 /******************************************************************************\
  * LEXER
@@ -95,9 +98,44 @@ bool		at_read_file(char *line);
 bool		at_heredoc(char *line);
 
 /******************************************************************************\
- * ERRORS
+ * FILES
 \******************************************************************************/
 
-void		die(void);
+int			close_or_die(int close_me);
+
+/******************************************************************************\
+ * PIPES
+\******************************************************************************/
+
+void		pipe_or_die(int pipe_fds[2]);
+void		close_pipe(int pipe_fds[2]);
+
+void		stdin_to_pipe(int pipe_fds[2]);
+void		pipe_to_stdin(int pipe_fds[2]);
+
+void		stdout_to_pipe(int pipe_fds[2]);
+void		pipe_to_stdout(int pipe_fds[2]);
+
+void		file_to_stdin(int infile_fd);
+void		stdout_to_file(int outfile_fd);
+
+void		str_to_pipe(int pipe_fds[2], char *str);
+
+/******************************************************************************\
+ * FORKS
+\******************************************************************************/
+
+pid_t		fork_or_die(void);
+
+/******************************************************************************\
+ * RUNTIME
+\******************************************************************************/
+
+void		die(char *error_message);
+void		free_and_die(void *free_me, char *error_message);
+void		free_arr_and_die(char **free_me, char *error_message);
+
+void		print_error(char *message);
+void		print_warning(char *message);
 
 #endif

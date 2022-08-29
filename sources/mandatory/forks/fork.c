@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 16:39:46 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 20:10:32 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/01 19:29:53 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 21:01:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*get_user_line(void)
+pid_t	fork_or_die(void)
 {
-	char	*line;
+	pid_t	pid;
 
-	line = readline(">");
-	return (line);
+	pid = fork();
+	if (pid < 0)
+		die(FORK_ERR);
+	return (pid);
 }

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 16:39:46 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 20:10:32 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/01 22:04:01 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 21:01:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*get_user_line(void)
+int	close_or_die(int close_me)
 {
-	char	*line;
-
-	line = readline(">");
-	return (line);
+	close_me = close(close_me);
+	if (close_me < 0)
+		die(CLOSE_ERR);
+	return (close_me);
 }
