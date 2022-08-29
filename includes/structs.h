@@ -1,53 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 00:54:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 01:04:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
+
+# include <libft.h>
+# include <stdint.h>
 
 /******************************************************************************\
- * LEXER
+ * CONTROL
 \******************************************************************************/
 
-# define NOT_ASCII -42
-# define DELIMITER -42
-# define SPACE ' '
+typedef struct s_minishell
+{
+	bool		debug;
 
-# define SINGLE_QUOTE '\''
-# define DOUBLE_QUOTE '\"'
+	int			argc;
+	char		**argv;
+	char		**envp;
 
-# define VERTICAL_BAR '|'
-
-# define GREATER_THAN '>'
-# define TRUNCATE ">"
-# define APPEND ">>"
-
-# define LESS_THAN '<'
-# define READ_FILE "<"
-# define HEREDOC "<<"
+	t_list		*lalloc;
+}				t_minishell;
 
 /******************************************************************************\
  * CRYPTO
 \******************************************************************************/
 
-# define ONE_BIT 0b10000000
-# define NULL_BYTE 0b00000000
-
-# define MD5_DIGEST_SIZE 16
-# define MD5_HASH_SIZE 33
-
-/******************************************************************************\
- * ERRORS
-\******************************************************************************/
-
-# define ERR_GENERIC "Error\n"
+typedef union u_byte_word_ui32
+{
+	uint32_t	word;
+	uint8_t		bytes[4];
+}				t_byte_word_ui32;
 
 #endif

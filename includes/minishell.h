@@ -6,27 +6,15 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 22:17:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/29 00:31:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <libft.h>
-
 # include <defines.h>
-
-typedef struct s_minishell
-{
-	bool	debug;
-
-	int		argc;
-	char	**argv;
-	char	**envp;
-
-	t_list	*lalloc;
-}			t_minishell;
+# include <structs.h>
 
 /******************************************************************************\
  * CONTROL
