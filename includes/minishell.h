@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 16:55:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:28:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ bool			at_heredoc(char *line);
 
 uint32_t		*md5_little_endian(void *message, size_t msg_length);
 uint32_t		*md5_big_endian(void *message, size_t msg_length);
-
-void			inspect_md5(char *message, uint32_t *digest);
-void			print_md5(uint32_t *digest);
+uint32_t		md5_sum(char *message);
 
 char			*md5_hex(char *message);
 char			*md5_digest_to_hex(uint32_t *digest);
 
+void			inspect_md5(char *message, uint32_t *digest);
+void			print_md5(uint32_t *digest);
+
 uint32_t		*md5(void *message, size_t msg_length);
 void			md5_pad_message(t_md5 *m);
 void			md5_calculate_digest(t_md5 *m);
-uint32_t		md5_sum(char *message);
 
 uint32_t		*md5_rotations(void);
 uint32_t		*md5_sines(void);
@@ -93,12 +93,13 @@ uint32_t		*md5_initial_digest(void);
 \******************************************************************************/
 
 t_hash_table	*ht_init(void);
-int				ht_get_index(char *message);
+void			ht_insert(t_hash_table *table, char *key, char *value);
 void			ht_destroy(t_hash_table **table);
 
 t_ht_item		*ht_new_item(char *key, char *value);
 void			ht_destroy_item(t_ht_item **item);
 
+int				ht_get_index(char *message);
 
 /******************************************************************************\
  * ERRORS

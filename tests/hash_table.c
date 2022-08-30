@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/30 16:56:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:40:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,19 @@ MU_TEST(ht_destroy_item_tst)
 	mu_check(item == NULL);
 }
 
+MU_TEST(ht_insert_tst)
+{
+	t_hash_table	*table;
+	t_ht_item	*item;
+
+	table = ht_init();
+	ht_insert(table, "chave", "value");
+	_index = ht_get_index("chave");
+	item = table->index_lists[_index]->content;
+	mu_assert_string_eq("chave", item->key);
+	mu_assert_string_eq("value", item->value);
+}
+
 MU_TEST_SUITE(hash_table_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
@@ -82,6 +95,7 @@ MU_TEST_SUITE(hash_table_suite)
 	MU_RUN_TEST(ht_destroy_tst);
 	MU_RUN_TEST(ht_new_item_tst);
 	MU_RUN_TEST(ht_destroy_item_tst);
+	MU_RUN_TEST(ht_insert_tst);
 }
 
 int	main(void)

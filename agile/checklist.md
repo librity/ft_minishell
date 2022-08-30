@@ -38,7 +38,7 @@
   - [x] Implementar uma função criptográfica com poucas colisões (**md5**).
   - [x] Calcular o `index` de um elemento a partir da chave.
   - [x] Inicializar a Hash Table.
-  - [ ] Inicializar um elemento da Hash Table.
+  - [x] Inicializar um elemento da Hash Table.
   - [x] Destruir a Hash Table.
   - [ ] Destruir elementos da Hash Table (liberar memória).
   - [ ] Conseguir inserir uma variável (chave + valor).

@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_index.c                                        :+:      :+:    :+:   */
+/*   insert.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 15:27:05 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 17:42:28 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/30 17:42:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	ht_get_index(char *key)
+void	ht_insert(t_hash_table *table, char *key, char *value)
 {
-	return ((int)(md5_sum(key) % HASH_TABLE_SIZE));
+	int			index;
+	t_ht_item	*new_item;
+	t_dlist		**index_list;
+
+	index = ht_get_index(key);
+	index_list = &table->index_lists[index];
+	new_item = ht_new_item(key, value);
+	ft_dlst_add(index_list, new_item);
 }
