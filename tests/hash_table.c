@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/30 16:44:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:56:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ MU_TEST(ht_init_tst)
 	free(hash_table);
 }
 
+MU_TEST(ht_destroy_tst)
+{
+	t_hash_table	*hash_table;
+
+	hash_table = ht_init();
+	mu_check(hash_table != NULL);
+	ht_destroy(&hash_table);
+	mu_check(hash_table == NULL);
+}
+
 MU_TEST(ht_new_item_tst)
 {
 	t_ht_item	*item;
@@ -52,14 +62,16 @@ MU_TEST(ht_new_item_tst)
 	free(item);
 }
 
-MU_TEST(ht_destroy_tst)
+MU_TEST(ht_destroy_item_tst)
 {
-	t_hash_table	*hash_table;
+	t_ht_item	*item;
 
-	hash_table = ht_init();
-	mu_check(hash_table != NULL);
-	ht_destroy(&hash_table);
-	mu_check(hash_table == NULL);
+	item = ht_new_item("bananas", "pajamas");
+	mu_check(item != NULL);
+	mu_assert_string_eq("bananas", item->key);
+	mu_assert_string_eq("pajamas", item->value);
+	ht_destroy_item(&item);
+	mu_check(item == NULL);
 }
 
 MU_TEST_SUITE(hash_table_suite)
@@ -69,6 +81,7 @@ MU_TEST_SUITE(hash_table_suite)
 	MU_RUN_TEST(ht_init_tst);
 	MU_RUN_TEST(ht_destroy_tst);
 	MU_RUN_TEST(ht_new_item_tst);
+	MU_RUN_TEST(ht_destroy_item_tst);
 }
 
 int	main(void)

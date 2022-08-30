@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   destroy_item.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 16:54:02 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/30 16:52:27 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/30 16:55:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	ht_destroy(t_hash_table **table)
+void	ht_destroy_item(t_ht_item **item)
 {
-	free((*table)->index_lists);
-	free(*table);
-	*table = NULL;
+	free((*item)->key);
+	free((*item)->value);
+	free(*item);
+	(*item) = NULL;
 }
