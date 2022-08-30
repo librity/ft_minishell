@@ -8,7 +8,7 @@
 - https://stackoverflow.com/questions/730620/how-does-a-hash-table-work
 - https://benhoyt.com/writings/hash-table-in-c/
 
-```json
+```js
 md5("abc") => soma() => % TAMANHO_HASH_TABLE => 2
 md5("def") => soma() => % TAMANHO_HASH_TABLE => 2
 
@@ -61,6 +61,26 @@ Deleção:
     chave,
     valor
   },
+}
+```
+
+```js
+(t_dlst){
+	content: (t_ht_item){
+		key: "chave",
+		value: "a"
+	}
+	prev: NULL
+	next: (t_dlst){
+		content: (t_ht_item){
+			key: "foo",
+			value: "bar"
+		}
+		prev: NULL
+		next: t_dlst {
+      ...
+		}
+	}
 }
 ```
 
