@@ -24,14 +24,22 @@ Deleção:
 "def"
 
 {
+  0: lista_linkada{
+    chave,
+    valor
+  },
   1: lista_linkada{
     chave,
     valor
   },
-  2: lista_linkada{
+  2: lista_linkada: {
     {
       chave: "abc",
       valor "42"
+    },
+    {
+      chave: "def",
+      valor "44"
     },
     {
       chave: "fgw",
@@ -41,15 +49,15 @@ Deleção:
 
   ...
 
+  9997: lista_linkada{
+    chave,
+    valor
+  },
   9998: lista_linkada{
     chave,
     valor
   },
   9999: lista_linkada{
-    chave,
-    valor
-  },
-  10000: lista_linkada{
     chave,
     valor
   },

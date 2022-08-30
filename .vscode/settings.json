@@ -41,6 +41,7 @@
     "algorithm": "c",
     "random": "c",
     "system_error": "c",
-    "array": "c"
+    "array": "c",
+    "structs.h": "c"
   }
 }

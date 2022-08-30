@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 15:42:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:04:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,16 @@ typedef union u_byte_word_ui32
 	uint32_t	word;
 	uint8_t		bytes[4];
 }				t_byte_word_ui32;
+
+/******************************************************************************\
+ * HASH TABLE
+\******************************************************************************/
+
+typedef struct s_hash_table
+{
+	t_dlist		**index_lists;
+	size_t		size;
+	size_t		count;
+}				t_hash_table;
 
 #endif
