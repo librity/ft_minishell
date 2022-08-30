@@ -39,6 +39,7 @@
     "typeinfo": "c",
     "utility": "c",
     "algorithm": "c",
-    "random": "c"
+    "random": "c",
+    "system_error": "c"
   }
 }

@@ -8,6 +8,65 @@
 - https://stackoverflow.com/questions/730620/how-does-a-hash-table-work
 - https://benhoyt.com/writings/hash-table-in-c/
 
+```json
+md5("abc") => soma() => % TAMANHO_HASH_TABLE => 2
+md5("def") => soma() => % TAMANHO_HASH_TABLE => 2
+
+Inserção:
+"abc", "42"
+"def", "44"
+"fgw", "46"
+
+Recuperação
+"fgw"
+
+Deleção:
+"def"
+
+{
+  1: lista_linkada{
+    chave,
+    valor
+  },
+  2: lista_linkada{
+    {
+      chave: "abc",
+      valor "42"
+    },
+    {
+      chave: "fgw",
+      valor "46"
+    }
+  },
+
+  ...
+
+  9998: lista_linkada{
+    chave,
+    valor
+  },
+  9999: lista_linkada{
+    chave,
+    valor
+  },
+  10000: lista_linkada{
+    chave,
+    valor
+  },
+}
+```
+
+```c
+void	ft_dlst_pluck_free(t_dlist **list, int index)
+{
+	t_dlist	*target;
+
+	target = ft_dlst_pluck(list, index);
+	free(target->content);
+	free(target);
+}
+```
+
 ### Hash Functions
 
 - https://en.wikipedia.org/wiki/One-way_function

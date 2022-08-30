@@ -34,17 +34,15 @@
 
 ## Variáveis
 
-- [ ] Colocar as variáveis de ambiente em uma Hash Table
-  - [x] Implementar uma função criptográfica com poucas colisões:
-    - [x] **md5**
-  - [ ] Implementar uma Hash Table:
-    - [ ] Inicializar um elemento da Hash Table.
-    - [ ] Inicializar a Hash Table.
-    - [ ] Destruir a Hash Table e elementos (liberar memória).
-    - [ ] Conseguir inserir uma variável (chave + valor).
-    - [ ] Conseguir recuperar uma variável a partir da chave.
-    - [ ] Conseguir deletar uma variável a partir da chave.
-    - [ ] Lidar com colisões (variáveis com o mesmo `index`).
+- [ ] Colocar as variáveis de ambiente em uma Hash Table:
+  - [x] Implementar uma função criptográfica com poucas colisões (**md5**).
+  - [ ] Inicializar um elemento da Hash Table.
+  - [ ] Inicializar a Hash Table.
+  - [ ] Destruir a Hash Table e elementos (liberar memória).
+  - [ ] Conseguir inserir uma variável (chave + valor).
+  - [ ] Conseguir recuperar uma variável a partir da chave.
+  - [ ] Conseguir deletar uma variável a partir da chave.
+  - [ ] Lidar com colisões (variáveis com o mesmo `index`).
 
 ## Built-ins
 
