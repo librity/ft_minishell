@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 16:04:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:43:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,11 @@ typedef struct s_hash_table
 	size_t		size;
 	size_t		count;
 }				t_hash_table;
+
+typedef struct s_ht_item
+{
+	char		*key;
+	char		*value;
+}				t_ht_item;
 
 #endif

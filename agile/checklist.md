@@ -37,9 +37,10 @@
 - [ ] Colocar as variáveis de ambiente em uma Hash Table:
   - [x] Implementar uma função criptográfica com poucas colisões (**md5**).
   - [x] Calcular o `index` de um elemento a partir da chave.
-  <!-- - [ ] Inicializar um elemento da Hash Table. -->
-  - [ ] Inicializar a Hash Table.
-  - [ ] Destruir a Hash Table e elementos (liberar memória).
+  - [x] Inicializar a Hash Table.
+  - [ ] Inicializar um elemento da Hash Table.
+  - [x] Destruir a Hash Table.
+  - [ ] Destruir elementos da Hash Table (liberar memória).
   - [ ] Conseguir inserir uma variável (chave + valor).
   - [ ] Conseguir recuperar uma variável a partir da chave.
   - [ ] Conseguir deletar uma variável a partir da chave.
