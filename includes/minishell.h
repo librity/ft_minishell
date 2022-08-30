@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 16:11:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:23:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ uint32_t		*md5_initial_digest(void);
 
 t_hash_table	*ht_init(void);
 int				ht_get_index(char *message);
+void			ht_destroy(t_hash_table **table);
 
 /******************************************************************************\
  * ERRORS
