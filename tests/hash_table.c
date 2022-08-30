@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/30 17:40:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:46:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ MU_TEST(ht_insert_tst)
 	item = table->index_lists[_index]->content;
 	mu_assert_string_eq("chave", item->key);
 	mu_assert_string_eq("value", item->value);
+	ht_destroy(&table);
 }
 
 MU_TEST_SUITE(hash_table_suite)
