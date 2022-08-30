@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 16:18:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:38:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,17 @@ char		*md5_digest_to_hex(uint32_t *digest);
 uint32_t	*md5(void *message, size_t msg_length);
 void		md5_pad_message(t_md5 *m);
 void		md5_calculate_digest(t_md5	*m);
+uint32_t	md5_sum(char *message);
 
 uint32_t	*md5_rotations(void);
 uint32_t	*md5_sines(void);
 uint32_t	*md5_initial_digest(void);
+
+/******************************************************************************\
+ * HAST TABLE
+\******************************************************************************/
+
+int			ht_get_index(char *message);
 
 /******************************************************************************\
  * ERRORS

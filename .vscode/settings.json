@@ -40,6 +40,7 @@
     "utility": "c",
     "algorithm": "c",
     "random": "c",
-    "system_error": "c"
+    "system_error": "c",
+    "array": "c"
   }
 }
