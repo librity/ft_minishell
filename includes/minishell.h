@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 16:17:28 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:12:23 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_minishell
 	char	*line_cmd;
 	char	**tokens;
 
+	char	**paths;
+
 	t_list	*lalloc;
 }			t_minishell;
 
@@ -49,6 +51,8 @@ void		set_debug(bool verbose);
 int			argc(void);
 char		**argv(void);
 char		**envp(void);
+void		initalize_paths(void);
+
 
 char		*line_cmd(void);
 void		set_line_cmd(char *input);
@@ -69,6 +73,11 @@ int			init_shell(void);
 char		*get_user_line(void);
 bool		verific_asp_line_cmd(char	*line);
 void		Syntax_Validator(void);
+
+char	**creat_paths(void);
+void	exec_cmd(void);
+char	*rtn_path_index(index);
+
 
 
 /******************************************************************************\

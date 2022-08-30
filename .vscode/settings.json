@@ -25,6 +25,7 @@
     "errors.h": "c",
     "wait.h": "c",
     "minunit.h": "c",
-    "history.h": "c"
+    "history.h": "c",
+    "minishell": "c"
   }
 }

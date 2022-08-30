@@ -6,14 +6,35 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/08/29 16:15:56 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:50:29 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+static void	get_tokens(void);
+bool		verific_asp_line_cmd(char	*line);
 
-void	Syntax_Validator(void);
+/******************************************************************************\
+ * INIT
+\******************************************************************************/
+
+int	init_shell(void)
+{
+	printf("\e[1;1H\e[2J");
+	while (1)
+	{
+		get_tokens();
+		// Expansor
+		Syntax_Validator();
+		// Trimmer
+		// Parser
+		exec_cmd();
+		destroy_line_cmd();
+		printf("\n");
+	}
+	return (0);
+}
 
 static void	get_tokens(void)
 {
@@ -56,40 +77,3 @@ bool	verific_asp_line_cmd(char	*line)
 	return (true);
 }
 
-int	init_shell(void)
-{
-	printf("\e[1;1H\e[2J");
-	while (1)
-	{
-		get_tokens();
-		// Expansor
-		Syntax_Validator();
-		// Trimmer
-		// Parser
-		// Executor
-		destroy_line_cmd();
-		printf("\n");
-	}
-	return (0);
-}
-
-void	Syntax_Validator(void)
-{
-	int		index;
-
-	index = 0;
-	while(token_index(index))
-	{
-		if (token_index(index)[0] == SINGLE_QUOTE)
-			token_edit(index, ft_strtrim(c()->tokens[index], "\'"));
-		else if (token_index(index)[0] == DOUBLE_QUOTE)
-			token_edit(index, ft_strtrim(c()->tokens[index], "\""));
-		index++;
-	}
-	index = 0;
-	while(token_index(index))
-	{
-		printf("tokens = %s\n",  token_index(index));
-		index++;
-	}
-}

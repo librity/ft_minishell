@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   syntax_Validator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 00:32:32 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 14:09:29 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/08/30 11:45:45 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/08/30 11:46:19 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_minishell	*c(void)
+void	Syntax_Validator(void)
 {
-	static t_minishell	__control_instance;
+	int		index;
 
-	return (&__control_instance);
-}
-
-void	initialize_control(int argc, char **argv, char **envp)
-{
-	c()->debug = true;
-	c()->argc = argc;
-	c()->argv = argv;
-	c()->envp = envp;
-	initalize_paths();
+	index = 0;
+	while(token_index(index))
+	{
+		if (token_index(index)[0] == SINGLE_QUOTE)
+			token_edit(index, ft_strtrim(token_index(index), "\'"));
+		else if (token_index(index)[0] == DOUBLE_QUOTE)
+			token_edit(index, ft_strtrim(token_index(index), "\""));
+		index++;
+	}
 }

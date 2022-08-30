@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 00:32:32 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 14:09:29 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/08/30 13:32:52 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/08/30 14:12:33 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-t_minishell	*c(void)
+void	initalize_paths(void)
 {
-	static t_minishell	__control_instance;
-
-	return (&__control_instance);
+	c()->paths = ft_split(getenv("PATH"), ':');
 }
 
-void	initialize_control(int argc, char **argv, char **envp)
+char	*rtn_path_index(index)
 {
-	c()->debug = true;
-	c()->argc = argc;
-	c()->argv = argv;
-	c()->envp = envp;
-	initalize_paths();
+	return (c()->paths[index]);
 }
