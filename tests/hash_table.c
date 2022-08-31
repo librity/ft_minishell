@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/30 23:19:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:14:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int				_index;
 int				expected;
+t_dlist			*node;
 t_ht_item		*item;
 t_hash_table	*table;
 char			*value;
@@ -267,6 +268,64 @@ MU_TEST(delete_twice_tst)
 	ht_destroy(&table);
 }
 
+
+MU_TEST(delete_same_index_tst)
+{
+	table = ht_init();
+	seed_ht_fixed_index();
+	ht_insert_in_index(table, "bada", "bing", _index);
+	mu_check(table->count == 4);
+
+	{
+		ht_delete_in_index(table, "foo", _index);
+		mu_check(table->count == 3);
+		node = table->index_lists[_index]->next->next->next;
+		mu_check(node == NULL);
+		item = table->index_lists[_index]->next->next->content;
+		test_ht_item(item, "baz", "fizz");
+		item = table->index_lists[_index]->next->content;
+		test_ht_item(item, "buzz", "crash");
+		item = table->index_lists[_index]->content;
+		test_ht_item(item, "bada", "bing");
+	}
+
+	{
+		ht_delete_in_index(table, "buzz", _index);
+		mu_check(table->count == 2);
+		node = table->index_lists[_index]->next->next;
+		mu_check(node == NULL);
+		item = table->index_lists[_index]->next->content;
+		test_ht_item(item, "baz", "fizz");
+		item = table->index_lists[_index]->content;
+		test_ht_item(item, "bada", "bing");
+	}
+
+	{
+		ht_delete_in_index(table, "baz", _index);
+		mu_check(table->count == 1);
+		node = table->index_lists[_index]->next;
+		mu_check(node == NULL);
+		item = table->index_lists[_index]->content;
+		test_ht_item(item, "bada", "bing");
+	}
+
+	{
+		ht_delete_in_index(table, "bada", _index);
+		mu_check(table->count == 0);
+		node = table->index_lists[_index];
+		mu_check(node == NULL);
+	}
+
+	{
+		ht_delete_in_index(table, "bada", _index);
+		mu_check(table->count == 0);
+		node = table->index_lists[_index];
+		mu_check(node == NULL);
+	}
+
+	ht_destroy(&table);
+}
+
 MU_TEST_SUITE(hash_table_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
@@ -290,6 +349,7 @@ MU_TEST_SUITE(hash_table_suite)
 
 	MU_RUN_TEST(delete_tst);
 	MU_RUN_TEST(delete_twice_tst);
+	MU_RUN_TEST(delete_same_index_tst);
 }
 
 int	main(void)
