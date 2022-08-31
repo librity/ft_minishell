@@ -40,11 +40,11 @@
   - [x] Inicializar a Hash Table.
   - [x] Inicializar um elemento da Hash Table.
   - [x] Destruir a Hash Table.
-  - [ ] Destruir elementos da Hash Table (liberar memória).
-  - [ ] Conseguir inserir uma variável (chave + valor).
+  - [x] Destruir elementos da Hash Table (liberar memória).
+  - [x] Conseguir inserir uma variável (chave + valor).
   - [ ] Conseguir recuperar uma variável a partir da chave.
   - [ ] Conseguir deletar uma variável a partir da chave.
-  - [ ] Lidar com colisões (variáveis com o mesmo `index`).
+  - [x] Lidar com colisões (variáveis com o mesmo `index`).
 
 ## Built-ins
 

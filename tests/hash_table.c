@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/30 22:00:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 22:19:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int				_index;
 int				expected;
 t_ht_item		*item;
 t_hash_table	*table;
+char			*value;
 
 static void	test_ht_item(t_ht_item *_item,
 							char *expected_key,
@@ -26,7 +27,17 @@ static void	test_ht_item(t_ht_item *_item,
 	mu_assert_string_eq(expected_value, _item->value);
 }
 
-static void	seed_hash_table_1(void)
+static void	seed_ht(void)
+{
+	ht_insert(table, "foo", "bar");
+	mu_check(table->count == 1);
+	ht_insert(table, "baz", "fizz");
+	mu_check(table->count == 2);
+	ht_insert(table, "buzz", "crash");
+	mu_check(table->count == 3);
+}
+
+static void	seed_ht_fixed_index(void)
 {
 	_index = 42;
 
@@ -138,7 +149,7 @@ MU_TEST(reinsertion_tst)
 MU_TEST(collision_tst)
 {
 	table = ht_init();
-	seed_hash_table_1();
+	seed_ht_fixed_index();
 
 	item = table->index_lists[_index]->content;
 	test_ht_item(item, "buzz", "crash");
@@ -155,13 +166,42 @@ MU_TEST(collision_tst)
 MU_TEST(collision_reinsertion_tst)
 {
 	table = ht_init();
-	seed_hash_table_1();
+	seed_ht_fixed_index();
 
 	ht_insert_in_index(table, "baz", "crash", _index);
 	mu_check(table->count == 3);
 
 	item = table->index_lists[_index]->next->content;
 	test_ht_item(item, "baz", "crash");
+
+	ht_destroy(&table);
+}
+
+MU_TEST(get_tst)
+{
+	table = ht_init();
+	seed_ht();
+
+	value = ht_get(table, "foo");
+	mu_assert_string_eq("bar", value);
+
+	value = ht_get(table, "baz");
+	mu_assert_string_eq("fizz", value);
+
+	value = ht_get(table, "buzz");
+	mu_assert_string_eq("crash", value);
+
+	ht_destroy(&table);
+}
+
+MU_TEST(get_reinsertion_tst)
+{
+	table = ht_init();
+	seed_ht();
+
+	ht_insert(table, "baz", "crash");
+	value = ht_get(table, "baz");
+	mu_assert_string_eq("crash", value);
 
 	ht_destroy(&table);
 }
@@ -179,6 +219,8 @@ MU_TEST_SUITE(hash_table_suite)
 	MU_RUN_TEST(reinsertion_tst);
 	MU_RUN_TEST(collision_tst);
 	MU_RUN_TEST(collision_reinsertion_tst);
+	MU_RUN_TEST(get_tst);
+	MU_RUN_TEST(get_reinsertion_tst);
 }
 
 int	main(void)
