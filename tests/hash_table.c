@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/30 22:19:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 23:19:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,26 @@ MU_TEST(get_tst)
 	ht_destroy(&table);
 }
 
+MU_TEST(get_bad_key_tst)
+{
+	table = ht_init();
+	seed_ht();
+
+	value = ht_get(table, "idontexist");
+	mu_check(value == NULL);
+
+	value = ht_get(table, "idontexisteither");
+	mu_check(value == NULL);
+
+	value = ht_get(table, "idontexist");
+	mu_check(value == NULL);
+
+	value = ht_get(table, "are we there yet?");
+	mu_check(value == NULL);
+
+	ht_destroy(&table);
+}
+
 MU_TEST(get_reinsertion_tst)
 {
 	table = ht_init();
@@ -206,21 +226,70 @@ MU_TEST(get_reinsertion_tst)
 	ht_destroy(&table);
 }
 
+MU_TEST(delete_tst)
+{
+	table = ht_init();
+	seed_ht();
+
+	ht_delete(table, "foo");
+	mu_check(table->count == 2);
+	value = ht_get(table, "foo");
+	mu_check(value == NULL);
+
+	ht_delete(table, "baz");
+	mu_check(table->count == 1);
+	value = ht_get(table, "baz");
+	mu_check(value == NULL);
+
+	ht_delete(table, "buzz");
+	mu_check(table->count == 0);
+	value = ht_get(table, "buzz");
+	mu_check(value == NULL);
+
+	ht_destroy(&table);
+}
+
+MU_TEST(delete_twice_tst)
+{
+	table = ht_init();
+	seed_ht();
+
+	ht_delete(table, "baz");
+	mu_check(table->count == 2);
+	value = ht_get(table, "baz");
+	mu_check(value == NULL);
+
+	ht_delete(table, "baz");
+	mu_check(table->count == 2);
+	value = ht_get(table, "baz");
+	mu_check(value == NULL);
+
+	ht_destroy(&table);
+}
+
 MU_TEST_SUITE(hash_table_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 	MU_RUN_TEST(index_tst);
+
 	MU_RUN_TEST(init_tst);
 	MU_RUN_TEST(destroy_tst);
+
 	MU_RUN_TEST(new_item_tst);
 	MU_RUN_TEST(destroy_item_tst);
+
 	MU_RUN_TEST(insert_one_tst);
 	MU_RUN_TEST(insert_two_tst);
 	MU_RUN_TEST(reinsertion_tst);
 	MU_RUN_TEST(collision_tst);
 	MU_RUN_TEST(collision_reinsertion_tst);
+
 	MU_RUN_TEST(get_tst);
+	MU_RUN_TEST(get_bad_key_tst);
 	MU_RUN_TEST(get_reinsertion_tst);
+
+	MU_RUN_TEST(delete_tst);
+	MU_RUN_TEST(delete_twice_tst);
 }
 
 int	main(void)

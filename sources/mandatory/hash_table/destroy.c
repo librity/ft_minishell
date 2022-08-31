@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 17:54:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 22:58:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	destroy_item(void *item)
 static void	free_lists(t_hash_table *table)
 {
 	t_dlist	**index_list;
-	size_t	index;
+	int	index;
 
 	index = 0;
 	while (index < table->size)

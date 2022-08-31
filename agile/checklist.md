@@ -42,9 +42,10 @@
   - [x] Destruir a Hash Table.
   - [x] Destruir elementos da Hash Table (liberar memória).
   - [x] Conseguir inserir uma variável (chave + valor).
-  - [ ] Conseguir recuperar uma variável a partir da chave.
-  - [ ] Conseguir deletar uma variável a partir da chave.
+  - [x] Conseguir recuperar uma variável a partir da chave.
+  - [x] Conseguir deletar uma variável a partir da chave.
   - [x] Lidar com colisões (variáveis com o mesmo `index`).
+  - [ ] Testar e tratar inputs inválidos (`NULL` `table`, `key`, `value`, etc.)
 
 ## Built-ins
 

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 16:43:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 22:57:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef union u_byte_word_ui32
 typedef struct s_hash_table
 {
 	t_dlist		**index_lists;
-	size_t		size;
-	size_t		count;
+	int			size;
+	int			count;
 }				t_hash_table;
 
 typedef struct s_ht_item

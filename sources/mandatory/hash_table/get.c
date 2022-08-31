@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 22:14:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 23:08:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static t_ht_item	*get_item(t_dlist *node, char *key)
+static t_ht_item	*linear_search_item(t_dlist *node, char *key)
 {
 	t_ht_item	*item;
 
@@ -33,8 +33,8 @@ char	*ht_get(t_hash_table *table, char *key)
 	int			index;
 
 	index = ht_get_index(key);
-	index_list = &table->index_lists[index];
-	item = get_item(*index_list, key);
+	index_list = ht_get_index_list(table, index);
+	item = linear_search_item(*index_list, key);
 	if (item == NULL)
 		return (NULL);
 	return (item->value);
