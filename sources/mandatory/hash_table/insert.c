@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 18:30:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:57:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,26 @@ static bool	handled_reinsert(t_dlist *node, char *key, char *value)
 	return (false);
 }
 
-void	ht_insert(t_hash_table *table, char *key, char *value)
+void	ht_insert_in_index(t_hash_table *table,
+			char *key,
+			char *value,
+			int index)
 {
-	int			index;
 	t_ht_item	*new_item;
 	t_dlist		**index_list;
 
-	index = ht_get_index(key);
 	index_list = &table->index_lists[index];
 	if (handled_reinsert(*index_list, key, value))
 		return ;
 	new_item = ht_new_item(key, value);
 	ft_dlst_addb(index_list, new_item);
 	table->count++;
+}
+
+void	ht_insert(t_hash_table *table, char *key, char *value)
+{
+	int	index;
+
+	index = ht_get_index(key);
+	ht_insert_in_index(table, key, value, index);
 }
