@@ -56,3 +56,9 @@ do myshell e adicionar a flag abaixo quando chamar o valgrind:
 Quem tiver interesse em entender como funciona a supressão, segue um HowTo:
 
 - https://wiki.wxwidgets.org/Valgrind_Suppression_File_Howto
+
+### `--max-stackframe=`
+
+- https://stackoverflow.com/questions/10057443/explain-the-concept-of-a-stack-frame-in-a-nutshell
+- https://man7.org/linux/man-pages/man1/valgrind.1.html
+- https://stackoverflow.com/questions/23307110/valgrind-gives-an-error-for-nearly-everything-warning-client-switching-stacks

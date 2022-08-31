@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/31 17:59:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:28:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ void			print_md5(uint32_t *digest);
 uint32_t		*md5(void *message, size_t msg_length);
 void			md5_pad_message(t_md5 *m);
 void			md5_calculate_digest(t_md5 *m);
+void			md5_scramble_chunk_digest(uint32_t i,
+					uint32_t words[16],
+					uint32_t _[4]);
 
 uint32_t		*md5_rotations(void);
 uint32_t		*md5_sines(void);
@@ -95,7 +98,8 @@ uint32_t		*md5_initial_digest(void);
 t_hash_table	*ht_init(void);
 void			ht_destroy(t_hash_table **table);
 
-void			ht_insert(t_hash_table *table, char *key, char *value);
+void			ht_insert(t_hash_table *table,
+					char *key, char *value);
 char			*ht_get(t_hash_table *table, char *key);
 void			ht_delete(t_hash_table *table, char *key);
 
