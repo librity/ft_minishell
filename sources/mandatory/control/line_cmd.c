@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   line_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:59:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/28 17:39:57 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 18:05:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+char	*line_cmd(void)
 {
-	initialize_control(argc, argv, envp);
+	return (c()->line_cmd);
 }
 
-static void	repl(void)
+void	set_line_cmd(char *input)
 {
-	init_shell();
+	c()->line_cmd = input;
 }
 
-static void	cleanup(void)
+void	destroy_line_cmd(void)
 {
-	free_memory();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	ft_strdel(&c()->line_cmd);
 }

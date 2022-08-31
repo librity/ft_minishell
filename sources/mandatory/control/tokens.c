@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arguments.c                                        :+:      :+:    :+:   */
+/*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 16:14:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:05:50 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/29 15:41:10 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/08/29 16:08:43 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-int	argc(void)
+char	**tokens(void)
 {
-	return (c()->argc);
+	return (c()->tokens);
 }
 
-char	**argv(void)
+char	*token_index(int index)
 {
-	return (c()->argv);
+	return(c()->tokens[index]);
 }
 
-char	**envp(void)
+void	token_edit(int index, char *str)
 {
-	return (c()->envp);
+	c()->tokens[index] = str;
 }

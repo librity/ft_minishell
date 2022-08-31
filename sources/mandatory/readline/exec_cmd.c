@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arguments.c                                        :+:      :+:    :+:   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 16:14:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:05:50 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/30 11:46:57 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/08/30 14:16:13 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-int	argc(void)
-{
-	return (c()->argc);
-}
+char	**creat_paths(void);
 
-char	**argv(void)
+char	*exec_cmd(void)
 {
-	return (c()->argv);
-}
+	int		index;
+	char	*cmd;
 
-char	**envp(void)
-{
-	return (c()->envp);
+	index = 0;
+	while(rtn_path_index(index))
+	{
+		rtn_path_index(index);
+		if (accessrtn_path_index(index)), F_OK);
+			return (rtn_path_index(index));
+	}
 }

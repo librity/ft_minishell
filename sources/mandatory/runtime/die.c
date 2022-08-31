@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   die.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:59:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/28 20:59:43 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 21:00:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
-{
-	initialize_control(argc, argv, envp);
-}
-
-static void	repl(void)
-{
-	init_shell();
-}
-
-static void	cleanup(void)
+void	die(char *error_message)
 {
 	free_memory();
+	print_error(error_message);
+	exit(EXIT_FAILURE);
 }
 
-int	main(int argc, char **argv, char **envp)
+void	free_and_die(void *free_me, char *error_message)
 {
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	free(free_me);
+	die(error_message);
+}
+
+void	free_arr_and_die(char **free_me, char *error_message)
+{
+	ft_free_strarr(free_me);
+	die(error_message);
 }

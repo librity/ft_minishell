@@ -20,6 +20,12 @@
     "tests.h": "c",
     "ostream": "c",
     "strings.h": "c",
-    "limits.h": "c"
+    "limits.h": "c",
+    "stdbool.h": "c",
+    "errors.h": "c",
+    "wait.h": "c",
+    "minunit.h": "c",
+    "history.h": "c",
+    "minishell": "c"
   }
 }

@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:59:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/28 16:39:46 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 22:05:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+char	*get_user_line(void)
 {
-	initialize_control(argc, argv, envp);
-}
+	// char	*line;
 
-static void	repl(void)
-{
-	init_shell();
-}
+	// line = readline(">");
+	// return (line);
+	char	*buffer;
+	int		size;
 
-static void	cleanup(void)
-{
-	free_memory();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	buffer = (char *)ft_salloc(FT_ARG_MAX);
+	size = read(STDIN_FILENO, buffer, FT_ARG_MAX);
+	buffer[size - 1] = '\0';
+	return(buffer);
 }

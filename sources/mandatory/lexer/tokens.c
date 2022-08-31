@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:36:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 20:03:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/27 11:35:13 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ static void	insert_trivial_delimiters(char *line)
 			line++;
 	}
 }
+
+// char	**tokenize(char *line, t_data *data)
+// {
+// 	char	line_buffer[FT_ARG_MAX];
+// 	char	**tokens;
+
+// 	ft_strcpy(line_buffer, line);
+// 	insert_trivial_delimiters(line_buffer);
+// 	data->tokens = ft_split(line_buffer, DELIMITER);
+// }
 
 char	**tokenize(char *line)
 {

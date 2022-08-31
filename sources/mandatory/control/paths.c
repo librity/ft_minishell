@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arguments.c                                        :+:      :+:    :+:   */
+/*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 16:14:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:05:50 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/30 13:32:52 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/08/30 14:12:33 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-int	argc(void)
+void	initalize_paths(void)
 {
-	return (c()->argc);
+	c()->paths = ft_split(getenv("PATH"), ':');
 }
 
-char	**argv(void)
+char	*rtn_path_index(index)
 {
-	return (c()->argv);
-}
-
-char	**envp(void)
-{
-	return (c()->envp);
+	return (c()->paths[index]);
 }

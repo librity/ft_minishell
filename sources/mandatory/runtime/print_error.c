@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/28 17:59:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/28 21:01:58 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/28 21:03:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+#define ERROR_PREFIX "ERROR:\t"
+
+void	print_error(char *message)
 {
-	initialize_control(argc, argv, envp);
+	ft_printf(RB ERROR_PREFIX "%s%s\n" RC, R, message);
 }
 
-static void	repl(void)
-{
-	init_shell();
-}
+#define WARNING_PREFIX "WRNNG:\t"
 
-static void	cleanup(void)
+void	print_warning(char *message)
 {
-	free_memory();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	ft_printf(YB WARNING_PREFIX "%s%s\n" RC, Y, message);
 }
