@@ -118,6 +118,14 @@ static void (*minunit_teardown)(void) = NULL;
 	block\
 } while(0)
 
+/*  Declares the main function with argc, argv and envp */
+#define MU_MAIN int	main(int argc, char **argv, char **envp)
+
+/*  Prints the divider: argv MUST be in scope. */
+#define MU_DIVIDER MU__SAFE_BLOCK(\
+	printf(PB "\n===================== RUNNING %s =====================\n" RC, argv[0]);\
+)
+
 /*  Run test suite and unset setup and teardown functions */
 #define MU_RUN_SUITE(suite_name) MU__SAFE_BLOCK(\
 	suite_name();\

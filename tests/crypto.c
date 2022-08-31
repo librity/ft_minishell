@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/30 20:31:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:01:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,9 @@ MU_TEST_SUITE(example_suite)
 	MU_RUN_TEST(md5_sum_tst);
 }
 
-int main(void)
+MU_MAIN
 {
+	MU_DIVIDER;
 	MU_RUN_SUITE(example_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
