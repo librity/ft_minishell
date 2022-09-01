@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 14:12:23 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/01 17:49:38 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,19 @@ void		free_memory(void);
 \******************************************************************************/
 
 int			init_shell(void);
-char		*get_user_line(void);
+void		get_tokens(void);
+
+
+char		*pwd(void);
+char		*get_line_cmd(char	*tmp);
+
+char		*get_stdin(void);
+
+char		**creat_paths(void);
+char		*exec_cmd(void);
+char		*rtn_path_index(int index);
 bool		verific_asp_line_cmd(char	*line);
 void		Syntax_Validator(void);
-
-char	**creat_paths(void);
-void	exec_cmd(void);
-char	*rtn_path_index(index);
-
 
 
 /******************************************************************************\
