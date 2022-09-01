@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/31 19:28:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:32:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <defines.h>
+# include <warnings.h>
 # include <structs.h>
 
 /******************************************************************************\
@@ -98,16 +99,16 @@ uint32_t		*md5_initial_digest(void);
 t_hash_table	*ht_init(void);
 void			ht_destroy(t_hash_table **table);
 
-void			ht_insert(t_hash_table *table,
+bool			ht_insert(t_hash_table *table,
 					char *key, char *value);
 char			*ht_get(t_hash_table *table, char *key);
-void			ht_delete(t_hash_table *table, char *key);
+bool			ht_delete(t_hash_table *table, char *key);
 
 void			ht_insert_in_index(t_hash_table *table,
 					char *key,
 					char *value,
 					int index);
-void			ht_delete_in_index(t_hash_table *table, char *key, int index);
+bool			ht_delete_in_index(t_hash_table *table, char *key, int index);
 
 t_ht_item		*ht_new_item(char *key, char *value);
 void			ht_destroy_item(t_ht_item **item);
@@ -116,9 +117,10 @@ int				ht_get_index(char *message);
 t_dlist			**ht_get_index_list(t_hash_table *table, int index);
 
 /******************************************************************************\
- * ERRORS
+ * RUNTIME
 \******************************************************************************/
 
-void			die(void);
+void			print_error(char *message);
+void			print_warning(char *message);
 
 #endif

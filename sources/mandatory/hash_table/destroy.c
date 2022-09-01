@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 23:41:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:48:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	free_lists(t_hash_table *table)
 
 void	ht_destroy(t_hash_table **table)
 {
+	if (table == NULL || *table == NULL)
+		return (print_warning(DESTROY_NULL_HT_WRN));
 	free_lists(*table);
 	free((*table)->index_lists);
 	free(*table);

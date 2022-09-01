@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_item.c                                     :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 16:52:27 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 13:46:05 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/01 13:13:15 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/01 13:16:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	ht_destroy_item(t_ht_item **item)
+#define ERROR_PREFIX "ERROR:\t"
+
+void	print_error(char *message)
 {
-	if (item == NULL || *item == NULL)
-		return (print_warning(HT_DESTROY_ITEM_NULL_WRN));
-	free((*item)->key);
-	free((*item)->value);
-	free(*item);
-	(*item) = NULL;
+	ft_printf(RB ERROR_PREFIX R "%s\n" RC, message);
+}
+
+#define WARNING_PREFIX "WRNNG:\t"
+
+void	print_warning(char *message)
+{
+	ft_printf(YB WARNING_PREFIX Y "%s\n" RC, message);
 }

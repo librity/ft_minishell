@@ -84,17 +84,6 @@ Deleção:
 }
 ```
 
-```c
-void	ft_dlst_pluck_free(t_dlist **list, int index)
-{
-	t_dlist	*target;
-
-	target = ft_dlst_pluck(list, index);
-	free(target->content);
-	free(target);
-}
-```
-
 ### Hash Functions
 
 - https://en.wikipedia.org/wiki/One-way_function
@@ -114,8 +103,7 @@ void	ft_dlst_pluck_free(t_dlist **list, int index)
 - https://github.com/ryankurte/cryptlib/blob/master/context/ctx_md5.c
 
 ```bash
-$ md5sum
-Homesickness became contagious in the young campers' cabin.CTRL+D
+$  echo -n "Homesickness became contagious in the young campers' cabin." | md5sum
 d9f45b8d75b8dda1f4d8976e6eea0483
 ```
 

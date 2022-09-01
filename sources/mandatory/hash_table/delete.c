@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/31 18:00:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:39:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_dlist	*linear_search_node_index(t_dlist *node, char *key)
 	return (NULL);
 }
 
-void	ht_delete_in_index(t_hash_table *table, char *key, int index)
+bool	ht_delete_in_index(t_hash_table *table, char *key, int index)
 {
 	t_dlist	**index_list;
 	t_dlist	*node;
@@ -44,15 +44,20 @@ void	ht_delete_in_index(t_hash_table *table, char *key, int index)
 	index_list = ht_get_index_list(table, index);
 	node = linear_search_node_index(*index_list, key);
 	if (node == NULL)
-		return ;
+		return (false);
 	destroy_node(index_list, node);
 	table->count--;
+	return (true);
 }
 
-void	ht_delete(t_hash_table *table, char *key)
+bool	ht_delete(t_hash_table *table, char *key)
 {
 	int	index;
 
+	if (table == NULL)
+		return (false);
+	if (key == NULL)
+		return (false);
 	index = ht_get_index(key);
-	ht_delete_in_index(table, key, index);
+	return (ht_delete_in_index(table, key, index));
 }

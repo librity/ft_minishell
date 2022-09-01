@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/31 19:00:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:40:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_dlist			*node;
 t_ht_item		*item;
 t_hash_table	*table;
 char			*value;
+bool			_bool;
 
 static void	test_ht_item(t_ht_item *_item,
 							char *expected_key,
@@ -31,11 +32,8 @@ static void	test_ht_item(t_ht_item *_item,
 static void	seed_ht(void)
 {
 	ht_insert(table, "foo", "bar");
-	mu_check(table->count == 1);
 	ht_insert(table, "baz", "fizz");
-	mu_check(table->count == 2);
 	ht_insert(table, "buzz", "crash");
-	mu_check(table->count == 3);
 }
 
 static void	seed_ht_fixed_index(void)
@@ -43,11 +41,8 @@ static void	seed_ht_fixed_index(void)
 	_index = 42;
 
 	ht_insert_in_index(table, "foo", "bar", _index);
-	mu_check(table->count == 1);
 	ht_insert_in_index(table, "baz", "fizz", _index);
-	mu_check(table->count == 2);
 	ht_insert_in_index(table, "buzz", "crash", _index);
-	mu_check(table->count == 3);
 }
 
 void	setup(void)
@@ -62,6 +57,23 @@ MU_TEST(index_tst)
 	_index = ht_get_index("abc");
 	expected = (int)(md5_sum("abc") % HASH_TABLE_SIZE);
 	mu_assert_int_eq(expected, _index);
+}
+
+MU_TEST(index_empty_tst)
+{
+	_index = ht_get_index("");
+	expected = (int)(md5_sum("") % HASH_TABLE_SIZE);
+	mu_assert_int_eq(expected, _index);
+
+	_index = ht_get_index("");
+	expected = (int)(md5_sum("") % HASH_TABLE_SIZE);
+	mu_assert_int_eq(expected, _index);
+}
+
+MU_TEST(index_null_tst)
+{
+	_index = ht_get_index(NULL);
+	mu_assert_int_eq(HT_BAD_INDEX, _index);
 }
 
 MU_TEST(init_tst)
@@ -82,14 +94,44 @@ MU_TEST(destroy_tst)
 	mu_check(table == NULL);
 }
 
+/**
+ * TODO: Remover a warning to STDOUT
+ * e verificar que o destory imprimiu a warning.
+ */
+MU_TEST(destroy_null_tst)
+{
+	ht_destroy(NULL);
+
+	table = NULL;
+	ht_destroy(&table);
+}
+
 MU_TEST(new_item_tst)
 {
 	item = ht_new_item("abc", "value");
 	test_ht_item(item, "abc", "value");
 
-	free(item->value);
-	free(item->key);
-	free(item);
+	ht_destroy_item(&item);
+}
+
+MU_TEST(new_item_empty_tst)
+{
+	item = ht_new_item("", "value");
+	test_ht_item(item, "", "value");
+	ht_destroy_item(&item);
+
+	item = ht_new_item("abc", "");
+	test_ht_item(item, "abc", "");
+	ht_destroy_item(&item);
+}
+
+MU_TEST(new_item_null_tst)
+{
+	item = ht_new_item(NULL, "value");
+	mu_check(item == NULL);
+
+	item = ht_new_item("abc", NULL);
+	mu_check(item == NULL);
 }
 
 MU_TEST(destroy_item_tst)
@@ -101,10 +143,23 @@ MU_TEST(destroy_item_tst)
 	mu_check(item == NULL);
 }
 
+/**
+ * TODO: Remover a warning to STDOUT
+ * e verificar que o destory imprimiu a warning.
+ */
+MU_TEST(destroy_item_null_tst)
+{
+	ht_destroy_item(NULL);
+
+	item = NULL;
+	ht_destroy_item(&item);
+}
+
 MU_TEST(insert_one_tst)
 {
 	table = ht_init();
-	ht_insert(table, "chave", "value");
+	_bool = ht_insert(table, "chave", "value");
+	mu_check(_bool == true);
 
 	mu_check(table->count == 1);
 	_index = ht_get_index("chave");
@@ -178,6 +233,43 @@ MU_TEST(collision_reinsertion_tst)
 	ht_destroy(&table);
 }
 
+MU_TEST(insert_empty_tst)
+{
+	table = ht_init();
+
+	ht_insert(table, "", "value");
+	mu_check(table->count == 1);
+	_index = ht_get_index("");
+	item = table->index_lists[_index]->content;
+	test_ht_item(item, "", "value");
+
+	ht_insert(table, "chave", "");
+	mu_check(table->count == 2);
+	_index = ht_get_index("chave");
+	item = table->index_lists[_index]->content;
+	test_ht_item(item, "chave", "");
+
+	ht_destroy(&table);
+}
+
+MU_TEST(insert_null_tst)
+{
+	table = ht_init();
+
+	_bool = ht_insert(NULL, "key", "value");
+	mu_check(_bool == false);
+
+	_bool = ht_insert(table, NULL, "value");
+	mu_check(_bool == false);
+	mu_check(table->count == 0);
+
+	_bool = ht_insert(table, "chave", NULL);
+	mu_check(_bool == false);
+	mu_check(table->count == 0);
+
+	ht_destroy(&table);
+}
+
 MU_TEST(get_tst)
 {
 	table = ht_init();
@@ -227,6 +319,34 @@ MU_TEST(get_reinsertion_tst)
 	ht_destroy(&table);
 }
 
+MU_TEST(get_empty_tst)
+{
+	table = ht_init();
+
+	ht_insert(table, "", "bar");
+	value = ht_get(table, "");
+	mu_assert_string_eq("bar", value);
+
+	ht_insert(table, "foo", "");
+	value = ht_get(table, "foo");
+	mu_assert_string_eq("", value);
+
+	ht_destroy(&table);
+}
+
+MU_TEST(get_null_tst)
+{
+	table = ht_init();
+
+	value = ht_get(NULL, "foo");
+	mu_check(value == NULL);
+
+	value = ht_get(table, NULL);
+	mu_check(value == NULL);
+
+	ht_destroy(&table);
+}
+
 MU_TEST(delete_tst)
 {
 	table = ht_init();
@@ -267,7 +387,6 @@ MU_TEST(delete_twice_tst)
 
 	ht_destroy(&table);
 }
-
 
 MU_TEST(delete_same_index_tst)
 {
@@ -326,30 +445,75 @@ MU_TEST(delete_same_index_tst)
 	ht_destroy(&table);
 }
 
+MU_TEST(delete_empty_tst)
+{
+	table = ht_init();
+
+	_bool = ht_delete(table, "");
+	mu_check(_bool == false);
+
+	ht_insert(table, "", "value");
+	_bool = ht_delete(table, "");
+	mu_check(_bool == true);
+
+	_bool = ht_delete(table, "");
+	mu_check(_bool == false);
+
+	ht_destroy(&table);
+}
+
+MU_TEST(delete_null_tst)
+{
+	table = ht_init();
+
+	_bool = ht_delete(NULL, "key");
+	mu_check(_bool == false);
+
+	_bool = ht_delete(table, NULL);
+	mu_check(_bool == false);
+
+	ht_destroy(&table);
+}
+
 MU_TEST_SUITE(hash_table_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
+
 	MU_RUN_TEST(index_tst);
+	MU_RUN_TEST(index_empty_tst);
+	MU_RUN_TEST(index_null_tst);
 
 	MU_RUN_TEST(init_tst);
+
 	MU_RUN_TEST(destroy_tst);
+	MU_RUN_TEST(destroy_null_tst);
 
 	MU_RUN_TEST(new_item_tst);
+	MU_RUN_TEST(new_item_empty_tst);
+	MU_RUN_TEST(new_item_null_tst);
+
 	MU_RUN_TEST(destroy_item_tst);
+	MU_RUN_TEST(destroy_item_null_tst);
 
 	MU_RUN_TEST(insert_one_tst);
 	MU_RUN_TEST(insert_two_tst);
 	MU_RUN_TEST(reinsertion_tst);
 	MU_RUN_TEST(collision_tst);
 	MU_RUN_TEST(collision_reinsertion_tst);
+	MU_RUN_TEST(insert_empty_tst);
+	MU_RUN_TEST(insert_null_tst);
 
 	MU_RUN_TEST(get_tst);
 	MU_RUN_TEST(get_bad_key_tst);
 	MU_RUN_TEST(get_reinsertion_tst);
+	MU_RUN_TEST(get_empty_tst);
+	MU_RUN_TEST(get_null_tst);
 
 	MU_RUN_TEST(delete_tst);
 	MU_RUN_TEST(delete_twice_tst);
 	MU_RUN_TEST(delete_same_index_tst);
+	MU_RUN_TEST(delete_empty_tst);
+	MU_RUN_TEST(delete_null_tst);
 }
 
 MU_MAIN

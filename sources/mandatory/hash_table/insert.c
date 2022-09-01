@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/30 22:56:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:03:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,17 @@ void	ht_insert_in_index(t_hash_table *table,
 	table->count++;
 }
 
-void	ht_insert(t_hash_table *table, char *key, char *value)
+bool	ht_insert(t_hash_table *table, char *key, char *value)
 {
 	int	index;
 
+	if (table == NULL)
+		return (false);
+	if (key == NULL)
+		return (false);
+	if (value == NULL)
+		return (false);
 	index = ht_get_index(key);
 	ht_insert_in_index(table, key, value, index);
+	return (true);
 }

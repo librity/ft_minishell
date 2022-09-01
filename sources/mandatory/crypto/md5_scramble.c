@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/31 19:30:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:47:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef enum e_chuck_digest_ints
 	_LAST = _D
 }			t_chuck_digest_ints;
 
-static uint32_t	calculate_f(uint32_t _[4], uint32_t i)
+static uint32_t	resolve_f(uint32_t _[4], uint32_t i)
 {
 	if (i <= 15)
 		return (_[_D] ^ (_[_B] & (_[_C] ^ _[_D])));
@@ -33,7 +33,7 @@ static uint32_t	calculate_f(uint32_t _[4], uint32_t i)
 	return (_[_C] ^ (_[_B] | (~_[_D])));
 }
 
-static uint32_t	calculate_g(uint32_t i)
+static uint32_t	resolve_g(uint32_t i)
 {
 	if (i <= 15)
 		return (i);
@@ -49,8 +49,8 @@ void	md5_scramble_chunk_digest(uint32_t i, uint32_t words[16], uint32_t _[4])
 	uint32_t	f;
 	uint32_t	g;
 
-	f = calculate_f(_, i);
-	g = calculate_g(i);
+	f = resolve_f(_, i);
+	g = resolve_g(i);
 	f = f + _[_A] + md5_sines()[i] + words[g];
 	_[_A] = _[_D];
 	_[_D] = _[_C];
