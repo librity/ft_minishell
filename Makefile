@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/22 23:31:56 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/08/31 19:00:25 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,15 @@ CC_STRICT = $(CC_BASIC) \
 	$(CCF_STRICT)
 
 CC_FULL = $(CC_STRICT) \
+	$(CCF_LEAK) \
 	$(CCF_DEBUG)
 #	$(CCF_OPTIMIZATION) \
 
 CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(INCLUDES_PATH)
 CCF_STRICT = -Wall -Wextra -Werror
 CCF_OPTIMIZATION = -O3
-CCF_DEBUG = -g# -fsanitize=leak
+CCF_DEBUG = -g
+CCF_LEAK = -fsanitize=leak
 
 MAKE_EXTERNAL = make -C
 SAFE_MAKEDIR = mkdir -p
@@ -128,25 +130,45 @@ clean_libs: libft_clean
 # TESTS
 ################################################################################
 
+CC_TEST = $(CC_BASIC) \
+	$(CCF_DEBUG) \
+	$(CCF_LEAK)
+
+CC_VGTEST = $(CC_BASIC) \
+	$(CCF_DEBUG)
+
 TESTS_PATH = ./tests
 
 TEST_SOURCES = $(wildcard $(TESTS_PATH)/*.c)
 TESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.out, $(TEST_SOURCES))
+VGTESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.vg.out, $(TEST_SOURCES))
+
+tests: test_re $(TESTS)
+
+test: test_re $(TESTS_PATH)/$t.out
 
 $(TESTS_PATH)/%.out: $(TESTS_PATH)/%.c
-	$(CC_BASIC) \
+	$(CC_TEST)\
 		$< \
 		$(M_ARCHIVES) \
 		-o $@
-	@printf "\n$(PB)===================== RUNNING $@ =====================$(RC)\n"
 	./$@
 
-tests: re tests_clean $(TESTS)
+vgtests: test_re $(VGTESTS)
 
-test: re tests_clean $(TESTS_PATH)/$t.out
+vgtest: test_re $(TESTS_PATH)/$t.vg.out
+
+$(TESTS_PATH)/%.vg.out: $(TESTS_PATH)/%.c
+	$(CC_VGTEST)\
+		$< \
+		$(M_ARCHIVES) \
+		-o $@
+	$(VG) $(VG_FLAGS) ./$@
+
+test_re: re tests_clean
 
 tests_clean:
-	$(REMOVE_RECURSIVE) $(TESTS)
+	$(REMOVE_RECURSIVE) $(TESTS) $(VGTESTS)
 
 ################################################################################
 # EXAMPLE
@@ -178,14 +200,17 @@ CC_VG = $(CC) \
 	$(CCF_STRICT)
 
 VG = valgrind
-VG_FLAGS = --leak-check=full --show-leak-kinds=all --trace-children=yes
-VG_LOG = valgrind_leaks.log
-VG_LOG_FLAGS = --log-file=$(VG_LOG) \
-	--leak-check=full \
+
+VG_FLAGS = --leak-check=full \
 	--show-leak-kinds=all \
 	--trace-children=yes \
+	--suppressions=readline.supp
+
+VG_LOG_FLAGS = $(VG_FLAGS) \
+	--log-file=$(VG_LOG) \
 	--track-origins=yes \
 	--verbose
+VG_LOG = valgrind_leaks.log
 
 VG_TARGET = ./minishell
 
@@ -248,7 +273,7 @@ tclean \
 \
 libft_clean clean_libs \
 \
-tests test tests_clean \
+tests test vgtests vgtest test_re tests_clean \
 \
 example build_example example_clean \
 \

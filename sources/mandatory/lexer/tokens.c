@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:36:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 20:03:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:36:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	insert_trivial_delimiters(char *line)
 
 char	**tokenize(char *line)
 {
-	char	line_buffer[FT_ARG_MAX];
-	char	**tokens;
+	static char	line_buffer[FT_ARG_MAX];
+	char		**tokens;
 
 	ft_strcpy(line_buffer, line);
 	insert_trivial_delimiters(line_buffer);

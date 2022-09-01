@@ -13,6 +13,11 @@
 - The standard only specifies the minimum int size.
 - 32-bit compiler `int` = 16 bits (2 bytes)
 - 64-bit compiler `int` = 32 bits (4 bytes)
+- https://manpages.ubuntu.com/manpages/trusty/man3/avr_stdint.3.html
+- https://usrmisc.wordpress.com/2012/12/27/integer-sizes-in-c-on-32-bit-and-64-bit-linux/
+- https://www.quora.com/What-decides-the-size-of-an-integer-in-a-compiler
+- https://www.geeksforgeeks.org/why-integer-size-varies-from-computer-to-computer/
+- https://stackoverflow.com/questions/12739693/size-of-int-variable
 
 ### `UNIX` Processes
 
@@ -82,3 +87,12 @@ $ errno -l
 - https://askubuntu.com/questions/14081/what-is-the-maximum-length-of-command-line-arguments-in-gnome-terminal
 - https://stackoverflow.com/questions/46714/why-is-arg-max-not-defined-via-limits-h
 - https://unix.stackexchange.com/questions/120642/what-defines-the-maximum-size-for-a-command-single-argument
+
+### C-string
+
+- https://en.wikipedia.org/wiki/C_string_handling
+- https://www.tutorialspoint.com/cprogramming/c_strings.htm
+
+### Unions
+
+- https://www.tutorialspoint.com/cprogramming/c_unions.htm

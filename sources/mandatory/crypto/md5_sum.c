@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   md5_sum.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 16:20:28 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/30 15:15:46 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/30 15:31:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+uint32_t	md5_sum(char *message)
 {
-	initialize_control(argc, argv, envp);
-}
+	uint32_t	*digest;
+	uint32_t	sum;
 
-static void	repl(void)
-{
-}
-
-static void	cleanup(void)
-{
-	free_memory();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	digest = md5_big_endian(message, ft_strlen(message));
+	sum = digest[0] + digest[1] + digest[2] + digest[3];
+	free(digest);
+	return (sum);
 }

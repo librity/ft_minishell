@@ -118,6 +118,14 @@ static void (*minunit_teardown)(void) = NULL;
 	block\
 } while(0)
 
+/*  Declares the main function with argc, argv and envp */
+#define MU_MAIN int	main(int argc, char **argv, char **envp)
+
+/*  Prints the divider: argv MUST be in scope. */
+#define MU_DIVIDER MU__SAFE_BLOCK(\
+	printf(PB "\n===================== RUNNING %s =====================\n" RC, argv[0]);\
+)
+
 /*  Run test suite and unset setup and teardown functions */
 #define MU_RUN_SUITE(suite_name) MU__SAFE_BLOCK(\
 	suite_name();\
@@ -154,7 +162,11 @@ static void (*minunit_teardown)(void) = NULL;
 #define MU_REPORT() MU__SAFE_BLOCK(\
 	double minunit_end_real_timer;\
 	double minunit_end_proc_timer;\
-	printf(YB "\n\n%d tests, %d assertions, %d failures\n" RC, minunit_run, minunit_assert, minunit_fail);\
+	printf(YB "\n\n%d tests, %d assertions, " RC, minunit_run, minunit_assert);\
+	if (minunit_fail != 0)\
+		printf(RB "%d failures\n" RC, minunit_fail);\
+	else\
+		printf(GB "%d failures\n" RC, minunit_fail);\
 	minunit_end_real_timer = mu_timer_real();\
 	minunit_end_proc_timer = mu_timer_cpu();\
 	printf(C "\nFinished in %.8f seconds (real) %.8f seconds (proc)\n\n" RC,\

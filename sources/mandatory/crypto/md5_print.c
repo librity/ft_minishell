@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   md5_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 16:20:28 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/08/29 16:41:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+void	print_md5(uint32_t *digest)
 {
-	initialize_control(argc, argv, envp);
+	ft_printf("\"%08x%08x%08x%08x\"", digest[0], digest[1], digest[2], digest[3]);
 }
 
-static void	repl(void)
+void	inspect_md5(char *message, uint32_t *digest)
 {
-}
-
-static void	cleanup(void)
-{
-	free_memory();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	ft_printf("md5(\"%s\") => ", message);
+	print_md5(digest);
+	ft_printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/08/23 18:57:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:01:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void test_tokens(char **_expected, char *_raw_input)
 	char **tokens = tokenize(_raw_input);
 
 	assert_strarr_eq(_expected, tokens);
+	ft_free_strarr(tokens);
 }
 
 static void lexer_setup(void)
@@ -302,8 +303,9 @@ MU_TEST_SUITE(lexer_suite)
 	MU_RUN_TEST(heredoc_tokens);
 }
 
-int main(void)
+MU_MAIN
 {
+	MU_DIVIDER;
 	MU_RUN_SUITE(lexer_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);

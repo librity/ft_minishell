@@ -34,7 +34,20 @@
 
 ## Variáveis
 
-- [ ] Colocar as variáveis de ambiente em uma Hash Table
+- [ ] Implementar uma Hash Table:
+  - [x] Implementar uma função criptográfica com poucas colisões (`md5()`).
+  - [x] Calcular o `index` de um elemento a partir da chave.
+  - [x] Inicializar a Hash Table.
+  - [x] Inicializar um elemento da Hash Table.
+  - [x] Destruir a Hash Table.
+  - [x] Destruir elementos da Hash Table (liberar memória).
+  - [x] Conseguir inserir uma variável (chave + valor).
+  - [x] Conseguir recuperar uma variável a partir da chave.
+  - [x] Conseguir deletar uma variável a partir da chave.
+  - [x] Lidar com colisões (variáveis com o mesmo `index`).
+  - [ ] Testar e tratar inputs inválidos (`NULL` `table`, `key`, `value`, etc.)
+- [ ] Inserir todas as variáveis do `envp` na Hash Table na inicialização do shell.
+- [ ] Gerar o `envp` com todas as variáveis da hash table para os `execve`.
 
 ## Built-ins
 

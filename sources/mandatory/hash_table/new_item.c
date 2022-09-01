@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   new_item.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/29 16:20:28 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/01 13:37:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+t_ht_item	*ht_new_item(char *key, char *value)
 {
-	initialize_control(argc, argv, envp);
-}
+	t_ht_item	*new;
 
-static void	repl(void)
-{
-}
-
-static void	cleanup(void)
-{
-	free_memory();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	if (key == NULL || value == NULL)
+		return (NULL);
+	new = ft_salloc(sizeof(t_ht_item));
+	new->key = ft_strdup(key);
+	new->value = ft_strdup(value);
+	return (new);
 }

@@ -167,3 +167,23 @@ source ~/.bashrc
 #!/bin/perl
 #!/bin/ruby
 ```
+
+## `$?`
+
+- Internal variables that contains the exit status of the last command.
+
+```bash
+$ ls | grep a | grep b | grep c
+$ echo $?
+0
+```
+
+## `PIPESTATUS`
+
+- Internal variables that contains the exit status of every command in the last pipeline.
+
+```bash
+$ ls | grep a | grep b | grep c
+$ echo ${PIPESTATUS[@]}
+0 0 0 0
+```
