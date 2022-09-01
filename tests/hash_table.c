@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/01 14:40:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:02:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_ht_item		*item;
 t_hash_table	*table;
 char			*value;
 bool			_bool;
+int				stdout_copy;
 
 static void	test_ht_item(t_ht_item *_item,
 							char *expected_key,
@@ -43,6 +44,22 @@ static void	seed_ht_fixed_index(void)
 	ht_insert_in_index(table, "foo", "bar", _index);
 	ht_insert_in_index(table, "baz", "fizz", _index);
 	ht_insert_in_index(table, "buzz", "crash", _index);
+}
+
+static void	stdout_to_devnull(void)
+{
+	int	dev_null;
+
+	stdout_copy = dup(STDOUT_FILENO);
+	dev_null = open("/dev/null", O_RDWR);
+	dup2(dev_null, STDOUT_FILENO);
+	close(dev_null);
+}
+
+static void	restore_stdout(void)
+{
+	dup2(stdout_copy, STDOUT_FILENO);
+	close(stdout_copy);
 }
 
 void	setup(void)
@@ -94,16 +111,16 @@ MU_TEST(destroy_tst)
 	mu_check(table == NULL);
 }
 
-/**
- * TODO: Remover a warning to STDOUT
- * e verificar que o destory imprimiu a warning.
- */
 MU_TEST(destroy_null_tst)
 {
+	stdout_to_devnull();
+
 	ht_destroy(NULL);
 
 	table = NULL;
 	ht_destroy(&table);
+
+	restore_stdout();
 }
 
 MU_TEST(new_item_tst)
@@ -143,16 +160,16 @@ MU_TEST(destroy_item_tst)
 	mu_check(item == NULL);
 }
 
-/**
- * TODO: Remover a warning to STDOUT
- * e verificar que o destory imprimiu a warning.
- */
 MU_TEST(destroy_item_null_tst)
 {
+	stdout_to_devnull();
+
 	ht_destroy_item(NULL);
 
 	item = NULL;
 	ht_destroy_item(&item);
+
+	restore_stdout();
 }
 
 MU_TEST(insert_one_tst)
