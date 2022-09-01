@@ -55,14 +55,14 @@ declare -x COLORTERM=\"truecolor\"
 "
 ```
 
-## `cat`
+## `cd`
 
-- Prints the last command THEN hangs the shell for input.
+## `pwd`
 
-```bash
-$ cat | cat | ls
-agile     docs      includes  LICENSE  Makefile   objects        README.md  snippets  test
-archives  examples  libs      main.c   minishell  readline.supp  scripts    sources   tests
-das
-das
-```
+## `unset`
+
+## `env`
+
+## `exit`
+
+## (OPTIONAL) `help`
