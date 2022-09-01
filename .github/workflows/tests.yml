@@ -18,3 +18,5 @@ jobs:
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
       - name: Build and run tests with make
         run: make -s tests
+      - name: Build and run valgrind tests with make
+        run: make -s vgtests
