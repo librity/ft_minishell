@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/01 17:50:22 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:40:46 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ bool	verific_asp_line_cmd(char	*line)
 
 	single = 0;
 	doub = 0;
-	while(*line++)
+	while(*line)
 	{
 		if (*line == SINGLE_QUOTE && doub % 2 == 0)
 			single++;
 		if (*line == DOUBLE_QUOTE && single % 2 == 0)
 			doub++;
+		line++;
 	}
 	if (single % 2 == 1 || doub % 2 == 1)
 		return (false); //função pra lipar e sair;

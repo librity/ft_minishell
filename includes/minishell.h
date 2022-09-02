@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 17:49:38 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:37:32 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,10 @@ void		get_tokens(void);
 char		*pwd(void);
 char		*get_line_cmd(char	*tmp);
 
-char		*get_stdin(void);
-
-char		**creat_paths(void);
+bool		verific_asp_line_cmd(char *line);
 char		*exec_cmd(void);
 char		*rtn_path_index(int index);
-bool		verific_asp_line_cmd(char	*line);
+char		**creat_paths(void);
 void		Syntax_Validator(void);
 
 
