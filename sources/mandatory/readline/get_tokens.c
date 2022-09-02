@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/02 12:40:46 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:57:10 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,6 @@ char	*pwd(void)
 	char	path[MAX_PATH];
 
 	return (ft_strjoin(getcwd(path, MAX_PATH), "$ "));
-}
-
-bool	verific_asp_line_cmd(char	*line)
-{
-	int	single;
-	int	doub;
-
-	single = 0;
-	doub = 0;
-	while(*line)
-	{
-		if (*line == SINGLE_QUOTE && doub % 2 == 0)
-			single++;
-		if (*line == DOUBLE_QUOTE && single % 2 == 0)
-			doub++;
-		line++;
-	}
-	if (single % 2 == 1 || doub % 2 == 1)
-		return (false); //função pra lipar e sair;
-	return (true);
 }
 
 char	*get_line_cmd(char	*tmp)
@@ -59,7 +39,7 @@ void	get_tokens(void)
 
 	tmp = pwd();
 	get_line_cmd(tmp);
-	verific_asp_line_cmd(line_cmd());
+	verf_clone_quote(line_cmd());
 	add_history(line_cmd());
 	c()->tokens = lex();
 	free(tmp);

@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   get_path_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 11:46:57 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/08/31 11:45:44 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/09/02 16:44:43 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/09/02 16:50:40 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <minishell.h>
 
-char	**creat_paths(void);
-
-char	*exec_cmd(void)
+char	*get_path_cmd(char *cmd)
 {
 	int		index;
 	char	*script;
@@ -23,11 +21,14 @@ char	*exec_cmd(void)
 	while(rtn_path_index(index))
 	{
 		script = ft_strjoin(rtn_path_index(index), "/");
-		printf("cmd = %s\n", script);
-		if (access(rtn_path_index(index), F_OK))
-			printf("eu\n");
-			//return (rtn_path_index(index));
+		script = ft_strjoin(script, cmd);
+		if (script, F_OK)
+			return (script);
 		index++;
 	}
+	/*
+		COLOCAR UMA MENSAGEM EM WANINGS
+	*/
+	printf("%s: Command not found\n", cmd);
 	return (NULL);
 }
