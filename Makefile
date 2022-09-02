@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/08/28 20:14:33 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/09/02 13:40:00 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CC_FULL = $(CC_STRICT) \
 CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(INCLUDES_PATH)
 CCF_STRICT = -Wall -Wextra -Werror
 CCF_OPTIMIZATION = -O3
-CCF_DEBUG = -g #-fsanitize=leak
+CCF_DEBUG = -g -fsanitize=leak
 CCF_LIBS = -lreadline
 
 MAKE_EXTERNAL = make -C
@@ -136,7 +136,7 @@ TEST_SOURCES = $(wildcard $(TESTS_PATH)/*.c)
 TESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.out, $(TEST_SOURCES))
 
 $(TESTS_PATH)/%.out: $(TESTS_PATH)/%.c
-	$(CC_BASIC) \
+	$(CC_BASIC) $(CCF_DEBUG) \
 		$< \
 		$(M_ARCHIVES) \
 		$(CCF_LIBS) \
