@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:44:43 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/02 21:44:16 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:51:21 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ char	*get_cmd_path(char *cmd)
 			return (script);
 		index++;
 	}
-	/*
-		COLOCAR UMA MENSAGEM EM WANINGS
-	*/
-	printf("%s: Command not found\n", cmd);
+	//printf("%s: " COMMAD_ERR, cmd);
 	return (NULL);
 }

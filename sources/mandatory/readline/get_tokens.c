@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/02 21:38:53 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 22:58:35 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ char	*pwd(void)
 
 char	*get_line_cmd(char	*tmp)
 {
+	/*
+		NOTE: sua função estava dando seg fault quando recebia um parametro null
+		coloquei um if temporario la :)
+	*/
 	set_line_cmd(ft_strdup(""));
 	while (!*line_cmd())
 	{

@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/02 17:08:06 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 21:57:23 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			argc(void);
 char		**argv(void);
 char		**envp(void);
 
-char		**creat_paths(void);
+void		initalize_paths(void);
 char		*rtn_path_index(int index);
 //criar uma função pra deleta os caminhos
 
