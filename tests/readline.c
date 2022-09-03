@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/03 00:19:11 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/03 11:50:39 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,10 @@ MU_TEST(get_line_cmd_tst)
 	mu_assert_string_eq("asdasdas dadsa sdas ds", line);
 	free(line);
 
-	/*
-
-				esse teste mata a execução
-
 	write_to_stdin(NULL);
 	line = get_line_cmd("> ");
-	printf("line = %s\n\n\n", line);
-	mu_assert_string_eq("asdasdas dadsa sdas ds", line);
-	free(line); */
-
+	mu_assert_string_eq(NULL, line);
+	free(line);
 }
 
 MU_TEST(check_asp_tst)
@@ -122,9 +116,9 @@ MU_TEST_SUITE(example_suite)
 {
 	MU_SUITE_CONFIGURE(&example_setup, &example_teardown);
 
-	//MU_RUN_TEST(get_line_cmd_tst);
+	MU_RUN_TEST(get_line_cmd_tst);
 	//MU_RUN_TEST(check_asp_tst);
-	MU_RUN_TEST(check_command_tst);
+	//MU_RUN_TEST(check_command_tst);
 }
 
 int	main(void)
