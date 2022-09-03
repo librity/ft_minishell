@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/02 12:37:32 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:08:06 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void		set_debug(bool verbose);
 int			argc(void);
 char		**argv(void);
 char		**envp(void);
-void		initalize_paths(void);
+
+char		**creat_paths(void);
+char		*rtn_path_index(int index);
+//criar uma função pra deleta os caminhos
 
 
 char		*line_cmd(void);
@@ -76,11 +79,10 @@ void		get_tokens(void);
 char		*pwd(void);
 char		*get_line_cmd(char	*tmp);
 
-bool		verific_asp_line_cmd(char *line);
+bool		vf_clone_quote(char *line);
 char		*exec_cmd(void);
-char		*rtn_path_index(int index);
-char		**creat_paths(void);
-void		Syntax_Validator(void);
+char		*get_cmd_path(char *cmd);
+void		remove_quote(void);
 
 
 /******************************************************************************\

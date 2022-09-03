@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_Validator.c                                 :+:      :+:    :+:   */
+/*   close_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 11:45:45 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/08/30 11:46:19 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/09/02 16:41:33 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/09/02 17:05:24 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	Syntax_Validator(void)
+bool	vf_clone_quote(char	*line)
 {
-	int		index;
+	int	single;
+	int	doub;
 
-	index = 0;
-	while(token_index(index))
+	single = 0;
+	doub = 0;
+	while(*line)
 	{
-		if (token_index(index)[0] == SINGLE_QUOTE)
-			token_edit(index, ft_strtrim(token_index(index), "\'"));
-		else if (token_index(index)[0] == DOUBLE_QUOTE)
-			token_edit(index, ft_strtrim(token_index(index), "\""));
-		index++;
+		if (*line == SINGLE_QUOTE && doub % 2 == 0)
+			single++;
+		if (*line == DOUBLE_QUOTE && single % 2 == 0)
+			doub++;
+		line++;
 	}
+	if (single % 2 == 1 || doub % 2 == 1)
+		return (false); //função pra lipar e sair;
+	return (true);
 }

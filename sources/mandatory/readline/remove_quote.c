@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execve.c                                           :+:      :+:    :+:   */
+/*   syntax_Validator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 11:46:57 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/02 21:38:26 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/08/30 11:45:45 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/09/02 17:01:36 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <minishell.h>
 
-// char	*exec_cmd(void)
-// {
-// 	char	*cmd_path;
+void	remove_quote(void)
+{
+	int		index;
 
-// 	cmd_path = get_cmd_path("teste");
-// 	(void *)cmd_path;
-// 	//
-// 	// execve
-// 	return (NULL);
-// }
+	index = 0;
+	while(token_index(index))
+	{
+		if (token_index(index)[0] == SINGLE_QUOTE)
+			token_edit(index, ft_strtrim(token_index(index), "\'"));
+		else if (token_index(index)[0] == DOUBLE_QUOTE)
+			token_edit(index, ft_strtrim(token_index(index), "\""));
+		index++;
+	}
+}

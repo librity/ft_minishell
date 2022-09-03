@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/02 12:40:57 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:39:45 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,35 @@ static void	example_teardown(void)
 {
 }
 
+MU_TEST(get_input_tst)
+{
+	write(STDIN_FILENO, "teste",5);
+	read_stdin();
+}
+
 MU_TEST(check_asp_tst)
 {
-	_bool = verific_asp_line_cmd("\"teste\'\"");
+	_bool = verf_clone_quote("\"teste\'\"");
 	mu_check(_bool == true);
 
-	_bool = verific_asp_line_cmd("\'teste2\"\'");
+	_bool = verf_clone_quote("\'teste2\"\'");
 	mu_check(_bool == true);
 
-	_bool = verific_asp_line_cmd("\'teste3\'\"");
+	_bool = verf_clone_quote("\'teste3\'\"");
 	mu_check(_bool == false);
 
-	_bool = verific_asp_line_cmd("\'teste4\"\"");
+	_bool = verf_clone_quote("\'teste4\"\"");
 	mu_check(_bool == false);
 
-	_bool = verific_asp_line_cmd("\"\'teste5\'");
+	_bool = verf_clone_quote("\"\'teste5\'");
 	mu_check(_bool == false);
 }
 
 MU_TEST_SUITE(example_suite)
 {
 	MU_SUITE_CONFIGURE(&example_setup, &example_teardown);
-	MU_RUN_TEST(check_asp_tst);
+	//MU_RUN_TEST(check_asp_tst);
+	MU_RUN_TEST(get_input_tst);
 }
 
 int	main(void)

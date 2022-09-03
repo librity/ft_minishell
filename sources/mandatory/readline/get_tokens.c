@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/02 16:57:10 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/02 21:38:53 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	get_tokens(void)
 
 	tmp = pwd();
 	get_line_cmd(tmp);
-	verf_clone_quote(line_cmd());
+	vf_clone_quote(line_cmd());
 	add_history(line_cmd());
 	c()->tokens = lex();
 	free(tmp);
