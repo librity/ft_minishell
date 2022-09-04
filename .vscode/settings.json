@@ -44,6 +44,14 @@
     "array": "c",
     "structs.h": "c",
     "stdlib.h": "c",
-    "stdbool.h": "c"
+    "stdbool.h": "c",
+    "atomic": "c",
+    "hash_map": "c",
+    "deque": "c",
+    "list": "c",
+    "vector": "c",
+    "iterator": "c",
+    "memory": "c",
+    "streambuf": "c"
   }
 }
