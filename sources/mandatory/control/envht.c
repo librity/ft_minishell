@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:33:07 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 16:42:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:53:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,14 @@ t_hash_table	*envht(void)
 
 void	initilize_envht(void)
 {
+	if (envht() != NULL)
+		return ;
 	c()->envht = ht_new();
+}
+
+void	destroy_envht(void)
+{
+	if (envht() == NULL)
+		return ;
+	ht_destroy(&(c()->envht));
 }
