@@ -52,6 +52,10 @@
     "vector": "c",
     "iterator": "c",
     "memory": "c",
-    "streambuf": "c"
+    "streambuf": "c",
+    "hash_table.h": "c",
+    "stdexcept": "c",
+    "unordered_map": "c",
+    "limits": "c"
   }
 }

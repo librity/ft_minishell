@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 16:53:39 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:58:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ MU_TEST(destroy_envht_tst)
 	destroy_envht();
 
 	initilize_envht();
-
 	destroy_envht();
 	mu_check(c()->envht == NULL);
 
@@ -166,7 +165,6 @@ MU_TEST_SUITE(control_suite)
 	MU_RUN_TEST(envht_tst);
 	MU_RUN_TEST(initilize_envht_tst);
 	MU_RUN_TEST(destroy_envht_tst);
-
 
 	MU_RUN_TEST(lalloc_tst);
 	MU_RUN_TEST(free_lalloc_tst);
