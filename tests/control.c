@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 15:00:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:09:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ MU_TEST(deinitialize_tst)
 	mu_assert_int_eq(0, c()->argc);
 	mu_check(NULL == c()->argv);
 	mu_check(NULL == c()->envp);
+}
+
+MU_TEST(deinitialize_tst)
+{
+	set_debug(true);
+	mu_check(debug() == true);
+
+	set_debug(false);
+	mu_check(debug() == false);
 }
 
 MU_TEST_SUITE(control_suite)
