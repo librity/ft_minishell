@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 15:09:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:16:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ MU_TEST(deinitialize_tst)
 	mu_check(NULL == c()->envp);
 }
 
-MU_TEST(deinitialize_tst)
+MU_TEST(debug_tst)
 {
 	set_debug(true);
 	mu_check(debug() == true);
@@ -69,14 +69,31 @@ MU_TEST(deinitialize_tst)
 	mu_check(debug() == false);
 }
 
+MU_TEST(arguments_tst)
+{
+	c()->argc = 42;
+	mu_assert_int_eq(42, c()->argc);
+
+	c()->argv = (void *)42;
+	mu_check((void *)42 == c()->argv);
+
+	c()->envp = (void *)42;
+	mu_check((void *)42 == c()->envp);
+}
+
 MU_TEST_SUITE(control_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(singleton_tst);
 	MU_RUN_TEST(static_tst);
+
 	MU_RUN_TEST(initialize_tst);
 	MU_RUN_TEST(deinitialize_tst);
+
+	MU_RUN_TEST(debug_tst);
+
+	MU_RUN_TEST(arguments_tst);
 }
 
 int main(int argc, char **argv, char **envp)
