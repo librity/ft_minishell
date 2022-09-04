@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 19:02:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:52:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 bool			_bool;
 t_ht_item		*_item;
 
-void	setup(void)
+static void	setup(void)
 {
 }
-void	teardown(void)
+static void	teardown(void)
 {
 }
 

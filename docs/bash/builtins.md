@@ -68,6 +68,17 @@ foo=10
 run_in_tandem
 ```
 
+```bash
+$ export a=2
+$ export b=$a
+$ export $a=$a
+# -bash: export: `2=2': not a valid identifier
+$ export c=foo
+$ export $c=$a
+$ echo $a $b $c $foo
+2 2 foo 2
+```
+
 ### Arguments
 
 ```bash

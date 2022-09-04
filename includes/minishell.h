@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 16:51:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 20:22:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void			free_lalloc(void);
 
 char			**lex(char *input);
 char			**tokenize(char *input);
+
+char			**tokenize_variable(char *declaration);
 
 char			*skip_single_quotes(char *line);
 char			*skip_double_quotes(char *line);
