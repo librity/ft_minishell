@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 14:32:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:37:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ t_dlist			**ht_get_index_list(t_hash_table *table, int index);
 /******************************************************************************\
  * RUNTIME
 \******************************************************************************/
+
+void			initialize_shell(int argc, char **argv, char **envp);
 
 void			print_error(char *message);
 void			print_warning(char *message);

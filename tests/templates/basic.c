@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   basic.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 00:32:32 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 12:17:24 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
+/*   Updated: 2022/09/01 20:11:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "tests.h"
 
-t_minishell	*c(void)
+int	foo;
+
+void	test_setup(void)
 {
-	static t_minishell	__control_instance;
-
-	return (&__control_instance);
+}
+void	test_teardown(void)
+{
 }
 
-void	initialize_control(int argc, char **argv, char **envp)
+MU_TEST(template_tst)
 {
-	c()->debug = true;
-	c()->argc = argc;
-	c()->argv = argv;
-	c()->envp = envp;
+	foo = 42;
+	mu_assert_int_eq(foo, 42);
+}
+
+MU_TEST_SUITE(test_suite)
+{
+	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
+
+	MU_RUN_TEST(template_tst);
+}
+
+MU_MAIN
+{
+	MU_DIVIDER;
+	MU_RUN_SUITE(test_suite);
+	MU_REPORT();
+	return (MU_EXIT_CODE);
 }

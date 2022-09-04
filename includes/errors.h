@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 00:32:32 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 12:17:24 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/04 14:18:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef ERRORS_H
+# define ERRORS_H
 
-t_minishell	*c(void)
-{
-	static t_minishell	__control_instance;
+# define ERR_GENERIC "Error\n"
 
-	return (&__control_instance);
-}
-
-void	initialize_control(int argc, char **argv, char **envp)
-{
-	c()->debug = true;
-	c()->argc = argc;
-	c()->argv = argv;
-	c()->envp = envp;
-}
+#endif
