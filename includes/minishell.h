@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 16:15:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:42:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void			set_debug(bool verbose);
 int				argc(void);
 char			**argv(void);
 char			**envp(void);
+
+t_hash_table	*envht(void);
+void			initilize_envht(void);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
@@ -97,7 +100,7 @@ uint32_t		*md5_initial_digest(void);
  * HAST TABLE
 \******************************************************************************/
 
-t_hash_table	*ht_init(void);
+t_hash_table	*ht_new(void);
 void			ht_destroy(t_hash_table **table);
 
 bool			ht_insert(t_hash_table *table,

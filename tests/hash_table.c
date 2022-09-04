@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/01 15:02:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:41:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ MU_TEST(index_null_tst)
 	mu_assert_int_eq(HT_BAD_INDEX, _index);
 }
 
-MU_TEST(init_tst)
+MU_TEST(new_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	mu_check(table != NULL);
 	mu_check(table->size == HASH_TABLE_SIZE);
 	mu_check(table->count == 0);
@@ -105,7 +105,7 @@ MU_TEST(init_tst)
 
 MU_TEST(destroy_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	mu_check(table != NULL);
 	ht_destroy(&table);
 	mu_check(table == NULL);
@@ -174,7 +174,7 @@ MU_TEST(destroy_item_null_tst)
 
 MU_TEST(insert_one_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	_bool = ht_insert(table, "chave", "value");
 	mu_check(_bool == true);
 
@@ -188,7 +188,7 @@ MU_TEST(insert_one_tst)
 
 MU_TEST(insert_two_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	ht_insert(table, "mario", "luigi");
 	mu_check(table->count == 1);
 	ht_insert(table, "mamma", "mia");
@@ -207,7 +207,7 @@ MU_TEST(insert_two_tst)
 
 MU_TEST(reinsertion_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	ht_insert(table, "chave", "a");
 	ht_insert(table, "chave", "b");
 
@@ -221,7 +221,7 @@ MU_TEST(reinsertion_tst)
 
 MU_TEST(collision_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	seed_ht_fixed_index();
 
 	item = table->index_lists[_index]->content;
@@ -238,7 +238,7 @@ MU_TEST(collision_tst)
 
 MU_TEST(collision_reinsertion_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	seed_ht_fixed_index();
 
 	ht_insert_in_index(table, "baz", "crash", _index);
@@ -252,7 +252,7 @@ MU_TEST(collision_reinsertion_tst)
 
 MU_TEST(insert_empty_tst)
 {
-	table = ht_init();
+	table = ht_new();
 
 	ht_insert(table, "", "value");
 	mu_check(table->count == 1);
@@ -271,7 +271,7 @@ MU_TEST(insert_empty_tst)
 
 MU_TEST(insert_null_tst)
 {
-	table = ht_init();
+	table = ht_new();
 
 	_bool = ht_insert(NULL, "key", "value");
 	mu_check(_bool == false);
@@ -289,7 +289,7 @@ MU_TEST(insert_null_tst)
 
 MU_TEST(get_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	seed_ht();
 
 	value = ht_get(table, "foo");
@@ -306,7 +306,7 @@ MU_TEST(get_tst)
 
 MU_TEST(get_bad_key_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	seed_ht();
 
 	value = ht_get(table, "idontexist");
@@ -326,7 +326,7 @@ MU_TEST(get_bad_key_tst)
 
 MU_TEST(get_reinsertion_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	seed_ht();
 
 	ht_insert(table, "baz", "crash");
@@ -338,7 +338,7 @@ MU_TEST(get_reinsertion_tst)
 
 MU_TEST(get_empty_tst)
 {
-	table = ht_init();
+	table = ht_new();
 
 	ht_insert(table, "", "bar");
 	value = ht_get(table, "");
@@ -353,7 +353,7 @@ MU_TEST(get_empty_tst)
 
 MU_TEST(get_null_tst)
 {
-	table = ht_init();
+	table = ht_new();
 
 	value = ht_get(NULL, "foo");
 	mu_check(value == NULL);
@@ -366,7 +366,7 @@ MU_TEST(get_null_tst)
 
 MU_TEST(delete_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	seed_ht();
 
 	ht_delete(table, "foo");
@@ -389,7 +389,7 @@ MU_TEST(delete_tst)
 
 MU_TEST(delete_twice_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	seed_ht();
 
 	ht_delete(table, "baz");
@@ -407,7 +407,7 @@ MU_TEST(delete_twice_tst)
 
 MU_TEST(delete_same_index_tst)
 {
-	table = ht_init();
+	table = ht_new();
 	seed_ht_fixed_index();
 	ht_insert_in_index(table, "bada", "bing", _index);
 	mu_check(table->count == 4);
@@ -464,7 +464,7 @@ MU_TEST(delete_same_index_tst)
 
 MU_TEST(delete_empty_tst)
 {
-	table = ht_init();
+	table = ht_new();
 
 	_bool = ht_delete(table, "");
 	mu_check(_bool == false);
@@ -481,7 +481,7 @@ MU_TEST(delete_empty_tst)
 
 MU_TEST(delete_null_tst)
 {
-	table = ht_init();
+	table = ht_new();
 
 	_bool = ht_delete(NULL, "key");
 	mu_check(_bool == false);
@@ -500,7 +500,7 @@ MU_TEST_SUITE(hash_table_suite)
 	MU_RUN_TEST(index_empty_tst);
 	MU_RUN_TEST(index_null_tst);
 
-	MU_RUN_TEST(init_tst);
+	MU_RUN_TEST(new_tst);
 
 	MU_RUN_TEST(destroy_tst);
 	MU_RUN_TEST(destroy_null_tst);

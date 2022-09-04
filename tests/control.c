@@ -6,14 +6,15 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 16:16:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:44:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
-t_minishell	*_control;
-t_list		**_lalloc;
+t_minishell		*_control;
+t_list			**_lalloc;
+t_hash_table	*_envht;
 
 void	test_setup(void)
 {
@@ -37,6 +38,7 @@ MU_TEST(static_tst)
 	mu_check(NULL == c()->argv);
 	mu_check(NULL == c()->envp);
 	mu_check(NULL == c()->lalloc);
+	mu_check(NULL == c()->envht);
 }
 
 MU_TEST(initialize_tst)
@@ -48,6 +50,8 @@ MU_TEST(initialize_tst)
 	mu_check((void *)42 == c()->argv);
 	mu_check((void *)42 == c()->envp);
 	mu_check(NULL == c()->lalloc);
+	mu_check(NULL == c()->envht);
+
 
 	ft_bzero(c(), sizeof(t_minishell));
 }
@@ -62,6 +66,7 @@ MU_TEST(deinitialize_tst)
 	mu_check(NULL == c()->argv);
 	mu_check(NULL == c()->envp);
 	mu_check(NULL == c()->lalloc);
+	mu_check(NULL == c()->envht);
 }
 
 MU_TEST(debug_tst)
@@ -89,6 +94,23 @@ MU_TEST(arguments_tst)
 	ft_bzero(c(), sizeof(t_minishell));
 }
 
+MU_TEST(envht_tst)
+{
+	c()->envht = (void *)42;
+	mu_check((void *)42 == envht());
+
+	ft_bzero(c(), sizeof(t_minishell));
+}
+
+MU_TEST(initilize_envht_tst)
+{
+	mu_check(NULL == envht());
+	initilize_envht();
+	mu_check(NULL != envht());
+
+	ht_destroy(&(c()->envht));
+}
+
 MU_TEST(lalloc_tst)
 {
 	_lalloc = &(c()->lalloc);
@@ -101,7 +123,6 @@ MU_TEST(lalloc_tst)
 
 	ft_bzero(c(), sizeof(t_minishell));
 }
-
 
 MU_TEST(free_lalloc_tst)
 {
@@ -126,8 +147,10 @@ MU_TEST_SUITE(control_suite)
 
 	MU_RUN_TEST(arguments_tst);
 
-	MU_RUN_TEST(lalloc_tst);
+	MU_RUN_TEST(envht_tst);
+	MU_RUN_TEST(initilize_envht_tst);
 
+	MU_RUN_TEST(lalloc_tst);
 	MU_RUN_TEST(free_lalloc_tst);
 }
 
