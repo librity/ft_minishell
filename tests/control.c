@@ -6,13 +6,14 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 15:16:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:50:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
 t_minishell	*_control;
+t_list		**_lalloc;
 
 void	test_setup(void)
 {
@@ -35,6 +36,7 @@ MU_TEST(static_tst)
 	mu_assert_int_eq(0, c()->argc);
 	mu_check(NULL == c()->argv);
 	mu_check(NULL == c()->envp);
+	mu_check(NULL == c()->lalloc);
 }
 
 MU_TEST(initialize_tst)
@@ -45,6 +47,7 @@ MU_TEST(initialize_tst)
 	mu_assert_int_eq(42, c()->argc);
 	mu_check((void *)42 == c()->argv);
 	mu_check((void *)42 == c()->envp);
+	mu_check(NULL == c()->lalloc);
 
 	ft_bzero(c(), sizeof(t_minishell));
 }
@@ -58,6 +61,7 @@ MU_TEST(deinitialize_tst)
 	mu_assert_int_eq(0, c()->argc);
 	mu_check(NULL == c()->argv);
 	mu_check(NULL == c()->envp);
+	mu_check(NULL == c()->lalloc);
 }
 
 MU_TEST(debug_tst)
@@ -72,13 +76,24 @@ MU_TEST(debug_tst)
 MU_TEST(arguments_tst)
 {
 	c()->argc = 42;
-	mu_assert_int_eq(42, c()->argc);
+	mu_assert_int_eq(42, argc());
 
 	c()->argv = (void *)42;
-	mu_check((void *)42 == c()->argv);
+	mu_check((void *)42 == argv());
 
 	c()->envp = (void *)42;
-	mu_check((void *)42 == c()->envp);
+	mu_check((void *)42 == envp());
+}
+
+MU_TEST(lalloc_tst)
+{
+	_lalloc = &(c()->lalloc);
+	mu_check(_lalloc == lalloc());
+	mu_check(_lalloc == lalloc());
+	mu_check(_lalloc == lalloc());
+
+	c()->lalloc = (void *)42;
+	mu_check(*lalloc() == (void *)42);
 }
 
 MU_TEST_SUITE(control_suite)
@@ -94,6 +109,8 @@ MU_TEST_SUITE(control_suite)
 	MU_RUN_TEST(debug_tst);
 
 	MU_RUN_TEST(arguments_tst);
+
+	MU_RUN_TEST(lalloc_tst);
 }
 
 int main(int argc, char **argv, char **envp)
