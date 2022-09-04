@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/02 21:57:23 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/04 00:18:43 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void		get_tokens(void);
 
 
 char		*pwd(void);
-char		*get_line_cmd(char	*tmp);
+char		*get_cmd_line(char	*tmp);
 
 bool		vf_clone_quote(char *line);
 char		*exec_cmd(void);

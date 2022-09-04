@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_cmd_path.c                                     :+:      :+:    :+:   */
+/*   get_cmd_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 16:44:43 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/04 00:30:54 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/09/04 00:26:22 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/09/04 00:26:52 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*get_cmd_path(char *cmd)
+char	*get_cmd_line(char	*tmp)
 {
-	int		index;
-	char	*script;
-
-	if (cmd == NULL)
-		return (NULL);
-	index = 0;
-	while(rtn_path_index(index))
+	set_line_cmd(ft_strdup(""));
+	while (line_cmd() != NULL && !*line_cmd())
 	{
-		script = ft_strjoin(rtn_path_index(index), "/");
-		script = ft_strjoin_del(&script, cmd);
-		if (!access(script, F_OK))
-			return (script);
-		free(script);
-		index++;
+		free(line_cmd());
+		printf(GB "%s " WB "in ", getenv("USER"));
+		set_line_cmd(readline(tmp));
+		if (ft_streq(line_cmd(), "exit"))
+			exit(0);
 	}
-	//printf("%s: " COMMAD_ERR, cmd);
-	return (NULL);
+	return (line_cmd());
 }

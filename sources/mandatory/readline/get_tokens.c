@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/03 11:48:47 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/04 00:26:19 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,12 @@ char	*pwd(void)
 	return (ft_strjoin(getcwd(path, MAX_PATH), "$ "));
 }
 
-char	*get_line_cmd(char	*tmp)
-{
-	set_line_cmd(ft_strdup(""));
-	while (line_cmd() != NULL && !*line_cmd())
-	{
-		free(line_cmd());
-		printf(GB "%s " WB "in ", getenv("USER"));
-		set_line_cmd(readline(tmp));
-		if (ft_streq(line_cmd(), "exit"))
-			exit(0);
-	}
-	return (line_cmd());
-}
-
 void	get_tokens(void)
 {
 	char	*tmp;
 
 	tmp = pwd();
-	get_line_cmd(tmp);
+	get_cmd_line(tmp);
 	vf_clone_quote(line_cmd());
 	add_history(line_cmd());
 	c()->tokens = lex();
