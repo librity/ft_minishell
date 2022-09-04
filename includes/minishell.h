@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 13:37:17 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 14:57:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 t_minishell		*c(void);
 void			initialize_control(int argc, char **argv, char **envp);
+void			deinitialize_control(void);
 
 bool			debug(void);
 void			set_debug(bool verbose);
