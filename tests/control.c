@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 15:50:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:16:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ MU_TEST(debug_tst)
 
 	set_debug(false);
 	mu_check(debug() == false);
+
+	ft_bzero(c(), sizeof(t_minishell));
 }
 
 MU_TEST(arguments_tst)
@@ -83,6 +85,8 @@ MU_TEST(arguments_tst)
 
 	c()->envp = (void *)42;
 	mu_check((void *)42 == envp());
+
+	ft_bzero(c(), sizeof(t_minishell));
 }
 
 MU_TEST(lalloc_tst)
@@ -94,6 +98,18 @@ MU_TEST(lalloc_tst)
 
 	c()->lalloc = (void *)42;
 	mu_check(*lalloc() == (void *)42);
+
+	ft_bzero(c(), sizeof(t_minishell));
+}
+
+
+MU_TEST(free_lalloc_tst)
+{
+	int i = 42;
+	while (i < 200)
+		ft_lalloc(lalloc(), sizeof(int) * i++);
+
+	free_lalloc();
 }
 
 MU_TEST_SUITE(control_suite)
@@ -111,6 +127,8 @@ MU_TEST_SUITE(control_suite)
 	MU_RUN_TEST(arguments_tst);
 
 	MU_RUN_TEST(lalloc_tst);
+
+	MU_RUN_TEST(free_lalloc_tst);
 }
 
 int main(int argc, char **argv, char **envp)

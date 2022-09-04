@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 14:57:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:15:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char			**argv(void);
 char			**envp(void);
 
 t_list			**lalloc(void);
-void			free_memory(void);
+void			free_lalloc(void);
 
 /******************************************************************************\
  * LEXER
