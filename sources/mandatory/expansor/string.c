@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 17:53:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:22:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,18 @@ static void	insert_delimiters(char *line)
 	}
 }
 
-/**
- * foo=bar
- * banan=chocolate
- * "testeando$foo$banana" => "testeandobarchocolate"
- * "testeando\"$foo\"\'$banana\'" => "testeando\"bar\"\'$banana\'"
- */
-
-/*
-*"testeando"
-*\""foo"\",
-*\"'banana'",
-*NULL
-*/
-
 static char	*find_var_end(char *var)
+{
+	while (*var != NULL_CHAR)
+	{
+		if (*var == SINGLE_QUOTE)
+			return (var);
+		if (*var == DOUBLE_QUOTE)
+			return (var);
+		var++;
+	}
+	return (var);
+}
 
 char	*expand_str(char *token)
 {
@@ -53,25 +50,44 @@ char	*expand_str(char *token)
 	char		**vars;
 	char		**vstemp;
 	char		*var;
+	char		*rest;
+	char		*value;
+	char		*expanded;
+	char		*result;
 	char		*var_end;
 	bool		first_is_var;
 
 	ft_strcpy(buffer, token);
 	insert_delimiters(buffer);
-	vars = ft_split(token, DELIMITER);
-	vstemp = vars;
+	vars = ft_split(buffer, DELIMITER);
 	first_is_var = *token == DOLLAR;
-	while (vstemp != NULL)
+	vstemp = vars;
+	while (*vstemp != NULL)
 	{
 		if (vstemp == vars && !first_is_var)
 		{
 			vstemp++;
 			continue ;
 		}
-		var_end =
-		var =
+		var_end = find_var_end(*vstemp);
+		var = ft_substr(*vstemp, 0, var_end - *vstemp);
+		rest = ft_strdup(var_end);
+		value = envht_get(var);
+		expanded = ft_strjoin(value, rest);
+		free(*vstemp);
+		free(rest);
+		free(var);
+		*vstemp = expanded;
+		vstemp++;
+	}
+
+	result = ft_strdup(*vars);
+	vstemp = vars + 1;
+	while (*vstemp != NULL)
+	{
+		result = ft_strjoin_free(result, *vstemp);
 		vstemp++;
 	}
 	ft_free_strarr(vars);
-	return (NULL);
+	return (result);
 }

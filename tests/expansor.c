@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:14:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 17:46:42 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:25:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,30 @@ void	teardown(void)
 	destroy_envht();
 }
 
-
 MU_TEST(get_variable)
 {
 	mu_check(true == envht_insert("foo", "bar"));
-	value = expand_str("foo");
+	mu_check(true == envht_insert("banan", "chocolate"));
 
+	value = expand_str("$foo");
 	mu_assert_string_eq("bar", value);
+	free(value);
+
+	value = expand_str("\"$foo\"");
+	mu_assert_string_eq("\"bar\"", value);
+	free(value);
+
+	value = expand_str("\'$foo\'");
+	mu_assert_string_eq("\'$foo\'", value);
+	free(value);
+
+	// value = expand_str("testeando$foo$banana");
+	// mu_assert_string_eq("testeandobarchocolate", value);
+	// free(value);
+
+	value = expand_str("testeando\"$foo\"\'$banana\'");
+	mu_assert_string_eq("testeando\"bar\"\'$banana\'", value);
+	free(value);
 }
 
 MU_TEST_SUITE(test_suite)
