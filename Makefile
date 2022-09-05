@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/09/04 13:51:54 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/09/05 16:58:24 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,7 @@ CC_VGTEST = $(CC_BASIC) \
 
 TESTS_PATH = ./tests
 
-TEST_SOURCES = $(wildcard $(TESTS_PATH)/*.c)
+TEST_SOURCES = $(wildcard $(TESTS_PATH)/**/*.c) $(wildcard $(TESTS_PATH)/*.c)
 
 TESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.out, $(TEST_SOURCES))
 VGTESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.vg.out, $(TEST_SOURCES))
