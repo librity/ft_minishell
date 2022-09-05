@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 13:48:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 23:52:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	free_lists(t_hash_table *table)
 	index = 0;
 	while (index < table->size)
 	{
-		index_list = &table->index_lists[index];
+		index_list = ht_get_index_list(table, index);
 		ft_dlstclear(index_list, destroy_item);
 		index++;
 	}
@@ -39,4 +39,15 @@ void	ht_destroy(t_hash_table **table)
 	free((*table)->index_lists);
 	free(*table);
 	*table = NULL;
+}
+
+t_hash_table	*ht_new(void)
+{
+	t_hash_table	*new;
+
+	new = ft_salloc(sizeof(t_hash_table));
+	new->size = HASH_TABLE_SIZE;
+	new->count = 0;
+	new->index_lists = ft_scalloc(sizeof(t_dlist *), new->size);
+	return (new);
 }

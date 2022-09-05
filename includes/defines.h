@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 12:56:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:22:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
  * LEXER
 \******************************************************************************/
 
-# define NOT_ASCII -42
 # define DELIMITER -42
+
+# define EQUALS '='
 # define SPACE ' '
+# define NULL_CHAR '\0'
 
 # define SINGLE_QUOTE '\''
 # define DOUBLE_QUOTE '\"'
@@ -33,6 +35,8 @@
 # define LESS_THAN '<'
 # define READ_FILE "<"
 # define HEREDOC "<<"
+
+# define TOKENS_DEBUG_MESSAGE "Lexed string \"%s\" into tokens:"
 
 /******************************************************************************\
  * CRYPTO
@@ -52,9 +56,10 @@
 # define HT_BAD_INDEX -1
 
 /******************************************************************************\
- * ERRORS
+ * RUNTIME
 \******************************************************************************/
 
-# define ERR_GENERIC "Error\n"
+# define PRINT_ERROR_PREFIX "ERROR:\t"
+# define PRINT_WARNING_PREFIX "WRNNG:\t"
 
 #endif

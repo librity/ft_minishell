@@ -6,23 +6,25 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 00:41:55 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/21 00:51:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 14:17:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-#define DEBUG_MESSAGE "Lexed string \"%s\" into tokens:"
+static void	debug_tokens(char *input, char **tokens)
+{
+	if (!debug())
+		return ;
+	ft_debug(TOKENS_DEBUG_MESSAGE, input);
+	ft_put_strarr(tokens);
+}
 
 char	**lex(char *input)
 {
 	char	**tokens;
 
 	tokens = tokenize(input);
-	if (debug())
-	{
-		ft_debug(DEBUG_MESSAGE, input);
-		ft_put_strarr(tokens);
-	}
+	debug_tokens(input, tokens);
 	return (tokens);
 }

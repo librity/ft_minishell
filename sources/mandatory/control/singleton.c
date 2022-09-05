@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 00:32:32 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/21 00:54:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:13:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,9 @@ void	initialize_control(int argc, char **argv, char **envp)
 	c()->argc = argc;
 	c()->argv = argv;
 	c()->envp = envp;
+}
+
+void	deinitialize_control(void)
+{
+	ft_bzero(c(), sizeof(t_minishell));
 }

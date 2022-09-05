@@ -6,21 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/31 19:47:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 12:22:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-typedef enum e_chuck_digest_ints
-{
-	_A = 0,
-	_B = 1,
-	_C = 2,
-	_D = 3,
-	_FIRST = _A,
-	_LAST = _D
-}			t_chuck_digest_ints;
 
 static uint32_t	resolve_f(uint32_t _[4], uint32_t i)
 {

@@ -1,6 +1,7 @@
 ### `make` and Makefile
 
 - https://makefiletutorial.com/#string-substitution
+- https://stackoverflow.com/questions/7402205/remove-item-from-a-makefile-variable
 
 ### Computer History
 

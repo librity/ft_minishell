@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:36:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/31 18:36:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 20:16:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*skip_or_delimit(char *line)
 	return (line);
 }
 
-static void	insert_trivial_delimiters(char *line)
+static void	insert_delimiters(char *line)
 {
 	while (line != NULL && *line != '\0')
 	{
@@ -39,11 +39,11 @@ static void	insert_trivial_delimiters(char *line)
 
 char	**tokenize(char *line)
 {
-	static char	line_buffer[FT_ARG_MAX];
+	static char	buffer[FT_ARG_MAX];
 	char		**tokens;
 
-	ft_strcpy(line_buffer, line);
-	insert_trivial_delimiters(line_buffer);
-	tokens = ft_split(line_buffer, DELIMITER);
+	ft_strcpy(buffer, line);
+	insert_delimiters(buffer);
+	tokens = ft_split(buffer, DELIMITER);
 	return (tokens);
 }

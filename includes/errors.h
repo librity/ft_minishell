@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_item.c                                         :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 13:37:08 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/05 14:11:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef ERRORS_H
+# define ERRORS_H
 
-t_ht_item	*ht_new_item(char *key, char *value)
-{
-	t_ht_item	*new;
+# define ERR_GENERIC "Error\n"
 
-	if (key == NULL || value == NULL)
-		return (NULL);
-	new = ft_salloc(sizeof(t_ht_item));
-	new->key = ft_strdup(key);
-	new->value = ft_strdup(value);
-	return (new);
-}
+/******************************************************************************\
+ * CONTROL
+\******************************************************************************/
+
+# define ENVP_TO_ENVHT_ERR "Can't initialize envht from envp variables."
+
+#endif

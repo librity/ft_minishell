@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 14:39:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 00:09:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,20 @@ bool	ht_delete_in_index(t_hash_table *table, char *key, int index)
 	return (true);
 }
 
+static bool	valid_params(t_hash_table *table, char *key)
+{
+	if (table == NULL)
+		return (false);
+	if (key == NULL)
+		return (false);
+	return (true);
+}
+
 bool	ht_delete(t_hash_table *table, char *key)
 {
 	int	index;
 
-	if (table == NULL)
-		return (false);
-	if (key == NULL)
+	if (!valid_params(table, key))
 		return (false);
 	index = ht_get_index(key);
 	return (ht_delete_in_index(table, key, index));

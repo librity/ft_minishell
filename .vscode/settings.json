@@ -42,6 +42,20 @@
     "random": "c",
     "system_error": "c",
     "array": "c",
-    "structs.h": "c"
+    "structs.h": "c",
+    "stdlib.h": "c",
+    "stdbool.h": "c",
+    "atomic": "c",
+    "hash_map": "c",
+    "deque": "c",
+    "list": "c",
+    "vector": "c",
+    "iterator": "c",
+    "memory": "c",
+    "streambuf": "c",
+    "hash_table.h": "c",
+    "stdexcept": "c",
+    "unordered_map": "c",
+    "limits": "c"
   }
 }

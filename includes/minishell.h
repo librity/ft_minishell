@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 14:32:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:11:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <defines.h>
+# include <errors.h>
 # include <warnings.h>
 # include <structs.h>
 
@@ -23,6 +24,7 @@
 
 t_minishell		*c(void);
 void			initialize_control(int argc, char **argv, char **envp);
+void			deinitialize_control(void);
 
 bool			debug(void);
 void			set_debug(bool verbose);
@@ -31,8 +33,13 @@ int				argc(void);
 char			**argv(void);
 char			**envp(void);
 
+t_hash_table	*envht(void);
+bool			initilize_envht(void);
+void			destroy_envht(void);
+char			**envht_to_envp(void);
+
 t_list			**lalloc(void);
-void			free_memory(void);
+void			free_lalloc(void);
 
 /******************************************************************************\
  * LEXER
@@ -40,6 +47,8 @@ void			free_memory(void);
 
 char			**lex(char *input);
 char			**tokenize(char *input);
+
+char			**tokenize_variable(char *declaration);
 
 char			*skip_single_quotes(char *line);
 char			*skip_double_quotes(char *line);
@@ -96,13 +105,16 @@ uint32_t		*md5_initial_digest(void);
  * HAST TABLE
 \******************************************************************************/
 
-t_hash_table	*ht_init(void);
+t_hash_table	*ht_new(void);
 void			ht_destroy(t_hash_table **table);
 
 bool			ht_insert(t_hash_table *table,
 					char *key, char *value);
 char			*ht_get(t_hash_table *table, char *key);
 bool			ht_delete(t_hash_table *table, char *key);
+
+bool			ht_insert_strarr(t_hash_table *table, char **strings);
+char			**ht_to_strarr(t_hash_table *table);
 
 void			ht_insert_in_index(t_hash_table *table,
 					char *key,
@@ -112,6 +124,7 @@ bool			ht_delete_in_index(t_hash_table *table, char *key, int index);
 
 t_ht_item		*ht_new_item(char *key, char *value);
 void			ht_destroy_item(t_ht_item **item);
+char			*ht_item_to_string(t_ht_item *item);
 
 int				ht_get_index(char *message);
 t_dlist			**ht_get_index_list(t_hash_table *table, int index);
@@ -119,6 +132,11 @@ t_dlist			**ht_get_index_list(t_hash_table *table, int index);
 /******************************************************************************\
  * RUNTIME
 \******************************************************************************/
+
+void			initialize_shell(int argc, char **argv, char **envp);
+void			cleanup_shell(void);
+
+void			die(char *error_message);
 
 void			print_error(char *message);
 void			print_warning(char *message);
