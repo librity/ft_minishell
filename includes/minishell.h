@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 14:11:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:40:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ t_hash_table	*envht(void);
 bool			initilize_envht(void);
 void			destroy_envht(void);
 char			**envht_to_envp(void);
+
+bool			envht_insert(char *key, char *value);
+char			*envht_get(char *key);
+bool			envht_delete(char *key);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
@@ -71,10 +75,17 @@ bool			at_single_quote(char *line);
 bool			at_double_quote(char *line);
 bool			at_pipe(char *line);
 bool			at_space(char *line);
+bool			at_dollar(char *line);
 bool			at_truncate(char *line);
 bool			at_append(char *line);
 bool			at_read_file(char *line);
 bool			at_heredoc(char *line);
+
+/******************************************************************************\
+ * EXPANSOR
+\******************************************************************************/
+
+char			*expand_str(char *token);
 
 /******************************************************************************\
  * CRYPTO
