@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/05 14:31:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:52:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,30 @@ MU_TEST(initilize_envht_with_envp_tst)
 	ht_destroy(&(c()->envht));
 }
 
-MU_TEST(initilize_envht_warning_tst)
+void envht_init_die_1(void)
 {
 	c()->envp = (char *[]){
-		"foo=bar",
-		"garmon",
-		"bo=zia",
-		NULL};
-	mu_check(false == initilize_envht());
-
-	ht_destroy(&(c()->envht));
-	deinitialize_control();
+			"foo=bar",
+			"garmon",
+			"bo=zia",
+			NULL};
+	stdout_to_devnull();
+	initilize_envht();
+}
+void envht_init_die_2(void)
+{
+	c()->envp = (char *[]){
+			"foobar",
+			"gar=mon",
+			"bo=zia",
+			NULL};
+	stdout_to_devnull();
+	initilize_envht();
+}
+MU_TEST(initilize_envht_die_tst)
+{
+	test_die(envht_init_die_1);
+	test_die(envht_init_die_2);
 }
 
 MU_TEST(destroy_envht_tst)
@@ -139,6 +152,7 @@ MU_TEST_SUITE(control_suite)
 
 	MU_RUN_TEST(initilize_envht_tst);
 	MU_RUN_TEST(initilize_envht_with_envp_tst);
+	MU_RUN_TEST(initilize_envht_die_tst);
 
 	MU_RUN_TEST(destroy_envht_tst);
 

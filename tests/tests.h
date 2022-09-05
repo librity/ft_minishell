@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 23:11:16 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:49:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "minunit.h"
 # include <fcntl.h>
 # include <minishell.h>
+# include <sys/wait.h>
 
 int		g_stdout_copy;
 
@@ -50,6 +51,21 @@ void assert_strarr_eq(char **_expected, char **_result)
 void assert_in_strarr(char **haystack, char *needle)
 {
 	mu_check(true == ft_str_in_strarr(haystack, needle));
+}
+
+typedef void (*t_test_die_callback)(void);
+void test_die(t_test_die_callback should_die)
+{
+	pid_t pid;
+	int wstatus;
+	pid = fork();
+
+	if (pid == 0)
+	{
+		should_die();
+	}
+	mu_check(pid == wait(&wstatus));
+	mu_check(EXIT_FAILURE == WEXITSTATUS(wstatus));
 }
 
 #endif
