@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   die.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 14:11:07 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/05 14:09:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include <minishell.h>
 
-# define ERR_GENERIC "Error\n"
-
-/******************************************************************************\
- * CONTROL
-\******************************************************************************/
-
-# define ENVP_TO_ENVHT_ERR "Can't initialize envht from envp variables."
-
-#endif
+void	die(char *error_message)
+{
+	cleanup_shell();
+	print_error(error_message);
+	exit(EXIT_FAILURE);
+}

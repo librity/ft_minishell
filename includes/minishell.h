@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 01:53:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:11:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <defines.h>
+# include <errors.h>
 # include <warnings.h>
 # include <structs.h>
 
@@ -33,7 +34,7 @@ char			**argv(void);
 char			**envp(void);
 
 t_hash_table	*envht(void);
-void			initilize_envht(void);
+bool			initilize_envht(void);
 void			destroy_envht(void);
 char			**envht_to_envp(void);
 
@@ -134,6 +135,8 @@ t_dlist			**ht_get_index_list(t_hash_table *table, int index);
 
 void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
+
+void			die(char *error_message);
 
 void			print_error(char *message);
 void			print_warning(char *message);
