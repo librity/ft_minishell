@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 16:58:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 01:45:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_minishell		*_control;
 t_list			**_lalloc;
-t_hash_table	*_envht;
 
 void	test_setup(void)
 {
@@ -51,7 +50,6 @@ MU_TEST(initialize_tst)
 	mu_check((void *)42 == c()->envp);
 	mu_check(NULL == c()->lalloc);
 	mu_check(NULL == c()->envht);
-
 
 	ft_bzero(c(), sizeof(t_minishell));
 }
@@ -94,38 +92,6 @@ MU_TEST(arguments_tst)
 	ft_bzero(c(), sizeof(t_minishell));
 }
 
-MU_TEST(envht_tst)
-{
-	c()->envht = (void *)42;
-	mu_check((void *)42 == envht());
-
-	ft_bzero(c(), sizeof(t_minishell));
-}
-
-MU_TEST(initilize_envht_tst)
-{
-	mu_check(NULL == envht());
-	initilize_envht();
-	mu_check(NULL != envht());
-
-	_envht = c()->envht;
-	initilize_envht();
-	mu_check(_envht == envht());
-
-	ht_destroy(&(c()->envht));
-}
-
-MU_TEST(destroy_envht_tst)
-{
-	destroy_envht();
-
-	initilize_envht();
-	destroy_envht();
-	mu_check(c()->envht == NULL);
-
-	destroy_envht();
-}
-
 MU_TEST(lalloc_tst)
 {
 	_lalloc = &(c()->lalloc);
@@ -161,10 +127,6 @@ MU_TEST_SUITE(control_suite)
 	MU_RUN_TEST(debug_tst);
 
 	MU_RUN_TEST(arguments_tst);
-
-	MU_RUN_TEST(envht_tst);
-	MU_RUN_TEST(initilize_envht_tst);
-	MU_RUN_TEST(destroy_envht_tst);
 
 	MU_RUN_TEST(lalloc_tst);
 	MU_RUN_TEST(free_lalloc_tst);

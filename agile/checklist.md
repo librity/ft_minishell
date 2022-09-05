@@ -47,10 +47,10 @@
   - [x] Lidar com colisões (variáveis com o mesmo `index`).
   - [x] Testar e tratar inputs inválidos (`NULL` `table`, `key`, `value`, etc.)
   - [x] Inserir array de string.
-  - [ ] Gerar array de strings com todas as variáveis.
+  - [x] Gerar array de strings com todas as variáveis.
 - [x] Definir `envht`.
-- [ ] Inserir `envp` no `envht` na inicialização do shell.
-- [ ] Gerar `envp` a partir do `envht` (para os `execve()`).
+- [x] Inserir `envp` no `envht` na inicialização do shell.
+- [x] Gerar `envp` a partir do `envht` (para os `execve()`).
 
 ## Built-ins
 
