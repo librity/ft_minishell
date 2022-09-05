@@ -41,13 +41,16 @@
   - [x] Inicializar um elemento da Hash Table.
   - [x] Destruir a Hash Table.
   - [x] Destruir elementos da Hash Table (liberar memória).
-  - [x] Conseguir inserir uma variável (chave + valor).
-  - [x] Conseguir recuperar uma variável a partir da chave.
-  - [x] Conseguir deletar uma variável a partir da chave.
+  - [x] Inserir uma variável (chave + valor).
+  - [x] Recuperar uma variável a partir da chave.
+  - [x] Deletar uma variável a partir da chave.
   - [x] Lidar com colisões (variáveis com o mesmo `index`).
   - [x] Testar e tratar inputs inválidos (`NULL` `table`, `key`, `value`, etc.)
-- [ ] Inserir todas as variáveis do `envp` na Hash Table na inicialização do shell.
-- [ ] Gerar o `envp` com todas as variáveis da hash table para os `execve`.
+  - [x] Inserir array de string.
+  - [ ] Gerar array de strings com todas as variáveis.
+- [x] Definir `envht`.
+- [ ] Inserir `envp` no `envht` na inicialização do shell.
+- [ ] Gerar `envp` a partir do `envht` (para os `execve()`).
 
 ## Built-ins
 

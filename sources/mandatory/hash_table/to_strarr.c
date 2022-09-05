@@ -1,42 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   to_strarr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:17:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/01 13:48:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 00:20:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	destroy_item(void *item)
+static char	**skip_strings(char **strings)
 {
-	ht_destroy_item((t_ht_item **)&item);
+	while (*strings != NULL)
+		strings++;
+	return (strings);
 }
 
-static void	free_lists(t_hash_table *table)
+static void	add_items(char **strings, t_dlist *node)
 {
-	t_dlist	**index_list;
-	int		index;
+	t_ht_item	*item;
+	char		*string;
 
-	index = 0;
-	while (index < table->size)
+	while (node != NULL)
 	{
-		index_list = &table->index_lists[index];
-		ft_dlstclear(index_list, destroy_item);
-		index++;
+		item = node->content;
+		string = ht_item_to_string(item);
+		strings = skip_strings(strings);
+		*strings = string;
+		node = node->next;
 	}
 }
 
-void	ht_destroy(t_hash_table **table)
+char	**ht_to_strarr(t_hash_table *table)
 {
-	if (table == NULL || *table == NULL)
-		return (print_warning(DESTROY_NULL_HT_WRN));
-	free_lists(*table);
-	free((*table)->index_lists);
-	free(*table);
-	*table = NULL;
+	char	**strings;
+	int		index;
+	t_dlist	**list;
+
+	if (table == NULL)
+		return (NULL);
+	strings = ft_strarr_new(table->count);
+	index = 0;
+	while (index < table->size)
+	{
+		list = ht_get_index_list(table, index);
+		if (list != NULL)
+			add_items(strings, *list);
+		index++;
+	}
+	return (strings);
 }

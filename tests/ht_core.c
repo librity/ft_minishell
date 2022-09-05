@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash_table_core.c                                  :+:      :+:    :+:   */
+/*   ht_core.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 19:52:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 00:02:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash_table.h"
 
 int				_int;
-t_ht_item		*_item;
-char			*_str;
 
 static void	setup(void)
 {
@@ -77,55 +75,6 @@ MU_TEST(destroy_null_tst)
 	restore_stdout();
 }
 
-MU_TEST(new_item_tst)
-{
-	_item = ht_new_item("abc", "value");
-	test_ht_item(_item, "abc", "value");
-
-	ht_destroy_item(&_item);
-}
-
-MU_TEST(new_item_empty_tst)
-{
-	_item = ht_new_item("", "value");
-	test_ht_item(_item, "", "value");
-	ht_destroy_item(&_item);
-
-	_item = ht_new_item("abc", "");
-	test_ht_item(_item, "abc", "");
-	ht_destroy_item(&_item);
-}
-
-MU_TEST(new_item_null_tst)
-{
-	_item = ht_new_item(NULL, "value");
-	mu_check(_item == NULL);
-
-	_item = ht_new_item("abc", NULL);
-	mu_check(_item == NULL);
-}
-
-MU_TEST(destroy_item_tst)
-{
-	_item = ht_new_item("bananas", "pajamas");
-	test_ht_item(_item, "bananas", "pajamas");
-
-	ht_destroy_item(&_item);
-	mu_check(_item == NULL);
-}
-
-MU_TEST(destroy_item_null_tst)
-{
-	stdout_to_devnull();
-
-	ht_destroy_item(NULL);
-
-	_item = NULL;
-	ht_destroy_item(&_item);
-
-	restore_stdout();
-}
-
 MU_TEST_SUITE(hash_table_core_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
@@ -138,13 +87,6 @@ MU_TEST_SUITE(hash_table_core_suite)
 
 	MU_RUN_TEST(destroy_tst);
 	MU_RUN_TEST(destroy_null_tst);
-
-	MU_RUN_TEST(new_item_tst);
-	MU_RUN_TEST(new_item_empty_tst);
-	MU_RUN_TEST(new_item_null_tst);
-
-	MU_RUN_TEST(destroy_item_tst);
-	MU_RUN_TEST(destroy_item_null_tst);
 }
 
 MU_MAIN

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 22:40:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:58:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@ char			*_str;
 char			**_strarr;
 bool			_bool;
 
-static void test_tokenize_variable(char **expected, char *raw_variable)
-{
-	char **tokens = tokenize_variable(raw_variable);
-
-	assert_strarr_eq(expected, tokens);
-	ft_free_strarr(tokens);
-}
-
 static void	setup(void)
 {
 }
@@ -32,7 +24,7 @@ static void	teardown(void)
 {
 }
 
-MU_TEST(expected_tst)
+MU_TEST(trivial_tst)
 {
 	_table = ht_new();
 	_strarr = (char *[]){
@@ -98,7 +90,7 @@ MU_TEST_SUITE(insert_strarr_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	MU_RUN_TEST(expected_tst);
+	MU_RUN_TEST(trivial_tst);
 	MU_RUN_TEST(no_equals_tst);
 	MU_RUN_TEST(null_tst);
 }

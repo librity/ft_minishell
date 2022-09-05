@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 18:49:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 23:11:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	restore_stdout(void)
 	close(g_stdout_copy);
 }
 
-static void assert_strarr_eq(char **_expected, char **_result)
+void assert_strarr_eq(char **_expected, char **_result)
 {
 	int i;
 
@@ -45,6 +45,11 @@ static void assert_strarr_eq(char **_expected, char **_result)
 		mu_assert_string_eq(_expected[i], _result[i]);
 		i++;
 	}
+}
+
+void assert_in_strarr(char **haystack, char *needle)
+{
+	mu_check(true == ft_str_in_strarr(haystack, needle));
 }
 
 #endif
