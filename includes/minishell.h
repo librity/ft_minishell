@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 01:37:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 01:53:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char			**envp(void);
 t_hash_table	*envht(void);
 void			initilize_envht(void);
 void			destroy_envht(void);
+char			**envht_to_envp(void);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
