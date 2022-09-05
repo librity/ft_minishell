@@ -6,11 +6,22 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 14:20:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:27:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static void	extract_key_and_value(char *declaration, char **tokens)
+{
+	char	*equalsp;
+	char	*nullp;
+
+	equalsp = ft_strchr(declaration, EQUALS);
+	nullp = ft_strchr(declaration, NULL_CHAR);
+	tokens[KEY] = ft_substr(declaration, 0, equalsp - declaration);
+	tokens[VALUE] = ft_substr(equalsp + 1, 0, nullp - equalsp - 1);
+}
 
 static bool	is_valid_declaration(char *declaration)
 {
@@ -25,15 +36,11 @@ static bool	is_valid_declaration(char *declaration)
 
 char	**tokenize_variable(char *declaration)
 {
-	static char	buffer[FT_ARG_MAX];
-	char		**tokens;
-	char		*equals_position;
+	char	**tokens;
 
 	if (!is_valid_declaration(declaration))
 		return (NULL);
-	ft_strcpy(buffer, declaration);
-	equals_position = ft_strchr(buffer, EQUALS);
-	*equals_position = DELIMITER;
-	tokens = ft_split(buffer, DELIMITER);
+	tokens = ft_strarr_new(2);
+	extract_key_and_value(declaration, tokens);
 	return (tokens);
 }

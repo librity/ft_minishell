@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 20:26:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:22:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define EQUALS '='
 # define SPACE ' '
+# define NULL_CHAR '\0'
 
 # define SINGLE_QUOTE '\''
 # define DOUBLE_QUOTE '\"'
