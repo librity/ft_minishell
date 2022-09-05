@@ -6,13 +6,12 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/04 20:49:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/04 20:55:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash_table.h"
 
-t_hash_table	*_table;
 char			*_str;
 char			**_strarr;
 
@@ -64,8 +63,7 @@ MU_TEST(tokenize_variable_null_tst)
 	mu_check(NULL == _strarr);
 }
 
-
-MU_TEST_SUITE(hash_table_from_array_suite)
+MU_TEST_SUITE(lexer_variables_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 	MU_RUN_TEST(tokenize_variable_tst);
@@ -75,7 +73,7 @@ MU_TEST_SUITE(hash_table_from_array_suite)
 MU_MAIN
 {
 	MU_DIVIDER;
-	MU_RUN_SUITE(hash_table_from_array_suite);
+	MU_RUN_SUITE(lexer_variables_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }
