@@ -80,8 +80,8 @@
 
 - [x] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [ ] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
-  - [ ] Adicionar variável `last_exit` ao `t_minishell`.
-  - [ ] Inicializar `$?` com `"0"`.
+  - [x] Adicionar variável `last_exit` ao `t_minishell`.
+  - [x] Inicializar `$?` com `"0"`.
   - [ ] Verificar se a variável é `$?` e inserir-la corretamente.
 - [x] Casos:
   - [x] Sem variáveis

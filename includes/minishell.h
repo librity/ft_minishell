@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:29:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:10:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ bool			initialize_envht(void);
 void			destroy_envht(void);
 char			**envht_to_envp(void);
 
-bool			initialize_last_exit(void);
-
 bool			envht_insert(char *key, char *value);
 char			*envht_get(char *key);
 bool			envht_delete(char *key);
+
+char			*last_exit(void);
+bool			initialize_last_exit(void);
+bool			destroy_last_exit(void);
+bool			set_last_exit(int exit_status);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
