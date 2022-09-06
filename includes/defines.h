@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:28:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:34:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 \******************************************************************************/
 
 # define DEFAULT_LAST_EXIT 0
+# define LAST_EXIT_KEY "?"
 
 /******************************************************************************\
  * LEXER
@@ -29,6 +30,7 @@
 # define EQUALS '='
 # define SPACE ' '
 # define DOLLAR '$'
+# define QUESTION '?'
 
 # define SINGLE_QUOTE '\''
 # define DOUBLE_QUOTE '\"'

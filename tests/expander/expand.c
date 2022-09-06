@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:14:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:29:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:29:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	setup(void)
 {
 	c()->envp = (char *[]){NULL};
 	initialize_envht();
+	initialize_last_exit();
 }
 void	teardown(void)
 {
 	destroy_envht();
+	destroy_last_exit();
 }
 
 MU_TEST(single_variable)
@@ -46,6 +48,7 @@ MU_TEST(multiple_variables)
 
 	test_expand("testeandobarchocolate", "testeando$foo$banana");
 	test_expand("testeando\"bar\"\'$banana\'", "testeando\"$foo\"\'$banana\'");
+	test_expand("testeando\"chocolate\"\'$foo\'", "testeando\"$banana\"\'$foo\'");
 }
 
 MU_TEST(docs_tests)
@@ -77,6 +80,32 @@ MU_TEST(null_tests)
 	mu_check(NULL == expand(NULL));
 }
 
+MU_TEST(last_exit_tests)
+{
+	test_expand("0", "$?");
+	mu_check(true == envht_insert("banana", "chocolate"));
+
+	set_last_exit(42);
+	test_expand("42", "$?");
+	test_expand("bar42", "bar$?");
+	test_expand("'$?'", "'$?'");
+	test_expand("baz42'bar'", "baz$?'bar'");
+	test_expand("baz42'$?'", "baz$?'$?'");
+	test_expand("\"42\"", "\"$?\"");
+	test_expand("baz42\"42\"", "baz$?\"$?\"");
+	test_expand("baz42\"42'\"", "baz$?\"$?'\"");
+	test_expand("'baz$?'42''", "'baz$?'$?''");
+	test_expand("42", "$?");
+	test_expand("bar42", "bar$?");
+	test_expand("\"baz42'42'\"", "\"baz$?'$?'\"");
+
+	test_expand("\"42\"", "\"$?\"");
+	test_expand("\'$?\'", "\'$?\'");
+	test_expand("testeando42chocolate", "testeando$?$banana");
+	test_expand("testeando\"42\"\'$banana\'", "testeando\"$?\"\'$banana\'");
+	test_expand("testeando\"chocolate\"\'$?\'", "testeando\"$banana\"\'$?\'");
+}
+
 MU_TEST_SUITE(test_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
@@ -86,6 +115,7 @@ MU_TEST_SUITE(test_suite)
 	MU_RUN_TEST(docs_tests);
 	MU_RUN_TEST(empty_tests);
 	MU_RUN_TEST(null_tests);
+	MU_RUN_TEST(last_exit_tests);
 }
 
 MU_MAIN

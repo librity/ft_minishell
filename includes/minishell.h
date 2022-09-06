@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 16:10:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:22:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char			**tokenize_variable(char *declaration);
 
 char			*expand(char *input);
 
-char			**isolate_variables(char *token);
+char			**isolate_variables(char *input);
 
 /******************************************************************************\
  * CRYPTO
