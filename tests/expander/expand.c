@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:14:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 14:43:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:29:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void test_expand(char *expected, char *input)
 void	setup(void)
 {
 	c()->envp = (char *[]){NULL};
-	initilize_envht();
+	initialize_envht();
 }
 void	teardown(void)
 {

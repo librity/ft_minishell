@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/06 14:30:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:31:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ MU_TEST(envht_tst)
 	deinitialize_control();
 }
 
-MU_TEST(initilize_tst)
+MU_TEST(initialize_tst)
 {
 	c()->envp = (char *[]){"gar=mon", NULL};
 	mu_check(NULL == envht());
-	initilize_envht();
+	initialize_envht();
 	mu_check(NULL != envht());
 
 	_envht = c()->envht;
 	stdout_to_devnull();
-	initilize_envht();
+	initialize_envht();
 	restore_stdout();
 	mu_check(_envht == envht());
 
@@ -48,7 +48,7 @@ MU_TEST(initilize_tst)
 	deinitialize_control();
 }
 
-MU_TEST(initilize_with_envp_tst)
+MU_TEST(initialize_with_envp_tst)
 {
 	c()->envp = (char *[]){
 		"foo=bar",
@@ -56,7 +56,7 @@ MU_TEST(initilize_with_envp_tst)
 		"gar=mon",
 		"bo=zia",
 		NULL};
-	mu_check(true == initilize_envht());
+	mu_check(true == initialize_envht());
 
 	_str = ht_get(envht(), "foo");
 	mu_assert_string_eq("bar", _str);
@@ -81,7 +81,7 @@ void envht_init_die_1(void)
 			"bo=zia",
 			NULL};
 	stdout_to_devnull();
-	initilize_envht();
+	initialize_envht();
 }
 void envht_init_die_2(void)
 {
@@ -91,22 +91,22 @@ void envht_init_die_2(void)
 			"bo=zia",
 			NULL};
 	stdout_to_devnull();
-	initilize_envht();
+	initialize_envht();
 }
-MU_TEST(initilize_die_tst)
+MU_TEST(initialize_die_tst)
 {
 	test_die(envht_init_die_1);
 	test_die(envht_init_die_2);
 }
 
-MU_TEST(initilize_empty_variable_tst)
+MU_TEST(initialize_empty_variable_tst)
 {
 	c()->envp = (char *[]){
 			"foo=bar",
 			"gar=",
 			"bo=zia",
 			NULL};
-	mu_check(true == initilize_envht());
+	mu_check(true == initialize_envht());
 
 	_str = ht_get(envht(), "foo");
 	mu_assert_string_eq("bar", _str);
@@ -127,7 +127,7 @@ MU_TEST(destroy_tst)
 	restore_stdout();
 
 	c()->envp = (char *[]){"gar=mon", NULL};
-	initilize_envht();
+	initialize_envht();
 	destroy_envht();
 	mu_check(c()->envht == NULL);
 
@@ -144,7 +144,7 @@ MU_TEST(envht_to_envp_tst)
 		"gar=mon",
 		"bo=zia",
 		NULL};
-	initilize_envht();
+	initialize_envht();
 
 	_strarr = envht_to_envp();
 	mu_check(4 == ft_strarr_len(_strarr));
@@ -171,10 +171,10 @@ MU_TEST_SUITE(envht_suite)
 
 	MU_RUN_TEST(envht_tst);
 
-	MU_RUN_TEST(initilize_tst);
-	MU_RUN_TEST(initilize_with_envp_tst);
-	MU_RUN_TEST(initilize_die_tst);
-	MU_RUN_TEST(initilize_empty_variable_tst);
+	MU_RUN_TEST(initialize_tst);
+	MU_RUN_TEST(initialize_with_envp_tst);
+	MU_RUN_TEST(initialize_die_tst);
+	MU_RUN_TEST(initialize_empty_variable_tst);
 
 	MU_RUN_TEST(destroy_tst);
 

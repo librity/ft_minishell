@@ -1,23 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   last_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 13:13:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:11:15 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/06 15:18:40 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/06 15:35:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "../tests.h"
 
-void	print_error(char *message)
+void	test_setup(void)
 {
-	printf(RB PRINT_ERROR_PREFIX R "%s\n" RC, message);
+}
+void	test_teardown(void)
+{
 }
 
-void	print_warning(char *message)
+MU_TEST(initialize_tst)
 {
-	printf(YB PRINT_WARNING_PREFIX Y "%s\n" RC, message);
+	mu_check(c()->last_exit == NULL);
+
+	initialize_last_exit();
+	mu_assert_string_eq("0", c()->last_exit);
+}
+
+MU_TEST_SUITE(last_exit_suite)
+{
+	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
+
+	MU_RUN_TEST(initialize_tst);
+}
+
+MU_MAIN
+{
+	MU_DIVIDER;
+	MU_RUN_SUITE(last_exit_suite);
+	MU_REPORT();
+	return (MU_EXIT_CODE);
 }

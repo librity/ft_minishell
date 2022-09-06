@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/05 23:02:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:29:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	test_teardown(void)
 MU_TEST(envp_tst)
 {
 	c()->envp = _envp;
-	mu_check(true == initilize_envht());
+	mu_check(true == initialize_envht());
 
 	_strarr = envht_to_envp();
 	mu_check(ft_strarr_len(_envp) == ft_strarr_len(_strarr));
