@@ -112,6 +112,37 @@
   - [x] Tokenização por redireção heredoc `<<`
   - [ ] (OPCIONAL) Tokenização por comentário `#`
 
+## Syntax Validator
+
+- [ ] `Syntax`:
+  - [ ] Aspas simples que não fecham.
+  - [ ] Aspas duplas que não fecham.
+- [ ] `export`:
+  - [ ] Nome de variáveis não pode começar com número.
+  - [ ] Nome de variáveis não pode conter `?`.
+  - [ ] Nome de variáveis não pode conter `'`
+  - [ ] Nome de variáveis não pode conter `"`
+  - [ ] Nome de variáveis não pode conter `\`
+  - [ ] Nome de variáveis não pode conter `$`
+  - [ ] Nome de variáveis não pode conter <code>\`</code>
+  - [ ] Nome de variáveis não pode conter `=`
+  - [ ] Nome de variáveis não pode conter `*`
+  - [ ] Nome de variáveis não pode conter `@`
+  - [ ] Nome de variáveis não pode conter `~`
+  - [ ] Nome de variáveis não pode conter `<`
+  - [ ] Nome de variáveis não pode conter `>`
+  - [ ] Nome de variáveis não pode conter `(`
+  - [ ] Nome de variáveis não pode conter `)`
+  - [ ] Nome de variáveis não pode conter `!`
+  - [ ] Nome de variáveis não pode conter `|`
+  - [ ] Nome de variáveis não pode conter `&`
+  - [ ] Nome de variáveis não pode conter `;`
+  - [ ] Nome de variáveis não pode conter `space`
+  - [ ] Nome de variáveis não pode conter `newline`
+  - [ ] Declaração de variável `2=2`.
+  - [ ] Declaração de variável `?=foo`.
+  - [ ] Declaração de variável `foo?=dsa`.
+
 ## Trimmer
 
 - [ ] Remover aspas para o parser.
