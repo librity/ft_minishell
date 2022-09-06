@@ -6,13 +6,10 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/05 17:26:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:52:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * TODO: Test that it can handle the real envp.
- */
 #include "../tests.h"
 
 t_hash_table	*_envht;
@@ -34,7 +31,7 @@ MU_TEST(envht_tst)
 	deinitialize_control();
 }
 
-MU_TEST(initilize_envht_tst)
+MU_TEST(initilize_tst)
 {
 	c()->envp = (char *[]){"gar=mon", NULL};
 	mu_check(NULL == envht());
@@ -51,7 +48,7 @@ MU_TEST(initilize_envht_tst)
 	deinitialize_control();
 }
 
-MU_TEST(initilize_envht_with_envp_tst)
+MU_TEST(initilize_with_envp_tst)
 {
 	c()->envp = (char *[]){
 		"foo=bar",
@@ -96,13 +93,13 @@ void envht_init_die_2(void)
 	stdout_to_devnull();
 	initilize_envht();
 }
-MU_TEST(initilize_envht_die_tst)
+MU_TEST(initilize_die_tst)
 {
 	test_die(envht_init_die_1);
 	test_die(envht_init_die_2);
 }
 
-MU_TEST(initilize_envht_empty_variable_tst)
+MU_TEST(initilize_empty_variable_tst)
 {
 	c()->envp = (char *[]){
 			"foo=bar",
@@ -123,7 +120,7 @@ MU_TEST(initilize_envht_empty_variable_tst)
 	ht_destroy(&(c()->envht));
 }
 
-MU_TEST(destroy_envht_tst)
+MU_TEST(destroy_tst)
 {
 	stdout_to_devnull();
 	destroy_envht();
@@ -168,18 +165,18 @@ MU_TEST(envht_to_envp_null_tst)
 	mu_check(NULL == _strarr);
 }
 
-MU_TEST_SUITE(control_suite)
+MU_TEST_SUITE(envht_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(envht_tst);
 
-	MU_RUN_TEST(initilize_envht_tst);
-	MU_RUN_TEST(initilize_envht_with_envp_tst);
-	MU_RUN_TEST(initilize_envht_die_tst);
-	MU_RUN_TEST(initilize_envht_empty_variable_tst);
+	MU_RUN_TEST(initilize_tst);
+	MU_RUN_TEST(initilize_with_envp_tst);
+	MU_RUN_TEST(initilize_die_tst);
+	MU_RUN_TEST(initilize_empty_variable_tst);
 
-	MU_RUN_TEST(destroy_envht_tst);
+	MU_RUN_TEST(destroy_tst);
 
 	MU_RUN_TEST(envht_to_envp_tst);
 	MU_RUN_TEST(envht_to_envp_null_tst);
@@ -188,7 +185,7 @@ MU_TEST_SUITE(control_suite)
 int main(int argc, char **argv, char **envp)
 {
 	MU_DIVIDER;
-	MU_RUN_SUITE(control_suite);
+	MU_RUN_SUITE(envht_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

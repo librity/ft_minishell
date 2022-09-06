@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 15:49:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:00:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,18 @@ void assert_strarr_eq(char **_expected, char **_result)
 void assert_in_strarr(char **haystack, char *needle)
 {
 	mu_check(true == ft_str_in_strarr(haystack, needle));
+}
+
+void assert_strarr_equivalent(char **_expected, char **_result)
+{
+	int i;
+
+	i = 0;
+	while (i < (int)ft_strarr_len(_expected))
+	{
+		assert_in_strarr(_result, _expected[i]);
+		i++;
+	}
 }
 
 typedef void (*t_test_die_callback)(void);
