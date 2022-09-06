@@ -7,6 +7,8 @@
   - [ ] Add `.keep` to object dirs
   - [ ] Create non-phony rule for each lib archive
 - [ ] Follows `norminette 3.3.51`
+- [ ] Compiles with workspace's `clang` (version `12.0.1`)
+  - [ ] Switch Makefile's `CC`to `clang` before submitting.
 - [ ] Compiles with `-Wall -Wextra -Werror`
 - [ ] Makefile rules: `$(NAME)` `all` `clean` `fclean` `re`
 - [ ] Should not quit unexpectedly (segmentation fault, bus error, double
@@ -74,6 +76,23 @@
   - [ ] `Ctrl-D` exits the shell.
   - [ ] `Ctrl-\` does nothing.
 
+## Expander
+
+- [x] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
+- [x] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
+  - [x] Adicionar variável `last_exit` ao `t_minishell`.
+  - [x] Inicializar `$?` com `"0"`.
+  - [x] Verificar se a variável é `$?` e inserir-la corretamente.
+- [x] Casos:
+  - [x] Sem variáveis
+  - [x] Variáveis de ambiente
+  - [x] Variáveis dentro de aspas simples
+  - [x] Variáveis dentro de aspas duplas
+  - [x] Variáveis dentro de aspas simples e duplas
+  - [x] String vazia
+  - [x] Ponteiro nulo
+- [x] Renomear Expansor para Expander
+
 ## Lexer
 
 - [ ] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
@@ -92,18 +111,6 @@
   - [x] Tokenização por redireção concatenada `>>`
   - [x] Tokenização por redireção heredoc `<<`
   - [ ] (OPCIONAL) Tokenização por comentário `#`
-
-## Expansor
-
-- [ ] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
-- [ ] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
-- [ ] Casos:
-  - [ ] Sem variáveis
-  - [ ] Variáveis de ambiente
-  - [ ] Variáveis dentro de aspas simples
-  - [ ] Variáveis dentro de aspas duplas
-  - [ ] Variáveis dentro de aspas simples e duplas
-  - [ ] (OPCIONAL) Variáveis locais/do processo
 
 ## Trimmer
 

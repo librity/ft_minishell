@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   line_at_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:45:44 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/08/23 20:01:14 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/05 17:40:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+bool	at_single_quote(char *line)
 {
-	char	**env_vars;
-
-	initialize_shell(argc, argv, envp);
-	env_vars = envht_to_envp();
-	ft_put_strarr(env_vars);
-	ft_free_strarr(env_vars);
+	return (*line == SINGLE_QUOTE);
 }
 
-static void	repl(void)
+bool	at_double_quote(char *line)
 {
+	return (*line == DOUBLE_QUOTE);
 }
 
-static void	cleanup(void)
+bool	at_pipe(char *line)
 {
-	cleanup_shell();
+	return (*line == VERTICAL_BAR);
 }
 
-int	main(int argc, char **argv, char **envp)
+bool	at_space(char *line)
 {
-	initialize(argc, argv, envp);
-	repl();
-	cleanup();
-	return (EXIT_SUCCESS);
+	return (*line == SPACE);
+}
+
+bool	at_dollar(char *line)
+{
+	return (*line == DOLLAR);
 }

@@ -68,15 +68,72 @@ foo=10
 run_in_tandem
 ```
 
+### Variables
+
 ```bash
 $ export a=2
 $ export b=$a
-$ export $a=$a
-# -bash: export: `2=2': not a valid identifier
 $ export c=foo
 $ export $c=$a
 $ echo $a $b $c $foo
 2 2 foo 2
+
+```
+
+### Bad Syntax
+
+```bash
+$ export a=2
+$ export $a=$a
+# -bash: export: `2=2': not a valid identifier
+$ export ?=foo
+# -bash: export: `?=foo': not a valid identifier
+$ export ?="foo"
+# -bash: export: `?=foo': not a valid identifier
+$ export foo?=dsa
+# -bash: export: `foo?=dsa': not a valid identifier
+$ echo bar$?
+bar1
+```
+
+### `$?` Initializes as `"0"`
+
+```bash
+$ bash
+$ echo $?
+0
+```
+
+### Single and Double Quotes
+
+```bash
+$ export foo=" ada asd asd        adsa "
+$ cat $foo
+# cat: ada: No such file or directory
+# cat: asd: No such file or directory
+# cat: asd: No such file or directory
+# cat: adsa: No such file or directory
+$ cat " ada asd asd        adsa "
+# cat: ' ada asd asd        adsa ': No such file or directory
+$ export foo= ada asd asd        adsa
+$ echo $foo
+
+```
+
+### Runs in a `fork()` when inside a `|`
+
+```bash
+$ export bar=42 | echo $bar
+
+$ export bar=42 | echo $bar
+
+$ echo $bar
+
+$ export bar=42
+$ echo $bar
+42
+$ export bar=43 | echo $bar
+42
 ```
 
 ### Arguments

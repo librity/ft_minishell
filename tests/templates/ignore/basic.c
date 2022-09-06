@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_at_1.c                                        :+:      :+:    :+:   */
+/*   basic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 20:01:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/23 20:02:23 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/06 17:00:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "../tests.h"
 
-bool	at_single_quote(char *line)
+int	foo;
+
+void	test_setup(void)
 {
-	return (*line == SINGLE_QUOTE);
+}
+void	test_teardown(void)
+{
 }
 
-bool	at_double_quote(char *line)
+MU_TEST(template_tst)
 {
-	return (*line == DOUBLE_QUOTE);
+	foo = 42;
+	mu_assert_int_eq(foo, 42);
 }
 
-bool	at_pipe(char *line)
+MU_TEST_SUITE(test_suite)
 {
-	return (*line == VERTICAL_BAR);
+	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
+
+	MU_RUN_TEST(template_tst);
 }
 
-bool	at_space(char *line)
+MU_MAIN
 {
-	return (*line == SPACE);
+	MU_DIVIDER;
+	MU_RUN_SUITE(test_suite);
+	MU_REPORT();
+	return (MU_EXIT_CODE);
 }

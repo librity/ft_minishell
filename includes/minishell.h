@@ -6,12 +6,14 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 14:11:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:22:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+# include <stdio.h>
 
 # include <defines.h>
 # include <errors.h>
@@ -34,9 +36,18 @@ char			**argv(void);
 char			**envp(void);
 
 t_hash_table	*envht(void);
-bool			initilize_envht(void);
+bool			initialize_envht(void);
 void			destroy_envht(void);
 char			**envht_to_envp(void);
+
+bool			envht_insert(char *key, char *value);
+char			*envht_get(char *key);
+bool			envht_delete(char *key);
+
+char			*last_exit(void);
+bool			initialize_last_exit(void);
+bool			destroy_last_exit(void);
+bool			set_last_exit(int exit_status);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
@@ -50,31 +61,13 @@ char			**tokenize(char *input);
 
 char			**tokenize_variable(char *declaration);
 
-char			*skip_single_quotes(char *line);
-char			*skip_double_quotes(char *line);
+/******************************************************************************\
+ * EXPANDER
+\******************************************************************************/
 
-char			*insert_around_two(char *line);
-char			*insert_around_one(char *line);
-char			*insert_delimiter(char *line);
+char			*expand(char *input);
 
-void			insert_delimiter_before(char *buffer);
-void			insert_delimiter_after(char *buffer);
-void			insert_delimiter_around(char *buffer);
-void			insert_delimiter_around_2(char *buffer);
-
-void			strbuff_insert_before(char *buffer, char insert_me);
-void			strbuff_insert_after(char *buffer, char insert_me);
-void			strbuff_insert_around(char *buffer, char insert_me);
-void			strbuff_insert_around_2(char *buffer, char insert_me);
-
-bool			at_single_quote(char *line);
-bool			at_double_quote(char *line);
-bool			at_pipe(char *line);
-bool			at_space(char *line);
-bool			at_truncate(char *line);
-bool			at_append(char *line);
-bool			at_read_file(char *line);
-bool			at_heredoc(char *line);
+char			**isolate_variables(char *input);
 
 /******************************************************************************\
  * CRYPTO
@@ -128,6 +121,37 @@ char			*ht_item_to_string(t_ht_item *item);
 
 int				ht_get_index(char *message);
 t_dlist			**ht_get_index_list(t_hash_table *table, int index);
+
+/******************************************************************************\
+ * STRINGS
+\******************************************************************************/
+
+char			*skip_single_quotes(char *line);
+char			*skip_double_quotes(char *line);
+
+char			*insert_around_two(char *line);
+char			*insert_around_one(char *line);
+char			*insert_delimiter(char *line);
+
+void			insert_delimiter_before(char *buffer);
+void			insert_delimiter_after(char *buffer);
+void			insert_delimiter_around(char *buffer);
+void			insert_delimiter_around_2(char *buffer);
+
+void			strbuff_insert_before(char *buffer, char insert_me);
+void			strbuff_insert_after(char *buffer, char insert_me);
+void			strbuff_insert_around(char *buffer, char insert_me);
+void			strbuff_insert_around_2(char *buffer, char insert_me);
+
+bool			at_single_quote(char *line);
+bool			at_double_quote(char *line);
+bool			at_pipe(char *line);
+bool			at_space(char *line);
+bool			at_dollar(char *line);
+bool			at_truncate(char *line);
+bool			at_append(char *line);
+bool			at_read_file(char *line);
+bool			at_heredoc(char *line);
 
 /******************************************************************************\
  * RUNTIME

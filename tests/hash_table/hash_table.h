@@ -6,14 +6,14 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 18:49:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:54:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HASH_TABLE_H
 # define HASH_TABLE_H
 
-# include "tests.h"
+# include "../tests.h"
 
 int				g_index;
 t_hash_table	*g_table;

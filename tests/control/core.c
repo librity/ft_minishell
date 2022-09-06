@@ -6,11 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/05 01:45:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:26:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
+#include "../tests.h"
 
 t_minishell		*_control;
 t_list			**_lalloc;

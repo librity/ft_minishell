@@ -1,51 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envht.c                                            :+:      :+:    :+:   */
+/*   last_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:33:07 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:29:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:04:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_hash_table	*envht(void)
+char	*last_exit(void)
 {
-	return (c()->envht);
+	return (c()->last_exit);
 }
 
-bool	initialize_envht(void)
+bool	initialize_last_exit(void)
 {
-	bool	result;
-
-	if (c()->envht != NULL)
-	{
-		print_warning(ENVHT_REINIT_WRN);
+	if (c()->last_exit != NULL)
 		return (false);
-	}
-	c()->envht = ht_new();
-	result = ht_insert_strarr(c()->envht, c()->envp);
-	if (result == false)
-		die(ENVP_TO_ENVHT_ERR);
-	return (result);
+	c()->last_exit = ft_itoa(DEFAULT_LAST_EXIT);
+	return (true);
 }
 
-void	destroy_envht(void)
+bool	destroy_last_exit(void)
 {
-	if (c()->envht == NULL)
-	{
-		print_warning(ENVHT_REDESTROY_WRN);
-		return ;
-	}
-	ht_destroy(&(c()->envht));
+	if (c()->last_exit == NULL)
+		return (false);
+	ft_strdel(&c()->last_exit);
+	return (true);
 }
 
-char	**envht_to_envp(void)
+bool	set_last_exit(int exit_status)
 {
-	if (c()->envht == NULL)
-		return (NULL);
-	return (ht_to_strarr(c()->envht));
+	if (exit_status < 0)
+		return (false);
+	if (c()->last_exit != NULL)
+		ft_strdel(&c()->last_exit);
+	c()->last_exit = ft_itoa(exit_status);
+	return (true);
 }

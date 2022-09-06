@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 16:25:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:26:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_minishell
 	char			**envp;
 
 	t_hash_table	*envht;
+	char			*last_exit;
 
 	t_list			*lalloc;
 }					t_minishell;

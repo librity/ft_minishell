@@ -1,43 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic.c                                            :+:      :+:    :+:   */
+/*   envht_items.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/01 20:11:36 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/04 16:33:07 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/05 17:21:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
+#include <minishell.h>
 
-int	foo;
-
-void	test_setup(void)
+bool	envht_insert(char *key, char *value)
 {
-}
-void	test_teardown(void)
-{
+	return (ht_insert(envht(), key, value));
 }
 
-MU_TEST(template_tst)
+char	*envht_get(char *key)
 {
-	foo = 42;
-	mu_assert_int_eq(foo, 42);
+	return (ht_get(envht(), key));
 }
 
-MU_TEST_SUITE(test_suite)
+bool	envht_delete(char *key)
 {
-	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
-
-	MU_RUN_TEST(template_tst);
-}
-
-MU_MAIN
-{
-	MU_DIVIDER;
-	MU_RUN_SUITE(test_suite);
-	MU_REPORT();
-	return (MU_EXIT_CODE);
+	return (ht_delete(envht(), key));
 }
