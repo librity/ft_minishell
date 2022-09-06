@@ -1,4 +1,4 @@
-# Minishell Expansor
+# Minishell Expander
 
 ## Sem variáveis
 

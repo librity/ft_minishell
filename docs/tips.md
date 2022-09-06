@@ -27,7 +27,7 @@
     - Todos os built-ins recebem a mesma `struct`.
     - Definir a entrada de cada etapa do Minishell:
       - O que o lexer recebe
-      - O que o expansor recebe
+      - O que o expander recebe
       - etc.
 - Aspas que não fecham:
   - 3 opções:

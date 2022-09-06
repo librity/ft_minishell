@@ -82,7 +82,7 @@
 - [ ] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
   - [ ] Adicionar variável ao `t_minishell`.
   - [ ] Inicializar `$?` com `"0"`.
-  - [ ] No expansor, verificar se a variável é `$?` e inserir-la corretamente.
+  - [ ] Verificar se a variável é `$?` e inserir-la corretamente.
 - [x] Casos:
   - [x] Sem variáveis
   - [x] Variáveis de ambiente
@@ -91,7 +91,7 @@
   - [x] Variáveis dentro de aspas simples e duplas
   - [x] String vazia
   - [x] Ponteiro nulo
-- [ ] Renomear Expansor para Expander
+- [x] Renomear Expansor para Expander
 
 ## Lexer
 
