@@ -81,6 +81,7 @@
 - [x] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [ ] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
   - [ ] Adicionar variável ao `t_minishell`.
+  - [ ] Inicializar `$?` com `"0"`.
   - [ ] No expansor, verificar se a variável é `$?` e inserir-la corretamente.
 - [x] Casos:
   - [x] Sem variáveis
@@ -88,7 +89,9 @@
   - [x] Variáveis dentro de aspas simples
   - [x] Variáveis dentro de aspas duplas
   - [x] Variáveis dentro de aspas simples e duplas
-  - [ ] (OPCIONAL) Variáveis locais/do processo
+  - [x] String vazia
+  - [x] Ponteiro nulo
+- [ ] Renomear Expansor para Expander
 
 ## Lexer
 

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:13:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 14:19:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:27:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	print_error(char *message)
 {
-	ft_printf(RB PRINT_ERROR_PREFIX R "%s\n" RC, message);
+	printf(RB PRINT_ERROR_PREFIX R "%s\n" RC, message);
 }
 
 void	print_warning(char *message)
 {
-	ft_printf(YB PRINT_WARNING_PREFIX Y "%s\n" RC, message);
+	printf(YB PRINT_WARNING_PREFIX Y "%s\n" RC, message);
 }

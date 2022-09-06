@@ -9,6 +9,7 @@
 ### `free()`
 
 - https://linux.die.net/man/3/free
+- https://stackoverflow.com/questions/2354658/freeing-a-null-pointer
 
 ### `printf()`
 
