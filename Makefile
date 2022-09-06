@@ -6,13 +6,16 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/09/05 16:58:24 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/09/06 13:56:32 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = gcc
+# CC = gcc
+# CC = clang
+CC = clang-12
+
 CC_BASIC = $(CC) \
 	$(CCF_INCLUDES)
 

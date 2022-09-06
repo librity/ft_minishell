@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansor.c                                         :+:      :+:    :+:   */
+/*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:14:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 21:45:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 13:55:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./tests.h"
+# include "../tests.h"
 
 static void test_expand_token(char *expected, char *token)
 {
-	char *expanded = expand_token(token);
+	char *expanded = expand(token);
 
 	mu_assert_string_eq(expected, expanded);
 	free(expanded);

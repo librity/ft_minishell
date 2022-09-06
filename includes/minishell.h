@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 21:02:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 13:17:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char			**tokenize_variable(char *declaration);
  * EXPANSOR
 \******************************************************************************/
 
-char			*expand_token(char *token);
+char			*expand(char *input);
 
 char			**isolate_variables(char *token);
 
