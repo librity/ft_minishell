@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 17:40:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:02:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,38 +54,13 @@ char			**tokenize(char *input);
 
 char			**tokenize_variable(char *declaration);
 
-char			*skip_single_quotes(char *line);
-char			*skip_double_quotes(char *line);
-
-char			*insert_around_two(char *line);
-char			*insert_around_one(char *line);
-char			*insert_delimiter(char *line);
-
-void			insert_delimiter_before(char *buffer);
-void			insert_delimiter_after(char *buffer);
-void			insert_delimiter_around(char *buffer);
-void			insert_delimiter_around_2(char *buffer);
-
-void			strbuff_insert_before(char *buffer, char insert_me);
-void			strbuff_insert_after(char *buffer, char insert_me);
-void			strbuff_insert_around(char *buffer, char insert_me);
-void			strbuff_insert_around_2(char *buffer, char insert_me);
-
-bool			at_single_quote(char *line);
-bool			at_double_quote(char *line);
-bool			at_pipe(char *line);
-bool			at_space(char *line);
-bool			at_dollar(char *line);
-bool			at_truncate(char *line);
-bool			at_append(char *line);
-bool			at_read_file(char *line);
-bool			at_heredoc(char *line);
-
 /******************************************************************************\
  * EXPANSOR
 \******************************************************************************/
 
-char			*expand_str(char *token);
+char			*expand_token(char *token);
+
+char			**isolate_variables(char *token);
 
 /******************************************************************************\
  * CRYPTO
@@ -139,6 +114,37 @@ char			*ht_item_to_string(t_ht_item *item);
 
 int				ht_get_index(char *message);
 t_dlist			**ht_get_index_list(t_hash_table *table, int index);
+
+/******************************************************************************\
+ * STRINGS
+\******************************************************************************/
+
+char			*skip_single_quotes(char *line);
+char			*skip_double_quotes(char *line);
+
+char			*insert_around_two(char *line);
+char			*insert_around_one(char *line);
+char			*insert_delimiter(char *line);
+
+void			insert_delimiter_before(char *buffer);
+void			insert_delimiter_after(char *buffer);
+void			insert_delimiter_around(char *buffer);
+void			insert_delimiter_around_2(char *buffer);
+
+void			strbuff_insert_before(char *buffer, char insert_me);
+void			strbuff_insert_after(char *buffer, char insert_me);
+void			strbuff_insert_around(char *buffer, char insert_me);
+void			strbuff_insert_around_2(char *buffer, char insert_me);
+
+bool			at_single_quote(char *line);
+bool			at_double_quote(char *line);
+bool			at_pipe(char *line);
+bool			at_space(char *line);
+bool			at_dollar(char *line);
+bool			at_truncate(char *line);
+bool			at_append(char *line);
+bool			at_read_file(char *line);
+bool			at_heredoc(char *line);
 
 /******************************************************************************\
  * RUNTIME
