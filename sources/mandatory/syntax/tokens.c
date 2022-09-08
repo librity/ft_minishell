@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 18:23:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:02:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ bool	tokens_are_valid(char **tokens)
 	if (!has_valid_read_file(tokens))
 		return (false);
 	if (!has_valid_heredoc(tokens))
+		return (false);
+	if (!has_valid_pipe(tokens))
 		return (false);
 	return (true);
 }

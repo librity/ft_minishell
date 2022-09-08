@@ -126,14 +126,16 @@
 - [x] Nome de arquivo:
   - [x] Linux: não pode conter `/`.
   - [x] Não pode conter characters especias fora de aspas: `|`, `;`, <code>\`</code>, `(`, `)`, `!`, `!`.
-- [ ] Input do usuário:
+- [x] Input do usuário:
   - [x] Não pode ter `;` fora de aspas.
   - [x] Não pode ter `\` fora de aspas.
   - [x] Não pode ter `>` sem nome do arquivo.
   - [x] Não pode ter `>>` sem nome do arquivo.
   - [x] Não pode ter `<` sem nome do arquivo.
   - [x] Não pode ter `<<` sem delimitador.
-  - [ ] Não pode ter `|` sem próximo commando.
+  - [x] Não pode ter `|` sem próximo commando.
+  - [x] Não pode ter `|` seguido de `|`.
+  - [x] Primeiro token não pode ser `|`.
 
 ## Trimmer
 
