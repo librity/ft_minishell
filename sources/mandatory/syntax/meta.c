@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variables.c                                        :+:      :+:    :+:   */
+/*   meta.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 16:55:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:06:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-bool	is_valid_variable(char *variable)
+bool	has_metachar(char *str)
 {
-	if (ft_isdigit(*variable))
-		return (false);
-	if (has_metachar(variable))
-		return (false);
-	return (true);
+	char	*metachar;
+
+	metachar = METACHARS;
+	while (*metachar != '\0')
+	{
+		if (ft_has_char(str, *metachar))
+			return (true);
+		metachar++;
+	}
+	return (false);
+}
+
+bool	is_metachar(char c)
+{
+	return (ft_has_char(METACHARS, c));
 }

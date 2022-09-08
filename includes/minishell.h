@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 16:18:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:10:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,18 @@ bool			has_valid_quotes(char *line);
 bool			is_valid_variable(char *variable);
 
 bool			tokens_are_valid(char **tokens);
-bool			tokens_have_semicolon(char **tokens);
 
-bool			has_backslash(char *tokens);
+bool			tokens_have_semicolon(char **tokens);
 bool			tokens_have_backslash(char **tokens);
+bool			has_valid_truncate(char **tokens);
 
 bool			is_valid_filename(char *filename);
+
+bool			has_metachar(char *str);
+bool			is_metachar(char c);
+
+bool			has_specialchar(char *str);
+bool			is_specialchar(char c);
 
 /******************************************************************************\
  * CRYPTO
