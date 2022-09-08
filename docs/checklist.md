@@ -122,16 +122,16 @@
   - [x] Nome de variáveis não pode começar com número.
   - [x] Nome de variáveis não pode conter metacharacters:
     - `?`, `'`, `"`, `\`, `$`, <code>\`</code>, `=`, `*`, `@`, `~`, `<`, `>`, `(`, `)`, `!`, `|`, `&`, `;`, `space`, `newline`
+- [x] Nome de arquivo:
+  - [x] Linux: não pode conter `/`.
 - [ ] Input do usuário:
-  - [ ] Não pode ter `;` fora de aspas.
-  - [ ] Não pode ter `\` fora de aspas.
+  - [x] Não pode ter `;` fora de aspas.
+  - [x] Não pode ter `\` fora de aspas.
   - [ ] Não pode ter `>` sem nome do arquivo.
   - [ ] Não pode ter `>>` sem nome do arquivo.
   - [ ] Não pode ter `<` sem nome do arquivo.
   - [ ] Não pode ter `<<` sem nome do arquivo.
   - [ ] Não pode ter `|` sem próximo commando.
-- [ ] Nome de arquivo:
-  - [ ] Linux: não pode conter `/`.
 
 ## Trimmer
 
