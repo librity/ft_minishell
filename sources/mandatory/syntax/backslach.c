@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.c                                           :+:      :+:    :+:   */
+/*   backslach.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 15:58:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:58:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-bool	tokens_are_valid(char **tokens)
+bool	has_backslash(char *token)
 {
-	if (tokens_have_semicolon(tokens))
-		return (false);
-	if (tokens_have_backslash(tokens))
-		return (false);
-	return (true);
+	while (token != NULL && *token != '\0')
+	{
+		if (*token == '\\')
+			return (true);
+		token = skip_quotes(token);
+		if (token != NULL)
+			token++;
+	}
+	return (false);
+}
+
+bool	tokens_have_backslash(char **tokens)
+{
+	while (*tokens != NULL)
+	{
+		if (has_backslash(*tokens))
+			return (true);
+		tokens++;
+	}
+	return (false);
 }

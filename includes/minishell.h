@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 15:42:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:58:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ bool			is_valid_variable(char *variable);
 
 bool			tokens_are_valid(char **tokens);
 bool			tokens_have_semicolon(char **tokens);
+
+bool			has_backslash(char *tokens);
+bool			tokens_have_backslash(char **tokens);
 
 /******************************************************************************\
  * CRYPTO
