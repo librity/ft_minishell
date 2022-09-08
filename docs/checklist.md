@@ -131,8 +131,8 @@
   - [x] Não pode ter `\` fora de aspas.
   - [x] Não pode ter `>` sem nome do arquivo.
   - [x] Não pode ter `>>` sem nome do arquivo.
-  - [ ] Não pode ter `<` sem nome do arquivo.
-  - [ ] Não pode ter `<<` sem delimitador.
+  - [x] Não pode ter `<` sem nome do arquivo.
+  - [x] Não pode ter `<<` sem delimitador.
   - [ ] Não pode ter `|` sem próximo commando.
 
 ## Trimmer

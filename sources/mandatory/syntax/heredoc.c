@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.c                                           :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 18:23:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:24:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-bool	tokens_are_valid(char **tokens)
+bool	has_valid_heredoc(char **tokens)
 {
-	if (tokens_have_semicolon(tokens))
-		return (false);
-	if (tokens_have_backslash(tokens))
-		return (false);
-	if (!has_valid_truncate(tokens))
-		return (false);
-	if (!has_valid_append(tokens))
-		return (false);
-	if (!has_valid_read_file(tokens))
-		return (false);
-	if (!has_valid_heredoc(tokens))
-		return (false);
+	char	*delimiter;
+
+	while (*tokens != NULL)
+	{
+		if (ft_streq(*tokens, HEREDOC))
+		{
+			delimiter = *(tokens + 1);
+			if (delimiter == NULL)
+				return (false);
+			if (ft_streq(delimiter, HEREDOC))
+				return (false);
+		}
+		tokens++;
+	}
 	return (true);
 }

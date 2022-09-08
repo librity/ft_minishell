@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 18:10:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:23:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,21 @@ MU_TEST(read_file_tst)
 	mu_check(false == tokens_are_valid(_tokens));
 }
 
+MU_TEST(heredoc_tst)
+{
+	_tokens = (char *[]){"ls", "<<",  "infile", NULL};
+	mu_check(true == tokens_are_valid(_tokens));
+	_tokens = (char *[]){"ls", "<<", "\"|\"", NULL};
+	mu_check(true == tokens_are_valid(_tokens));
+	_tokens = (char *[]){"ls", "<<",  "in/file", NULL};
+	mu_check(true == tokens_are_valid(_tokens));
+
+	_tokens = (char *[]){"ls", "<<", NULL};
+	mu_check(false == tokens_are_valid(_tokens));
+	_tokens = (char *[]){"ls", "<<", "<<", NULL};
+	mu_check(false == tokens_are_valid(_tokens));
+}
+
 MU_TEST_SUITE(tokens_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -103,6 +118,7 @@ MU_TEST_SUITE(tokens_suite)
 	MU_RUN_TEST(append_tst);
 
 	MU_RUN_TEST(read_file_tst);
+	MU_RUN_TEST(heredoc_tst);
 }
 
 MU_MAIN
