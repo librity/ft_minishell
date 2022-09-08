@@ -92,6 +92,7 @@
   - [x] Variáveis dentro de aspas simples e duplas
   - [x] String vazia
   - [x] Ponteiro nulo
+  - [ ] Não expandir delimitador de heredoc.
 - [x] Renomear Expansor para Expander
 
 ## Lexer
@@ -128,10 +129,10 @@
 - [ ] Input do usuário:
   - [x] Não pode ter `;` fora de aspas.
   - [x] Não pode ter `\` fora de aspas.
-  - [ ] Não pode ter `>` sem nome do arquivo.
-  - [ ] Não pode ter `>>` sem nome do arquivo.
+  - [x] Não pode ter `>` sem nome do arquivo.
+  - [x] Não pode ter `>>` sem nome do arquivo.
   - [ ] Não pode ter `<` sem nome do arquivo.
-  - [ ] Não pode ter `<<` sem nome do arquivo.
+  - [ ] Não pode ter `<<` sem delimitador.
   - [ ] Não pode ter `|` sem próximo commando.
 
 ## Trimmer
