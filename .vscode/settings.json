@@ -56,6 +56,9 @@
     "hash_table.h": "c",
     "stdexcept": "c",
     "unordered_map": "c",
-    "limits": "c"
+    "limits": "c",
+    "wait.h": "c",
+    "errno.h": "c",
+    "features.h": "c"
   }
 }

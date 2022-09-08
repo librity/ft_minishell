@@ -92,6 +92,9 @@ $ export ?="foo"
 # -bash: export: `?=foo': not a valid identifier
 $ export foo?=dsa
 # -bash: export: `foo?=dsa': not a valid identifier
+$ export 2=2 | 3=3
+# -bash: export: `2=2': not a valid identifier
+# 3=3: command not found
 $ echo bar$?
 bar1
 ```

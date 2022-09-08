@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:34:11 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 18:24:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:45:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ bool	has_valid_quotes(char *line)
 			dq_count++;
 		line++;
 	}
-	if (sq_count % 2 == 1 || dq_count % 2 == 1)
+	if (sq_count % 2 == 1)
+		return (false);
+	if (dq_count % 2 == 1)
 		return (false);
 	return (true);
 }
