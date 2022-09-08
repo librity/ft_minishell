@@ -133,6 +133,7 @@
   - [x] Não pode ter `>>` sem nome do arquivo.
   - [x] Não pode ter `<` sem nome do arquivo.
   - [x] Não pode ter `<<` sem delimitador.
+  - [x] Não pode ter `<<` seguido de outro operador: `|`, `>`, `>>`, `<`, `<<`.
   - [x] Não pode ter `|` sem próximo commando.
   - [x] Não pode ter `|` seguido de `|`.
   - [x] Primeiro token não pode ser `|`.
