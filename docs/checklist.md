@@ -124,6 +124,7 @@
     - `?`, `'`, `"`, `\`, `$`, <code>\`</code>, `=`, `*`, `@`, `~`, `<`, `>`, `(`, `)`, `!`, `|`, `&`, `;`, `space`, `newline`
 - [x] Nome de arquivo:
   - [x] Linux: não pode conter `/`.
+  - [x] Não pode conter characters especias fora de aspas: `|`, `;`, <code>\`</code>, `(`, `)`, `!`, `!`.
 - [ ] Input do usuário:
   - [x] Não pode ter `;` fora de aspas.
   - [x] Não pode ter `\` fora de aspas.

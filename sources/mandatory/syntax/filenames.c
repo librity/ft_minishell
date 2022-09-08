@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   special.c                                          :+:      :+:    :+:   */
+/*   filename.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 16:51:29 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 17:06:06 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/08 17:22:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-bool	has_specialchar(char *str)
+static bool	has_unescaped_specialchars(char *filename)
 {
-	char	*specialchar;
-
-	specialchar = SPECIALCHARS;
-	while (*specialchar != '\0')
+	while (filename != NULL && *filename != '\0')
 	{
-		if (ft_has_char(str, *specialchar))
+		if (is_specialchar(*filename))
 			return (true);
-		specialchar++;
+		filename = skip_quotes(filename);
+		if (filename != NULL)
+			filename++;
 	}
 	return (false);
 }
 
-bool	is_specialchar(char c)
+bool	is_valid_filename(char *filename)
 {
-	return (ft_has_char(SPECIALCHARS, c));
+	if (ft_has_char(filename, '/'))
+		return (false);
+	if (has_unescaped_specialchars(filename))
+		return (false);
+	return (true);
 }
