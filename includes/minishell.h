@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 17:39:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:05:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ bool			tokens_have_semicolon(char **tokens);
 bool			tokens_have_backslash(char **tokens);
 bool			has_valid_truncate(char **tokens);
 bool			has_valid_append(char **tokens);
+bool			has_valid_read_file(char **tokens);
 
 bool			is_valid_filename(char *filename);
 

@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   truncate.c                                         :+:      :+:    :+:   */
+/*   filename.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 17:09:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:08:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-bool	has_valid_truncate(char **tokens)
+static bool	has_unescaped_specialchars(char *filename)
 {
-	char	*filename;
-
-	while (*tokens != NULL)
+	while (filename != NULL && *filename != '\0')
 	{
-		if (ft_streq(*tokens, TRUNCATE))
-		{
-			filename = *(tokens + 1);
-			if (filename == NULL)
-				return (false);
-			if (!is_valid_filename(filename))
-				return (false);
-		}
-		tokens++;
+		if (is_specialchar(*filename))
+			return (true);
+		filename = skip_quotes(filename);
+		if (filename != NULL)
+			filename++;
 	}
+	return (false);
+}
+
+bool	is_valid_filename(char *filename)
+{
+	if (has_unescaped_specialchars(filename))
+		return (false);
 	return (true);
 }

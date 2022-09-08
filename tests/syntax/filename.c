@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 17:33:16 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:08:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void	test_teardown(void)
 
 MU_TEST(valid_tst)
 {
+	mu_check(true == is_valid_filename("filename"));
+	mu_check(true == is_valid_filename("./filename"));
+	mu_check(true == is_valid_filename("tests/filename"));
+	mu_check(true == is_valid_filename("/filename"));
+	mu_check(true == is_valid_filename("fil/ename"));
+	mu_check(true == is_valid_filename("filename/"));
+	mu_check(true == is_valid_filename("fil\"/\"ename?"));
+	mu_check(true == is_valid_filename("fil\'/\'ename?"));
 	mu_check(true == is_valid_filename("filename?"));
 
 	mu_check(true == is_valid_filename("file\\name?"));
@@ -64,12 +72,6 @@ MU_TEST(valid_tst)
 
 MU_TEST(invalid_tst)
 {
-	mu_check(false == is_valid_filename("/filename"));
-	mu_check(false == is_valid_filename("fil/ename"));
-	mu_check(false == is_valid_filename("filename/"));
-	mu_check(false == is_valid_filename("fil\"/\"ename?"));
-	mu_check(false == is_valid_filename("fil\'/\'ename?"));
-
 	mu_check(false == is_valid_filename("|"));
 	mu_check(false == is_valid_filename("asdasda|"));
 	mu_check(false == is_valid_filename("|asdasda"));
