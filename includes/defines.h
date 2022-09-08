@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 14:11:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:31:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define SPACE ' '
 # define DOLLAR '$'
 # define QUESTION '?'
+# define SEMICOLON ';'
 
 # define SINGLE_QUOTE '\''
 # define DOUBLE_QUOTE '\"'

@@ -99,6 +99,78 @@ $ echo bar$?
 bar1
 ```
 
+```bash
+export 123garmon=bar
+export 1garmon=bar
+export 9garmon=bar
+export 2=bar
+export ?garmon=bar
+export garmon?=bar
+export gar?mon=bar
+export \'garmon=bar
+export garmon\'=bar
+export gar\'mon=bar
+export \garmon=bar
+export garmon\=bar
+export gar\mon=bar
+export \\garmon=bar
+export garmon\\=bar
+export gar\\mon=bar
+export $garmon=bar
+export garmon$=bar
+export gar$mon=bar
+export `garmon=bar
+export garmon`=bar
+export gar`mon=bar
+export =garmon=bar
+export garmon==bar
+export gar=mon=bar
+export *garmon=bar
+export garmon*=bar
+export gar*mon=bar
+export @garmon=bar
+export garmon@=bar
+export gar@mon=bar
+export ~garmon=bar
+export garmon~=bar
+export gar~mon=bar
+export <garmon=bar
+export garmon<=bar
+export gar<mon=bar
+export >garmon=bar
+export garmon>=bar
+export gar>mon=bar
+export (garmon=bar
+export garmon(=bar
+export gar(mon=bar
+export )garmon=bar
+export garmon)=bar
+export gar)mon=bar
+export !garmon=bar
+export garmon!=bar
+export gar!mon=bar
+export |garmon=bar
+export garmon|=bar
+export gar|mon=bar
+export !garmon=bar
+export garmon!=bar
+export gar!mon=bar
+export &garmon=bar
+export garmon&=bar
+export gar&mon=bar
+export ;garmon=bar
+export garmon;=bar
+export gar;mon=bar
+export  garmon=bar
+export garmon =bar
+export gar mon=bar
+export \ngarmon=bar
+export garmon\n=bar
+export gar\nmon=bar
+export ?=bar
+export foo?=bar
+```
+
 ### `$?` Initializes as `"0"`
 
 ```bash

@@ -115,13 +115,23 @@
 
 ## Syntax Validator
 
-- [x] `Syntax`:
+- [x] Aspas:
   - [x] Aspas simples que não fecham.
   - [x] Aspas duplas que não fecham.
-- [x] Variáveis`export`:
+- [x] Variáveis:
   - [x] Nome de variáveis não pode começar com número.
   - [x] Nome de variáveis não pode conter metacharacters:
     - `?`, `'`, `"`, `\`, `$`, <code>\`</code>, `=`, `*`, `@`, `~`, `<`, `>`, `(`, `)`, `!`, `|`, `&`, `;`, `space`, `newline`
+- [ ] Input do usuário:
+  - [ ] Não pode ter `;` fora de aspas.
+  - [ ] Não pode ter `\` fora de aspas.
+  - [ ] Não pode ter `>` sem nome do arquivo.
+  - [ ] Não pode ter `>>` sem nome do arquivo.
+  - [ ] Não pode ter `<` sem nome do arquivo.
+  - [ ] Não pode ter `<<` sem nome do arquivo.
+  - [ ] Não pode ter `|` sem próximo commando.
+- [ ] Nome de arquivo:
+  - [ ] Linux: não pode conter `/`.
 
 ## Trimmer
 

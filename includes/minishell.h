@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 14:03:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:42:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ bool			has_valid_quotes(char *line);
 
 bool			is_valid_variable(char *variable);
 
+bool			tokens_are_valid(char **tokens);
+bool			tokens_have_semicolon(char **tokens);
 
 /******************************************************************************\
  * CRYPTO
@@ -137,6 +139,7 @@ t_dlist			**ht_get_index_list(t_hash_table *table, int index);
 
 char			*skip_single_quotes(char *line);
 char			*skip_double_quotes(char *line);
+char			*skip_quotes(char *token);
 
 char			*insert_around_two(char *line);
 char			*insert_around_one(char *line);

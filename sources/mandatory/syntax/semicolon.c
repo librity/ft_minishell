@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quoutes.c                                          :+:      :+:    :+:   */
+/*   semicolon.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:12:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 15:36:04 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/08 15:34:06 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/08 15:35:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*skip_single_quotes(char *line)
+static bool	has_semicolon(char *token)
 {
-	return (ft_strchr(++line, SINGLE_QUOTE));
+	while (token != NULL && *token != '\0')
+	{
+		if (*token == SEMICOLON)
+			return (true);
+		token = skip_quotes(token);
+		if (token != NULL)
+			token++;
+	}
+	return (false);
 }
 
-char	*skip_double_quotes(char *line)
+bool	tokens_have_semicolon(char **tokens)
 {
-	return (ft_strchr(++line, DOUBLE_QUOTE));
-}
-
-char	*skip_quotes(char *token)
-{
-	if (at_single_quote(token))
-		return (skip_single_quotes(token));
-	if (at_double_quote(token))
-		return (skip_double_quotes(token));
-	return (token);
+	while (*tokens != NULL)
+	{
+		if (has_semicolon(*tokens))
+			return (true);
+		tokens++;
+	}
+	return (false);
 }
