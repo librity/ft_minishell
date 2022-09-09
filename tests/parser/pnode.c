@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 16:23:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:15:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ MU_TEST(new_pipe_tst)
 
 MU_TEST(new_truncate_tst)
 {
-	_node = new_truncate_pnode();
+	_node = new_truncate_pnode("./path/to/file");
+
+	mu_assert_string_eq("./path/to/file", _node->file.path);
 	mu_assert_int_eq(PT_TRUNCATE, _node->type);
 
 	destroy_pnode(&_node);
@@ -69,7 +71,9 @@ MU_TEST(new_truncate_tst)
 
 MU_TEST(new_append_tst)
 {
-	_node = new_append_pnode();
+	_node = new_append_pnode("./path/to/file");
+
+	mu_assert_string_eq("./path/to/file", _node->file.path);
 	mu_assert_int_eq(PT_APPEND, _node->type);
 
 	destroy_pnode(&_node);
@@ -77,7 +81,9 @@ MU_TEST(new_append_tst)
 
 MU_TEST(new_read_file_tst)
 {
-	_node = new_read_file_pnode();
+	_node = new_read_file_pnode("./path/to/file");
+
+	mu_assert_string_eq("./path/to/file", _node->file.path);
 	mu_assert_int_eq(PT_READ_FILE, _node->type);
 
 	destroy_pnode(&_node);
@@ -85,7 +91,9 @@ MU_TEST(new_read_file_tst)
 
 MU_TEST(new_heredoc_tst)
 {
-	_node = new_heredoc_pnode();
+	_node = new_heredoc_pnode("dELimITer");
+
+	mu_assert_string_eq("dELimITer", _node->delimiter);
 	mu_assert_int_eq(PT_HEREDOC, _node->type);
 
 	destroy_pnode(&_node);

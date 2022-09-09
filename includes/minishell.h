@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 17:36:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:16:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ t_pnode			*new_exec_pnode(char **tokens);
 t_pnode			*new_exec_length_pnode(char **tokens, int length);
 
 t_pnode			*new_pipe_pnode(void);
-t_pnode			*new_truncate_pnode(void);
-t_pnode			*new_append_pnode(void);
-t_pnode			*new_heredoc_pnode(void);
-t_pnode			*new_read_file_pnode(void);
+t_pnode			*new_truncate_pnode(char *file_path);
+t_pnode			*new_append_pnode(char *file_path);
+t_pnode			*new_heredoc_pnode(char *file_path);
+t_pnode			*new_read_file_pnode(char *delimiter);
 
 t_plist			*parse(char **tokens);
 void			destroy_plist(t_dlist **plist);
