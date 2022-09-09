@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 14:29:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:17:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 
 # define ENVHT_REINIT_WRN "Can't reinitialize envht."
 # define ENVHT_REDESTROY_WRN "Can't envht if it's not initialized."
+
+/******************************************************************************\
+ * PARSER
+\******************************************************************************/
+
+# define DESTROY_PNODE_NULL_WRN "Can't destroy a NULL parer node."
 
 /******************************************************************************\
  * HASH TABLE

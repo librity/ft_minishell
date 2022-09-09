@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 14:52:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:18:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ void			trim_token(char *token);
 
 t_pnode			*new_pnode(void);
 t_pnode			*new_exec_pnode(char **tokens);
+void			destroy_pnode(t_pnode **pnode);
+
 
 /******************************************************************************\
  * CRYPTO

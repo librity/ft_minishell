@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 14:47:01 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:58:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct s_exec
 typedef struct s_pnode
 {
 	t_exec			exec;
-	char			**args;
 	t_file			file;
 	char			*delimiter;
 	t_ptype			type;

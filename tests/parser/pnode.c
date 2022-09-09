@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 14:56:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:14:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,34 @@ MU_TEST(new_exec_tst)
 	free(_node);
 }
 
+MU_TEST(destroy_tst)
+{
+	_node = new_pnode();
+
+	_node->exec.tokens = ft_strarr_dup((char *[]){"gar", "mon", "bo", "zia", NULL});
+	_node->exec.cmd = ft_strdup("gar");
+	_node->exec.path = ft_strdup("/sbin/gar");
+	_node->exec.code = 42;
+
+	_node->file.path = ft_strdup("file");
+	_node->file.fd = 42;
+
+	_node->delimiter = ft_strdup("garmonbozia");
+
+	_node->type = 42;
+
+	destroy_pnode(&_node);
+	mu_check(_node == NULL);
+}
+
 MU_TEST_SUITE(test_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
 	MU_RUN_TEST(new_tst);
 	MU_RUN_TEST(new_exec_tst);
+
+	MU_RUN_TEST(destroy_tst);
 }
 
 MU_MAIN
