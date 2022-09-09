@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 19:00:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 23:16:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,13 @@ char			**operators(void);
 bool			is_operator(char *token);
 
 /******************************************************************************\
+ * TRIMMER
+\******************************************************************************/
+
+void			trim_tokens(char **tokens);
+void			trim_token(char *token);
+
+/******************************************************************************\
  * CRYPTO
 \******************************************************************************/
 
@@ -167,6 +174,9 @@ void			insert_delimiter_before(char *buffer);
 void			insert_delimiter_after(char *buffer);
 void			insert_delimiter_around(char *buffer);
 void			insert_delimiter_around_2(char *buffer);
+
+void			strbuff_insert(char *buffer, char insert_me);
+void			strbuff_cut(char *buffer);
 
 void			strbuff_insert_before(char *buffer, char insert_me);
 void			strbuff_insert_after(char *buffer, char insert_me);

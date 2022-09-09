@@ -6,24 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:10:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 20:57:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:38:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-static void	strbuff_insert(char *buffer, char insert_me)
-{
-	char	*reverser;
-
-	reverser = buffer + ft_strlen(buffer);
-	while (reverser + 1 > buffer)
-	{
-		*(reverser + 1) = *reverser;
-		reverser--;
-	}
-	*buffer = insert_me;
-}
 
 void	strbuff_insert_before(char *buffer, char insert_me)
 {
