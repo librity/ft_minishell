@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 14:38:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:56:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 t_pnode	*_node;
 void	*_empty;
+char	**tokens;
 
 void	setup(void)
 {
@@ -37,10 +38,26 @@ MU_TEST(new_tst)
 	free(_empty);
 }
 
+MU_TEST(new_exec_tst)
+{
+	char **command_tokens = (char *[]){"ls", "-la", NULL};
+	_node = new_exec_pnode(command_tokens);
+
+	mu_assert_int_eq(PT_EXEC, _node->type);
+	mu_assert_string_eq("ls", _node->exec.cmd);
+	assert_strarr_eq(command_tokens, _node->exec.tokens);
+
+	ft_free_strarr(_node->exec.tokens);
+	free(_node->exec.cmd);
+	free(_node);
+}
+
 MU_TEST_SUITE(test_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
+
 	MU_RUN_TEST(new_tst);
+	MU_RUN_TEST(new_exec_tst);
 }
 
 MU_MAIN

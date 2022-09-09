@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 14:38:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:47:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef enum e_lexed_variable
 typedef enum e_ptype
 {
 	PT_NULL = 0,
-	PT_COMMAND,
+	PT_EXEC,
 	PT_PIPE,
 	PT_TRUNCATE,
 	PT_APPEND,

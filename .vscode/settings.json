@@ -59,6 +59,8 @@
     "limits": "c",
     "wait.h": "c",
     "errno.h": "c",
-    "features.h": "c"
+    "features.h": "c",
+    "minunit.h": "c",
+    "fcntl.h": "c"
   }
 }
