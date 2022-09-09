@@ -19,11 +19,12 @@ expander() => "ls -la bar | grep \"main\">output"
 lexer() => {"ls", "-la", "bar", "|", "grep", "\"main\"", ">", "output", NULL }
 syntax() => true
 trimmer() => {"ls", "-la", "bar", "|", "grep", "main", ">", "output", NULL }
-parser() => {
+parser() => (t_dlst){
 	{command: "ls", args: {"-la", "bar", NULL}, type: "executable"},
 	{command: "|", args: NULL, type: "pipe"},
 	{command: "grep", args: {"main", NULL}, type: "executable"},
 	{command: ">", args: {"output", NULL}, type: "truncate"}
 }
+syntax() => true
 executor()
 ```

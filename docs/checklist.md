@@ -79,7 +79,7 @@
 
 ## Expander
 
-- [x] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
+- [ ] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [x] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
   - [x] Adicionar variável `last_exit` ao `t_minishell`.
   - [x] Inicializar `$?` com `"0"`.

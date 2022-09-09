@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:26:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:38:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,45 @@ typedef enum e_lexed_variable
 	KEY = 0,
 	VALUE = 1,
 }					t_lexed_variable;
+
+/******************************************************************************\
+ * PARSER
+\******************************************************************************/
+
+typedef enum e_ptype
+{
+	PT_NULL = 0,
+	PT_COMMAND,
+	PT_PIPE,
+	PT_TRUNCATE,
+	PT_APPEND,
+	PT_READ_FILE,
+	PT_HEREDOC,
+}					t_ptype;
+
+typedef struct s_file
+{
+	char			*path;
+	int				fd;
+}					t_file;
+
+typedef struct s_exec
+{
+	char			**tokens;
+	char			*cmd;
+	char			*path;
+
+	int				code;
+}					t_exec;
+
+typedef struct s_pnode
+{
+	t_exec			exec;
+	char			**args;
+	t_file			file;
+	char			*delimiter;
+	t_ptype			type;
+}					t_pnode;
 
 /******************************************************************************\
  * CRYPTO
