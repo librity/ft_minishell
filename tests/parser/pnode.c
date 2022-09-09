@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 15:14:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:52:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,17 @@ MU_TEST(new_tst)
 
 	_node->file.fd = 42;
 	mu_assert_int_eq(42, _node->file.fd);
-	free(_node);
+
+	destroy_pnode(&_node);
 	free(_empty);
+}
+
+MU_TEST(new_pipe_tst)
+{
+	_node = new_pipe_pnode();
+	mu_assert_int_eq(PT_PIPE, _node->type);
+
+	destroy_pnode(&_node);
 }
 
 MU_TEST(new_exec_tst)
@@ -47,9 +56,8 @@ MU_TEST(new_exec_tst)
 	mu_assert_string_eq("ls", _node->exec.cmd);
 	assert_strarr_eq(command_tokens, _node->exec.tokens);
 
-	ft_free_strarr(_node->exec.tokens);
-	free(_node->exec.cmd);
-	free(_node);
+
+	destroy_pnode(&_node);
 }
 
 MU_TEST(destroy_tst)
@@ -77,6 +85,8 @@ MU_TEST_SUITE(test_suite)
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
 	MU_RUN_TEST(new_tst);
+
+	MU_RUN_TEST(new_pipe_tst);
 	MU_RUN_TEST(new_exec_tst);
 
 	MU_RUN_TEST(destroy_tst);

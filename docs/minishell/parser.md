@@ -1,5 +1,7 @@
 # Minishell Parser
 
+- https://wikiless.org/wiki/Parsing?lang=en
+- https://wikiless.org/wiki/Abstract_syntax_tree?lang=en
 - https://dev.to/oyagci/generating-a-parse-tree-from-a-shell-grammar-f1
 - https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/
 - https://www.cs.princeton.edu/courses/archive/spring20/cos320/LR0/
