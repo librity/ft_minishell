@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 16:58:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:30:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ MU_TEST_SUITE(plist_suite)
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
 	MU_RUN_TEST(exec_tst);
-	// MU_RUN_TEST(exec_pipe_exec_tst);
+	MU_RUN_TEST(exec_pipe_exec_tst);
 
 	MU_RUN_TEST(destroy_tst);
 }

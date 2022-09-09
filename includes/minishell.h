@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 16:56:42 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:36:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ bool			is_specialchar(char c);
 
 char			**operators(void);
 bool			is_operator(char *token);
+char			**find_next_operator(char **tokens);
 
 /******************************************************************************\
  * TRIMMER
@@ -112,8 +113,10 @@ void			trim_token(char *token);
 t_pnode			*new_pnode(void);
 void			destroy_pnode(t_pnode **pnode);
 
-t_pnode			*new_pipe_pnode(void);
 t_pnode			*new_exec_pnode(char **tokens);
+t_pnode			*new_exec_length_pnode(char **tokens, int length);
+
+t_pnode			*new_pipe_pnode(void);
 t_pnode			*new_truncate_pnode(void);
 t_pnode			*new_append_pnode(void);
 t_pnode			*new_heredoc_pnode(void);
