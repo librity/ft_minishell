@@ -140,11 +140,12 @@
 
 ## Trimmer
 
-- [ ] Remover aspas para o parser.
-- [ ] Casos:
-  - [ ] Remover aspas simples
-  - [ ] Remover aspas duplas
-  - [ ] Remover aspas simples e duplas
+- [x] Remover aspas para o parser.
+- [x] Casos:
+  - [x] Remover aspas simples
+  - [x] Remover aspas duplas
+  - [x] Não remover aspas simples dentro de aspas duplas.
+  - [x] Não remover aspas duplas dentro de aspas simples.
 
 ## Parser
 
