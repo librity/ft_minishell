@@ -101,6 +101,7 @@ Deleção:
 - https://medium.com/a-42-journey/implementing-the-sha256-and-md5-hash-functions-in-c-78c17e657794
 - https://rosettacode.org/wiki/MD5#C
 - https://github.com/ryankurte/cryptlib/blob/master/context/ctx_md5.c
+- https://github.com/torvalds/linux/blob/master/crypto/md5.c
 
 ```bash
 $  echo -n "Homesickness became contagious in the young campers' cabin." | md5sum

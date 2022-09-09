@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quoutes.c                                          :+:      :+:    :+:   */
+/*   meta.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:12:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 15:36:04 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/08 17:18:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*skip_single_quotes(char *line)
+bool	has_metachar(char *str)
 {
-	return (ft_strchr(++line, SINGLE_QUOTE));
+	return (ft_has_chars(METACHARS, str));
 }
 
-char	*skip_double_quotes(char *line)
+bool	is_metachar(char c)
 {
-	return (ft_strchr(++line, DOUBLE_QUOTE));
+	return (ft_has_char(METACHARS, c));
 }
 
-char	*skip_quotes(char *token)
+bool	has_specialchar(char *str)
 {
-	if (at_single_quote(token))
-		return (skip_single_quotes(token));
-	if (at_double_quote(token))
-		return (skip_double_quotes(token));
-	return (token);
+	return (ft_has_chars(SPECIALCHARS, str));
+}
+
+bool	is_specialchar(char c)
+{
+	return (ft_has_char(SPECIALCHARS, c));
 }

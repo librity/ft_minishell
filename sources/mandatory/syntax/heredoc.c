@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quoutes.c                                          :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:12:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 15:36:04 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/08 18:37:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*skip_single_quotes(char *line)
+bool	has_valid_heredoc(char **tokens)
 {
-	return (ft_strchr(++line, SINGLE_QUOTE));
-}
+	char	*delimiter;
 
-char	*skip_double_quotes(char *line)
-{
-	return (ft_strchr(++line, DOUBLE_QUOTE));
-}
-
-char	*skip_quotes(char *token)
-{
-	if (at_single_quote(token))
-		return (skip_single_quotes(token));
-	if (at_double_quote(token))
-		return (skip_double_quotes(token));
-	return (token);
+	while (*tokens != NULL)
+	{
+		if (ft_streq(*tokens, HEREDOC))
+		{
+			delimiter = *(tokens + 1);
+			if (delimiter == NULL)
+				return (false);
+			if (is_operator(delimiter))
+				return (false);
+		}
+		tokens++;
+	}
+	return (true);
 }

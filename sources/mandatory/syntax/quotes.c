@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quoutes.c                                          :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:12:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 15:36:04 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/06 17:34:11 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/06 20:45:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*skip_single_quotes(char *line)
+bool	has_valid_quotes(char *line)
 {
-	return (ft_strchr(++line, SINGLE_QUOTE));
-}
+	int	sq_count;
+	int	dq_count;
 
-char	*skip_double_quotes(char *line)
-{
-	return (ft_strchr(++line, DOUBLE_QUOTE));
-}
-
-char	*skip_quotes(char *token)
-{
-	if (at_single_quote(token))
-		return (skip_single_quotes(token));
-	if (at_double_quote(token))
-		return (skip_double_quotes(token));
-	return (token);
+	sq_count = 0;
+	dq_count = 0;
+	while (*line)
+	{
+		if (*line == SINGLE_QUOTE && dq_count % 2 == 0)
+			sq_count++;
+		if (*line == DOUBLE_QUOTE && sq_count % 2 == 0)
+			dq_count++;
+		line++;
+	}
+	if (sq_count % 2 == 1)
+		return (false);
+	if (dq_count % 2 == 1)
+		return (false);
+	return (true);
 }

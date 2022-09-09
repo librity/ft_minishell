@@ -61,6 +61,7 @@
   - [ ] `cd` with only a relative or absolute path
   - [ ] `pwd` with no options
   - [ ] `export` with no options
+    - [ ] Verificar nome de variável com erro.
   - [ ] `unset` with no options
   - [ ] `env` with no options or arguments
   - [ ] `exit` with no options
@@ -91,6 +92,7 @@
   - [x] Variáveis dentro de aspas simples e duplas
   - [x] String vazia
   - [x] Ponteiro nulo
+  - [ ] Não expandir delimitador de heredoc.
 - [x] Renomear Expansor para Expander
 
 ## Lexer
@@ -111,6 +113,30 @@
   - [x] Tokenização por redireção concatenada `>>`
   - [x] Tokenização por redireção heredoc `<<`
   - [ ] (OPCIONAL) Tokenização por comentário `#`
+
+## Syntax Validator
+
+- [x] Aspas:
+  - [x] Aspas simples que não fecham.
+  - [x] Aspas duplas que não fecham.
+- [x] Variáveis:
+  - [x] Nome de variáveis não pode começar com número.
+  - [x] Nome de variáveis não pode conter metacharacters:
+    - `?`, `'`, `"`, `\`, `$`, <code>\`</code>, `=`, `*`, `@`, `~`, `<`, `>`, `(`, `)`, `!`, `|`, `&`, `;`, `space`, `newline`
+- [x] Nome de arquivo:
+  - [x] Linux: não pode conter `/`.
+  - [x] Não pode conter characters especias fora de aspas: `|`, `;`, <code>\`</code>, `(`, `)`, `!`, `!`.
+- [x] Input do usuário:
+  - [x] Não pode ter `;` fora de aspas.
+  - [x] Não pode ter `\` fora de aspas.
+  - [x] Não pode ter `>` sem nome do arquivo.
+  - [x] Não pode ter `>>` sem nome do arquivo.
+  - [x] Não pode ter `<` sem nome do arquivo.
+  - [x] Não pode ter `<<` sem delimitador.
+  - [x] Não pode ter `<<` seguido de outro operador: `|`, `>`, `>>`, `<`, `<<`.
+  - [x] Não pode ter `|` sem próximo commando.
+  - [x] Não pode ter `|` seguido de `|`.
+  - [x] Primeiro token não pode ser `|`.
 
 ## Trimmer
 

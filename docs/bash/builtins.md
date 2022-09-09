@@ -92,8 +92,83 @@ $ export ?="foo"
 # -bash: export: `?=foo': not a valid identifier
 $ export foo?=dsa
 # -bash: export: `foo?=dsa': not a valid identifier
+$ export 2=2 | 3=3
+# -bash: export: `2=2': not a valid identifier
+# 3=3: command not found
 $ echo bar$?
 bar1
+```
+
+```bash
+export 123garmon=bar
+export 1garmon=bar
+export 9garmon=bar
+export 2=bar
+export ?garmon=bar
+export garmon?=bar
+export gar?mon=bar
+export \'garmon=bar
+export garmon\'=bar
+export gar\'mon=bar
+export \garmon=bar
+export garmon\=bar
+export gar\mon=bar
+export \\garmon=bar
+export garmon\\=bar
+export gar\\mon=bar
+export $garmon=bar
+export garmon$=bar
+export gar$mon=bar
+export `garmon=bar
+export garmon`=bar
+export gar`mon=bar
+export =garmon=bar
+export garmon==bar
+export gar=mon=bar
+export *garmon=bar
+export garmon*=bar
+export gar*mon=bar
+export @garmon=bar
+export garmon@=bar
+export gar@mon=bar
+export ~garmon=bar
+export garmon~=bar
+export gar~mon=bar
+export <garmon=bar
+export garmon<=bar
+export gar<mon=bar
+export >garmon=bar
+export garmon>=bar
+export gar>mon=bar
+export (garmon=bar
+export garmon(=bar
+export gar(mon=bar
+export )garmon=bar
+export garmon)=bar
+export gar)mon=bar
+export !garmon=bar
+export garmon!=bar
+export gar!mon=bar
+export |garmon=bar
+export garmon|=bar
+export gar|mon=bar
+export !garmon=bar
+export garmon!=bar
+export gar!mon=bar
+export &garmon=bar
+export garmon&=bar
+export gar&mon=bar
+export ;garmon=bar
+export garmon;=bar
+export gar;mon=bar
+export  garmon=bar
+export garmon =bar
+export gar mon=bar
+export \ngarmon=bar
+export garmon\n=bar
+export gar\nmon=bar
+export ?=bar
+export foo?=bar
 ```
 
 ### `$?` Initializes as `"0"`

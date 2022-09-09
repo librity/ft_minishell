@@ -314,3 +314,17 @@ echo foo*
 ( cd /; ls -la; ) &
 { cd /; ls -la; } &
 ```
+
+### HereDoc
+
+- https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Here-Documents
+- Delimiter is not expanded:
+
+```bash
+$ export foo=bar
+$ << $foo
+> asd
+> asd
+> bar
+> $foo
+```

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 16:22:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:00:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,35 @@ char			*expand(char *input);
 char			**isolate_variables(char *input);
 
 /******************************************************************************\
+ * SYNTAX
+\******************************************************************************/
+
+bool			has_valid_quotes(char *line);
+
+bool			is_valid_variable(char *variable);
+
+bool			tokens_are_valid(char **tokens);
+
+bool			tokens_have_semicolon(char **tokens);
+bool			tokens_have_backslash(char **tokens);
+bool			has_valid_truncate(char **tokens);
+bool			has_valid_append(char **tokens);
+bool			has_valid_read_file(char **tokens);
+bool			has_valid_heredoc(char **tokens);
+bool			has_valid_pipe(char **tokens);
+
+bool			is_valid_filename(char *filename);
+
+bool			has_metachar(char *str);
+bool			is_metachar(char c);
+
+bool			has_specialchar(char *str);
+bool			is_specialchar(char c);
+
+char			**operators(void);
+bool			is_operator(char *token);
+
+/******************************************************************************\
  * CRYPTO
 \******************************************************************************/
 
@@ -128,6 +157,7 @@ t_dlist			**ht_get_index_list(t_hash_table *table, int index);
 
 char			*skip_single_quotes(char *line);
 char			*skip_double_quotes(char *line);
+char			*skip_quotes(char *token);
 
 char			*insert_around_two(char *line);
 char			*insert_around_one(char *line);

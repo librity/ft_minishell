@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 16:34:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:34:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@
 # define LAST_EXIT_KEY "?"
 
 /******************************************************************************\
- * LEXER
+ * ASCII
 \******************************************************************************/
-
-# define DELIMITER -42
 
 # define NULL_CHAR '\0'
 # define EQUALS '='
 # define SPACE ' '
 # define DOLLAR '$'
 # define QUESTION '?'
+# define SEMICOLON ';'
 
 # define SINGLE_QUOTE '\''
 # define DOUBLE_QUOTE '\"'
@@ -38,12 +37,25 @@
 # define VERTICAL_BAR '|'
 
 # define GREATER_THAN '>'
+# define LESS_THAN '<'
+
+/******************************************************************************\
+ * OPERATORS
+\******************************************************************************/
+
+# define PIPE "|"
+
 # define TRUNCATE ">"
 # define APPEND ">>"
 
-# define LESS_THAN '<'
 # define READ_FILE "<"
 # define HEREDOC "<<"
+
+/******************************************************************************\
+ * LEXER
+\******************************************************************************/
+
+# define DELIMITER -42
 
 # define TOKENS_DEBUG_MESSAGE "Lexed string \"%s\" into tokens:"
 
@@ -63,6 +75,13 @@
 
 # define HASH_TABLE_SIZE 10000
 # define HT_BAD_INDEX -1
+
+/******************************************************************************\
+ * SYNTAX
+\******************************************************************************/
+
+# define METACHARS "?\'\"\\$`=*@~<>()!|&; \n"
+# define SPECIALCHARS "|;`()!&"
 
 /******************************************************************************\
  * RUNTIME

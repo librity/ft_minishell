@@ -62,3 +62,7 @@ Quem tiver interesse em entender como funciona a supressão, segue um HowTo:
 - https://stackoverflow.com/questions/10057443/explain-the-concept-of-a-stack-frame-in-a-nutshell
 - https://man7.org/linux/man-pages/man1/valgrind.1.html
 - https://stackoverflow.com/questions/23307110/valgrind-gives-an-error-for-nearly-everything-warning-client-switching-stacks
+
+### Read/Write Errors
+
+- https://stackoverflow.com/questions/26685936/valgrind-invalid-write-of-size-1-for-strcpy

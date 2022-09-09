@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quoutes.c                                          :+:      :+:    :+:   */
+/*   variables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:12:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 15:36:04 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/08 16:55:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*skip_single_quotes(char *line)
+bool	is_valid_variable(char *variable)
 {
-	return (ft_strchr(++line, SINGLE_QUOTE));
-}
-
-char	*skip_double_quotes(char *line)
-{
-	return (ft_strchr(++line, DOUBLE_QUOTE));
-}
-
-char	*skip_quotes(char *token)
-{
-	if (at_single_quote(token))
-		return (skip_single_quotes(token));
-	if (at_double_quote(token))
-		return (skip_double_quotes(token));
-	return (token);
+	if (ft_isdigit(*variable))
+		return (false);
+	if (has_metachar(variable))
+		return (false);
+	return (true);
 }

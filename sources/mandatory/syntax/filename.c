@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quoutes.c                                          :+:      :+:    :+:   */
+/*   filename.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 19:12:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 15:36:04 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/08 18:08:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*skip_single_quotes(char *line)
+static bool	has_unescaped_specialchars(char *filename)
 {
-	return (ft_strchr(++line, SINGLE_QUOTE));
+	while (filename != NULL && *filename != '\0')
+	{
+		if (is_specialchar(*filename))
+			return (true);
+		filename = skip_quotes(filename);
+		if (filename != NULL)
+			filename++;
+	}
+	return (false);
 }
 
-char	*skip_double_quotes(char *line)
+bool	is_valid_filename(char *filename)
 {
-	return (ft_strchr(++line, DOUBLE_QUOTE));
-}
-
-char	*skip_quotes(char *token)
-{
-	if (at_single_quote(token))
-		return (skip_single_quotes(token));
-	if (at_double_quote(token))
-		return (skip_double_quotes(token));
-	return (token);
+	if (has_unescaped_specialchars(filename))
+		return (false);
+	return (true);
 }
