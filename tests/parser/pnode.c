@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 16:02:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:23:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ MU_TEST(new_exec_tst)
 	mu_assert_int_eq(PT_EXEC, _node->type);
 	mu_assert_string_eq("ls", _node->exec.cmd);
 	assert_strarr_eq(command_tokens, _node->exec.tokens);
-
 
 	destroy_pnode(&_node);
 }
@@ -112,7 +111,7 @@ MU_TEST(destroy_tst)
 	mu_check(_node == NULL);
 }
 
-MU_TEST_SUITE(test_suite)
+MU_TEST_SUITE(pnode_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
@@ -131,7 +130,7 @@ MU_TEST_SUITE(test_suite)
 MU_MAIN
 {
 	MU_DIVIDER;
-	MU_RUN_SUITE(test_suite);
+	MU_RUN_SUITE(pnode_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

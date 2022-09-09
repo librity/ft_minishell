@@ -155,6 +155,13 @@
   - [ ] `>` should redirect output.
   - [ ] `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
   - [ ] `>>` should redirect output in append mode.
+- [x] `t_pnode`:
+  - [x] Criar nó para executável.
+  - [x] Criar nó para pipe.
+  - [x] Criar nó para truncate.
+  - [x] Criar nó para append.
+  - [x] Criar nó para read file.
+  - [x] Criar nó para heredoc.
 
 ## Executor
 

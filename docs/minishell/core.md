@@ -20,7 +20,7 @@ lexer() => {"ls", "-la", "bar", "|", "grep", "\"main\"", ">", "output", NULL }
 syntax() => true
 trimmer() => {"ls", "-la", "bar", "|", "grep", "main", ">", "output", NULL }
 
-parser() => (t_dlst){
+parser() => (t_dlist){
 	{command: "ls", args: {"-la", "bar", NULL}, type: "executable"},
 	{command: "|", args: NULL, type: "pipe"},
 	{command: "grep", args: {"main", NULL}, type: "executable"},
