@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 14:58:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:56:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct s_pnode
 	char			*delimiter;
 	t_ptype			type;
 }					t_pnode;
+
+typedef t_dlist		t_plist;
 
 /******************************************************************************\
  * CRYPTO

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 16:30:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:56:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ t_pnode			*new_append_pnode(void);
 t_pnode			*new_heredoc_pnode(void);
 t_pnode			*new_read_file_pnode(void);
 
-t_dlist			*parse(char **tokens);
+t_plist			*parse(char **tokens);
+void			destroy_plist(t_dlist **plist);
 
 /******************************************************************************\
  * CRYPTO
