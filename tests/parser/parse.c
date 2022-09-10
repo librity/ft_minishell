@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 12:46:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/10 12:51:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	teardown(void)
 {
 }
 
-// static void destroy_plists(void)
-// {
-// 	destroy_plist(&_plist);
-// 	destroy_plist(&_expected);
-// }
+static void destroy_plists(void)
+{
+	destroy_plist(&_plist);
+	destroy_plist(&_expected);
+}
 
 MU_TEST(e_tst)
 {
@@ -38,8 +38,7 @@ MU_TEST(e_tst)
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-la", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
-	destroy_plist(&_plist);
-	destroy_plist(&_expected);
+	destroy_plists();
 }
 
 MU_TEST(ep_tst)
@@ -53,8 +52,7 @@ MU_TEST(ep_tst)
 	ft_dlst_add(&_expected, new_pipe_pnode());
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
-	destroy_plist(&_plist);
-	destroy_plist(&_expected);
+	destroy_plists();
 }
 
 MU_TEST(epe_tst)
@@ -70,8 +68,7 @@ MU_TEST(epe_tst)
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "Makefile", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
-	destroy_plist(&_plist);
-	destroy_plist(&_expected);
+	destroy_plists();
 }
 
 MU_TEST(epet_tst)
@@ -89,8 +86,7 @@ MU_TEST(epet_tst)
 	ft_dlst_add(&_expected, new_truncate_pnode("output"));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
-	destroy_plist(&_plist);
-	destroy_plist(&_expected);
+	destroy_plists();
 }
 
 MU_TEST(rrerpe_tst)
@@ -112,8 +108,7 @@ MU_TEST(rrerpe_tst)
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
-	destroy_plist(&_plist);
-	destroy_plist(&_expected);
+	destroy_plists();
 }
 
 MU_TEST(rrrpe_tst)
@@ -133,8 +128,7 @@ MU_TEST(rrrpe_tst)
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "ls", "ls", "ls", "ls", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
-	destroy_plist(&_plist);
-	destroy_plist(&_expected);
+	destroy_plists();
 }
 
 MU_TEST(rhetape_tst)
@@ -158,8 +152,7 @@ MU_TEST(rhetape_tst)
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
-	destroy_plist(&_plist);
-	destroy_plist(&_expected);
+	destroy_plists();
 }
 
 MU_TEST(erepe_tst)
@@ -180,8 +173,7 @@ MU_TEST(erepe_tst)
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"tr", "\' \"      x > outfile", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
-	destroy_plist(&_plist);
-	destroy_plist(&_expected);
+	destroy_plists();
 }
 
 MU_TEST(destroy_tst)
