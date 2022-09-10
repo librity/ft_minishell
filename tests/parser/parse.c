@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 12:39:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/10 12:46:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,28 @@ MU_TEST(rhetape_tst)
 	destroy_plist(&_expected);
 }
 
+MU_TEST(erepe_tst)
+{
+	_tokens = (char *[]){
+		"infile",
+		"<", "tr",
+		"a", "\'  \"   \'",
+		"|",
+		"tr", "\' \"      x > outfile",
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"infile", NULL}));
+	ft_dlst_add(&_expected, new_read_file_pnode("tr"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"a", "\'  \"   \'", NULL}));
+	ft_dlst_add(&_expected, new_pipe_pnode());
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"tr", "\' \"      x > outfile", NULL}));
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plist(&_plist);
+	destroy_plist(&_expected);
+}
+
 MU_TEST(destroy_tst)
 {
 	_plist = NULL;
@@ -185,6 +207,7 @@ MU_TEST_SUITE(plist_suite)
 	MU_RUN_TEST(rrerpe_tst);
 	MU_RUN_TEST(rrrpe_tst);
 	MU_RUN_TEST(rhetape_tst);
+	MU_RUN_TEST(erepe_tst);
 
 	MU_RUN_TEST(destroy_tst);
 }
