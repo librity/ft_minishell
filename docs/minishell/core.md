@@ -48,19 +48,19 @@ executor()
 ```
 
 ```c
-prompt() => "< ds < ds grep < ds | ls"
-expander() => "< ds < ds grep < ds | ls"
-lexer() => {"<", "ds", "<", "ds", "grep", "<", "ds", "|", "ls", NULL }
+prompt() => "< foo < foo grep < foo | ls"
+expander() => "< foo < foo grep < foo | ls"
+lexer() => {"<", "foo", "<", "foo", "grep", "<", "foo", "|", "ls", NULL }
 syntax() => true
-trimmer() => {"<", "ds", "<", "ds", "grep", "<", "ds", "|", "ls", NULL }
+trimmer() => {"<", "foo", "<", "foo", "grep", "<", "foo", "|", "ls", NULL }
 
 parser() => (t_dlist){
-	{command: "<", args: NULL, file: "ds", type: "read_file"},
-	{command: "<", args: NULL, file: "ds", type: "read_file"},
+	{command: "<", args: NULL, file: "foo", type: "read_file"},
+	{command: "<", args: NULL, file: "foo", type: "read_file"},
 	{command: "grep", args: NULL, type: "executable"},
-	{command: "<", args: NULL, file: "ds", type: "read_file"},
+	{command: "<", args: NULL, file: "foo", type: "read_file"},
 	{command: "|", args: NULL, type: "pipe"},
-	{command: "ls", args: NULL, type: "truncate"}
+	{command: "ls", args: NULL, type: "executable"}
 }
 
 syntax() => true
@@ -68,18 +68,18 @@ executor()
 ```
 
 ```c
-prompt() => "< ds < grep < ds | ls"
-expander() => "< ds < grep < ds | ls"
-lexer() => {"<", "ds", "<", "grep", "<", "ds", "|", "ls", NULL }
+prompt() => "< foo < grep < foo | ls"
+expander() => "< foo < grep < foo | ls"
+lexer() => {"<", "foo", "<", "grep", "<", "foo", "|", "ls", NULL }
 syntax() => true
-trimmer() => {"<", "ds", "<", "grep", "<", "ds", "|", "ls", NULL }
+trimmer() => {"<", "foo", "<", "grep", "<", "foo", "|", "ls", NULL }
 
 parser() => (t_dlist){
-	{command: "<", args: NULL, file: "ds", type: "read_file"},
+	{command: "<", args: NULL, file: "foo", type: "read_file"},
 	{command: "<", args: NULL, file: "grep" type: "read_file"},
-	{command: "<", args: NULL, file: "ds", type: "read_file"},
+	{command: "<", args: NULL, file: "foo", type: "read_file"},
 	{command: "|", args: NULL, type: "pipe"},
-	{command: "ls", args: NULL, type: "truncate"}
+	{command: "ls", args: NULL, type: "executable"}
 }
 
 syntax() => true
@@ -87,20 +87,20 @@ executor()
 ```
 
 ```c
-prompt() => "< ds << ds grep a > ds >> ds | ls"
-expander() => "< ds << ds grep a > ds >> ds | ls"
-lexer() => {"<", "ds", "<<", "ds", "grep", "a", ">", "ds", ">>", "ds", "|", "ls", NULL }
+prompt() => "< foo << foo grep a > foo >> foo | ls"
+expander() => "< foo << foo grep a > foo >> foo | ls"
+lexer() => {"<", "foo", "<<", "foo", "grep", "a", ">", "foo", ">>", "foo", "|", "ls", NULL }
 syntax() => true
-trimmer() => {"<", "ds", "<<", "ds", "grep", "a", ">", "ds", ">>", "ds", "|", "ls", NULL }
+trimmer() => {"<", "foo", "<<", "foo", "grep", "a", ">", "foo", ">>", "foo", "|", "ls", NULL }
 
 parser() => (t_dlist){
-	{command: "<", args: NULL, file: "ds", type: "read_file"},
-	{command: "<<", args: NULL, delimiter: "ds", type: "heredoc"},
+	{command: "<", args: NULL, file: "foo", type: "read_file"},
+	{command: "<<", args: NULL, delimiter: "foo", type: "heredoc"},
 	{command: "grep", args: {"a", NULL}, type: "executable"},
-	{command: ">", args: NULL, file: "ds", type: "truncate"},
-	{command: ">>", args: NULL, file: "ds", type: "append"},
+	{command: ">", args: NULL, file: "foo", type: "truncate"},
+	{command: ">>", args: NULL, file: "foo", type: "append"},
 	{command: "|", args: NULL, type: "pipe"},
-	{command: "ls", args: NULL, type: "truncate"}
+	{command: "ls", args: NULL, type: "executable"}
 }
 
 syntax() => true
