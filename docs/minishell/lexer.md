@@ -9,8 +9,12 @@
 "ls -la .. | cat -e | wc -l"
 => "ls", "-la", "..", "|", "cat", "-e", "|", "wc", "-l"
 
-"MAKE_PATH=./libs/libft ; cd .. ; ls && make -C $MAKE_PATH ; ./minshell"
-=> "infile", "<", "tr", "a", "'   '", "|", "tr", "' '", "x", ">", "outfile"
+"export MAKE_PATH=./libs/libft ; cd .. ; ls && make -C $MAKE_PATH ; ./minshell"
+=>
+	"export", "MAKE_PATH=./libs/libft", ";",
+	"cd", "..", ";",
+	"ls", "&&", "make", "-C", "$MAKE_PATH", ";",
+	"./minshell"
 ```
 
 ## Tokenização com aspas simples `'`

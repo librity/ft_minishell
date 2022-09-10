@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 23:29:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/10 00:03:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ MU_TEST(exec_pipe_exec_trunc_tst)
 MU_TEST(rrerpe_tst)
 {
 	_tokens = (char *[]){
-		"<", "foo", "<", "foo", "grep", "<", "foo", "|",
+		"<", "foo", "<", "foo", "grep", "g", "a", "r", "m", "o", "<", "foo", "|",
 		"ls", NULL };
 	_plist = parse(_tokens);
 	mu_assert_int_eq(6, ft_dlstsize(_plist));
@@ -120,11 +120,94 @@ MU_TEST(rrerpe_tst)
 	_pnode = _next->content;
 	mu_assert_int_eq(PT_EXEC, _pnode->type);
 	mu_assert_string_eq("grep", _pnode->exec.cmd);
-	assert_strarr_eq((char *[]){"grep", NULL}, _pnode->exec.tokens);
+	assert_strarr_eq((char *[]){"grep", "g", "a", "r", "m", "o", NULL}, _pnode->exec.tokens);
 
 	_next = _next->next;
 	_pnode = _next->content;
 	mu_assert_int_eq(PT_READ_FILE, _pnode->type);
+	mu_assert_string_eq("foo", _pnode->file.path);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_PIPE, _pnode->type);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_EXEC, _pnode->type);
+	mu_assert_string_eq("ls", _pnode->exec.cmd);
+	assert_strarr_eq((char *[]){"ls", NULL}, _pnode->exec.tokens);
+
+	destroy_plist(&_plist);
+}
+
+MU_TEST(rrrpe_tst)
+{
+	_tokens = (char *[]){
+		"<", "foo", "<", "grep", "<", "foo", "|",
+		"ls", "ls", "ls", "ls", "ls", NULL };
+	_plist = parse(_tokens);
+	mu_assert_int_eq(5, ft_dlstsize(_plist));
+
+	_next = _plist;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_READ_FILE, _pnode->type);
+	mu_assert_string_eq("foo", _pnode->file.path);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_READ_FILE, _pnode->type);
+	mu_assert_string_eq("grep", _pnode->file.path);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_READ_FILE, _pnode->type);
+	mu_assert_string_eq("foo", _pnode->file.path);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_PIPE, _pnode->type);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_EXEC, _pnode->type);
+	mu_assert_string_eq("ls", _pnode->exec.cmd);
+	assert_strarr_eq((char *[]){"ls", "ls", "ls", "ls", "ls", NULL}, _pnode->exec.tokens);
+
+	destroy_plist(&_plist);
+}
+
+MU_TEST(rhetape_tst)
+{
+	_tokens = (char *[]){
+		"<", "foo", "<<", "foo", "grep", "a", ">", "foo", ">>", "foo", "|",
+		"ls", NULL };
+	_plist = parse(_tokens);
+	mu_assert_int_eq(7, ft_dlstsize(_plist));
+
+	_next = _plist;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_READ_FILE, _pnode->type);
+	mu_assert_string_eq("foo", _pnode->file.path);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_HEREDOC, _pnode->type);
+	mu_assert_string_eq("foo", _pnode->delimiter);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_EXEC, _pnode->type);
+	mu_assert_string_eq("grep", _pnode->exec.cmd);
+	assert_strarr_eq((char *[]){"grep", "a", NULL}, _pnode->exec.tokens);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_TRUNCATE, _pnode->type);
+	mu_assert_string_eq("foo", _pnode->file.path);
+
+	_next = _next->next;
+	_pnode = _next->content;
+	mu_assert_int_eq(PT_APPEND, _pnode->type);
 	mu_assert_string_eq("foo", _pnode->file.path);
 
 	_next = _next->next;
@@ -160,6 +243,8 @@ MU_TEST_SUITE(plist_suite)
 	MU_RUN_TEST(exec_pipe_exec_tst);
 	MU_RUN_TEST(exec_pipe_exec_trunc_tst);
 	MU_RUN_TEST(rrerpe_tst);
+	MU_RUN_TEST(rrrpe_tst);
+	MU_RUN_TEST(rhetape_tst);
 
 	MU_RUN_TEST(destroy_tst);
 }
