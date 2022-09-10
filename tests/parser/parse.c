@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 13:48:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:59:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,56 @@ MU_TEST(erepe_tst)
 	destroy_plists();
 }
 
+MU_TEST(retp_heap_hehhp_ate_tst)
+{
+	_tokens = (char *[]){
+		"<", "file",
+		"make", "all",
+		">", "file",
+		"|",
+
+		"<<", "delim",
+		"ls", "-l", "-la", "/",
+		">>", "file",
+		"|",
+
+		"<<", "delim",
+		"ls",
+		"<<", "delim",
+		"<<", "delim",
+		"|",
+
+		">>", "file",
+		">", "file",
+		"grep", "a", "b", "c", "d", "e",
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_read_file_pnode("file"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"make", "all", NULL}));
+	ft_dlst_add(&_expected, new_truncate_pnode("file"));
+	ft_dlst_add(&_expected, new_pipe_pnode());
+
+	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-l", "-la", "/", NULL}));
+	ft_dlst_add(&_expected, new_append_pnode("file"));
+	ft_dlst_add(&_expected, new_pipe_pnode());
+
+	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", NULL}));
+	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
+	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
+	ft_dlst_add(&_expected, new_pipe_pnode());
+
+	ft_dlst_add(&_expected, new_append_pnode("file"));
+	ft_dlst_add(&_expected, new_truncate_pnode("file"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "a", "b", "c", "d", "e", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
 MU_TEST(empty_tst)
 {
 	_plist = parse((char *[]){NULL});
@@ -258,6 +308,8 @@ MU_TEST_SUITE(parse_suite)
 	MU_RUN_TEST(rrrpe_tst);
 	MU_RUN_TEST(rhetape_tst);
 	MU_RUN_TEST(erepe_tst);
+
+	MU_RUN_TEST(retp_heap_hehhp_ate_tst);
 
 	MU_RUN_TEST(empty_tst);
 	MU_RUN_TEST(null_tst);
