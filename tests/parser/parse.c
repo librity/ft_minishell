@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 13:59:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:01:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ MU_TEST(ep_tst)
 	destroy_plists();
 }
 
-MU_TEST(epe_tst)
+MU_TEST(ep_e_tst)
 {
 	_tokens = (char *[]){
 		"ls", "-la",
@@ -121,7 +121,7 @@ MU_TEST(epe_tst)
 	destroy_plists();
 }
 
-MU_TEST(epet_tst)
+MU_TEST(ep_et_tst)
 {
 	_tokens = (char *[]){
 		"ls", "-la", "bar",
@@ -139,7 +139,7 @@ MU_TEST(epet_tst)
 	destroy_plists();
 }
 
-MU_TEST(rrerpe_tst)
+MU_TEST(rrer_pe_tst)
 {
 	_tokens = (char *[]){
 		"<", "foo",
@@ -161,7 +161,7 @@ MU_TEST(rrerpe_tst)
 	destroy_plists();
 }
 
-MU_TEST(rrrpe_tst)
+MU_TEST(rrrp_e_tst)
 {
 	_tokens = (char *[]){
 		"<", "foo",
@@ -181,7 +181,7 @@ MU_TEST(rrrpe_tst)
 	destroy_plists();
 }
 
-MU_TEST(rhetape_tst)
+MU_TEST(rhetap_e_tst)
 {
 	_tokens = (char *[]){
 		"<", "foo",
@@ -205,7 +205,55 @@ MU_TEST(rhetape_tst)
 	destroy_plists();
 }
 
-MU_TEST(erepe_tst)
+MU_TEST(rep_te_tst)
+{
+	_tokens = (char *[]){
+		"infile",
+		"<", "tr",
+		"a", "'   '",
+		"|",
+
+		"tr", "' '",
+		">", "outfile",
+		"x",
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_read_file_pnode("tr"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"infile", "a", "'   '", NULL}));
+	ft_dlst_add(&_expected, new_pipe_pnode());
+
+	ft_dlst_add(&_expected, new_truncate_pnode("outfile"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"tr", "' '", "x", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(hep_ae_tst)
+{
+	_tokens = (char *[]){
+		"ls", "<<", "README.md", "-l", "-a",
+		"|",
+
+		"grep", ">>", "file", "read",
+		NULL };
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_heredoc_pnode("README.md"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-l", "-a", NULL}));
+	ft_dlst_add(&_expected, new_pipe_pnode());
+
+	ft_dlst_add(&_expected, new_append_pnode("file"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "read", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(erep_e_tst)
 {
 	_tokens = (char *[]){
 		"infile",
@@ -294,25 +342,29 @@ MU_TEST_SUITE(parse_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	MU_RUN_TEST(e_tst);
-	MU_RUN_TEST(p_tst);
-	MU_RUN_TEST(r_tst);
-	MU_RUN_TEST(h_tst);
-	MU_RUN_TEST(t_tst);
-	MU_RUN_TEST(a_tst);
+	// MU_RUN_TEST(e_tst);
+	// MU_RUN_TEST(p_tst);
+	// MU_RUN_TEST(r_tst);
+	// MU_RUN_TEST(h_tst);
+	// MU_RUN_TEST(t_tst);
+	// MU_RUN_TEST(a_tst);
 
-	MU_RUN_TEST(ep_tst);
-	MU_RUN_TEST(epe_tst);
-	MU_RUN_TEST(epet_tst);
-	MU_RUN_TEST(rrerpe_tst);
-	MU_RUN_TEST(rrrpe_tst);
-	MU_RUN_TEST(rhetape_tst);
-	MU_RUN_TEST(erepe_tst);
+	// MU_RUN_TEST(ep_tst);
 
-	MU_RUN_TEST(retp_heap_hehhp_ate_tst);
+	// MU_RUN_TEST(ep_e_tst);
+	// MU_RUN_TEST(ep_et_tst);
+	// MU_RUN_TEST(rrer_pe_tst);
+	// MU_RUN_TEST(rrrp_e_tst);
+	// MU_RUN_TEST(rhetap_e_tst);
+	// MU_RUN_TEST(erep_e_tst);
 
-	MU_RUN_TEST(empty_tst);
-	MU_RUN_TEST(null_tst);
+	MU_RUN_TEST(rep_te_tst);
+	MU_RUN_TEST(hep_ae_tst);
+
+	// MU_RUN_TEST(retp_heap_hehhp_ate_tst);
+
+	// MU_RUN_TEST(empty_tst);
+	// MU_RUN_TEST(null_tst);
 }
 
 MU_MAIN

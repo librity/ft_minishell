@@ -59,6 +59,27 @@
 }
 ```
 
+### Redirection in the middle of a command
+
+```c
+{
+	"ls", "<", "README.md", "-l", "-a",
+	"|",
+
+	"grep", ">", "file", "read",
+	NULL }
+
+=> (t_dlist){
+	{tokens: {"<"},               file: "README.md",  type: PT_READ_FILE},
+	{tokens: {"ls", "-l", "-a"},                      type: PT_EXEC},
+	{tokens: {"|"},                                   type: PT_PIPE},
+	{tokens: {">"},               file: "file",       type: PT_TRUNCATE},
+	{tokens: {"grep", "read"},                        type: PT_EXEC},
+}
+```
+
+## Resources
+
 ### YACC (Parser)
 
 - https://en.wikipedia.org/wiki/Yacc
