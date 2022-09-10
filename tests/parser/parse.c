@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 12:51:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:48:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,56 @@ MU_TEST(e_tst)
 	_plist = parse((char *[]){"ls", "-la", NULL});
 
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-la", NULL}));
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(p_tst)
+{
+	_plist = parse((char *[]){"|", NULL});
+
+	ft_dlst_add(&_expected, new_pipe_pnode());
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(r_tst)
+{
+	_plist = parse((char *[]){"<", "file", NULL});
+
+	ft_dlst_add(&_expected, new_read_file_pnode("file"));
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(h_tst)
+{
+	_plist = parse((char *[]){"<<", "delimiter", NULL});
+
+	ft_dlst_add(&_expected, new_heredoc_pnode("delimiter"));
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(t_tst)
+{
+	_plist = parse((char *[]){">", "file", NULL});
+
+	ft_dlst_add(&_expected, new_truncate_pnode("file"));
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(a_tst)
+{
+	_plist = parse((char *[]){">>", "file", NULL});
+
+	ft_dlst_add(&_expected, new_append_pnode("file"));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
 	destroy_plists();
@@ -176,23 +226,31 @@ MU_TEST(erepe_tst)
 	destroy_plists();
 }
 
-MU_TEST(destroy_tst)
+MU_TEST(empty_tst)
 {
-	_plist = NULL;
+	_plist = parse((char *[]){NULL});
 
-	ft_dlst_add(&_plist, new_exec_pnode((char *[]){"ls", "-la", NULL}));
-	ft_dlst_add(&_plist, new_pipe_pnode());
-	ft_dlst_add(&_plist, new_exec_pnode((char *[]){"grep", "Makefile", NULL}));
-
-	destroy_plist(&_plist);
 	mu_check(NULL == _plist);
 }
 
-MU_TEST_SUITE(plist_suite)
+MU_TEST(null_tst)
+{
+	_plist = parse(NULL);
+
+	mu_check(NULL == _plist);
+}
+
+MU_TEST_SUITE(parse_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
 	MU_RUN_TEST(e_tst);
+	MU_RUN_TEST(p_tst);
+	MU_RUN_TEST(r_tst);
+	MU_RUN_TEST(h_tst);
+	MU_RUN_TEST(t_tst);
+	MU_RUN_TEST(a_tst);
+
 	MU_RUN_TEST(ep_tst);
 	MU_RUN_TEST(epe_tst);
 	MU_RUN_TEST(epet_tst);
@@ -201,13 +259,14 @@ MU_TEST_SUITE(plist_suite)
 	MU_RUN_TEST(rhetape_tst);
 	MU_RUN_TEST(erepe_tst);
 
-	MU_RUN_TEST(destroy_tst);
+	MU_RUN_TEST(empty_tst);
+	MU_RUN_TEST(null_tst);
 }
 
 MU_MAIN
 {
 	MU_DIVIDER;
-	MU_RUN_SUITE(plist_suite);
+	MU_RUN_SUITE(parse_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }
