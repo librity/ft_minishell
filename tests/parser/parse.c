@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 18:19:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:41:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,80 @@ MU_TEST(rrer_pe_tst)
 	ft_dlst_add(&_expected, new_pipe_parse());
 
 	ft_dlst_add(&_expected, new_exec_parse((char *[]){"ls", NULL}));
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(ep_ep_e_tst)
+{
+	_tokens = (char *[]){
+		"cat",
+		"|",
+
+		"cat",
+		"|",
+
+		"ls",
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"cat", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"cat", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"ls", NULL}));
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(eaetep_ethp_trep_ep_tst)
+{
+	_tokens = (char *[]){
+		"cat", "cat", "cat",
+		">>", "file",
+		"cat", "cat",
+		">", "file",
+		"cat", "cat",
+		"|",
+
+		"cat", "cat",
+		">", "file",
+		"<<", "delim",
+		"|",
+
+		">", "file",
+		"<", "file",
+		"cat", "cat", "cat", "cat", "cat", "cat", "cat", "cat",
+		"|",
+
+		"dog",
+		"|",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_append_parse("file"));
+	ft_dlst_add(&_expected, new_truncate_parse("file"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"cat", "cat", "cat", "cat", "cat", "cat", "cat", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	ft_dlst_add(&_expected, new_truncate_parse("file"));
+	ft_dlst_add(&_expected, new_heredoc_parse("delim"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"cat", "cat", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	ft_dlst_add(&_expected, new_truncate_parse("file"));
+	ft_dlst_add(&_expected, new_read_file_parse("file"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"cat", "cat", "cat", "cat", "cat", "cat", "cat", "cat", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"dog", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
 	destroy_plists();
@@ -369,7 +443,10 @@ MU_TEST_SUITE(parse_suite)
 	MU_RUN_TEST(rep_te_tst);
 	MU_RUN_TEST(hep_ae_tst);
 
+	MU_RUN_TEST(ep_ep_e_tst);
+
 	MU_RUN_TEST(retp_heap_hehhp_ate_tst);
+	MU_RUN_TEST(eaetep_ethp_trep_ep_tst);
 
 	MU_RUN_TEST(empty_tst);
 	MU_RUN_TEST(null_tst);
