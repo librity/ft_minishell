@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 00:33:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:56:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	_destroy_pnode(void *pnode)
 {
-	destroy_pnode((t_pnode **)&pnode);
+	destroy_pnode((t_parse **)&pnode);
 }
 
-void	destroy_plist(t_plist **plist)
+void	destroy_plist(t_parse_list **plist)
 {
 	ft_dlstclear(plist, &_destroy_pnode);
 }

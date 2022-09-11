@@ -6,36 +6,36 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 17:48:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 13:42:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_pnode	*new_exec_pnode(char **tokens)
+t_parse	*new_exec_pnode(char **tokens)
 {
-	t_pnode	*new;
+	t_parse	*new;
 
 	new = new_pnode();
 	new->type = PT_EXEC;
 	new->exec.cmd = ft_strdup(tokens[0]);
-	new->exec.tokens = ft_strarr_dup(tokens);
+	new->exec.argv = ft_strarr_dup(tokens);
 	return (new);
 }
 
-t_pnode	*new_exec_length_pnode(char **tokens, int length)
+t_parse	*new_exec_length_pnode(char **tokens, int length)
 {
-	t_pnode	*new;
+	t_parse	*new;
 
 	new = new_pnode();
 	new->type = PT_EXEC;
 	new->exec.cmd = ft_strdup(tokens[0]);
-	new->exec.tokens = ft_strarr_new(length);
-	new->exec.tokens[length] = NULL;
+	new->exec.argv = ft_strarr_new(length);
+	new->exec.argv[length] = NULL;
 	length--;
 	while (length >= 0)
 	{
-		new->exec.tokens[length] = ft_strdup(tokens[length]);
+		new->exec.argv[length] = ft_strdup(tokens[length]);
 		length--;
 	}
 	return (new);

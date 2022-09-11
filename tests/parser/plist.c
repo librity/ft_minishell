@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 13:47:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:56:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./parser.h"
 
-t_plist	*_plist;
+t_parse_list	*_plist;
 
 void	setup(void)
 {

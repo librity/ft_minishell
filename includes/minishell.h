@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 18:16:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 15:00:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include <stdio.h>
 
+# include <structs.h>
 # include <defines.h>
 # include <errors.h>
 # include <warnings.h>
-# include <structs.h>
 
 /******************************************************************************\
  * CONTROL
@@ -110,19 +110,19 @@ void			trim_token(char *token);
  * PARSER
 \******************************************************************************/
 
-t_pnode			*new_pnode(void);
-void			destroy_pnode(t_pnode **pnode);
+t_parse			*new_pnode(void);
+void			destroy_pnode(t_parse **pnode);
 
-t_pnode			*new_exec_pnode(char **tokens);
-t_pnode			*new_exec_length_pnode(char **tokens, int length);
+t_parse			*new_exec_pnode(char **tokens);
+t_parse			*new_exec_length_pnode(char **tokens, int length);
 
-t_pnode			*new_pipe_pnode(void);
-t_pnode			*new_truncate_pnode(char *file_path);
-t_pnode			*new_append_pnode(char *file_path);
-t_pnode			*new_heredoc_pnode(char *file_path);
-t_pnode			*new_read_file_pnode(char *delimiter);
+t_parse			*new_pipe_pnode(void);
+t_parse			*new_truncate_pnode(char *file_path);
+t_parse			*new_append_pnode(char *file_path);
+t_parse			*new_heredoc_pnode(char *file_path);
+t_parse			*new_read_file_pnode(char *delimiter);
 
-t_plist			*parse(char **tokens);
+t_parse_list	*parse(char **tokens);
 void			destroy_plist(t_dlist **plist);
 
 /******************************************************************************\
@@ -157,8 +157,7 @@ uint32_t		*md5_initial_digest(void);
 t_hash_table	*ht_new(void);
 void			ht_destroy(t_hash_table **table);
 
-bool			ht_insert(t_hash_table *table,
-					char *key, char *value);
+bool			ht_insert(t_hash_table *table, char *key, char *value);
 char			*ht_get(t_hash_table *table, char *key);
 bool			ht_delete(t_hash_table *table, char *key);
 

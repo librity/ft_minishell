@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 16:56:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 15:00:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef enum e_lexed_variable
  * PARSER
 \******************************************************************************/
 
-typedef enum e_ptype
+typedef enum e_parse_type
 {
 	PT_NULL = 0,
 	PT_EXEC,
@@ -74,7 +74,7 @@ typedef enum e_ptype
 	PT_APPEND,
 	PT_READ_FILE,
 	PT_HEREDOC,
-}					t_ptype;
+}					t_parse_type;
 
 typedef struct s_file
 {
@@ -84,22 +84,24 @@ typedef struct s_file
 
 typedef struct s_exec
 {
-	char			**tokens;
-	char			*cmd;
 	char			*path;
+	char			**argv;
+	char			**envp;
+
+	char			*cmd;
 
 	int				code;
 }					t_exec;
 
-typedef struct s_pnode
+typedef struct s_parse
 {
 	t_exec			exec;
 	t_file			file;
 	char			*delimiter;
-	t_ptype			type;
-}					t_pnode;
+	t_parse_type	type;
+}					t_parse;
 
-typedef t_dlist		t_plist;
+typedef t_dlist		t_parse_list;
 
 /******************************************************************************\
  * CRYPTO

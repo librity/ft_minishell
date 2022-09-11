@@ -6,17 +6,17 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 16:01:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:56:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./parser.h"
 
 char	**_tokens;
-t_plist	*_plist;
-t_plist	*_expected;
-t_plist	*_next;
-t_pnode	*_pnode;
+t_parse_list	*_plist;
+t_parse_list	*_expected;
+t_parse_list	*_next;
+t_parse	*_pnode;
 
 void	setup(void)
 {
@@ -342,29 +342,29 @@ MU_TEST_SUITE(parse_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	// MU_RUN_TEST(e_tst);
-	// MU_RUN_TEST(p_tst);
-	// MU_RUN_TEST(r_tst);
-	// MU_RUN_TEST(h_tst);
-	// MU_RUN_TEST(t_tst);
-	// MU_RUN_TEST(a_tst);
+	MU_RUN_TEST(e_tst);
+	MU_RUN_TEST(p_tst);
+	MU_RUN_TEST(r_tst);
+	MU_RUN_TEST(h_tst);
+	MU_RUN_TEST(t_tst);
+	MU_RUN_TEST(a_tst);
 
-	// MU_RUN_TEST(ep_tst);
+	MU_RUN_TEST(ep_tst);
 
-	// MU_RUN_TEST(ep_e_tst);
-	// MU_RUN_TEST(ep_et_tst);
-	// MU_RUN_TEST(rrer_pe_tst);
-	// MU_RUN_TEST(rrrp_e_tst);
-	// MU_RUN_TEST(rhetap_e_tst);
-	// MU_RUN_TEST(erep_e_tst);
+	MU_RUN_TEST(ep_e_tst);
+	MU_RUN_TEST(ep_et_tst);
+	MU_RUN_TEST(rrer_pe_tst);
+	MU_RUN_TEST(rrrp_e_tst);
+	MU_RUN_TEST(rhetap_e_tst);
+	MU_RUN_TEST(erep_e_tst);
 
-	MU_RUN_TEST(rep_te_tst);
-	MU_RUN_TEST(hep_ae_tst);
+	// MU_RUN_TEST(rep_te_tst);
+	// MU_RUN_TEST(hep_ae_tst);
 
-	// MU_RUN_TEST(retp_heap_hehhp_ate_tst);
+	MU_RUN_TEST(retp_heap_hehhp_ate_tst);
 
-	// MU_RUN_TEST(empty_tst);
-	// MU_RUN_TEST(null_tst);
+	MU_RUN_TEST(empty_tst);
+	MU_RUN_TEST(null_tst);
 }
 
 MU_MAIN

@@ -6,15 +6,15 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 11:58:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:56:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	add_last_exec(char **tokens, t_plist **plist)
+static void	add_last_exec(char **tokens, t_parse_list **plist)
 {
-	t_pnode	*pnode;
+	t_parse	*pnode;
 
 	if (tokens == NULL || *tokens == NULL)
 		return ;
@@ -25,7 +25,7 @@ static void	add_last_exec(char **tokens, t_plist **plist)
 static bool	parsed_operator(char ***tokens, t_dlist **plist)
 {
 	char	*next_token;
-	t_pnode	*pnode;
+	t_parse	*pnode;
 
 	if (ft_streq(**tokens, PIPE))
 	{
@@ -66,10 +66,10 @@ static bool	parsed_operator(char ***tokens, t_dlist **plist)
 	return (false);
 }
 
-t_plist	*parse(char **tokens)
+t_parse_list	*parse(char **tokens)
 {
-	t_pnode	*pnode;
-	t_plist	*plist;
+	t_parse	*pnode;
+	t_parse_list	*plist;
 	char	**next_operator;
 	int		exec_length;
 
