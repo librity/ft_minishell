@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_parse.c                                       :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 18:21:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 20:10:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_parse	*new_exec_parse(char **tokens)
+t_parse	*new_exec(char **tokens)
 {
 	t_parse	*new;
 
@@ -23,7 +23,7 @@ t_parse	*new_exec_parse(char **tokens)
 	return (new);
 }
 
-t_parse	*new_exec_length_parse(char **tokens, int length)
+t_parse	*new_exec_length(char **tokens, int length)
 {
 	t_parse	*new;
 

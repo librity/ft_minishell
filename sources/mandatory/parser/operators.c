@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator_parse.c                                   :+:      :+:    :+:   */
+/*   operators.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 18:19:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 20:11:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_parse	*new_pipe_parse(void)
+t_parse	*new_pipe(void)
 {
 	t_parse	*new;
 
@@ -21,7 +21,7 @@ t_parse	*new_pipe_parse(void)
 	return (new);
 }
 
-t_parse	*new_truncate_parse(char *file_path)
+t_parse	*new_truncate(char *file_path)
 {
 	t_parse	*new;
 
@@ -31,7 +31,7 @@ t_parse	*new_truncate_parse(char *file_path)
 	return (new);
 }
 
-t_parse	*new_append_parse(char *file_path)
+t_parse	*new_append(char *file_path)
 {
 	t_parse	*new;
 
@@ -41,7 +41,7 @@ t_parse	*new_append_parse(char *file_path)
 	return (new);
 }
 
-t_parse	*new_read_file_parse(char *file_path)
+t_parse	*new_read_file(char *file_path)
 {
 	t_parse	*new;
 
@@ -51,7 +51,7 @@ t_parse	*new_read_file_parse(char *file_path)
 	return (new);
 }
 
-t_parse	*new_heredoc_parse(char *delimiter)
+t_parse	*new_heredoc(char *delimiter)
 {
 	t_parse	*new;
 

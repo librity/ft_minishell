@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 18:19:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 20:11:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ MU_TEST(new_tst)
 MU_TEST(new_exec_tst)
 {
 	char **command_tokens = (char *[]){"ls", "-la", NULL};
-	_node = new_exec_parse(command_tokens);
+	_node = new_exec(command_tokens);
 
 	mu_assert_int_eq(PT_EXEC, _node->type);
 	mu_assert_string_eq("ls", _node->exec.cmd);
@@ -53,7 +53,7 @@ MU_TEST(new_exec_tst)
 
 MU_TEST(new_pipe_tst)
 {
-	_node = new_pipe_parse();
+	_node = new_pipe();
 	mu_assert_int_eq(PT_PIPE, _node->type);
 
 	destroy_parse(&_node);
@@ -61,7 +61,7 @@ MU_TEST(new_pipe_tst)
 
 MU_TEST(new_truncate_tst)
 {
-	_node = new_truncate_parse("./path/to/file");
+	_node = new_truncate("./path/to/file");
 
 	mu_assert_string_eq("./path/to/file", _node->file.path);
 	mu_assert_int_eq(PT_TRUNCATE, _node->type);
@@ -71,7 +71,7 @@ MU_TEST(new_truncate_tst)
 
 MU_TEST(new_append_tst)
 {
-	_node = new_append_parse("./path/to/file");
+	_node = new_append("./path/to/file");
 
 	mu_assert_string_eq("./path/to/file", _node->file.path);
 	mu_assert_int_eq(PT_APPEND, _node->type);
@@ -81,7 +81,7 @@ MU_TEST(new_append_tst)
 
 MU_TEST(new_read_file_tst)
 {
-	_node = new_read_file_parse("./path/to/file");
+	_node = new_read_file("./path/to/file");
 
 	mu_assert_string_eq("./path/to/file", _node->file.path);
 	mu_assert_int_eq(PT_READ_FILE, _node->type);
@@ -91,7 +91,7 @@ MU_TEST(new_read_file_tst)
 
 MU_TEST(new_heredoc_tst)
 {
-	_node = new_heredoc_parse("dELimITer");
+	_node = new_heredoc("dELimITer");
 
 	mu_assert_string_eq("dELimITer", _node->delimiter);
 	mu_assert_int_eq(PT_HEREDOC, _node->type);

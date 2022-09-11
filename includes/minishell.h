@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 19:44:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 20:11:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,14 +121,14 @@ void			add_append(t_parse_list **list, char *file_path);
 void			add_read_file(t_parse_list **list, char *file_path);
 void			add_heredoc(t_parse_list **list, char *delimiter);
 
-t_parse			*new_exec_parse(char **tokens);
-t_parse			*new_exec_length_parse(char **tokens, int length);
+t_parse			*new_exec(char **tokens);
+t_parse			*new_exec_length(char **tokens, int length);
 
-t_parse			*new_pipe_parse(void);
-t_parse			*new_truncate_parse(char *file_path);
-t_parse			*new_append_parse(char *file_path);
-t_parse			*new_heredoc_parse(char *file_path);
-t_parse			*new_read_file_parse(char *delimiter);
+t_parse			*new_pipe(void);
+t_parse			*new_truncate(char *file_path);
+t_parse			*new_append(char *file_path);
+t_parse			*new_heredoc(char *file_path);
+t_parse			*new_read_file(char *delimiter);
 
 t_parse_list	*parse(char **tokens);
 void			destroy_parse_list(t_dlist **plist);
