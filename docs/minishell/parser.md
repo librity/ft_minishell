@@ -13,10 +13,10 @@
 {"ls", "-la", "bar", "|", "grep", "main", ">", "output", NULL }
 
 => (t_dlist){
-	{tokens: {"ls", "-la", "bar"},  type: PT_EXEC},
-	{tokens: "|",                   type: PT_PIPE},
-	{tokens: {"grep", "main"},      type: PT_EXEC},
-	{tokens: ">", file: "output",   type: PT_TRUNCATE}
+	{argv: {"ls", "-la", "bar"},  type: PT_EXEC},
+	{                             type: PT_PIPE},
+	{argv: {"grep", "main"},      type: PT_EXEC},
+	{file: "output",              type: PT_TRUNCATE}
 }
 ```
 
@@ -24,12 +24,12 @@
 {"<", "foo", "<", "foo", "grep", "<", "foo", "|", "ls", NULL }
 
 => (t_dlist){
-	{tokens: {"<"},     file: "foo",  type: PT_READ_FILE},
-	{tokens: {"<"},     file: "foo",  type: PT_READ_FILE},
-	{tokens: {"grep"},                type: PT_EXEC},
-	{tokens: {"<"},     file: "foo",  type: PT_READ_FILE},
-	{tokens: {"|"},                   type: PT_PIPE},
-	{tokens: {"ls"},                  type: PT_EXEC}
+	{file: "foo",                   type: PT_READ_FILE},
+	{file: "foo",                   type: PT_READ_FILE},
+	{argv: {"grep"},                type: PT_EXEC},
+	{file: "foo",                   type: PT_READ_FILE},
+	{                               type: PT_PIPE},
+	{argv: {"ls"},                  type: PT_EXEC}
 }
 ```
 
@@ -37,11 +37,11 @@
 {"<", "foo", "<", "grep", "<", "foo", "|", "ls", NULL }
 
 => (t_dlist){
-	{tokens: {"<"},   file: "foo",  type: PT_READ_FILE},
-	{tokens: {"<"},   file: "grep"  type: PT_READ_FILE},
-	{tokens: {"<"},   file: "foo",  type: PT_READ_FILE},
-	{tokens: {"|"},                 type: PT_PIPE},
-	{tokens: {"ls"},                type: PT_EXEC}
+	{file: "foo",                 type: PT_READ_FILE},
+	{file: "grep"                 type: PT_READ_FILE},
+	{file: "foo",                 type: PT_READ_FILE},
+	{                             type: PT_PIPE},
+	{argv: {"ls"},                type: PT_EXEC}
 }
 ```
 
@@ -49,13 +49,13 @@
 {"<", "foo", "<<", "foo", "grep", "a", ">", "foo", ">>", "foo", "|", "ls", NULL }
 
 => (t_dlist){
-	{tokens: {"<"},          file: "foo",       type: PT_READ_FILE},
-	{tokens: {"<<"},         delimiter: "foo",  type: PT_HEREDOC},
-	{tokens: {"grep", "a"},                     type: PT_EXEC},
-	{tokens: {">"},          file: "foo",       type: PT_TRUNCATE},
-	{tokens: {">>"},         file: "foo",       type: PT_APPEND},
-	{tokens: {"|"},                             type: PT_PIPE},
-	{tokens: {"ls"},                            type: PT_EXEC}
+	{file: "foo",                             type: PT_READ_FILE},
+	{delimiter: "foo",                        type: PT_HEREDOC},
+	{argv: {"grep", "a"},                     type: PT_EXEC},
+	{file: "foo",                             type: PT_TRUNCATE},
+	{file: "foo",                             type: PT_APPEND},
+	{                                         type: PT_PIPE},
+	{argv: {"ls"},                            type: PT_EXEC}
 }
 ```
 
@@ -70,11 +70,11 @@
 	NULL }
 
 => (t_dlist){
-	{tokens: {"<"},               file: "README.md",  type: PT_READ_FILE},
-	{tokens: {"ls", "-l", "-a"},                      type: PT_EXEC},
-	{tokens: {"|"},                                   type: PT_PIPE},
-	{tokens: {">"},               file: "file",       type: PT_TRUNCATE},
-	{tokens: {"grep", "read"},                        type: PT_EXEC},
+	{file: "README.md",                             type: PT_READ_FILE},
+	{argv: {"ls", "-l", "-a"},                      type: PT_EXEC},
+	{                                               type: PT_PIPE},
+	{file: "file",                                  type: PT_TRUNCATE},
+	{argv: {"grep", "read"},                        type: PT_EXEC},
 }
 ```
 

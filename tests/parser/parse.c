@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 18:41:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:20:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,17 @@ static void destroy_plists(void)
 	destroy_parse_list(&_expected);
 }
 
-MU_TEST(e_tst)
+MU_TEST(e_1_tst)
+{
+	_plist = parse((char *[]){"a", NULL});
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"a", NULL}));
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(e_2_tst)
 {
 	_plist = parse((char *[]){"ls", "-la", NULL});
 
@@ -406,6 +416,179 @@ MU_TEST(retp_heap_hehhp_ate_tst)
 	destroy_plists();
 }
 
+MU_TEST(ep_2_tst)
+{
+	_tokens = (char *[]){
+		"ls", "-la", "..",
+		"|",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"ls", "-la", "..", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(ep_ep_e_2_tst)
+{
+	_tokens = (char *[]){
+		"ls", "-la", "..",
+		"|",
+
+		"cat", "-e",
+		"|",
+
+		"wc", "-l",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"ls", "-la", "..", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"cat", "-e", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"wc", "-l", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(erp_et_tst)
+{
+	_tokens = (char *[]){
+		"infile",
+		"<", "tr",
+		"a", "\"   \"",
+		"|",
+
+		"tr",
+		">", "outfile",
+		"\" \"", "x",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_read_file_parse("tr"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"infile", "a", "\"   \"", NULL}));
+	ft_dlst_add(&_expected, new_pipe_parse());
+
+	ft_dlst_add(&_expected, new_truncate_parse("outfile"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"tr", "\" \"", "x", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(eret_tst)
+{
+	_tokens = (char *[]){
+		"infile",
+		"<", "tr",
+		"a", "\'  \"   \' |   tr \' \"     \'", "x",
+		">", "outfile",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_read_file_parse("tr"));
+	ft_dlst_add(&_expected, new_truncate_parse("outfile"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"infile", "a", "\'  \"   \' |   tr \' \"     \'", "x", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(ere_tst)
+{
+	_tokens = (char *[]){
+		"infile",
+		"<", "tr",
+		"a", "\'  \"   \' |   tr \' \"      x > outfile",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_read_file_parse("tr"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"infile", "a", "\'  \"   \' |   tr \' \"      x > outfile", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(re_tst)
+{
+	_tokens = (char *[]){
+		"<", "out", "rg", "'.'",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_read_file_parse("out"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"rg", "'.'", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(ea_tst)
+{
+	_tokens = (char *[]){
+		"rg", "a", ">>", "out",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_append_parse("out"));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"rg", "a", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(he_tst)
+{
+	_tokens = (char *[]){
+		"<<", ".", "cat",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_heredoc_parse("."));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"cat", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(eh_tst)
+{
+	_tokens = (char *[]){
+		"cat", "<<", ".",
+
+		NULL};
+	_plist = parse(_tokens);
+
+	ft_dlst_add(&_expected, new_heredoc_parse("."));
+	ft_dlst_add(&_expected, new_exec_parse((char *[]){"cat", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
 MU_TEST(empty_tst)
 {
 	_plist = parse((char *[]){NULL});
@@ -424,7 +607,8 @@ MU_TEST_SUITE(parse_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	MU_RUN_TEST(e_tst);
+	MU_RUN_TEST(e_1_tst);
+	MU_RUN_TEST(e_2_tst);
 	MU_RUN_TEST(p_tst);
 	MU_RUN_TEST(r_tst);
 	MU_RUN_TEST(h_tst);
@@ -447,6 +631,16 @@ MU_TEST_SUITE(parse_suite)
 
 	MU_RUN_TEST(retp_heap_hehhp_ate_tst);
 	MU_RUN_TEST(eaetep_ethp_trep_ep_tst);
+
+	MU_RUN_TEST(ep_2_tst);
+	MU_RUN_TEST(ep_ep_e_2_tst);
+	MU_RUN_TEST(erp_et_tst);
+	MU_RUN_TEST(eret_tst);
+	MU_RUN_TEST(ere_tst);
+	MU_RUN_TEST(re_tst);
+	MU_RUN_TEST(ea_tst);
+	MU_RUN_TEST(he_tst);
+	MU_RUN_TEST(eh_tst);
 
 	MU_RUN_TEST(empty_tst);
 	MU_RUN_TEST(null_tst);
