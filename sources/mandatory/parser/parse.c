@@ -6,86 +6,99 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 14:56:04 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:51:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	add_last_exec(char **tokens, t_parse_list **plist)
+static void	add_last_exec(char **tokens, t_parse_list **list)
 {
 	t_parse	*pnode;
 
 	if (tokens == NULL || *tokens == NULL)
 		return ;
 	pnode = new_exec_pnode(tokens);
-	ft_dlst_add(plist, pnode);
+	ft_dlst_add(list, pnode);
 }
 
-static bool	parsed_operator(char ***tokens, t_dlist **plist)
+static void	parse_redirections(char **_tokens, t_parse_list **list)
 {
 	char	*next_token;
 	t_parse	*pnode;
 
-	if (ft_streq(**tokens, PIPE))
+	while (_tokens != NULL && *_tokens != NULL && !ft_streq(*_tokens, PIPE))
 	{
-		pnode = new_pipe_pnode();
-		ft_dlst_add(plist, pnode);
-		*tokens += 1;
-		return (true);
+		if (!is_operator(*_tokens))
+		{
+			_tokens++;
+			continue ;
+		}
+		next_token = *(_tokens + 1);
+		if (ft_streq(*_tokens, TRUNCATE))
+		{
+			pnode = new_truncate_pnode(next_token);
+			ft_dlst_add(list, pnode);
+		}
+		if (ft_streq(*_tokens, APPEND))
+		{
+			pnode = new_append_pnode(next_token);
+			ft_dlst_add(list, pnode);
+		}
+		if (ft_streq(*_tokens, READ_FILE))
+		{
+			pnode = new_read_file_pnode(next_token);
+			ft_dlst_add(list, pnode);
+		}
+		if (ft_streq(*_tokens, HEREDOC))
+		{
+			pnode = new_heredoc_pnode(next_token);
+			ft_dlst_add(list, pnode);
+		}
+		ft_strarr_cut(_tokens);
+		ft_strarr_cut(_tokens);
 	}
-	next_token = *(*tokens + 1);
-	if (ft_streq(**tokens, TRUNCATE))
-	{
-		pnode = new_truncate_pnode(next_token);
-		ft_dlst_add(plist, pnode);
-		*tokens += 2;
-		return (true);
-	}
-	if (ft_streq(**tokens, APPEND))
-	{
-		pnode = new_append_pnode(next_token);
-		ft_dlst_add(plist, pnode);
-		*tokens += 2;
-		return (true);
-	}
-	if (ft_streq(**tokens, READ_FILE))
-	{
-		pnode = new_read_file_pnode(next_token);
-		ft_dlst_add(plist, pnode);
-		*tokens += 2;
-		return (true);
-	}
-	if (ft_streq(**tokens, HEREDOC))
-	{
-		pnode = new_heredoc_pnode(next_token);
-		ft_dlst_add(plist, pnode);
-		*tokens += 2;
-		return (true);
-	}
-	return (false);
 }
 
 t_parse_list	*parse(char **tokens)
 {
-	t_parse	*pnode;
-	t_parse_list	*plist;
-	char	**next_operator;
-	int		exec_length;
+	t_parse			*pnode;
+	t_parse_list	*list;
+	char			**next_pipe;
+	char			**free_me;
+	char			**_tokens;
+	int				exec_length;
 
-	plist = NULL;
-	while (tokens != NULL && *tokens != NULL)
+	if (tokens == NULL)
+		return (NULL);
+	list = NULL;
+	free_me = ft_strarr_dup_shallow(tokens);
+	_tokens = free_me;
+	while (true)
 	{
-		if (parsed_operator(&tokens, &plist))
-			continue ;
-		next_operator = find_next_operator(tokens);
-		if (next_operator == NULL)
+		next_pipe = find_next_pipe(_tokens);
+		if (next_pipe == NULL || *next_pipe == NULL)
 			break ;
-		exec_length = next_operator - tokens;
-		pnode = new_exec_length_pnode(tokens, exec_length);
-		ft_dlst_add(&plist, pnode);
-		tokens = next_operator;
+
+		parse_redirections(_tokens, &list);
+		next_pipe = find_next_pipe(_tokens);
+
+		exec_length = next_pipe - _tokens;
+		if (exec_length > 0)
+		{
+			pnode = new_exec_length_pnode(_tokens, exec_length);
+			ft_dlst_add(&list, pnode);
+		}
+
+		pnode = new_pipe_pnode();
+		ft_dlst_add(&list, pnode);
+
+		_tokens = next_pipe + 1;
 	}
-	add_last_exec(tokens, &plist);
-	return (plist);
+
+	parse_redirections(_tokens, &list);
+	add_last_exec(_tokens, &list);
+
+	free(free_me);
+	return (list);
 }

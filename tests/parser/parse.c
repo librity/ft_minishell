@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 14:56:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:50:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ MU_TEST(p_tst)
 	_plist = parse((char *[]){"|", NULL});
 
 	ft_dlst_add(&_expected, new_pipe_pnode());
+
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
 	destroy_plists();
@@ -100,6 +101,7 @@ MU_TEST(ep_tst)
 
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-la", NULL}));
 	ft_dlst_add(&_expected, new_pipe_pnode());
+
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
 	destroy_plists();
@@ -115,6 +117,7 @@ MU_TEST(ep_e_tst)
 
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-la", NULL}));
 	ft_dlst_add(&_expected, new_pipe_pnode());
+
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "Makefile", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
@@ -132,8 +135,9 @@ MU_TEST(ep_et_tst)
 
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-la", "bar", NULL}));
 	ft_dlst_add(&_expected, new_pipe_pnode());
-	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "main", NULL}));
+
 	ft_dlst_add(&_expected, new_truncate_pnode("output"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "main", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
 	destroy_plists();
@@ -152,9 +156,10 @@ MU_TEST(rrer_pe_tst)
 
 	ft_dlst_add(&_expected, new_read_file_pnode("foo"));
 	ft_dlst_add(&_expected, new_read_file_pnode("foo"));
-	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "g", "a", "r", "m", "o", NULL}));
 	ft_dlst_add(&_expected, new_read_file_pnode("foo"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "g", "a", "r", "m", "o", NULL}));
 	ft_dlst_add(&_expected, new_pipe_pnode());
+
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
@@ -175,6 +180,7 @@ MU_TEST(rrrp_e_tst)
 	ft_dlst_add(&_expected, new_read_file_pnode("grep"));
 	ft_dlst_add(&_expected, new_read_file_pnode("foo"));
 	ft_dlst_add(&_expected, new_pipe_pnode());
+
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "ls", "ls", "ls", "ls", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
@@ -195,10 +201,11 @@ MU_TEST(rhetap_e_tst)
 
 	ft_dlst_add(&_expected, new_read_file_pnode("foo"));
 	ft_dlst_add(&_expected, new_heredoc_pnode("foo"));
-	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "a", NULL}));
 	ft_dlst_add(&_expected, new_truncate_pnode("foo"));
 	ft_dlst_add(&_expected, new_append_pnode("foo"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"grep", "a", NULL}));
 	ft_dlst_add(&_expected, new_pipe_pnode());
+
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
@@ -260,14 +267,15 @@ MU_TEST(erep_e_tst)
 		"<", "tr",
 		"a", "\'  \"   \'",
 		"|",
+
 		"tr", "\' \"      x > outfile",
 		NULL};
 	_plist = parse(_tokens);
 
-	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"infile", NULL}));
 	ft_dlst_add(&_expected, new_read_file_pnode("tr"));
-	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"a", "\'  \"   \'", NULL}));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"infile", "a", "\'  \"   \'", NULL}));
 	ft_dlst_add(&_expected, new_pipe_pnode());
+
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"tr", "\' \"      x > outfile", NULL}));
 	assert_dlist_equivalent(_expected, _plist, compare_pnode);
 
@@ -300,19 +308,19 @@ MU_TEST(retp_heap_hehhp_ate_tst)
 	_plist = parse(_tokens);
 
 	ft_dlst_add(&_expected, new_read_file_pnode("file"));
-	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"make", "all", NULL}));
 	ft_dlst_add(&_expected, new_truncate_pnode("file"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"make", "all", NULL}));
 	ft_dlst_add(&_expected, new_pipe_pnode());
 
 	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
-	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-l", "-la", "/", NULL}));
 	ft_dlst_add(&_expected, new_append_pnode("file"));
+	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", "-l", "-la", "/", NULL}));
 	ft_dlst_add(&_expected, new_pipe_pnode());
 
+	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
+	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
 	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
 	ft_dlst_add(&_expected, new_exec_pnode((char *[]){"ls", NULL}));
-	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
-	ft_dlst_add(&_expected, new_heredoc_pnode("delim"));
 	ft_dlst_add(&_expected, new_pipe_pnode());
 
 	ft_dlst_add(&_expected, new_append_pnode("file"));
@@ -358,8 +366,8 @@ MU_TEST_SUITE(parse_suite)
 	MU_RUN_TEST(rhetap_e_tst);
 	MU_RUN_TEST(erep_e_tst);
 
-	// MU_RUN_TEST(rep_te_tst);
-	// MU_RUN_TEST(hep_ae_tst);
+	MU_RUN_TEST(rep_te_tst);
+	MU_RUN_TEST(hep_ae_tst);
 
 	MU_RUN_TEST(retp_heap_hehhp_ate_tst);
 

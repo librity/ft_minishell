@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 17:47:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 16:44:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,26 @@ bool	is_operator(char *token)
 
 char	**find_next_operator(char **tokens)
 {
+	if (tokens == NULL)
+		return (NULL);
 	while (*tokens != NULL)
 	{
 		if (is_operator(*tokens))
 			return (tokens);
 		tokens++;
 	}
-	return (NULL);
+	return (tokens);
+}
+
+char	**find_next_pipe(char **tokens)
+{
+	if (tokens == NULL)
+		return (NULL);
+	while (*tokens != NULL)
+	{
+		if (ft_streq(*tokens, PIPE))
+			return (tokens);
+		tokens++;
+	}
+	return (tokens);
 }

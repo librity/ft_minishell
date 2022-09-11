@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 15:00:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 16:44:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ bool			is_specialchar(char c);
 char			**operators(void);
 bool			is_operator(char *token);
 char			**find_next_operator(char **tokens);
+char			**find_next_pipe(char **tokens);
 
 /******************************************************************************\
  * TRIMMER
