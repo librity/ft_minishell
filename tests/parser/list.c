@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plist.c                                            :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 14:56:04 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:22:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ MU_TEST(destroy_tst)
 {
 	_plist = NULL;
 
-	ft_dlst_add(&_plist, new_exec_pnode((char *[]){"ls", "-la", NULL}));
-	ft_dlst_add(&_plist, new_pipe_pnode());
-	ft_dlst_add(&_plist, new_exec_pnode((char *[]){"grep", "Makefile", NULL}));
+	ft_dlst_add(&_plist, new_exec_parse((char *[]){"ls", "-la", NULL}));
+	ft_dlst_add(&_plist, new_pipe_parse());
+	ft_dlst_add(&_plist, new_exec_parse((char *[]){"grep", "Makefile", NULL}));
 
-	destroy_plist(&_plist);
+	destroy_parse_list(&_plist);
 	mu_check(NULL == _plist);
 }
 

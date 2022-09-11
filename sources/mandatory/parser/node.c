@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pnode.c                                       :+:      :+:    :+:   */
+/*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 13:42:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:19:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_parse	*new_exec_pnode(char **tokens)
+t_parse	*new_parse(void)
 {
-	t_parse	*new;
+	t_parse	*new_node;
 
-	new = new_pnode();
-	new->type = PT_EXEC;
-	new->exec.cmd = ft_strdup(tokens[0]);
-	new->exec.argv = ft_strarr_dup(tokens);
-	return (new);
+	new_node = ft_scalloc(sizeof(t_parse), 1);
+	return (new_node);
 }
 
-t_parse	*new_exec_length_pnode(char **tokens, int length)
+void	destroy_parse(t_parse **pnode)
 {
-	t_parse	*new;
+	t_parse	*_pnode;
 
-	new = new_pnode();
-	new->type = PT_EXEC;
-	new->exec.cmd = ft_strdup(tokens[0]);
-	new->exec.argv = ft_strarr_new(length);
-	new->exec.argv[length] = NULL;
-	length--;
-	while (length >= 0)
-	{
-		new->exec.argv[length] = ft_strdup(tokens[length]);
-		length--;
-	}
-	return (new);
+	if (pnode == NULL || *pnode == NULL)
+		return (print_warning(DESTROY_PNODE_NULL_WRN));
+	_pnode = *pnode;
+	ft_free_strarr(_pnode->exec.argv);
+	ft_strdel(&_pnode->exec.cmd);
+	ft_strdel(&_pnode->exec.path);
+	ft_strdel(&_pnode->file.path);
+	ft_strdel(&_pnode->delimiter);
+	free(_pnode);
+	(*pnode) = NULL;
 }

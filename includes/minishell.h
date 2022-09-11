@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 16:44:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:19:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,20 +111,20 @@ void			trim_token(char *token);
  * PARSER
 \******************************************************************************/
 
-t_parse			*new_pnode(void);
-void			destroy_pnode(t_parse **pnode);
+t_parse			*new_parse(void);
+void			destroy_parse(t_parse **pnode);
 
-t_parse			*new_exec_pnode(char **tokens);
-t_parse			*new_exec_length_pnode(char **tokens, int length);
+t_parse			*new_exec_parse(char **tokens);
+t_parse			*new_exec_length_parse(char **tokens, int length);
 
-t_parse			*new_pipe_pnode(void);
-t_parse			*new_truncate_pnode(char *file_path);
-t_parse			*new_append_pnode(char *file_path);
-t_parse			*new_heredoc_pnode(char *file_path);
-t_parse			*new_read_file_pnode(char *delimiter);
+t_parse			*new_pipe_parse(void);
+t_parse			*new_truncate_parse(char *file_path);
+t_parse			*new_append_parse(char *file_path);
+t_parse			*new_heredoc_parse(char *file_path);
+t_parse			*new_read_file_parse(char *delimiter);
 
 t_parse_list	*parse(char **tokens);
-void			destroy_plist(t_dlist **plist);
+void			destroy_parse_list(t_dlist **plist);
 
 /******************************************************************************\
  * CRYPTO
