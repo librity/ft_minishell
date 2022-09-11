@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 18:19:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:44:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,13 @@ void			trim_token(char *token);
 
 t_parse			*new_parse(void);
 void			destroy_parse(t_parse **pnode);
+
+void			add_exec(t_parse_list **list, char **tokens);
+void			add_pipe(t_parse_list **list);
+void			add_truncate(t_parse_list **list, char *file_path);
+void			add_append(t_parse_list **list, char *file_path);
+void			add_read_file(t_parse_list **list, char *file_path);
+void			add_heredoc(t_parse_list **list, char *delimiter);
 
 t_parse			*new_exec_parse(char **tokens);
 t_parse			*new_exec_length_parse(char **tokens, int length);
