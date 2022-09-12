@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 22:48:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:27:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,29 @@ MU_TEST(exec_null_tst)
 {
 	_node = new_exec(NULL);
 
+	mu_check(NULL == _node);
+}
+
+MU_TEST(exec_length_tst)
+{
+	char **command_tokens = (char *[]){"ls", "-l", "-a", NULL};
+	_node = new_exec_length(command_tokens, 2);
+
+	mu_assert_int_eq(PT_EXEC, _node->type);
+	assert_strarr_eq((char *[]){"ls", "-l", NULL}, _node->tokens);
+
+	destroy_parse(&_node);
+}
+
+MU_TEST(exec_length_null_tst)
+{
+	_node = new_exec_length(NULL, 1);
+	mu_check(NULL == _node);
+
+	_node = new_exec_length((char *[]){"ls", "-la", NULL}, -1);
+	mu_check(NULL == _node);
+
+	_node = new_exec_length((char *[]){"ls", "-la", NULL}, 3);
 	mu_check(NULL == _node);
 }
 
@@ -166,6 +189,9 @@ MU_TEST_SUITE(pnode_suite)
 
 	MU_RUN_TEST(exec_tst);
 	MU_RUN_TEST(exec_null_tst);
+
+	MU_RUN_TEST(exec_length_tst);
+	MU_RUN_TEST(exec_length_null_tst);
 
 	MU_RUN_TEST(truncate_tst);
 	MU_RUN_TEST(truncate_null_tst);
