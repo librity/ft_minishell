@@ -1,16 +1,16 @@
 # Minishell
 
 - [Variables](./variables.md)
-- [Built-ins](./built-ins.md)
+- [Built-ins](./builtins.md)
 
 ## Interpreter
 
 1. [Prompt](./prompt.md)
 2. [Expander](./expander.md)
 3. [Lexer](./lexer.md)
-4. [Syntax](./syntax.md)
-5. [Trimmer](./trimmer.md)
-6. [Parser](./parser.md)
+4. [Parser](./parser.md)
+5. [Syntax](./syntax.md)
+6. [Trimmer](./trimmer.md)
 7. [Executor](./executor.md)
 
 ### Examples
