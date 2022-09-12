@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 20:11:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:34:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	**_tokens;
 t_parse_list	*_plist;
 t_parse_list	*_expected;
-t_parse_list	*_next;
 t_parse	*_pnode;
 
 void	setup(void)
@@ -589,6 +588,54 @@ MU_TEST(eh_tst)
 	destroy_plists();
 }
 
+MU_TEST(et_null_tst)
+{
+	_plist = parse((char *[]){"a", ">", NULL});
+
+	ft_dlst_add(&_expected, new_truncate(NULL));
+	ft_dlst_add(&_expected, new_exec((char *[]){"a", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(ea_null_tst)
+{
+	_plist = parse((char *[]){"a", ">>", NULL});
+
+	ft_dlst_add(&_expected, new_append(NULL));
+	ft_dlst_add(&_expected, new_exec((char *[]){"a", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(er_null_tst)
+{
+	_plist = parse((char *[]){"a", "<", NULL});
+
+	ft_dlst_add(&_expected, new_read_file(NULL));
+	ft_dlst_add(&_expected, new_exec((char *[]){"a", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
+MU_TEST(eh_null_tst)
+{
+	_plist = parse((char *[]){"a", "<<", NULL});
+
+	ft_dlst_add(&_expected, new_heredoc(NULL));
+	ft_dlst_add(&_expected, new_exec((char *[]){"a", NULL}));
+
+	assert_dlist_equivalent(_expected, _plist, compare_pnode);
+
+	destroy_plists();
+}
+
 MU_TEST(empty_tst)
 {
 	_plist = parse((char *[]){NULL});
@@ -641,6 +688,11 @@ MU_TEST_SUITE(parse_suite)
 	MU_RUN_TEST(ea_tst);
 	MU_RUN_TEST(he_tst);
 	MU_RUN_TEST(eh_tst);
+
+	MU_RUN_TEST(et_null_tst);
+	MU_RUN_TEST(ea_null_tst);
+	MU_RUN_TEST(er_null_tst);
+	MU_RUN_TEST(eh_null_tst);
 
 	MU_RUN_TEST(empty_tst);
 	MU_RUN_TEST(null_tst);

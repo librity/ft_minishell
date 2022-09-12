@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/09 15:17:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:40:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * PARSER
 \******************************************************************************/
 
-# define DESTROY_PNODE_NULL_WRN "Can't destroy a NULL parer node."
+# define DESTROY_PNODE_NULL_WRN "Can't destroy a NULL parser node."
 
 /******************************************************************************\
  * HASH TABLE
