@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 23:17:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:03:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,15 @@ static void	parse_exec(t_parse_list **list, char **tokens)
 
 static void	parse_tokens(t_parse_list **list, char **tokens)
 {
-	char	**next_pipe;
+	int	pipe_count;
 
-	while (true)
+	pipe_count = count_pipes(tokens);
+	while (pipe_count > 0)
 	{
-		next_pipe = find_next_pipe(tokens);
-		if (next_pipe == NULL || *next_pipe == NULL)
-			break ;
 		parse_exec(list, tokens);
 		add_pipe(list);
 		tokens = find_next_pipe(tokens) + 1;
+		pipe_count--;
 	}
 	parse_exec(list, tokens);
 }
