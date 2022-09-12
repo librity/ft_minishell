@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 15:00:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 22:34:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,20 @@ typedef enum e_parse_type
 	PT_HEREDOC,
 }					t_parse_type;
 
+typedef struct s_parse
+{
+	char			**tokens;
+	char			*file_path;
+	char			*delimiter;
+	t_parse_type	type;
+}					t_parse;
+
+typedef t_dlist		t_parse_list;
+
+/******************************************************************************\
+ * CRYPTO
+\******************************************************************************/
+
 typedef struct s_file
 {
 	char			*path;
@@ -93,15 +107,15 @@ typedef struct s_exec
 	int				code;
 }					t_exec;
 
-typedef struct s_parse
+typedef struct s_fork
 {
-	t_exec			exec;
-	t_file			file;
+	t_file			infile;
 	char			*delimiter;
-	t_parse_type	type;
-}					t_parse;
 
-typedef t_dlist		t_parse_list;
+	t_exec			exec;
+
+	t_file			outfile;
+}					t_fork;
 
 /******************************************************************************\
  * CRYPTO

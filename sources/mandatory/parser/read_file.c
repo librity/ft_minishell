@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 21:13:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 22:36:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_parse	*new_read_file(char *file_path)
 
 	new = new_parse();
 	new->type = PT_READ_FILE;
-	new->file.path = ft_strdup_null(file_path);
+	new->file_path = ft_strdup_null(file_path);
 	return (new);
 }
 

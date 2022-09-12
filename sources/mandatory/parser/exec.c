@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 21:10:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:16:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ t_parse	*new_exec(char **tokens)
 		return (NULL);
 	new = new_parse();
 	new->type = PT_EXEC;
-	new->exec.cmd = ft_strdup(tokens[0]);
-	new->exec.argv = ft_strarr_dup(tokens);
+	new->tokens = ft_strarr_dup(tokens);
 	return (new);
 }
 
@@ -29,17 +28,18 @@ t_parse	*new_exec_length(char **tokens, int length)
 {
 	t_parse	*new;
 
-	if ((size_t)length > ft_strarr_len(tokens))
+	if (length < 0)
+		return (NULL);
+	if (length > (int)ft_strarr_len(tokens))
 		return (NULL);
 	new = new_parse();
 	new->type = PT_EXEC;
-	new->exec.cmd = ft_strdup(tokens[0]);
-	new->exec.argv = ft_strarr_new(length);
-	new->exec.argv[length] = NULL;
+	new->tokens = ft_strarr_new(length);
+	new->tokens[length] = NULL;
 	length--;
 	while (length >= 0)
 	{
-		new->exec.argv[length] = ft_strdup(tokens[length]);
+		new->tokens[length] = ft_strdup(tokens[length]);
 		length--;
 	}
 	return (new);

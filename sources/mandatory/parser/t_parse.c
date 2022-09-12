@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node.c                                             :+:      :+:    :+:   */
+/*   t_parse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 18:19:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 22:36:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	destroy_parse(t_parse **pnode)
 	if (pnode == NULL || *pnode == NULL)
 		return (print_warning(DESTROY_PNODE_NULL_WRN));
 	_pnode = *pnode;
-	ft_free_strarr(_pnode->exec.argv);
-	ft_strdel(&_pnode->exec.cmd);
-	ft_strdel(&_pnode->exec.path);
-	ft_strdel(&_pnode->file.path);
+	ft_free_strarr(_pnode->tokens);
+	ft_strdel(&_pnode->file_path);
 	ft_strdel(&_pnode->delimiter);
 	free(_pnode);
 	(*pnode) = NULL;
