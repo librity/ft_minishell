@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_exec.c                                         :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 20:10:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:14:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	add_exec(t_parse_list **list, char **tokens)
+t_parse	*new_heredoc(char *delimiter)
+{
+	t_parse	*new;
+
+	new = new_parse();
+	new->type = PT_HEREDOC;
+	new->delimiter = ft_strdup_null(delimiter);
+	return (new);
+}
+
+void	add_heredoc(t_parse_list **list, char *delimiter)
 {
 	t_parse	*_parse;
-	char	**end;
-	int		length;
 
-	if (tokens == NULL || *tokens == NULL)
-		return ;
-	end = find_next_pipe(tokens);
-	length = end - tokens;
-	if (length <= 0)
-		return ;
-	_parse = new_exec_length(tokens, length);
-	if (_parse == NULL)
-		return ;
+	_parse = new_heredoc(delimiter);
 	ft_dlst_add(list, _parse);
 }
