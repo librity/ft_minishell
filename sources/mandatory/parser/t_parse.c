@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operators.c                                        :+:      :+:    :+:   */
+/*   t_parse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/12 12:58:55 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/11 22:36:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	**operators(void)
+t_parse	*new_parse(void)
 {
-	static char	*_operators[] = {
-		PIPE,
-		TRUNCATE, APPEND,
-		READ_FILE, HEREDOC,
-		NULL};
+	t_parse	*new_node;
 
-	return (_operators);
+	new_node = ft_scalloc(sizeof(t_parse), 1);
+	return (new_node);
 }
 
-bool	is_operator(char *token)
+void	destroy_parse(t_parse **pnode)
 {
-	return (ft_str_in_strarr(operators(), token));
-}
+	t_parse	*_pnode;
 
-char	**find_next_operator(char **tokens)
-{
-	if (tokens == NULL)
-		return (NULL);
-	while (*tokens != NULL)
-	{
-		if (is_operator(*tokens))
-			return (tokens);
-		tokens++;
-	}
-	return (tokens);
+	if (pnode == NULL || *pnode == NULL)
+		return (print_warning(DESTROY_PNODE_NULL_WRN));
+	_pnode = *pnode;
+	ft_free_strarr(_pnode->tokens);
+	ft_strdel(&_pnode->file_path);
+	ft_strdel(&_pnode->delimiter);
+	free(_pnode);
+	(*pnode) = NULL;
 }

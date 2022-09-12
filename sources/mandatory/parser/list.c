@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operators.c                                        :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/12 12:58:55 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/11 18:19:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	**operators(void)
+static void	_destroy_parse(void *pnode)
 {
-	static char	*_operators[] = {
-		PIPE,
-		TRUNCATE, APPEND,
-		READ_FILE, HEREDOC,
-		NULL};
-
-	return (_operators);
+	destroy_parse((t_parse **)&pnode);
 }
 
-bool	is_operator(char *token)
+void	destroy_parse_list(t_parse_list **plist)
 {
-	return (ft_str_in_strarr(operators(), token));
-}
-
-char	**find_next_operator(char **tokens)
-{
-	if (tokens == NULL)
-		return (NULL);
-	while (*tokens != NULL)
-	{
-		if (is_operator(*tokens))
-			return (tokens);
-		tokens++;
-	}
-	return (tokens);
+	ft_dlstclear(plist, &_destroy_parse);
 }

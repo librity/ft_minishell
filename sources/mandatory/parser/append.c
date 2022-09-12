@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operators.c                                        :+:      :+:    :+:   */
+/*   append.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/12 12:58:55 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/11 22:35:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	**operators(void)
+t_parse	*new_append(char *file_path)
 {
-	static char	*_operators[] = {
-		PIPE,
-		TRUNCATE, APPEND,
-		READ_FILE, HEREDOC,
-		NULL};
+	t_parse	*new;
 
-	return (_operators);
+	new = new_parse();
+	new->type = PT_APPEND;
+	new->file_path = ft_strdup_null(file_path);
+	return (new);
 }
 
-bool	is_operator(char *token)
+void	add_append(t_parse_list **list, char *file_path)
 {
-	return (ft_str_in_strarr(operators(), token));
-}
+	t_parse	*_parse;
 
-char	**find_next_operator(char **tokens)
-{
-	if (tokens == NULL)
-		return (NULL);
-	while (*tokens != NULL)
-	{
-		if (is_operator(*tokens))
-			return (tokens);
-		tokens++;
-	}
-	return (tokens);
+	_parse = new_append(file_path);
+	ft_dlst_add(list, _parse);
 }

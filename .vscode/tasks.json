@@ -14,7 +14,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "detail": "compiler: /usr/bin/gcc"
+      "detail": "compiler: /usr/bin/clang-12"
     }
   ]
 }

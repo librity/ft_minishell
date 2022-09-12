@@ -16,12 +16,8 @@ jobs:
         run: python3 -m pip install norminette
       - name: Run norminette linter
         run: |
-          # Runs norminette on every .c and .h file inside includes, libs and sources:
-          find ./includes -type f \( -name \*.c -o -name \*.h \) -exec sh -c 'norminette {}' \; | tee output
-          echo "NORM_ERRORS=$(grep -E 'Error|Warning' output | wc -l)" >> $GITHUB_ENV
-          find ./sources -type f \( -name \*.c -o -name \*.h \) -exec sh -c 'norminette {}' \; | tee output
-          echo "NORM_ERRORS=$(grep -E 'Error|Warning' output | wc -l)" >> $GITHUB_ENV
-          norminette main.c | tee output
+          # Runs norminette on every .c and .h file inside includes and sources:
+          find ./includes ./sources main.c -type f \( -name \*.c -o -name \*.h \) -exec sh -c 'norminette {}' \; | tee output
           echo "NORM_ERRORS=$(grep -E 'Error|Warning' output | wc -l)" >> $GITHUB_ENV
       - name: Check norminette linter result
         run: |

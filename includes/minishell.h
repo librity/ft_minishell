@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 23:16:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:01:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include <stdio.h>
 
+# include <structs.h>
 # include <defines.h>
 # include <errors.h>
 # include <warnings.h>
-# include <structs.h>
 
 /******************************************************************************\
  * CONTROL
@@ -85,7 +85,10 @@ bool			has_valid_truncate(char **tokens);
 bool			has_valid_append(char **tokens);
 bool			has_valid_read_file(char **tokens);
 bool			has_valid_heredoc(char **tokens);
+
 bool			has_valid_pipe(char **tokens);
+char			**find_next_pipe(char **tokens);
+int				count_pipes(char **tokens);
 
 bool			is_valid_filename(char *filename);
 
@@ -97,6 +100,7 @@ bool			is_specialchar(char c);
 
 char			**operators(void);
 bool			is_operator(char *token);
+char			**find_next_operator(char **tokens);
 
 /******************************************************************************\
  * TRIMMER
@@ -104,6 +108,32 @@ bool			is_operator(char *token);
 
 void			trim_tokens(char **tokens);
 void			trim_token(char *token);
+
+/******************************************************************************\
+ * PARSER
+\******************************************************************************/
+
+t_parse			*new_parse(void);
+void			destroy_parse(t_parse **pnode);
+
+void			add_exec(t_parse_list **list, char **tokens);
+void			add_pipe(t_parse_list **list);
+void			add_truncate(t_parse_list **list, char *file_path);
+void			add_append(t_parse_list **list, char *file_path);
+void			add_read_file(t_parse_list **list, char *file_path);
+void			add_heredoc(t_parse_list **list, char *delimiter);
+
+t_parse			*new_exec(char **tokens);
+t_parse			*new_exec_length(char **tokens, int length);
+
+t_parse			*new_pipe(void);
+t_parse			*new_truncate(char *file_path);
+t_parse			*new_append(char *file_path);
+t_parse			*new_heredoc(char *file_path);
+t_parse			*new_read_file(char *delimiter);
+
+t_parse_list	*parse(char **tokens);
+void			destroy_parse_list(t_dlist **plist);
 
 /******************************************************************************\
  * CRYPTO
@@ -137,8 +167,7 @@ uint32_t		*md5_initial_digest(void);
 t_hash_table	*ht_new(void);
 void			ht_destroy(t_hash_table **table);
 
-bool			ht_insert(t_hash_table *table,
-					char *key, char *value);
+bool			ht_insert(t_hash_table *table, char *key, char *value);
 char			*ht_get(t_hash_table *table, char *key);
 bool			ht_delete(t_hash_table *table, char *key);
 

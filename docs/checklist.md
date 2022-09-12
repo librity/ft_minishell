@@ -79,19 +79,20 @@
 
 ## Expander
 
-- [x] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
+- [ ] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [x] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
   - [x] Adicionar variável `last_exit` ao `t_minishell`.
   - [x] Inicializar `$?` com `"0"`.
   - [x] Verificar se a variável é `$?` e inserir-la corretamente.
 - [x] Casos:
-  - [x] Sem variáveis
-  - [x] Variáveis de ambiente
-  - [x] Variáveis dentro de aspas simples
-  - [x] Variáveis dentro de aspas duplas
-  - [x] Variáveis dentro de aspas simples e duplas
-  - [x] String vazia
-  - [x] Ponteiro nulo
+  - [x] Sem variáveis.
+  - [x] Variável que não existe.
+  - [x] Variáveis de ambiente.
+  - [x] Variáveis dentro de aspas simples.
+  - [x] Variáveis dentro de aspas duplas.
+  - [x] Variáveis dentro de aspas simples e duplas.
+  - [x] String vazia.
+  - [x] Ponteiro nulo.
   - [ ] Não expandir delimitador de heredoc.
 - [x] Renomear Expansor para Expander
 
@@ -114,29 +115,42 @@
   - [x] Tokenização por redireção heredoc `<<`
   - [ ] (OPCIONAL) Tokenização por comentário `#`
 
+## Parser
+
+- [x] `t_parse`:
+  - [x] Criar nó para executável.
+  - [x] Criar nó para pipe.
+  - [x] Criar nó para truncate.
+  - [x] Criar nó para append.
+  - [x] Criar nó para read file.
+  - [x] Criar nó para heredoc.
+- [x] `t_parse_list`:
+  - [x] Criar uma lista linkada onde cada nó é um operador ou um executável.
+  - [x] Lidar com redirecionamentos intercalados.
+
 ## Syntax Validator
 
-- [x] Aspas:
-  - [x] Aspas simples que não fecham.
-  - [x] Aspas duplas que não fecham.
-- [x] Variáveis:
-  - [x] Nome de variáveis não pode começar com número.
-  - [x] Nome de variáveis não pode conter metacharacters:
+- [ ] Aspas:
+  - [ ] Aspas simples que não fecham.
+  - [ ] Aspas duplas que não fecham.
+- [ ] Variáveis:
+  - [ ] Nome de variáveis não pode começar com número.
+  - [ ] Nome de variáveis não pode conter metacharacters:
     - `?`, `'`, `"`, `\`, `$`, <code>\`</code>, `=`, `*`, `@`, `~`, `<`, `>`, `(`, `)`, `!`, `|`, `&`, `;`, `space`, `newline`
-- [x] Nome de arquivo:
-  - [x] Linux: não pode conter `/`.
-  - [x] Não pode conter characters especias fora de aspas: `|`, `;`, <code>\`</code>, `(`, `)`, `!`, `!`.
-- [x] Input do usuário:
-  - [x] Não pode ter `;` fora de aspas.
-  - [x] Não pode ter `\` fora de aspas.
-  - [x] Não pode ter `>` sem nome do arquivo.
-  - [x] Não pode ter `>>` sem nome do arquivo.
-  - [x] Não pode ter `<` sem nome do arquivo.
-  - [x] Não pode ter `<<` sem delimitador.
-  - [x] Não pode ter `<<` seguido de outro operador: `|`, `>`, `>>`, `<`, `<<`.
-  - [x] Não pode ter `|` sem próximo commando.
-  - [x] Não pode ter `|` seguido de `|`.
-  - [x] Primeiro token não pode ser `|`.
+- [ ] Nome de arquivo:
+  - [ ] Linux: não pode conter `/`.
+  - [ ] Não pode conter characters especias fora de aspas: `|`, `;`, <code>\`</code>, `(`, `)`, `!`, `!`.
+- [ ] Input do usuário:
+  - [ ] Não pode ter `;` fora de aspas.
+  - [ ] Não pode ter `\` fora de aspas.
+  - [ ] Não pode ter `>` sem nome do arquivo.
+  - [ ] Não pode ter `>>` sem nome do arquivo.
+  - [ ] Não pode ter `<` sem nome do arquivo.
+  - [ ] Não pode ter `<<` sem delimitador.
+  - [ ] Não pode ter `<<` seguido de outro operador: `|`, `>`, `>>`, `<`, `<<`.
+  - [ ] Não pode ter `|` sem próximo commando.
+  - [ ] Não pode ter `|` seguido de `|`.
+  - [ ] Primeiro token não pode ser `|`.
 
 ## Trimmer
 
@@ -147,7 +161,7 @@
   - [x] Não remover aspas simples dentro de aspas duplas.
   - [x] Não remover aspas duplas dentro de aspas simples.
 
-## Parser
+## Executor
 
 - [ ] Implement pipes (`|` character). The output of each command in the pipeline is connected to the input of the next command via a pipe.
 - [ ] Implement redirections:
@@ -155,9 +169,6 @@
   - [ ] `>` should redirect output.
   - [ ] `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
   - [ ] `>>` should redirect output in append mode.
-
-## Executor
-
 - [ ] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
 
 # Bonus

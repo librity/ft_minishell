@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:26:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 22:34:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,62 @@ typedef enum e_lexed_variable
 	KEY = 0,
 	VALUE = 1,
 }					t_lexed_variable;
+
+/******************************************************************************\
+ * PARSER
+\******************************************************************************/
+
+typedef enum e_parse_type
+{
+	PT_NULL = 0,
+	PT_EXEC,
+	PT_PIPE,
+	PT_TRUNCATE,
+	PT_APPEND,
+	PT_READ_FILE,
+	PT_HEREDOC,
+}					t_parse_type;
+
+typedef struct s_parse
+{
+	char			**tokens;
+	char			*file_path;
+	char			*delimiter;
+	t_parse_type	type;
+}					t_parse;
+
+typedef t_dlist		t_parse_list;
+
+/******************************************************************************\
+ * CRYPTO
+\******************************************************************************/
+
+typedef struct s_file
+{
+	char			*path;
+	int				fd;
+}					t_file;
+
+typedef struct s_exec
+{
+	char			*path;
+	char			**argv;
+	char			**envp;
+
+	char			*cmd;
+
+	int				code;
+}					t_exec;
+
+typedef struct s_fork
+{
+	t_file			infile;
+	char			*delimiter;
+
+	t_exec			exec;
+
+	t_file			outfile;
+}					t_fork;
 
 /******************************************************************************\
  * CRYPTO
