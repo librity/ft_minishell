@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 20:07:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:50:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	parse_redirections(t_parse_list **list, char **tokens)
 
 	while (tokens != NULL && *tokens != NULL)
 	{
-		if (ft_streq(*tokens, PIPE))
-			break ;
 		if (!is_operator(*tokens))
 		{
 			tokens++;
 			continue ;
 		}
+		if (ft_streq(*tokens, PIPE))
+			break ;
 		next_token = *(tokens + 1);
 		if (ft_streq(*tokens, TRUNCATE))
 			add_truncate(list, next_token);

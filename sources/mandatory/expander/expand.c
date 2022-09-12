@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 16:34:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 22:16:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ static char	*find_key_end(char *var)
 
 static char	*resolve_value(char *key)
 {
+	char	*value;
+
 	if (ft_streq(key, LAST_EXIT_KEY))
 		return (last_exit());
-	return (envht_get(key));
+	value = envht_get(key);
+	if (value == NULL)
+		value = "";
+	return (value);
 }
 
 static char	*insert_value(char *variable)

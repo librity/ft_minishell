@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:14:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 16:29:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/11 22:17:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,6 @@ MU_TEST(docs_tests)
 	test_expand("\"baz42'42'\"", "\"baz$foo'$foo'\"");
 }
 
-MU_TEST(empty_tests)
-{
-	test_expand("", "");
-}
-
-MU_TEST(null_tests)
-{
-	mu_check(NULL == expand(NULL));
-}
-
 MU_TEST(last_exit_tests)
 {
 	test_expand("0", "$?");
@@ -106,6 +96,33 @@ MU_TEST(last_exit_tests)
 	test_expand("testeando\"chocolate\"\'$?\'", "testeando\"$banana\"\'$?\'");
 }
 
+MU_TEST(no_var_tests)
+{
+	test_expand("", "$no_var");
+	test_expand("abc", "abc$no_var");
+
+	test_expand("\"abc\"", "\"abc\"$no_var");
+	test_expand("\"abc\"", "$no_var\"abc\"");
+	test_expand("abc\"abc\"", "abc$no_var\"abc\"");
+
+	test_expand("\'abc\'", "\'abc\'$no_var");
+	test_expand("\'abc\'", "$no_var\'abc\'");
+	test_expand("abc\'abc\'", "abc$no_var\'abc\'");
+
+	test_expand("\"\"", "\"$no_var\"");
+	test_expand("\'$no_var\'", "\'$no_var\'");
+}
+
+MU_TEST(empty_tests)
+{
+	test_expand("", "");
+}
+
+MU_TEST(null_tests)
+{
+	mu_check(NULL == expand(NULL));
+}
+
 MU_TEST_SUITE(test_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
@@ -113,9 +130,12 @@ MU_TEST_SUITE(test_suite)
 	MU_RUN_TEST(single_variable);
 	MU_RUN_TEST(multiple_variables);
 	MU_RUN_TEST(docs_tests);
+	MU_RUN_TEST(last_exit_tests);
+
+	MU_RUN_TEST(no_var_tests);
+
 	MU_RUN_TEST(empty_tests);
 	MU_RUN_TEST(null_tests);
-	MU_RUN_TEST(last_exit_tests);
 }
 
 MU_MAIN
