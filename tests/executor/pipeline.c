@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks.c                                            :+:      :+:    :+:   */
+/*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 16:20:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:22:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ void	teardown(void)
 	cleanup_shell();
 }
 
+MU_TEST(e_tst)
+{
+	_plist = NULL;
+
+	ft_dlst_add(&_plist, new_exec((char *[]){"ls", NULL}));
+
+	execute_pipeline(_plist);
+	// execve("/usr/bin/ls", (char *[]){"ls", NULL}, envht_to_envp());
+
+	destroy_parse_list(&_plist);
+}
+
 MU_TEST(ep_e_tst)
 {
 	_plist = NULL;
@@ -31,22 +43,23 @@ MU_TEST(ep_e_tst)
 	ft_dlst_add(&_plist, new_pipe());
 	ft_dlst_add(&_plist, new_exec((char *[]){"grep", "main", NULL}));
 
-	execute_forks(_plist);
+	execute_pipeline(_plist);
 
 	destroy_parse_list(&_plist);
 }
 
-MU_TEST_SUITE(t_fork_suite)
+MU_TEST_SUITE(pipeline_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	MU_RUN_TEST(ep_e_tst);
+	MU_RUN_TEST(e_tst);
+	// MU_RUN_TEST(ep_e_tst);
 }
 
 MU_MAIN
 {
 	MU_DIVIDER;
-	MU_RUN_SUITE(t_fork_suite);
+	MU_RUN_SUITE(pipeline_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

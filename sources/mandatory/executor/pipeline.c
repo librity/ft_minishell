@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:33:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 16:22:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:35:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ int	count_parse_pipes(t_parse_list *node)
 	return (pipe_count);
 }
 
-void	execute_forks(t_parse_list *list)
+void	execute_pipeline(t_parse_list *pipeline)
 {
 	int	pipe_count;
 
-	pipe_count = count_parse_pipes(list);
+	pipe_count = count_parse_pipes(pipeline);
 	while (pipe_count > 0)
 	{
-		execute_fork(list);
-		list = find_next_parse_pipe(list)->next;
+		execute_pipe(pipeline);
+		pipeline = find_next_parse_pipe(pipeline)->next;
 		pipe_count--;
 	}
-	execute_last_fork(list);
+	execute_last_pipe(pipeline);
 }

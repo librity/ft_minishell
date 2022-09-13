@@ -120,3 +120,23 @@ $ grep < main.c << m < Makefile <main.c main | ls
 # > m
 # archives  docs  examples  includes  libs  LICENSE  main.c  Makefile  minishell  objects  readline.supp  README.md  scripts  snippets  sources  tests
 ```
+
+- Built-ins outside a pipeline don't run in a fork.
+
+```bash
+lgeniole@dev1:~/code/ft/minishell$ cd sources/
+lgeniole@dev1:~/code/ft/minishell/sources$
+```
+
+- All Built-ins run in forks if part of a pipeline
+
+```bash
+lgeniole@dev1:~/code/ft/minishell$ echo oi | cd sources
+lgeniole@dev1:~/code/ft/minishell$
+```
+
+```bash
+$ export abc=2 | export dfg=3
+$ echo $abc $dfg
+
+```
