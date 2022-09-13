@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 14:51:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:07:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,10 @@ t_parse_type	get_parse_type(t_parse_list *node);
  * EXECUTOR
 \******************************************************************************/
 
+void			execute_forks(t_parse_list *list);
+
 void			execute_fork(t_parse_list *plist);
+void			execute_last_fork(t_parse_list *plist);
 
 void			execute_or_die(char **tokens);
 

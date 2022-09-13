@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 15:10:17 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:20:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,16 +133,16 @@ MU_TEST_SUITE(t_fork_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	// MU_RUN_TEST(e_tst);
-	// MU_RUN_TEST(ep_e_tst);
+	MU_RUN_TEST(e_tst);
+	MU_RUN_TEST(ep_e_tst);
 
-	// MU_RUN_TEST(et_tst);
-	// MU_RUN_TEST(ea_tst);
+	MU_RUN_TEST(et_tst);
+	MU_RUN_TEST(ea_tst);
 
-	// MU_RUN_TEST(er_tst);
-	// MU_RUN_TEST(eh_tst);
+	MU_RUN_TEST(er_tst);
+	MU_RUN_TEST(eh_tst);
 
-	// MU_RUN_TEST(e_relative_tst);
+	MU_RUN_TEST(e_relative_tst);
 	MU_RUN_TEST(e_absolute_tst);
 }
 

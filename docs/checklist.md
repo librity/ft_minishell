@@ -170,6 +170,10 @@
   - [ ] `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
   - [x] `>>` should redirect output in append mode.
 - [x] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
+- [x] Implementar pipe com `fork` e redirecionamentos.
+- [ ] Testar múltiplos redirecionamentos no mesmo `fork`.
+- [x] Rodar todos os pipes de uma `t_parse_list`.
+- [ ] Último pipe é redirecionado para `STDOUT`.
 - [ ] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
 
 # Bonus

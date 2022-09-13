@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 14:36:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:16:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,6 @@ void	restore_stdout(void)
 {
 	dup2(g_stdout_copy, STDOUT_FILENO);
 	close(g_stdout_copy);
-}
-
-void	dump_stdin(void)
-{
-	int		status;
-	char	*line;
-
-	ft_printf(YB "=== STDIN ===\n" RC, line);
-	while (true)
-	{
-		status = ft_get_next_line(STDIN_FILENO, &line);
-		ft_printf("%s\n", line);
-		free(line);
-		if (status == GNL_FOUND_EOF)
-			break;
-	}
 }
 
 void	write_to_stdin(char *string)

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 14:52:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:19:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,25 @@ void	execute_fork(t_parse_list *plist)
 	pipe_to_stdin(pipe);
 	close_pipe(pipe);
 	waitpid(pid, NULL, 0);
+}
+
+void	dump_stdin(void)
+{
+	int		status;
+	char	*line;
+
+	while (true)
+	{
+		status = ft_get_next_line(STDIN_FILENO, &line);
+		printf("%s\n", line);
+		free(line);
+		if (status == GNL_FOUND_EOF)
+			break ;
+	}
+}
+
+void	execute_last_fork(t_parse_list *plist)
+{
+	execute_fork(plist);
+	dump_stdin();
 }
