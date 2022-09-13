@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 15:02:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:10:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,18 @@ MU_TEST(e_relative_tst)
 	destroy_parse_list(&_plist);
 }
 
+MU_TEST(e_absolute_tst)
+{
+	_plist = NULL;
+
+	add_exec(&_plist, (char *[]){"/bin/ls", NULL});
+
+	execute_fork(_plist);
+	dump_stdin();
+
+	destroy_parse_list(&_plist);
+}
+
 MU_TEST_SUITE(t_fork_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
@@ -131,6 +143,7 @@ MU_TEST_SUITE(t_fork_suite)
 	// MU_RUN_TEST(eh_tst);
 
 	// MU_RUN_TEST(e_relative_tst);
+	MU_RUN_TEST(e_absolute_tst);
 }
 
 MU_MAIN

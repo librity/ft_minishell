@@ -165,11 +165,12 @@
 
 - [ ] Implement pipes (`|` character). The output of each command in the pipeline is connected to the input of the next command via a pipe.
 - [ ] Implement redirections:
-  - [ ] `<` should redirect input.
-  - [ ] `>` should redirect output.
+  - [x] `<` should redirect input.
+  - [x] `>` should redirect output.
   - [ ] `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
-  - [ ] `>>` should redirect output in append mode.
-- [ ] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
+  - [x] `>>` should redirect output in append mode.
+- [x] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
+- [ ] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
 
 # Bonus
 

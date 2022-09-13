@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:35:27 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:27:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:10:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	initialize_execute(t_exec *exec, char **tokens)
 	exec->argv = tokens;
 	exec->paths = get_paths_or_die();
 	exec->cmd = tokens[0];
-	exec->path = find_executable(exec->cmd, exec->paths);
+	exec->path = find_executable_or_die(exec->cmd, exec->paths);
 	if (exec->path == NULL)
 		die_full(exec->cmd, NO_CMD_ERR, EKEYEXPIRED);
 	exec->envp = envht_to_envp();
