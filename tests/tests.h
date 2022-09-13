@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:33:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:12:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ void	dump_stdin(void)
 	int		status;
 	char	*line;
 
+	ft_printf(YB "=== STDIN ===\n" RC, line);
 	while (true)
 	{
 		status = ft_get_next_line(STDIN_FILENO, &line);
-		printf("%s\n", line);
+		ft_printf("%s\n", line);
 		free(line);
 		if (status == GNL_FOUND_EOF)
 			break;

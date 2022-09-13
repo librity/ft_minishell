@@ -59,6 +59,8 @@ dkms.conf
 
 # Tests
 test
+# tests/sandbox/*
+!tests/sandbox/.keep
 
 # Examples
 examples/example.c
