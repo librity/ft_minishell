@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 14:17:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:32:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,32 @@ static void	handle_exec(t_parse_list *plist)
 	exit(EXIT_FAILURE);
 }
 
+static void	handle_read_file(t_parse_list *plist)
+{
+	char	*path;
+	int		fd;
+
+	path = get_parse_file_path(plist);
+	fd = open_infile_or_die(path);
+	file_to_stdin(fd);
+}
+
 static void	handle_child(t_parse_list *plist, int pipe[2])
 {
+	t_parse_type	type;
+
 	stdout_to_pipe(pipe);
 	close_pipe(pipe);
 	while (plist != NULL && get_parse_type(plist) != PT_PIPE)
 	{
-		if (get_parse_type(plist) == PT_TRUNCATE)
+		type = get_parse_type(plist);
+		if (type == PT_TRUNCATE)
 			handle_truncate(plist);
-		if (get_parse_type(plist) == PT_APPEND)
+		if (type == PT_APPEND)
 			handle_append(plist);
-		if (get_parse_type(plist) == PT_EXEC)
+		if (type == PT_READ_FILE)
+			handle_read_file(plist);
+		if (type == PT_EXEC)
 			handle_exec(plist);
 		plist = plist->next;
 	}

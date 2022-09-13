@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 14:15:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:30:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,19 @@ MU_TEST(ea_tst)
 	destroy_parse_list(&_plist);
 }
 
+MU_TEST(er_tst)
+{
+	_plist = NULL;
+
+	add_read_file(&_plist, "tests/sandbox/er_tst");
+	add_exec(&_plist, (char *[]){"grep", "a", NULL});
+
+	execute_fork(_plist);
+	dump_stdin();
+
+	destroy_parse_list(&_plist);
+}
+
 MU_TEST_SUITE(t_fork_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
@@ -86,7 +99,9 @@ MU_TEST_SUITE(t_fork_suite)
 	// MU_RUN_TEST(ep_e_tst);
 
 	// MU_RUN_TEST(et_tst);
-	MU_RUN_TEST(ea_tst);
+	// MU_RUN_TEST(ea_tst);
+
+	MU_RUN_TEST(er_tst);
 }
 
 MU_MAIN

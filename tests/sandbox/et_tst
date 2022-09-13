@@ -1,0 +1,16 @@
+archives
+docs
+examples
+includes
+libs
+LICENSE
+main.c
+Makefile
+minishell
+objects
+readline.supp
+README.md
+scripts
+snippets
+sources
+tests
