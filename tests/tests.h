@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 12:39:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:33:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TESTS_H
 
 # include "minunit.h"
+# include "mocks.h"
 # include <fcntl.h>
 # include <minishell.h>
 # include <sys/wait.h>
@@ -34,6 +35,21 @@ void	restore_stdout(void)
 {
 	dup2(g_stdout_copy, STDOUT_FILENO);
 	close(g_stdout_copy);
+}
+
+void	dump_stdin(void)
+{
+	int		status;
+	char	*line;
+
+	while (true)
+	{
+		status = ft_get_next_line(STDIN_FILENO, &line);
+		printf("%s\n", line);
+		free(line);
+		if (status == GNL_FOUND_EOF)
+			break;
+	}
 }
 
 void assert_strarr_eq(char **expected, char **result)

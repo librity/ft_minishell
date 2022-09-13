@@ -6,19 +6,22 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/12 13:01:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:01:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <fcntl.h>
 # include <stdio.h>
+# include <sys/wait.h>
 
-# include <structs.h>
 # include <defines.h>
 # include <errors.h>
 # include <warnings.h>
+
+# include <structs.h>
 
 /******************************************************************************\
  * CONTROL
@@ -113,52 +116,81 @@ void			trim_token(char *token);
  * PARSER
 \******************************************************************************/
 
+t_parse_list	*parse(char **tokens);
+
 t_parse			*new_parse(void);
 void			destroy_parse(t_parse **pnode);
 
-void			add_exec(t_parse_list **list, char **tokens);
-void			add_pipe(t_parse_list **list);
-void			add_truncate(t_parse_list **list, char *file_path);
-void			add_append(t_parse_list **list, char *file_path);
-void			add_read_file(t_parse_list **list, char *file_path);
-void			add_heredoc(t_parse_list **list, char *delimiter);
-
 t_parse			*new_exec(char **tokens);
 t_parse			*new_exec_length(char **tokens, int length);
+void			add_exec(t_parse_list **list, char **tokens);
 
+void			add_pipe(t_parse_list **list);
 t_parse			*new_pipe(void);
-t_parse			*new_truncate(char *file_path);
-t_parse			*new_append(char *file_path);
-t_parse			*new_heredoc(char *file_path);
-t_parse			*new_read_file(char *delimiter);
 
-t_parse_list	*parse(char **tokens);
+t_parse			*new_truncate(char *file_path);
+void			add_truncate(t_parse_list **list, char *file_path);
+
+t_parse			*new_append(char *file_path);
+void			add_append(t_parse_list **list, char *file_path);
+
+t_parse			*new_heredoc(char *file_path);
+void			add_heredoc(t_parse_list **list, char *delimiter);
+
+t_parse			*new_read_file(char *delimiter);
+void			add_read_file(t_parse_list **list, char *file_path);
+
 void			destroy_parse_list(t_dlist **plist);
 
+char			**get_parse_tokens(t_parse_list *node);
+char			*get_parse_file_path(t_parse_list *node);
+char			*get_parse_delimiter(t_parse_list *node);
+t_parse_type	get_parse_type(t_parse_list *node);
+
 /******************************************************************************\
- * CRYPTO
+ * EXECUTOR
 \******************************************************************************/
 
-uint32_t		*md5_little_endian(void *message, size_t msg_length);
-uint32_t		*md5_big_endian(void *message, size_t msg_length);
-uint32_t		md5_sum(char *message);
+void			execute_fork(t_parse_list *plist);
 
-char			*md5_hex(char *message);
-char			*md5_digest_to_hex(uint32_t *digest);
+void			execute_or_die(char **tokens);
 
-void			inspect_md5(char *message, uint32_t *digest);
-void			print_md5(uint32_t *digest);
+char			*find_executable(char *command, char **paths);
+char			*find_executable_or_die(char *command, char **paths);
 
-uint32_t		*md5(void *message, size_t msg_length);
-void			md5_pad_message(t_md5 *m);
-void			md5_calculate_digest(t_md5 *m);
-void			md5_scramble_chunk_digest(uint32_t i,
-					uint32_t words[16],
-					uint32_t _[4]);
+char			**get_paths_or_die(void);
 
-uint32_t		*md5_rotations(void);
-uint32_t		*md5_sines(void);
-uint32_t		*md5_initial_digest(void);
+pid_t			fork_or_die(void);
+
+/******************************************************************************\
+ * FILES
+\******************************************************************************/
+
+int				close_or_die(int close_me);
+
+int				open_infile_or_die(char *path);
+int				open_file_or_die(char *path);
+
+int				open_truncate_or_die(char *path);
+int				open_append_or_die(char *path);
+
+/******************************************************************************\
+ * PIPES
+\******************************************************************************/
+
+void			pipe_or_die(int pipe_fds[2]);
+void			close_pipe(int pipe_fds[2]);
+
+void			file_to_stdin(int infile_fd);
+void			stdout_to_file(int outfile_fd);
+
+void			stdin_to_pipe(int pipe_fds[2]);
+void			pipe_to_stdin(int pipe_fds[2]);
+
+void			stdout_to_pipe(int pipe_fds[2]);
+void			pipe_to_stdout(int pipe_fds[2]);
+
+void			str_to_pipe(int pipe_fds[2], char *str);
 
 /******************************************************************************\
  * HAST TABLE
@@ -186,6 +218,31 @@ char			*ht_item_to_string(t_ht_item *item);
 
 int				ht_get_index(char *message);
 t_dlist			**ht_get_index_list(t_hash_table *table, int index);
+
+/******************************************************************************\
+ * CRYPTO
+\******************************************************************************/
+
+uint32_t		*md5_little_endian(void *message, size_t msg_length);
+uint32_t		*md5_big_endian(void *message, size_t msg_length);
+uint32_t		md5_sum(char *message);
+
+char			*md5_hex(char *message);
+char			*md5_digest_to_hex(uint32_t *digest);
+
+void			inspect_md5(char *message, uint32_t *digest);
+void			print_md5(uint32_t *digest);
+
+uint32_t		*md5(void *message, size_t msg_length);
+void			md5_pad_message(t_md5 *m);
+void			md5_calculate_digest(t_md5 *m);
+void			md5_scramble_chunk_digest(uint32_t i,
+					uint32_t words[16],
+					uint32_t _[4]);
+
+uint32_t		*md5_rotations(void);
+uint32_t		*md5_sines(void);
+uint32_t		*md5_initial_digest(void);
 
 /******************************************************************************\
  * STRINGS
@@ -229,7 +286,9 @@ bool			at_heredoc(char *line);
 void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
 
-void			die(char *error_message);
+void			die(char *message);
+void			die_perror(char *location, int exit_status);
+void			die_full(char *location, char *message, int exit_status);
 
 void			print_error(char *message);
 void			print_warning(char *message);

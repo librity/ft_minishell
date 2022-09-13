@@ -6,11 +6,16 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/12 13:03:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:38:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static void	remove_redirection(char **tokens)
+{
+	ft_strarr_cutn(tokens, 2);
+}
 
 static void	parse_redirections(t_parse_list **list, char **tokens)
 {
@@ -34,7 +39,7 @@ static void	parse_redirections(t_parse_list **list, char **tokens)
 			add_read_file(list, next_token);
 		if (ft_streq(*tokens, HEREDOC))
 			add_heredoc(list, next_token);
-		ft_strarr_cutn(tokens, 2);
+		remove_redirection(tokens);
 	}
 }
 
