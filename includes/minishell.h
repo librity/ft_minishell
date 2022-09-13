@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:01:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:51:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ char			*find_executable_or_die(char *command, char **paths);
 
 char			**get_paths_or_die(void);
 
+void			hdoc_to_stdin(char *delimiter);
+
 pid_t			fork_or_die(void);
 
 /******************************************************************************\
@@ -285,6 +287,8 @@ bool			at_heredoc(char *line);
 
 void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
+
+void			shell_exit(void);
 
 void			die(char *message);
 void			die_perror(char *location, int exit_status);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 14:12:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:36:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,23 @@ void	dump_stdin(void)
 		if (status == GNL_FOUND_EOF)
 			break;
 	}
+}
+
+void	write_to_stdin(char *string)
+{
+	pid_t	pid;
+	int		_pipe[2];
+
+	pipe(_pipe);
+	pid = fork();
+	if (pid == CHILD_PROCESS_ID)
+	{
+		write(_pipe[PIPE_WRITE], string, ft_strlen(string));
+		exit(0);
+	}
+	dup2(_pipe[PIPE_READ], STDIN_FILENO);
+	close(_pipe[PIPE_READ]);
+	close(_pipe[PIPE_WRITE]);
 }
 
 void assert_strarr_eq(char **expected, char **result)
