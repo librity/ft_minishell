@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 21:13:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:35:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,33 @@ void	add_pipe(t_parse_list **list)
 
 	_parse = new_pipe();
 	ft_dlst_add(list, _parse);
+}
+
+t_parse_list	*find_next_parse_pipe(t_parse_list *node)
+{
+	if (node == NULL)
+		return (NULL);
+	while (node != NULL)
+	{
+		if (get_parse_type(node) == PT_PIPE)
+			return (node);
+		node = node->next;
+	}
+	return (node);
+}
+
+int	count_parse_pipes(t_parse_list *node)
+{
+	int	pipe_count;
+
+	if (node == NULL)
+		return (0);
+	pipe_count = 0;
+	while (node != NULL)
+	{
+		if (get_parse_type(node) == PT_PIPE)
+			pipe_count++;
+		node = node->next;
+	}
+	return (pipe_count);
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 20:16:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:35:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ void			add_exec(t_parse_list **list, char **tokens);
 
 void			add_pipe(t_parse_list **list);
 t_parse			*new_pipe(void);
+t_parse_list	*find_next_parse_pipe(t_parse_list *node);
+int				count_parse_pipes(t_parse_list *node);
 
 t_parse			*new_truncate(char *file_path);
 void			add_truncate(t_parse_list **list, char *file_path);
@@ -155,6 +157,14 @@ void			execute_pipeline(t_parse_list *list);
 
 void			execute_pipe(t_parse_list *plist);
 void			execute_last_pipe(t_parse_list *plist);
+
+void			handle_pipe_sequence(t_parse_list *node);
+
+void			handle_read_file(t_parse_list *node);
+void			handle_heredoc(t_parse_list *node);
+void			handle_truncate(t_parse_list *node);
+void			handle_append(t_parse_list *node);
+void			handle_exec(t_parse_list *node);
 
 void			execute_or_die(char **tokens);
 

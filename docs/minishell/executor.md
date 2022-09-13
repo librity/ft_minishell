@@ -140,3 +140,11 @@ $ export abc=2 | export dfg=3
 $ echo $abc $dfg
 
 ```
+
+## Resources
+
+### Pipes and File Descriptors
+
+- https://stackoverflow.com/questions/50669417/piping-to-stdout
+- https://stackoverflow.com/questions/31074433/can-i-dump-stdin-with-gdb
+- https://unix.stackexchange.com/questions/115313/dump-processs-stdin-and-stdout
