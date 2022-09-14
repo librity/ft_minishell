@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 14:27:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:55:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <limits.h>
 
 # include <defines.h>
 # include <errors.h>
@@ -180,6 +181,8 @@ pid_t			fork_or_die(void);
 /******************************************************************************\
  * BUILTINS
 \******************************************************************************/
+
+bool			cd(char **argv);
 
 char			**builtins(void);
 bool			is_builtin(char *cmd);
