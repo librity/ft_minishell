@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 22:34:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:01:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,22 @@ typedef struct s_parse
 typedef t_dlist		t_parse_list;
 
 /******************************************************************************\
- * CRYPTO
+ * EXECUTOR
 \******************************************************************************/
+
+typedef enum e_input_type
+{
+	IT_NULL = 0,
+	IT_READ_FILE,
+	IT_HEREDOC,
+}					t_input_type;
+
+typedef enum e_output_type
+{
+	OT_NULL = 0,
+	OT_TRUNCATE,
+	OT_APPEND,
+}					t_output_type;
 
 typedef struct s_file
 {
@@ -103,19 +117,24 @@ typedef struct s_exec
 	char			**envp;
 
 	char			*cmd;
+	char			**paths;
 
 	int				code;
 }					t_exec;
 
 typedef struct s_fork
 {
+	t_input_type	in_type;
 	t_file			infile;
 	char			*delimiter;
 
 	t_exec			exec;
 
+	t_output_type	out_type;
 	t_file			outfile;
 }					t_fork;
+
+typedef t_dlist		t_fork_list;
 
 /******************************************************************************\
  * CRYPTO

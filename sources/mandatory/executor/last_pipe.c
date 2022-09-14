@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   last_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:09:21 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/13 20:29:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	cleanup(void)
+static void	handle_last_child(t_parse_list *pipeline)
 {
-	cleanup_shell();
+	handle_pipe_sequence(pipeline);
 }
 
-void	die(char *message)
+void	execute_last_pipe(t_parse_list *pipeline)
 {
-	print_error(message);
-	cleanup();
-	exit(EXIT_FAILURE);
-}
+	pid_t	pid;
 
-void	die_perror(char *location, int exit_status)
-{
-	ft_putstr(RB);
-	perror(location);
-	ft_putstr(RC);
-	cleanup();
-	exit(exit_status);
-}
-
-void	die_full(char *location, char *message, int exit_status)
-{
-	ft_printf(RB "%s: %s\n", RC, location, message, RC);
-	cleanup();
-	exit(exit_status);
+	pid = fork_or_die();
+	if (pid == CHILD_PROCESS_ID)
+		handle_last_child(pipeline);
+	waitpid(pid, NULL, 0);
 }

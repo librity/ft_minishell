@@ -61,6 +61,7 @@
     "errno.h": "c",
     "features.h": "c",
     "minunit.h": "c",
-    "fcntl.h": "c"
+    "fcntl.h": "c",
+    "compare": "c"
   }
 }

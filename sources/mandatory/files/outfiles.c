@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   outfiles.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:09:21 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/01 22:04:01 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/13 12:46:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	cleanup(void)
+int	open_truncate_or_die(char *path)
 {
-	cleanup_shell();
+	int	fd;
+	int	flags;
+
+	flags = O_CREAT | O_WRONLY | O_TRUNC;
+	fd = open(path, flags, CREATE_PERMISSION);
+	if (fd < 0)
+		die_perror(path, EXIT_FAILURE);
+	return (fd);
 }
 
-void	die(char *message)
+int	open_append_or_die(char *path)
 {
-	print_error(message);
-	cleanup();
-	exit(EXIT_FAILURE);
-}
+	int	fd;
+	int	flags;
 
-void	die_perror(char *location, int exit_status)
-{
-	ft_putstr(RB);
-	perror(location);
-	ft_putstr(RC);
-	cleanup();
-	exit(exit_status);
-}
-
-void	die_full(char *location, char *message, int exit_status)
-{
-	ft_printf(RB "%s: %s\n", RC, location, message, RC);
-	cleanup();
-	exit(exit_status);
+	flags = O_CREAT | O_WRONLY | O_APPEND;
+	fd = open(path, flags, CREATE_PERMISSION);
+	if (fd < 0)
+		die_perror(path, EXIT_FAILURE);
+	return (fd);
 }

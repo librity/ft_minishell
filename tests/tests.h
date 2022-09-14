@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/10 12:39:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:16:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TESTS_H
 
 # include "minunit.h"
+# include "mocks.h"
 # include <fcntl.h>
 # include <minishell.h>
 # include <sys/wait.h>
@@ -34,6 +35,23 @@ void	restore_stdout(void)
 {
 	dup2(g_stdout_copy, STDOUT_FILENO);
 	close(g_stdout_copy);
+}
+
+void	write_to_stdin(char *string)
+{
+	pid_t	pid;
+	int		_pipe[2];
+
+	pipe(_pipe);
+	pid = fork();
+	if (pid == CHILD_PROCESS_ID)
+	{
+		write(_pipe[PIPE_WRITE], string, ft_strlen(string));
+		exit(0);
+	}
+	dup2(_pipe[PIPE_READ], STDIN_FILENO);
+	close(_pipe[PIPE_READ]);
+	close(_pipe[PIPE_WRITE]);
 }
 
 void assert_strarr_eq(char **expected, char **result)

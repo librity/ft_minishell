@@ -24,27 +24,27 @@
 #define MINUNIT_MINUNIT_H
 
 /* Black, Red, Green, Yellow, Blue, Purple, Cyan, White */
-# define BK "\033[0;30m"
-# define R "\033[0;31m"
-# define G "\033[0;32m"
-# define Y "\033[0;33m"
-# define B "\033[0;34m"
-# define P "\033[0;35m"
-# define C "\033[0;36m"
-# define W "\033[0;37m"
+# define MU_BK "\001\033[0;30m\002"
+# define MU_R "\001\033[0;31m\002"
+# define MU_G "\001\033[0;32m\002"
+# define MU_Y "\001\033[0;33m\002"
+# define MU_B "\001\033[0;34m\002"
+# define MU_P "\001\033[0;35m\002"
+# define MU_C "\001\033[0;36m\002"
+# define MU_W "\001\033[0;37m\002"
 
 /* Bold */
-# define BKB "\033[1;30m"
-# define RB "\033[1;31m"
-# define GB "\033[1;32m"
-# define YB "\033[1;33m"
-# define BB "\033[1;34m"
-# define PB "\033[1;35m"
-# define CB "\033[1;36m"
-# define WB "\033[1;37m"
+# define MU_BKB "\001\033[1;30m\002"
+# define MU_RB "\001\033[1;31m\002"
+# define MU_GB "\001\033[1;32m\002"
+# define MU_YB "\001\033[1;33m\002"
+# define MU_BB "\001\033[1;34m\002"
+# define MU_PB "\001\033[1;35m\002"
+# define MU_CB "\001\033[1;36m\002"
+# define MU_WB "\001\033[1;37m\002"
 
 /* Reset Color */
-# define RC "\033[0m"
+# define MU_RC "\001\033[0m\002"
 
 #ifdef __cplusplus
 	extern "C" {
@@ -123,7 +123,7 @@ static void (*minunit_teardown)(void) = NULL;
 
 /*  Prints the divider: argv MUST be in scope. */
 #define MU_DIVIDER MU__SAFE_BLOCK(\
-	printf(PB "\n===================== RUNNING %s =====================\n" RC, argv[0]);\
+	printf(MU_PB "\n===================== RUNNING %s =====================\n" MU_RC, argv[0]);\
 )
 
 /*  Run test suite and unset setup and teardown functions */
@@ -151,7 +151,7 @@ static void (*minunit_teardown)(void) = NULL;
 	minunit_run++;\
 	if (minunit_status) {\
 		minunit_fail++;\
-		printf(RB "F");\
+		printf(MU_RB "F" MU_RC);\
 		printf("\n%s\n", minunit_last_message);\
 	}\
 	fflush(stdout);\
@@ -162,14 +162,14 @@ static void (*minunit_teardown)(void) = NULL;
 #define MU_REPORT() MU__SAFE_BLOCK(\
 	double minunit_end_real_timer;\
 	double minunit_end_proc_timer;\
-	printf(YB "\n\n%d tests, %d assertions, " RC, minunit_run, minunit_assert);\
+	printf(MU_YB "\n\n%d tests, %d assertions, " MU_RC, minunit_run, minunit_assert);\
 	if (minunit_fail != 0)\
-		printf(RB "%d failures\n" RC, minunit_fail);\
+		printf(MU_RB "%d failures\n" MU_RC, minunit_fail);\
 	else\
-		printf(GB "%d failures\n" RC, minunit_fail);\
+		printf(MU_GB "%d failures\n" MU_RC, minunit_fail);\
 	minunit_end_real_timer = mu_timer_real();\
 	minunit_end_proc_timer = mu_timer_cpu();\
-	printf(C "\nFinished in %.8f seconds (real) %.8f seconds (proc)\n\n" RC,\
+	printf(MU_C "\nFinished in %.8f seconds (real) %.8f seconds (proc)\n\n" MU_RC,\
 		minunit_end_real_timer - minunit_real_timer,\
 		minunit_end_proc_timer - minunit_proc_timer);\
 )
@@ -179,17 +179,17 @@ static void (*minunit_teardown)(void) = NULL;
 #define mu_check(test) MU__SAFE_BLOCK(\
 	minunit_assert++;\
 	if (!(test)) {\
-		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, RB "%s failed:\n\t%s:%d: %s" RC, __func__, __FILE__, __LINE__, #test);\
+		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, MU_RB "%s failed:\n\t%s:%d: %s" MU_RC, __func__, __FILE__, __LINE__, #test);\
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(GB "." RC);\
+		printf(MU_GB "." MU_RC);\
 	}\
 )
 
 #define mu_fail(message) MU__SAFE_BLOCK(\
 	minunit_assert++;\
-	snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, RB "%s failed:\n\t%s:%d: %s" RC, __func__, __FILE__, __LINE__, message);\
+	snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, MU_RB "%s failed:\n\t%s:%d: %s" MU_RC, __func__, __FILE__, __LINE__, message);\
 	minunit_status = 1;\
 	return;\
 )
@@ -197,11 +197,11 @@ static void (*minunit_teardown)(void) = NULL;
 #define mu_assert(test, message) MU__SAFE_BLOCK(\
 	minunit_assert++;\
 	if (!(test)) {\
-		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, RB "%s failed:\n\t%s:%d: %s" RC, __func__, __FILE__, __LINE__, message);\
+		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, MU_RB "%s failed:\n\t%s:%d: %s" MU_RC, __func__, __FILE__, __LINE__, message);\
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(GB "." RC);\
+		printf(MU_GB "." MU_RC);\
 	}\
 )
 
@@ -212,11 +212,11 @@ static void (*minunit_teardown)(void) = NULL;
 	minunit_tmp_e = (expected);\
 	minunit_tmp_r = (result);\
 	if (minunit_tmp_e != minunit_tmp_r) {\
-		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, RB "%s failed:\n\t%s:%d: %d expected but was %d" RC, __func__, __FILE__, __LINE__, minunit_tmp_e, minunit_tmp_r);\
+		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, MU_RB "%s failed:\n\t%s:%d: %d expected but was %d" MU_RC, __func__, __FILE__, __LINE__, minunit_tmp_e, minunit_tmp_r);\
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(GB "." RC);\
+		printf(MU_GB "." MU_RC);\
 	}\
 )
 
@@ -228,11 +228,11 @@ static void (*minunit_teardown)(void) = NULL;
 	minunit_tmp_r = (result);\
 	if (fabs(minunit_tmp_e-minunit_tmp_r) > MINUNIT_EPSILON) {\
 		int minunit_significant_figures = 1 - log10(MINUNIT_EPSILON);\
-		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, RB "%s failed:\n\t%s:%d: %.*g expected but was %.*g" RC, __func__, __FILE__, __LINE__, minunit_significant_figures, minunit_tmp_e, minunit_significant_figures, minunit_tmp_r);\
+		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, MU_RB "%s failed:\n\t%s:%d: %.*g expected but was %.*g" MU_RC, __func__, __FILE__, __LINE__, minunit_significant_figures, minunit_tmp_e, minunit_significant_figures, minunit_tmp_r);\
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(GB "." RC);\
+		printf(MU_GB "." MU_RC);\
 	}\
 )
 
@@ -247,11 +247,11 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_tmp_r = "<null pointer>";\
 	}\
 	if(strcmp(minunit_tmp_e, minunit_tmp_r)) {\
-		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s failed:\n\t%s:%d: '%s' expected but was '%s'", __func__, __FILE__, __LINE__, minunit_tmp_e, minunit_tmp_r);\
+		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, MU_RB "%s failed:\n\t%s:%d: '%s' expected but was '%s'" MU_RC, __func__, __FILE__, __LINE__, minunit_tmp_e, minunit_tmp_r);\
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(GB "." RC);\
+		printf(MU_GB "." MU_RC);\
 	}\
 )
 

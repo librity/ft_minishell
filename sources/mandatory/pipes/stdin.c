@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   stdin.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:09:21 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/01 19:28:03 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/12 21:34:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	cleanup(void)
+void	stdin_to_pipe(int pipe_fds[2])
 {
-	cleanup_shell();
+	dup2(pipe_fds[PIPE_WRITE], STDIN_FILENO);
 }
 
-void	die(char *message)
+void	pipe_to_stdin(int pipe_fds[2])
 {
-	print_error(message);
-	cleanup();
-	exit(EXIT_FAILURE);
-}
-
-void	die_perror(char *location, int exit_status)
-{
-	ft_putstr(RB);
-	perror(location);
-	ft_putstr(RC);
-	cleanup();
-	exit(exit_status);
-}
-
-void	die_full(char *location, char *message, int exit_status)
-{
-	ft_printf(RB "%s: %s\n", RC, location, message, RC);
-	cleanup();
-	exit(exit_status);
+	dup2(pipe_fds[PIPE_READ], STDIN_FILENO);
 }

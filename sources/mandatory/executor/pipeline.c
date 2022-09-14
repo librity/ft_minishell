@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:09:21 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/13 15:33:02 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/13 20:34:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	cleanup(void)
+void	execute_pipeline(t_parse_list *pipeline)
 {
-	cleanup_shell();
-}
+	int	pipe_count;
 
-void	die(char *message)
-{
-	print_error(message);
-	cleanup();
-	exit(EXIT_FAILURE);
-}
-
-void	die_perror(char *location, int exit_status)
-{
-	ft_putstr(RB);
-	perror(location);
-	ft_putstr(RC);
-	cleanup();
-	exit(exit_status);
-}
-
-void	die_full(char *location, char *message, int exit_status)
-{
-	ft_printf(RB "%s: %s\n", RC, location, message, RC);
-	cleanup();
-	exit(exit_status);
+	pipe_count = count_parse_pipes(pipeline);
+	while (pipe_count > 0)
+	{
+		execute_pipe(pipeline);
+		pipeline = find_next_parse_pipe(pipeline)->next;
+		pipe_count--;
+	}
+	execute_last_pipe(pipeline);
 }

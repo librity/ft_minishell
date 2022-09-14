@@ -1,59 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 20:35:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:09:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_parse	*new_pipe(void)
+char	**get_parse_tokens(t_parse_list *node)
 {
-	t_parse	*new;
+	t_parse	*parse;
 
-	new = new_parse();
-	new->type = PT_PIPE;
-	return (new);
-}
-
-void	add_pipe(t_parse_list **list)
-{
-	t_parse	*_parse;
-
-	_parse = new_pipe();
-	ft_dlst_add(list, _parse);
-}
-
-t_parse_list	*find_next_parse_pipe(t_parse_list *node)
-{
 	if (node == NULL)
 		return (NULL);
-	while (node != NULL)
-	{
-		if (get_parse_type(node) == PT_PIPE)
-			return (node);
-		node = node->next;
-	}
-	return (node);
+	parse = node->content;
+	return (parse->tokens);
 }
 
-int	count_parse_pipes(t_parse_list *node)
+char	*get_parse_file_path(t_parse_list *node)
 {
-	int	pipe_count;
+	t_parse	*parse;
 
 	if (node == NULL)
-		return (0);
-	pipe_count = 0;
-	while (node != NULL)
-	{
-		if (get_parse_type(node) == PT_PIPE)
-			pipe_count++;
-		node = node->next;
-	}
-	return (pipe_count);
+		return (NULL);
+	parse = node->content;
+	return (parse->file_path);
+}
+
+char	*get_parse_delimiter(t_parse_list *node)
+{
+	t_parse	*parse;
+
+	if (node == NULL)
+		return (NULL);
+	parse = node->content;
+	return (parse->delimiter);
+}
+
+t_parse_type	get_parse_type(t_parse_list *node)
+{
+	t_parse	*parse;
+
+	if (node == NULL)
+		return (PT_NULL);
+	parse = node->content;
+	if (parse == NULL)
+		return (PT_NULL);
+	return (parse->type);
 }
