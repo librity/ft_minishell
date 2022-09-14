@@ -121,13 +121,74 @@ $ grep < main.c << m < Makefile <main.c main | ls
 # archives  docs  examples  includes  libs  LICENSE  main.c  Makefile  minishell  objects  readline.supp  README.md  scripts  snippets  sources  tests
 ```
 
+### Heredoc
+
 - Heredoc runs before all redirections.
 
 ```bash
 $ grep < p << l a | cat
-# > l
+> l
 # -bash: p: No such file or directory
 ```
+
+```bash
+$ grep << p < p << l a | cat
+> p
+> l
+# -bash: p: No such file or directory
+```
+
+- Uses last heredoc
+
+```bash
+$ grep << p << l a | cat
+> a
+> b
+> l
+> abc
+> p
+> a
+> v
+> aaaaa
+> l
+# a
+# aaaaa
+```
+
+- Uses last heredoc
+
+```bash
+$ grep << p < main.c << l a | cat
+> a
+> a
+> a
+> l
+> p
+> a
+> a
+> aaaaa
+> l
+# a
+# a
+# aaaaa
+```
+
+- Except if there's an input redirection afterwards
+
+```bash
+$ grep << p << l < main.c a | cat
+> a
+> aa
+> p
+> sd
+> as
+> l
+# /*   main.c                                             :+:      :+:    :+:   */
+# /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+# ...
+```
+
+# aaaaa
 
 - Built-ins outside a pipeline don't run in a fork.
 
