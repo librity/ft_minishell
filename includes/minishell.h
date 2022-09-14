@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 15:17:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:47:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,7 @@ bool			is_builtin(char *cmd);
 
 bool			cd(char **argv);
 bool			echo(char **tokens);
-
-
+bool			pwd(char **tokens);
 
 /******************************************************************************\
  * FILES
