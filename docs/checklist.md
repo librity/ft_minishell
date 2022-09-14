@@ -175,9 +175,11 @@
 - [x] Executar todos os pipes de uma pipeline.
 - [ ] Testar múltiplos redirecionamentos na mesma pipeline.
 - [x] Último pipe é redirecionado para `STDOUT`.
-- [ ] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
-- [ ] Se o commando é um builtin dentro de uma pipeline executá-lo em um `fork()`.
-- [ ] Se o commando é um builtin fora de uma pipeline executá-lo sem `fork()`.
+- [ ] Heredoc roda antes que todos os outros redirecionamentos, possivelmente dentro do processo pai.
+- Built-ins:
+  - [ ] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
+  - [ ] Se o commando é um builtin dentro de uma pipeline executá-lo em um `fork()`.
+  - [ ] Se o commando é um builtin fora de uma pipeline executá-lo sem `fork()`.
 
 # Bonus
 

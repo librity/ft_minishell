@@ -6,13 +6,14 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 20:16:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:47:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
 t_parse_list	*_plist;
+t_parse	*_pnode;
 
 void	setup(void)
 {
@@ -52,11 +53,11 @@ MU_TEST(ep_e_tst)
 	destroy_parse_list(&_plist);
 }
 
-MU_TEST(et_tst)
+MU_TEST(te_tst)
 {
 	_plist = NULL;
 
-	add_truncate(&_plist, "tests/sandbox/et_tst");
+	add_truncate(&_plist, "tests/sandbox/te_tst");
 	add_exec(&_plist, (char *[]){"ls", NULL});
 
 	execute_pipe(_plist);
@@ -65,11 +66,11 @@ MU_TEST(et_tst)
 	destroy_parse_list(&_plist);
 }
 
-MU_TEST(ea_tst)
+MU_TEST(ae_tst)
 {
 	_plist = NULL;
 
-	add_append(&_plist, "tests/sandbox/ea_tst");
+	add_append(&_plist, "tests/sandbox/ae_tst");
 	add_exec(&_plist, (char *[]){"ls", NULL});
 
 	execute_pipe(_plist);
@@ -78,11 +79,11 @@ MU_TEST(ea_tst)
 	destroy_parse_list(&_plist);
 }
 
-MU_TEST(er_tst)
+MU_TEST(re_tst)
 {
 	_plist = NULL;
 
-	add_read_file(&_plist, "tests/sandbox/er_tst");
+	add_read_file(&_plist, "tests/sandbox/re_tst");
 	add_exec(&_plist, (char *[]){"grep", "a", NULL});
 
 	execute_pipe(_plist);
@@ -91,7 +92,7 @@ MU_TEST(er_tst)
 	destroy_parse_list(&_plist);
 }
 
-MU_TEST(eh_tst)
+MU_TEST(he_tst)
 {
 	_plist = NULL;
 
@@ -105,11 +106,28 @@ MU_TEST(eh_tst)
 	destroy_parse_list(&_plist);
 }
 
+
+MU_TEST(hhre_tst)
+{
+	_plist = NULL;
+
+	add_heredoc(&_plist, "1");
+	add_heredoc(&_plist, "2");
+	add_read_file(&_plist, "tests/sandbox/hhre_tst");
+	add_exec(&_plist, (char *[]){"grep", "a", NULL});
+
+	// write_to_stdin("a\nb\nc\n1\nada\naaa\n2\nabc\ndfg\naba");
+	execute_pipe(_plist);
+	ft_dump_stdin();
+
+	destroy_parse_list(&_plist);
+}
+
 MU_TEST(e_relative_tst)
 {
 	_plist = NULL;
 
-	add_exec(&_plist, (char *[]){"./tests/sandbox/ls", NULL});
+	add_exec(&_plist, (char *[]){"tests/sandbox/ls", NULL});
 
 	execute_pipe(_plist);
 	ft_dump_stdin();
@@ -133,17 +151,19 @@ MU_TEST_SUITE(pipe_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	MU_RUN_TEST(e_tst);
-	MU_RUN_TEST(ep_e_tst);
+	// MU_RUN_TEST(e_tst);
+	// MU_RUN_TEST(ep_e_tst);
 
-	MU_RUN_TEST(et_tst);
-	MU_RUN_TEST(ea_tst);
+	// MU_RUN_TEST(te_tst);
+	// MU_RUN_TEST(ae_tst);
 
-	MU_RUN_TEST(er_tst);
-	MU_RUN_TEST(eh_tst);
+	// MU_RUN_TEST(re_tst);
+	// MU_RUN_TEST(he_tst);
 
-	MU_RUN_TEST(e_relative_tst);
-	MU_RUN_TEST(e_absolute_tst);
+	// MU_RUN_TEST(hhre_tst);
+
+	// MU_RUN_TEST(e_relative_tst);
+	// MU_RUN_TEST(e_absolute_tst);
 }
 
 MU_MAIN

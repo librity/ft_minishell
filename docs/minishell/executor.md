@@ -121,6 +121,14 @@ $ grep < main.c << m < Makefile <main.c main | ls
 # archives  docs  examples  includes  libs  LICENSE  main.c  Makefile  minishell  objects  readline.supp  README.md  scripts  snippets  sources  tests
 ```
 
+- Heredoc runs before all redirections.
+
+```bash
+$ grep < p << l a | cat
+# > l
+# -bash: p: No such file or directory
+```
+
 - Built-ins outside a pipeline don't run in a fork.
 
 ```bash
@@ -148,3 +156,7 @@ $ echo $abc $dfg
 - https://stackoverflow.com/questions/50669417/piping-to-stdout
 - https://stackoverflow.com/questions/31074433/can-i-dump-stdin-with-gdb
 - https://unix.stackexchange.com/questions/115313/dump-processs-stdin-and-stdout
+
+### Clear `STDIN`
+
+- https://stackoverflow.com/questions/36715002/how-to-clear-stdin-before-getting-new-input
