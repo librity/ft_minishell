@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:18:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 15:05:39 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:34:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool	cd(char **tokens)
 {
 	char	*path;
 
+	if (tokens == NULL)
+		return (false);
 	if (ft_strarr_len(tokens) != 2)
 		return (false);
 	path = tokens[1];
