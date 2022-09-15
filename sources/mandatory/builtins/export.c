@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 16:28:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:36:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ bool	export(char **tokens)
 			continue ;
 		}
 		value = extract_value(*tokens);
+		if (ft_streq(value, ""))
+		{
+			free(key);
+			free(value);
+			tokens++;
+			continue ;
+		}
 		envht_insert(key, value);
 		free(key);
 		free(value);

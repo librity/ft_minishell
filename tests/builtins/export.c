@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 16:30:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:38:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ MU_TEST(export_tst)
 	mu_check(true == export((char *[]){"export", "fire=walk", "with=me", NULL}));
 	mu_assert_string_eq(envht_get("fire"), "walk");
 	mu_assert_string_eq(envht_get("with"), "me");
+
+	mu_check(true == export((char *[]){"export", "idade=", NULL}));
+	mu_check(NULL == envht_get("idade"));
 }
 
 MU_TEST_SUITE(export_suite)
