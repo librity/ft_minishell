@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 15:28:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:12:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,8 @@
  * RUNTIME
 \******************************************************************************/
 
-# define PRINT_ERROR_PREFIX "ERROR:\t"
-# define PRINT_WARNING_PREFIX "WRNNG:\t"
+# define MINISHELL_PREFIX "minishell: "
+# define PRINT_ERROR_PREFIX "minishell: ERROR: "
+# define PRINT_WARNING_PREFIX "minishell: WRNNG: "
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 16:28:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:14:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,6 +321,7 @@ void			die_perror(char *location, int exit_status);
 void			die_full(char *location, char *message, int exit_status);
 
 void			print_error(char *message);
+void			print_location_error(char *location, char *message);
 void			print_warning(char *message);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 13:43:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:30:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,23 @@ char	*extract_value(char *declaration)
 	return (value);
 }
 
+void	print_identifier_err(char *declaration)
+{
+	char	*message;
+
+	message = ft_strnew();
+	message = ft_strjoin_free(message, "`");
+	message = ft_strjoin_free(message, declaration);
+	message = ft_strjoin_free(message, "': not a valid identifier");
+	print_location_error(EXPORT, message);
+	free(message);
+}
+
 bool	export(char **tokens)
 {
 	char	*key;
 	char	*value;
 	bool	status;
-
 
 	if (tokens == NULL || *tokens == NULL)
 		return (false);
@@ -69,22 +80,20 @@ bool	export(char **tokens)
 		dump_env();
 		return (true);
 	}
-	tokens++;
 	status = true;
-	while (*tokens != NULL)
+	while (++tokens && *tokens != NULL)
 	{
 		key = extract_key(*tokens);
 		if (!is_valid_variable(key))
 		{
 			free(key);
 			status = false;
-			tokens++;
+			print_identifier_err(*tokens);
 			continue ;
 		}
 		if (is_empty_variable(*tokens))
 		{
 			free(key);
-			tokens++;
 			continue ;
 		}
 		value = extract_value(*tokens);
@@ -92,13 +101,11 @@ bool	export(char **tokens)
 		{
 			free(key);
 			free(value);
-			tokens++;
 			continue ;
 		}
 		envht_insert(key, value);
 		free(key);
 		free(value);
-		tokens++;
 	}
 	return (status);
 }

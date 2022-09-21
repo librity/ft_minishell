@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:09:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:23:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,15 @@ void	die(char *message)
 
 void	die_perror(char *location, int exit_status)
 {
-	ft_putstr(RB);
+	ft_putstr_fd(MINISHELL_PREFIX, STDERR_FILENO);
 	perror(location);
-	ft_putstr(RC);
 	cleanup();
 	exit(exit_status);
 }
 
 void	die_full(char *location, char *message, int exit_status)
 {
-	ft_printf(RB "%s: %s\n", RC, location, message, RC);
+	print_location_error(location, message);
 	cleanup();
 	exit(exit_status);
 }

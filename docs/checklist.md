@@ -61,7 +61,12 @@
   - [ ] `cd` with only a relative or absolute path
   - [ ] `pwd` with no options
   - [ ] `export` with no options
-    - [ ] Verificar nome de variável com erro.
+    - [x] Inserir uma ou mais variáveis.
+    - [x] Verificar variável sem valor.
+    - [x] Verificar variável sem chave com erro.
+    - [x] Verificar variável vazia com erro.
+    - [x] Verificar nome de variável com erro.
+    - [ ] Sem argumentos, jogar as variáveis na tela.
   - [ ] `unset` with no options
   - [ ] `env` with no options or arguments
   - [ ] `exit` with no options
