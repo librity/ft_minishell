@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_dump.c                                      :+:      :+:    :+:   */
+/*   export_empty.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:52:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:53:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	print_item(t_ht_item *item)
+static bool	is_empty_variable(char *declaration)
 {
-	if (item == NULL)
-		return ;
-	if (item->key == NULL)
-		return ;
-	if (item->value == NULL)
-		return ;
-	printf("declare -x %s=\"%s\"\n", item->key, item->value);
+	char	*equals;
+
+	equals = ft_strchr(declaration, '=');
+	if (equals != NULL)
+		return (false);
+	if (*(equals + 1) != '\0')
+		return (false);
+	return (true);
 }
 
-bool	exp_dump(char **tokens)
+bool	exp_handled_empty_variable(char **tokens, t_export *_ctl)
 {
-	if (ft_strarr_len(tokens) > 1)
+	if (!is_empty_variable(*tokens))
 		return (false);
-	ht_for_each(envht(), &print_item);
+	exp_cleanup(_ctl);
+	return (true);
+}
+
+bool	exp_handled_empty_value(t_export *_ctl)
+{
+	if (!ft_streq(_ctl->value, ""))
+		return (false);
+	exp_cleanup(_ctl);
 	return (true);
 }

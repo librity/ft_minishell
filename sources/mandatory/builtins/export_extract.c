@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_dump.c                                      :+:      :+:    :+:   */
+/*   export_extract.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:52:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:53:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	print_item(t_ht_item *item)
+char	*exp_extract_key(char *declaration)
 {
-	if (item == NULL)
-		return ;
-	if (item->key == NULL)
-		return ;
-	if (item->value == NULL)
-		return ;
-	printf("declare -x %s=\"%s\"\n", item->key, item->value);
+	char	*equalsp;
+	size_t	length;
+
+	equalsp = ft_strchr(declaration, '=');
+	if (equalsp == NULL)
+		return (ft_strdup(declaration));
+	if (equalsp == declaration)
+		return (ft_strdup(""));
+	length = equalsp - declaration;
+	return (ft_substr(declaration, 0, length));
 }
 
-bool	exp_dump(char **tokens)
+char	*exp_extract_value(char *declaration)
 {
-	if (ft_strarr_len(tokens) > 1)
-		return (false);
-	ht_for_each(envht(), &print_item);
-	return (true);
+	char	*equalsp;
+	char	*nullp;
+	char	*value;
+
+	equalsp = ft_strchr(declaration, EQUALS);
+	nullp = ft_strchr(declaration, NULL_CHAR);
+	value = ft_substr(equalsp + 1, 0, nullp - equalsp - 1);
+	return (value);
 }

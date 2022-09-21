@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_dump.c                                      :+:      :+:    :+:   */
+/*   export_invalid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:52:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:53:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	print_item(t_ht_item *item)
+static void	print_identifier_err(char *declaration)
 {
-	if (item == NULL)
-		return ;
-	if (item->key == NULL)
-		return ;
-	if (item->value == NULL)
-		return ;
-	printf("declare -x %s=\"%s\"\n", item->key, item->value);
+	char	*message;
+
+	message = ft_strnew();
+	message = ft_strjoin_free(message, "`");
+	message = ft_strjoin_free(message, declaration);
+	message = ft_strjoin_free(message, "': not a valid identifier");
+	print_location_error(EXPORT, message);
+	free(message);
 }
 
-bool	exp_dump(char **tokens)
+bool	exp_handled_invalid_variable(char **tokens, t_export *_ctl)
 {
-	if (ft_strarr_len(tokens) > 1)
+	if (is_valid_variable(_ctl->key))
 		return (false);
-	ht_for_each(envht(), &print_item);
+	_ctl->status = false;
+	print_identifier_err(*tokens);
+	exp_cleanup(_ctl);
 	return (true);
 }

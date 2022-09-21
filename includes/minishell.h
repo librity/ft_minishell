@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:11:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:53:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,20 @@ bool			echo(char **tokens);
 bool			pwd(char **tokens);
 
 bool			export(char **tokens);
-void			export_dump(void);
+bool			exp_dump(char **tokens);
+typedef struct s_export
+{
+	char	*key;
+	char	*value;
+	bool	status;
+}					t_export;
+bool			exp_insert(char **tokens);
+void			exp_cleanup(t_export *_ctl);
+bool			exp_handled_invalid_variable(char **tokens, t_export *_ctl);
+bool			exp_handled_empty_variable(char **tokens, t_export *_ctl);
+bool			exp_handled_empty_value(t_export *_ctl);
+char			*exp_extract_key(char *declaration);
+char			*exp_extract_value(char *declaration);
 
 bool			env(char **tokens);
 

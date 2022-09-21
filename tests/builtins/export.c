@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 14:33:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:29:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,14 +149,14 @@ MU_TEST_SUITE(export_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	// MU_RUN_TEST(trivial_tst);
+	MU_RUN_TEST(trivial_tst);
 
-	// MU_RUN_TEST(no_value_tst);
-	// MU_RUN_TEST(no_key_tst);
-	// MU_RUN_TEST(empty_tst);
+	MU_RUN_TEST(no_value_tst);
+	MU_RUN_TEST(no_key_tst);
+	MU_RUN_TEST(empty_tst);
 
-	// MU_RUN_TEST(number_name_tst);
-	// MU_RUN_TEST(meta_name_tst);
+	MU_RUN_TEST(number_name_tst);
+	MU_RUN_TEST(meta_name_tst);
 
 	MU_RUN_TEST(dump_tst);
 }
