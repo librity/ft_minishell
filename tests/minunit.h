@@ -24,27 +24,27 @@
 #define MINUNIT_MINUNIT_H
 
 /* Black, Red, Green, Yellow, Blue, Purple, Cyan, White */
-# define MU_BK "\001\033[0;30m\002"
-# define MU_R "\001\033[0;31m\002"
-# define MU_G "\001\033[0;32m\002"
-# define MU_Y "\001\033[0;33m\002"
-# define MU_B "\001\033[0;34m\002"
-# define MU_P "\001\033[0;35m\002"
-# define MU_C "\001\033[0;36m\002"
-# define MU_W "\001\033[0;37m\002"
+# define MU_BK "\033[0;30m"
+# define MU_R "\033[0;31m"
+# define MU_G "\033[0;32m"
+# define MU_Y "\033[0;33m"
+# define MU_B "\033[0;34m"
+# define MU_P "\033[0;35m"
+# define MU_C "\033[0;36m"
+# define MU_W "\033[0;37m"
 
 /* Bold */
-# define MU_BKB "\001\033[1;30m\002"
-# define MU_RB "\001\033[1;31m\002"
-# define MU_GB "\001\033[1;32m\002"
-# define MU_YB "\001\033[1;33m\002"
-# define MU_BB "\001\033[1;34m\002"
-# define MU_PB "\001\033[1;35m\002"
-# define MU_CB "\001\033[1;36m\002"
-# define MU_WB "\001\033[1;37m\002"
+# define MU_BKB "\033[1;30m"
+# define MU_RB "\033[1;31m"
+# define MU_GB "\033[1;32m"
+# define MU_YB "\033[1;33m"
+# define MU_BB "\033[1;34m"
+# define MU_PB "\033[1;35m"
+# define MU_CB "\033[1;36m"
+# define MU_WB "\033[1;37m"
 
 /* Reset Color */
-# define MU_RC "\001\033[0m\002"
+# define MU_RC "\033[0m"
 
 #ifdef __cplusplus
 	extern "C" {

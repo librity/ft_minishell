@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 16:36:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:43:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ bool	export(char **tokens)
 {
 	char	*key;
 	char	*value;
+	bool	status;
+
 
 	if (tokens == NULL || *tokens == NULL)
 		return (false);
@@ -68,13 +70,16 @@ bool	export(char **tokens)
 		return (true);
 	}
 	tokens++;
+	status = true;
 	while (*tokens != NULL)
 	{
 		key = extract_key(*tokens);
 		if (!is_valid_variable(key))
 		{
 			free(key);
-			return (false);
+			status = false;
+			tokens++;
+			continue ;
 		}
 		if (is_empty_variable(*tokens))
 		{
@@ -95,5 +100,5 @@ bool	export(char **tokens)
 		free(value);
 		tokens++;
 	}
-	return (true);
+	return (status);
 }
