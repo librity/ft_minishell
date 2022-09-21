@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:22:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:00:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,8 @@ void mock_initialize_shell(void)
 	"XAUTHORITY=/run/user/1000/gdm/Xauthority",
 	"GJS_DEBUG_TOPICS=JS ERROR;JS LOG",
 	"WINDOWPATH=2",
-	"c=foo",
 	"HOME=/home/lgeniole",
-	"b=2",
 	"USERNAME=lgeniole",
-	"a=",
 	"IM_CONFIG_PHASE=1",
 	"LC_PAPER=en_CA.UTF-8",
 	"LANG=en_US.UTF-8",
@@ -65,7 +62,6 @@ void mock_initialize_shell(void)
 	"XDG_CURRENT_DESKTOP=ubuntu:GNOME",
 	"INVOCATION_ID=0a8fc8b228e742e4b4ad56802e1ffb5b",
 	"MANAGERPID=2330",
-	"foo=bar",
 	"ALACRITTY_SOCKET=/run/user/1000/Alacritty-:1-4739.sock",
 	"GJS_DEBUG_OUTPUT=stderr",
 	"NVM_DIR=/home/lgeniole/.nvm",

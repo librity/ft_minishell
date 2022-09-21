@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 14:14:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:11:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,9 +186,15 @@ char			**builtins(void);
 bool			is_builtin(char *cmd);
 
 bool			cd(char **argv);
+
 bool			echo(char **tokens);
+
 bool			pwd(char **tokens);
+
 bool			export(char **tokens);
+void			export_dump(void);
+
+bool			env(char **tokens);
 
 /******************************************************************************\
  * FILES
@@ -246,6 +252,8 @@ char			*ht_item_to_string(t_ht_item *item);
 
 int				ht_get_index(char *message);
 t_dlist			**ht_get_index_list(t_hash_table *table, int index);
+
+void			ht_for_each(t_hash_table *table, t_ht_for_each_cb callback);
 
 /******************************************************************************\
  * CRYPTO

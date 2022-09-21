@@ -57,19 +57,25 @@
 ## Built-ins
 
 - [ ] Your shell must implement the following built-ins:
-  - [ ] `echo` with option `-n`
-  - [ ] `cd` with only a relative or absolute path
-  - [ ] `pwd` with no options
-  - [ ] `export` with no options
+  - [x] `echo` with option `-n`
+    - [ ] Com erros.
+  - [x] `cd` with only a relative or absolute path
+    - [ ] Com erros.
+  - [x] `pwd` with no options
+    - [ ] Com erros.
+  - [x] `export` with no options
+    - [x] Sem argumentos, jogar as variáveis na tela.
     - [x] Inserir uma ou mais variáveis.
     - [x] Verificar variável sem valor.
     - [x] Verificar variável sem chave com erro.
     - [x] Verificar variável vazia com erro.
     - [x] Verificar nome de variável com erro.
-    - [ ] Sem argumentos, jogar as variáveis na tela.
   - [ ] `unset` with no options
-  - [ ] `env` with no options or arguments
+    - [ ] Com erros.
+  - [x] `env` with no options or arguments
+    - [ ] Com erros.
   - [ ] `exit` with no options
+    - [ ] Com erros.
   - [ ] (OPTIONAL) `help` prints a help message listing all commands
 
 ## Prompt

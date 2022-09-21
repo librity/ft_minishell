@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:01:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:05:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_ht_item
 	char			*key;
 	char			*value;
 }					t_ht_item;
+
+typedef void		(*t_ht_for_each_cb)(t_ht_item *);
 
 /******************************************************************************\
  * CONTROL

@@ -6,16 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 14:30:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:02:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-void	dump_env(void)
-{
-	// TODO DUMP ENV with declare -x and ""
-}
 
 bool	is_empty_variable(char *declaration)
 {
@@ -77,7 +72,7 @@ bool	export(char **tokens)
 		return (false);
 	if (ft_strarr_len(tokens) == 1)
 	{
-		dump_env();
+		export_dump();
 		return (true);
 	}
 	status = true;
