@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/22 12:41:48 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:29:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 # define MINISHELL_H
 
 # include <fcntl.h>
+# include <limits.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# include <limits.h>
 
 # include <defines.h>
 # include <errors.h>
-# include <warnings.h>
-
 # include <structs.h>
+# include <warnings.h>
 
 /******************************************************************************\
  * CONTROL
@@ -195,10 +194,10 @@ bool			export(char **tokens);
 bool			exp_dump(char **tokens);
 typedef struct s_export
 {
-	char	*key;
-	char	*value;
-	bool	status;
-}					t_export;
+	char		*key;
+	char		*value;
+	bool		status;
+}				t_export;
 bool			exp_insert(char **tokens);
 void			exp_cleanup(t_export *_ctl);
 bool			exp_handled_invalid_variable(char **tokens, t_export *_ctl);
@@ -207,9 +206,9 @@ bool			exp_handled_empty_value(t_export *_ctl);
 char			*exp_extract_key(char *declaration);
 char			*exp_extract_value(char *declaration);
 
-bool			exit_built_in(char	 **tokens);
-bool			unset(char **tokens);
+bool			exit_built_in(char **tokens);
 
+bool			unset(char **tokens);
 
 bool			env(char **tokens);
 
