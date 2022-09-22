@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:53:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:41:48 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,10 @@ bool			exp_handled_empty_variable(char **tokens, t_export *_ctl);
 bool			exp_handled_empty_value(t_export *_ctl);
 char			*exp_extract_key(char *declaration);
 char			*exp_extract_value(char *declaration);
+
+bool			exit_built_in(char	 **tokens);
+bool			unset(char **tokens);
+
 
 bool			env(char **tokens);
 
