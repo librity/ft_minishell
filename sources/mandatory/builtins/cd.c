@@ -6,22 +6,37 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:18:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 15:09:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:27:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	could_change_dir(char *path)
+static char	*resolve_path(char **tokens)
 {
+	char	*path;
+
+	path = tokens[1];
+	if (path == NULL)
+		path = envht_get(HOME_KEY);
+	return (path);
+}
+
+static bool	could_change_dir(char **tokens)
+{
+	char	*path;
 	int		result;
 	char	*message;
 
+	path = resolve_path(tokens);
 	result = chdir(path);
 	if (result >= 0)
 		return (true);
 	message = ft_strdup(path);
-	message = ft_strjoin_free(message, ": " CD_CHANGE_DIR_ERR);
+	if (path == NULL)
+		message = ft_strjoin_free(message, ": " CD_NULL_PATH_ERR);
+	else
+		message = ft_strjoin_free(message, ": " CD_CHANGE_DIR_ERR);
 	print_location_error(CD, message);
 	free(message);
 	return (false);
@@ -49,14 +64,11 @@ static bool	handled_too_many_args(char **tokens)
 
 int	bi_cd(char **tokens)
 {
-	char	*path;
-
 	if (tokens == NULL)
 		return (CD_NULL);
 	if (handled_too_many_args(tokens))
 		return (CD_TOO_MANY_ARGS);
-	path = tokens[1];
-	if (!could_change_dir(path))
+	if (!could_change_dir(tokens))
 		return (CD_NO_FILE_OR_DIR);
 	if (!could_update_pwd())
 		return (CD_PWD_UPDATE);

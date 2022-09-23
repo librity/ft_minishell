@@ -59,7 +59,7 @@
 - [ ] Your shell must implement the following built-ins:
   - [x] `echo` with option `-n`
   - [x] `cd` with only a relative or absolute path
-    - [ ] Sem argumentos vai para a `HOME`.
+    - [x] Sem argumentos vai para a `HOME`.
     - [x] Mostrar erro caso tenha mais de 1 argumento.
     - [x] Mostrar erro caso o caminho não existe.
     - [x] Mostrar erro caso o caminho não seja um diretório.
