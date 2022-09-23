@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 14:34:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:00:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ char			**builtins(void);
 bool			is_builtin(char *cmd);
 
 int				bi_cd(char **argv);
+bool			cd_could_change_dir(char **tokens);
 
 bool			bi_echo(char **tokens);
 
@@ -210,7 +211,7 @@ bool			bi_exit(char **tokens);
 
 bool			bi_unset(char **tokens);
 
-bool			bi_env(char **tokens);
+int				bi_env(char **tokens);
 
 /******************************************************************************\
  * FILES

@@ -59,6 +59,8 @@
 - [ ] Your shell must implement the following built-ins:
   - [x] `echo` with option `-n`
   - [x] `cd` with only a relative or absolute path
+    - [x] Testar caminhos relativos.
+    - [x] Testar caminhos absolutos.
     - [x] Sem argumentos vai para a `HOME`.
     - [x] Mostrar erro caso tenha mais de 1 argumento.
     - [x] Mostrar erro caso o caminho não existe.
@@ -73,7 +75,7 @@
     - [x] Verificar nome de variável com erro.
   - [x] `unset` with no options
   - [x] `env` with no options or arguments
-    - [ ] Mostrar erro caso tenha mais de 1 argumento.
+    - [x] Mostrar erro caso tenha mais de 1 argumento.
   - [ ] `exit` with no options
     - [ ] Mostrar `exit`.
     - [ ] Mostrar erro caso tenha mais de 1 argumento.
