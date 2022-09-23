@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:18:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 14:31:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:58:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,26 @@ static bool	could_update_pwd(void)
 	return (true);
 }
 
-bool	bi_cd(char **tokens)
+static bool	handled_too_many_args(char **tokens)
+{
+	if (ft_strarr_len(tokens) <= 2)
+		return (false);
+	print_location_error(CD, CD_TOO_MANY_ARGS_MSG);
+	return (true);
+}
+
+int	bi_cd(char **tokens)
 {
 	char	*path;
 
 	if (tokens == NULL)
-		return (false);
-	if (ft_strarr_len(tokens) != 2)
-		return (false);
+		return (CD_NULL);
+	if (handled_too_many_args(tokens))
+		return (CD_TOO_MANY_ARGS);
 	path = tokens[1];
 	if (!could_change_dir(path))
-		return (false);
+		return (CD_NO_FILE_OR_DIR);
 	if (!could_update_pwd())
-		return (false);
-	return (true);
+		return (CD_PWD_UPDATE);
+	return (CD_SUCCESS);
 }

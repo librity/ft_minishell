@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 14:12:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:54:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,28 @@
 \******************************************************************************/
 
 # define ECHO "echo"
-# define CD "cd"
-# define PWD "pwd"
-# define EXPORT "export"
-# define UNSET "unset"
-# define ENV "env"
-# define EXIT "exit"
+# define ECHO_NO_LINEBREAK_FLAG "-n"
 
+# define CD "cd"
+# define CD_NULL 1
+# define CD_TOO_MANY_ARGS 1
+# define CD_TOO_MANY_ARGS_MSG "too many arguments"
+# define CD_NO_FILE_OR_DIR 1
+# define CD_PWD_UPDATE 2
+# define CD_SUCCESS 0
+
+# define PWD "pwd"
 # define PWD_KEY "PWD"
 
-# define ECHO_NO_LINEBREAK_FLAG "-n"
+# define EXPORT "export"
+
+# define UNSET "unset"
+
+# define ENV "env"
+
+# define EXIT "exit"
+
+
 
 /******************************************************************************\
  * FILES
