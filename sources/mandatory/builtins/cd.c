@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:18:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 15:34:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:31:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static bool	could_update_pwd(void)
 	return (true);
 }
 
-bool	cd(char **tokens)
+bool	bi_cd(char **tokens)
 {
 	char	*path;
 

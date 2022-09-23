@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/22 15:29:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:04:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,13 +184,13 @@ pid_t			fork_or_die(void);
 char			**builtins(void);
 bool			is_builtin(char *cmd);
 
-bool			cd(char **argv);
+bool			bi_cd(char **argv);
 
-bool			echo(char **tokens);
+bool			bi_echo(char **tokens);
 
-bool			pwd(char **tokens);
+bool			bi_pwd(char **tokens);
 
-bool			export(char **tokens);
+bool			bi_export(char **tokens);
 bool			exp_dump(char **tokens);
 typedef struct s_export
 {
@@ -206,11 +206,11 @@ bool			exp_handled_empty_value(t_export *_ctl);
 char			*exp_extract_key(char *declaration);
 char			*exp_extract_value(char *declaration);
 
-bool			exit_built_in(char **tokens);
+bool			bi_exit(char **tokens);
 
-bool			unset(char **tokens);
+bool			bi_unset(char **tokens);
 
-bool			env(char **tokens);
+bool			bi_env(char **tokens);
 
 /******************************************************************************\
  * FILES
@@ -338,7 +338,7 @@ bool			at_heredoc(char *line);
 void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
 
-void			shell_exit(void);
+void			quit(void);
 
 void			die(char *message);
 void			die_perror(char *location, int exit_status);

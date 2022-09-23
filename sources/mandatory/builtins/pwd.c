@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 15:48:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:04:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-bool	pwd(char **tokens)
+bool	bi_pwd(char **tokens)
 {
 	char	*_pwd;
 

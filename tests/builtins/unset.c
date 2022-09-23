@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/22 15:28:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:03:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	test_teardown(void)
 	cleanup_shell();
 }
 
-MU_TEST(unset_tst)
+MU_TEST(trivial_tst)
 {
 	_strarr = (char *[]){"name=wallas", "idade=19", "42=sp", "bo=zia",
 		NULL};
 	ht_insert_strarr(envht(), _strarr);
 
-	mu_check(true == unset((char *[]){"name", "idade", NULL}));
+	mu_check(true == bi_unset((char *[]){"unset", "name", "idade", NULL}));
 	mu_check(false == ht_get(envht(), "name"));
 	mu_check(false == ht_get(envht(), "idade"));
 	mu_check(false != ht_get(envht(), "42"));
@@ -37,24 +37,30 @@ MU_TEST(unset_tst)
 
 }
 
-MU_TEST(unset_null_tst)
+MU_TEST(null_tst)
 {
 	char	*test = NULL;
 
 	_strarr = NULL;
-	mu_check(false == unset(_strarr));
-	mu_check(false == unset(&test));
-	mu_check(false == unset(NULL));
+	mu_check(false == bi_unset(_strarr));
+	mu_check(false == bi_unset(&test));
+	mu_check(false == bi_unset(NULL));
 
-	mu_check(true == unset((char *[]){"name", "idade", NULL}));
+	mu_check(true == bi_unset((char *[]){"unset", "name", "idade", NULL}));
+}
+
+MU_TEST(no_args_tst)
+{
+	mu_check(true == bi_unset((char *[]){"unset", NULL}));
 }
 
 MU_TEST_SUITE(unset_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
-	MU_RUN_TEST(unset_tst);
-	MU_RUN_TEST(unset_null_tst);
+	MU_RUN_TEST(trivial_tst);
+	MU_RUN_TEST(null_tst);
+	MU_RUN_TEST(no_args_tst);
 }
 
 MU_MAIN

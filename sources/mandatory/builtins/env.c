@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:17:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:04:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	print_item(t_ht_item *item)
 	printf("%s=%s\n", item->key, item->value);
 }
 
-bool	env(char **tokens)
+bool	bi_env(char **tokens)
 {
 	if (tokens == NULL || *tokens == NULL)
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 15:30:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:04:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ void	teardown(void)
 
 MU_TEST(trivial_tst)
 {
-	mu_check(true == echo((char *[]){"echo", "sources", NULL}));
-	mu_check(true == echo((char *[]){"echo", "garmonbozia", NULL}));
-	mu_check(true == echo((char *[]){"echo", "sources", "asdsad", NULL}));
-	mu_check(true == echo((char *[]){"echo", "a", "b", "c", "d", "e", NULL}));
-	mu_check(true == echo((char *[]){"echo", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "sources", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "garmonbozia", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "sources", "asdsad", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "a", "b", "c", "d", "e", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", NULL}));
 }
 
 MU_TEST(line_break_tst)
 {
-	mu_check(true == echo((char *[]){"echo", "-n", "sources", NULL}));
-	mu_check(true == echo((char *[]){"echo", "-n", "garmonbozia", NULL}));
-	mu_check(true == echo((char *[]){"echo", "sources", "-n", "asdsad", NULL}));
-	mu_check(true == echo((char *[]){"echo", "a", "b", "c", "-n", "d", "e", NULL}));
-	mu_check(true == echo((char *[]){"echo", "-n", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "-n", "sources", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "-n", "garmonbozia", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "sources", "-n", "asdsad", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "a", "b", "c", "-n", "d", "e", NULL}));
+	mu_check(true == bi_echo((char *[]){"echo", "-n", NULL}));
 }
 
 

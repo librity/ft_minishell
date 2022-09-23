@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:11:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 15:36:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:04:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	print_tokens(char **tokens)
 	}
 }
 
-bool	echo(char **tokens)
+bool	bi_echo(char **tokens)
 {
 	bool	linebreak	;
 

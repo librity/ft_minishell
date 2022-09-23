@@ -58,11 +58,12 @@
 
 - [ ] Your shell must implement the following built-ins:
   - [x] `echo` with option `-n`
-    - [ ] Com erros.
   - [x] `cd` with only a relative or absolute path
-    - [ ] Com erros.
+    - [ ] Sem argumentos vai para a `HOME`.
+    - [ ] Mostrar erro caso tenha mais de 1 argumento.
+    - [ ] Mostrar erro caso o caminho não existe.
+    - [ ] Mostrar erro caso o caminho não seja um diretório.
   - [x] `pwd` with no options
-    - [ ] Com erros.
   - [x] `export` with no options
     - [x] Sem argumentos, jogar as variáveis na tela.
     - [x] Inserir uma ou mais variáveis.
@@ -70,12 +71,14 @@
     - [x] Verificar variável sem chave com erro.
     - [x] Verificar variável vazia com erro.
     - [x] Verificar nome de variável com erro.
-  - [ ] `unset` with no options
-    - [ ] Com erros.
+  - [x] `unset` with no options
   - [x] `env` with no options or arguments
-    - [ ] Com erros.
+    - [ ] Mostrar erro caso tenha mais de 1 argumento.
   - [ ] `exit` with no options
-    - [ ] Com erros.
+    - [ ] Mostrar `exit`.
+    - [ ] Mostrar erro caso tenha mais de 1 argumento.
+    - [ ] Se recebe um argumento, utilizá-lo como código de saida.
+    - [ ] Se o argumento não é um número retornar erro.
   - [ ] (OPTIONAL) `help` prints a help message listing all commands
 
 ## Prompt
