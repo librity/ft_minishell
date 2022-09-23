@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 14:57:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:10:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ MU_TEST(bad_path_tst)
 	mu_assert_string_eq(_current_path, envht_get(PWD_KEY));
 
 	mu_assert_int_eq(1, bi_cd((char *[]){"cd", "/asdsad", NULL}));
+	mu_assert_string_eq(_current_path, envht_get(PWD_KEY));
+
+	mu_assert_int_eq(1, bi_cd((char *[]){"cd", "main.c", NULL}));
 	mu_assert_string_eq(_current_path, envht_get(PWD_KEY));
 }
 

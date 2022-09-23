@@ -60,9 +60,9 @@
   - [x] `echo` with option `-n`
   - [x] `cd` with only a relative or absolute path
     - [ ] Sem argumentos vai para a `HOME`.
-    - [ ] Mostrar erro caso tenha mais de 1 argumento.
-    - [ ] Mostrar erro caso o caminho não existe.
-    - [ ] Mostrar erro caso o caminho não seja um diretório.
+    - [x] Mostrar erro caso tenha mais de 1 argumento.
+    - [x] Mostrar erro caso o caminho não existe.
+    - [x] Mostrar erro caso o caminho não seja um diretório.
   - [x] `pwd` with no options
   - [x] `export` with no options
     - [x] Sem argumentos, jogar as variáveis na tela.

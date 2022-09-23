@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:18:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 14:58:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:09:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 static bool	could_change_dir(char *path)
 {
-	int	result;
+	int		result;
+	char	*message;
 
 	result = chdir(path);
-	if (result < 0)
-		return (false);
-	return (true);
+	if (result >= 0)
+		return (true);
+	message = ft_strdup(path);
+	message = ft_strjoin_free(message, ": " CD_CHANGE_DIR_ERR);
+	print_location_error(CD, message);
+	free(message);
+	return (false);
 }
 
 static bool	could_update_pwd(void)
@@ -38,7 +43,7 @@ static bool	handled_too_many_args(char **tokens)
 {
 	if (ft_strarr_len(tokens) <= 2)
 		return (false);
-	print_location_error(CD, CD_TOO_MANY_ARGS_MSG);
+	print_location_error(CD, CD_TOO_MANY_ARGS_ERR);
 	return (true);
 }
 

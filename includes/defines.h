@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 14:54:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:09:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@
 # define CD "cd"
 # define CD_NULL 1
 # define CD_TOO_MANY_ARGS 1
-# define CD_TOO_MANY_ARGS_MSG "too many arguments"
+# define CD_TOO_MANY_ARGS_ERR "too many arguments"
+# define CD_CHANGE_DIR_ERR "No such file or directory"
 # define CD_NO_FILE_OR_DIR 1
 # define CD_PWD_UPDATE 2
 # define CD_SUCCESS 0
