@@ -62,6 +62,7 @@
     - [x] Testar caminhos relativos.
     - [x] Testar caminhos absolutos.
     - [x] Sem argumentos vai para a `HOME`.
+    - [ ] Expande `~` para `HOME`.
     - [x] Mostrar erro caso tenha mais de 1 argumento.
     - [x] Mostrar erro caso o caminho não existe.
     - [x] Mostrar erro caso o caminho não seja um diretório.
@@ -77,9 +78,9 @@
   - [x] `env` with no options or arguments
     - [x] Mostrar erro caso tenha mais de 1 argumento.
   - [ ] `exit` with no options
-    - [ ] Mostrar `exit`.
+    - [x] Mostrar `exit`.
+    - [x] Se recebe um argumento, utilizá-lo como código de saida.
     - [ ] Mostrar erro caso tenha mais de 1 argumento.
-    - [ ] Se recebe um argumento, utilizá-lo como código de saida.
     - [ ] Se o argumento não é um número retornar erro.
   - [ ] (OPTIONAL) `help` prints a help message listing all commands
 

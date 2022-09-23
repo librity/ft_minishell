@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 15:34:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:32:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,22 @@ MU_TEST(absolute_tst)
 	mu_assert_int_eq(0, bi_cd((char *[]){"cd", _previous_path, NULL}));
 }
 
-MU_TEST(home_tst)
+MU_TEST(no_args_tst)
 {
 	getcwd(_previous_path, sizeof(_previous_path));
 
 	mu_assert_int_eq(0, bi_cd((char *[]){"cd", NULL}));
+	getcwd(_current_path, sizeof(_current_path));
+	mu_assert_string_eq(_current_path, envht_get("HOME"));
+
+	mu_assert_int_eq(0, bi_cd((char *[]){"cd", _previous_path, NULL}));
+}
+
+MU_TEST(home_tst)
+{
+	getcwd(_previous_path, sizeof(_previous_path));
+
+	mu_assert_int_eq(0, bi_cd((char *[]){"cd", "~", NULL}));
 	getcwd(_current_path, sizeof(_current_path));
 	mu_assert_string_eq(_current_path, envht_get("HOME"));
 
@@ -102,6 +113,7 @@ MU_TEST_SUITE(cd_suite)
 	MU_RUN_TEST(relative_tst);
 	MU_RUN_TEST(absolute_tst);
 
+	MU_RUN_TEST(no_args_tst);
 	MU_RUN_TEST(home_tst);
 
 	MU_RUN_TEST(bad_path_tst);
