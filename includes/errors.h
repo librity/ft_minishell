@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 15:54:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 14:26:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,20 @@
 \******************************************************************************/
 
 # define NO_FILE_DIR_ERR "No such file or directory"
+# define TOO_MANY_ARGS_ERR "too many arguments"
 
 # define CD_NULL_TOKENS 1
 # define CD_TOO_MANY_ARGS 1
 # define CD_NO_FILE_OR_DIR 1
 # define CD_PWD_UPDATE 2
 
-# define CD_TOO_MANY_ARGS_ERR "too many arguments"
 # define CD_NULL_PATH_ERR "CD_NULL_PATH"
 
 # define ENV_NO_ARGS 1
 # define ENV_TOO_MANY_ARGS 127
+
+# define EXIT_BAD_TOKENS 1
+# define EXIT_BAD_STATUS 2
+# define EXIT_TOO_MANY_ARGS 1
 
 #endif

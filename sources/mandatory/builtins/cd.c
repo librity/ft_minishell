@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:18:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 17:17:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 14:24:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ static bool	handled_too_many_args(char **tokens)
 {
 	if (ft_strarr_len(tokens) <= 2)
 		return (false);
-	print_location_error(CD, CD_TOO_MANY_ARGS_ERR);
+	print_location_error(CD, TOO_MANY_ARGS_ERR);
 	return (true);
 }
 
 int	bi_cd(char **tokens)
 {
 	if (tokens == NULL)
-		return (CD_NULL_TOKENS);
+		return (EXIT_BAD_TOKENS);
 	if (handled_too_many_args(tokens))
 		return (CD_TOO_MANY_ARGS);
 	if (!cd_could_change_dir(tokens))

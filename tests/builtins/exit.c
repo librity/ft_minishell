@@ -6,24 +6,24 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 13:46:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 14:18:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
-pid_t	_pid;
-int		_wstatus;
+pid_t		_pid;
+int			_wstatus;
 
 static void	test_exit(int expected_status, char **tokens)
 {
-	int	status;
+	int	bi_exit_status;
 
 	_pid = fork();
 	if (_pid == CHILD_PROCESS_ID)
 	{
-		status = bi_exit(tokens);
-		exit(status);
+		bi_exit_status = bi_exit(tokens);
+		exit(bi_exit_status);
 	}
 	mu_check(_pid == wait(&_wstatus));
 	mu_assert_int_eq(expected_status, WEXITSTATUS(_wstatus));
