@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:56:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 15:50:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	initialize_export(t_export *_ctl)
 {
 	_ctl->key = NULL;
 	_ctl->value = NULL;
-	_ctl->status = true;
+	_ctl->status = EXIT_SUCCESS;
 }
 
 static void	insert_variable(t_export *_ctl)
@@ -31,7 +31,7 @@ void	exp_cleanup(t_export *_ctl)
 	ft_strdel(&(_ctl->value));
 }
 
-bool	exp_insert(char **tokens)
+int	exp_insert(char **tokens)
 {
 	t_export	_ctl;
 

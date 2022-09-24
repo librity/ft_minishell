@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 15:33:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:03:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,17 @@
 
 # define ENV_NO_ARGS 1
 # define ENV_TOO_MANY_ARGS 127
+
+# define ECHO_BAD_TOKENS 1
+
+# define UNSET_BAD_TOKENS 1
+
+# define PWD_BAD_TOKENS 1
+# define PWD_TOO_MANY_ARGS 1
+# define PWD_MISSING_PWD_ENV_VAR 1
+
+# define EXPORT_BAD_TOKENS 1
+# define EXPORT_BAD_VARIABLE 1
 
 # define EXIT_BAD_TOKENS 1
 # define EXIT_BAD_STATUS 2

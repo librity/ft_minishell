@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 14:04:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 15:53:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ void	teardown(void)
 
 MU_TEST(trivial_tst)
 {
-	mu_check(true == bi_cd((char *[]){"cd", "sources", NULL}));
-	mu_check(true == bi_pwd((char *[]){"pwd", NULL}));
+	mu_check(0 == bi_cd((char *[]){"cd", "sources", NULL}));
+	mu_check(0 == bi_pwd((char *[]){"pwd", NULL}));
 
-	mu_check(true == bi_cd((char *[]){"cd", "..", NULL}));
-	mu_check(true == bi_pwd((char *[]){"pwd", NULL}));
+	mu_check(0 == bi_cd((char *[]){"cd", "..", NULL}));
+	mu_check(0 == bi_pwd((char *[]){"pwd", NULL}));
 }
 
 MU_TEST(args_tst)
 {
-	mu_check(false == bi_pwd((char *[]){"pwd", "a", NULL}));
-	mu_check(false == bi_pwd((char *[]){"pwd", "b", "c", NULL}));
-	mu_check(false == bi_pwd((char *[]){"pwd", "fire", "walk", "with", "me", NULL}));
+	mu_check(1 == bi_pwd((char *[]){"pwd", "a", NULL}));
+	mu_check(1 == bi_pwd((char *[]){"pwd", "b", "c", NULL}));
+	mu_check(1 == bi_pwd((char *[]){"pwd", "fire", "walk", "with", "me", NULL}));
 }
 
 MU_TEST_SUITE(pwd_suite)

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:53:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:00:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	exp_handled_invalid_variable(char **tokens, t_export *_ctl)
 {
 	if (is_valid_variable(_ctl->key))
 		return (false);
-	_ctl->status = false;
+	_ctl->status = EXPORT_BAD_VARIABLE;
 	print_identifier_err(*tokens);
 	exp_cleanup(_ctl);
 	return (true);

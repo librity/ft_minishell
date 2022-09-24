@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 16:37:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 15:54:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,19 +187,19 @@ bool			is_builtin(char *cmd);
 int				bi_cd(char **argv);
 bool			cd_could_change_dir(char **tokens);
 
-bool			bi_echo(char **tokens);
+int				bi_echo(char **tokens);
 
-bool			bi_pwd(char **tokens);
+int				bi_pwd(char **tokens);
 
-bool			bi_export(char **tokens);
+int				bi_export(char **tokens);
 bool			exp_dump(char **tokens);
 typedef struct s_export
 {
 	char		*key;
 	char		*value;
-	bool		status;
+	int		status;
 }				t_export;
-bool			exp_insert(char **tokens);
+int				exp_insert(char **tokens);
 void			exp_cleanup(t_export *_ctl);
 bool			exp_handled_invalid_variable(char **tokens, t_export *_ctl);
 bool			exp_handled_empty_variable(char **tokens, t_export *_ctl);
@@ -209,7 +209,7 @@ char			*exp_extract_value(char *declaration);
 
 int				bi_exit(char **tokens);
 
-bool			bi_unset(char **tokens);
+int				bi_unset(char **tokens);
 
 int				bi_env(char **tokens);
 
