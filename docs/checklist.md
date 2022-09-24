@@ -81,10 +81,11 @@
     - [x] Mostrar erro caso tenha mais de 1 argumento.
   - [x] `exit` with no options
     - [x] Mostrar `exit`.
+    - [ ] Se não recebe argumento, utiliza o codigo de saida do último commando (`last_exit`).
     - [x] Se recebe um argumento, utilizá-lo como código de saida.
     - [x] Mostrar erro caso tenha mais de 1 argumento.
     - [x] Se o argumento não é um número retornar erro.
-  - [ ] (OPTIONAL) `help` prints a help message listing all commands
+  - [x] (OPTIONAL) `help` prints a help message listing all commands
 
 ## Prompt
 

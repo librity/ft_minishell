@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 16:03:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:08:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@
 # define EXIT_BAD_TOKENS 1
 # define EXIT_BAD_STATUS 2
 # define EXIT_TOO_MANY_ARGS 1
+
+# define HELP_BAD_TOKENS 1
 
 #endif

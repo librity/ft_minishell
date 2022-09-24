@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 14:31:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:10:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ MU_TEST(is_builtin_tst)
 	mu_check(true == is_builtin("unset"));
 	mu_check(true == is_builtin("env"));
 	mu_check(true == is_builtin("exit"));
+	mu_check(true == is_builtin("help"));
 
 	mu_check(false == is_builtin("a"));
 	mu_check(false == is_builtin("b"));

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 16:06:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:09:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,8 @@ int				bi_exit(char **tokens);
 int				bi_unset(char **tokens);
 
 int				bi_env(char **tokens);
+
+int				bi_help(char **tokens);
 
 /******************************************************************************\
  * FILES
