@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 16:35:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:45:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 
 # include <minishell.h>
 
+static char	*mock_env_var(char *variable)
+{
+	char *env_value;
+	char *result;
+
+
+	env_value = getenv(variable);
+	if (env_value == NULL)
+		return (ft_strjoin(variable, "=/"));
+	result = ft_strdup(variable);
+	result = ft_strjoin_free(result, "=");
+	result = ft_strjoin_free(result, env_value);
+	return (result);
+}
+
 void mock_initialize_shell(void)
 {
-	char	*oldpwd;
-	if (getenv("OLDPWD") != NULL)
-		oldpwd = ft_strjoin("OLDPWD=", getenv("OLDPWD"));
-	else
-		oldpwd = ft_strdup("OLDPWD=/");
-
-	char	*pwd;
-	if (getenv("PWD") != NULL)
-		pwd = ft_strjoin("PWD=", getenv("PWD"));
-	else
-		pwd = ft_strdup("PWD=/");
-
-	char	*home;
-	if (getenv("HOME") != NULL)
-		home = ft_strjoin("HOME=", getenv("HOME"));
-	else
-		home = ft_strdup("HOME=/");
+	char	*oldpwd = mock_env_var("OLDPWD");
+	char	*pwd = mock_env_var("PWD");
+	char	*home = mock_env_var("HOME");
 
 	int		mock_argc = 1;
 	char	**mock_argv = (char *[]){"./minishell", NULL};
