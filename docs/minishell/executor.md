@@ -217,6 +217,7 @@ $ echo $abc $dfg
 - https://stackoverflow.com/questions/50669417/piping-to-stdout
 - https://stackoverflow.com/questions/31074433/can-i-dump-stdin-with-gdb
 - https://unix.stackexchange.com/questions/115313/dump-processs-stdin-and-stdout
+- https://www.rozmichelle.com/pipes-forks-dups/
 
 ### Clear `STDIN`
 

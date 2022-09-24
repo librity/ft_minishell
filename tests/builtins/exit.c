@@ -6,14 +6,28 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 17:22:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 13:46:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
-pid_t _pid;
-int _wstatus;
+pid_t	_pid;
+int		_wstatus;
+
+static void	test_exit(int expected_status, char **tokens)
+{
+	int	status;
+
+	_pid = fork();
+	if (_pid == CHILD_PROCESS_ID)
+	{
+		status = bi_exit(tokens);
+		exit(status);
+	}
+	mu_check(_pid == wait(&_wstatus));
+	mu_assert_int_eq(expected_status, WEXITSTATUS(_wstatus));
+}
 
 void	setup(void)
 {
@@ -26,74 +40,29 @@ void	teardown(void)
 
 MU_TEST(trivial_tst)
 {
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(EXIT_SUCCESS, WEXITSTATUS(_wstatus));
+	test_exit(EXIT_SUCCESS, (char *[]){"exit", NULL});
 }
 
 MU_TEST(arg_tst)
 {
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", "0", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(0, WEXITSTATUS(_wstatus));
-
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", "1", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(1, WEXITSTATUS(_wstatus));
-
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", "2", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(2, WEXITSTATUS(_wstatus));
-
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", "42", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(42, WEXITSTATUS(_wstatus));
-
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", "-42", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(214, WEXITSTATUS(_wstatus));
+	test_exit(0, (char *[]){"exit", "0", NULL});
+	test_exit(1, (char *[]){"exit", "1", NULL});
+	test_exit(2, (char *[]){"exit", "2", NULL});
+	test_exit(4, (char *[]){"exit", "4", NULL});
+	test_exit(42, (char *[]){"exit", "42", NULL});
+	test_exit(214, (char *[]){"exit", "-42", NULL});
 }
 
 MU_TEST(bad_status_tst)
 {
-	int status;
-
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", "sdasdad", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(2, WEXITSTATUS(_wstatus));
-
-	status = bi_exit((char *[]){"exit", "dsads", "1", "10", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(2, WEXITSTATUS(_wstatus));
+	test_exit(2, (char *[]){"exit", "sdasdad", NULL});
+	test_exit(2, (char *[]){"exit", "dsads", "1", "10", NULL});
 }
 
 MU_TEST(too_many_arguments_tst)
 {
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", "1", "sdasdad", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(1, WEXITSTATUS(_wstatus));
-
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
-		bi_exit((char *[]){"exit", "1", "2", "10", "sdasdad", NULL});
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(1, WEXITSTATUS(_wstatus));
+	test_exit(1, (char *[]){"exit", "1", "sdasdad", NULL});
+	test_exit(1, (char *[]){"exit", "1", "2", "10", "sdasdad", NULL});
 }
 
 MU_TEST_SUITE(exit_suite)
