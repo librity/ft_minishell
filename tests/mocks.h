@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 15:00:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:20:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 void mock_initialize_shell(void)
 {
+	char	*oldpwd = ft_strjoin("OLDPWD=", getenv("OLDPWD"));
+	char	*pwd = ft_strjoin("PWD=", getenv("PWD"));
+	char	*home = ft_strjoin("HOME=", getenv("HOME"));
+
 	int		mock_argc = 1;
 	char	**mock_argv = (char *[]){"./minishell", NULL};
 	char	**mock_envp = (char *[]){
@@ -44,7 +48,7 @@ void mock_initialize_shell(void)
 	"RBENV_SHELL=bash",
 	"EDITOR=nano",
 	"GTK_MODULES=gail:atk-bridge",
-	"PWD=/home/lgeniole/code/ft/minishell",
+	pwd,
 	"XDG_SESSION_DESKTOP=ubuntu",
 	"LOGNAME=lgeniole",
 	"XDG_SESSION_TYPE=x11",
@@ -53,7 +57,7 @@ void mock_initialize_shell(void)
 	"XAUTHORITY=/run/user/1000/gdm/Xauthority",
 	"GJS_DEBUG_TOPICS=JS ERROR;JS LOG",
 	"WINDOWPATH=2",
-	"HOME=/home/lgeniole",
+	home,
 	"USERNAME=lgeniole",
 	"IM_CONFIG_PHASE=1",
 	"LC_PAPER=en_CA.UTF-8",
@@ -94,14 +98,17 @@ void mock_initialize_shell(void)
 	"GIO_LAUNCHED_DESKTOP_FILE_PID=4739",
 	"GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/Alacritty.desktop",
 	"LC_NUMERIC=en_CA.UTF-8",
-	"OLDPWD=/home/lgeniole/code/ft",
+	oldpwd,
 	"GOPATH=/home/lgeniole/code/go",
 	"TERM_PROGRAM=tmux",
 	"_=/usr/bin/env",
 	NULL};
 
 	initialize_shell(mock_argc, mock_argv, mock_envp);
-}
 
+	free(oldpwd);
+	free(pwd);
+	free(home);
+}
 
 #endif

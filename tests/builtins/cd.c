@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 15:41:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:11:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	test_cd(int expected_status, char **tokens)
 	char	current_path[PATH_MAX];
 	char	previous_path[PATH_MAX];
 
-	getcwd(previous_path, sizeof(current_path));
+	getcwd(previous_path, sizeof(previous_path));
 	mu_assert_int_eq(expected_status, bi_cd(tokens));
 	getcwd(current_path, sizeof(current_path));
-	mu_assert_string_eq(previous_path, envht_get(OLD_PWD_KEY));
+	mu_assert_string_eq(previous_path, envht_get(OLDPWD_KEY));
 	mu_assert_string_eq(current_path, envht_get(PWD_KEY));
 }
 

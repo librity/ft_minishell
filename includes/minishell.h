@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 15:54:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:06:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ typedef struct s_export
 {
 	char		*key;
 	char		*value;
-	int		status;
+	int			status;
 }				t_export;
 int				exp_insert(char **tokens);
 void			exp_cleanup(t_export *_ctl);
