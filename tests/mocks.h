@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 16:20:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:35:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,23 @@
 
 void mock_initialize_shell(void)
 {
-	char	*oldpwd = ft_strjoin("OLDPWD=", getenv("OLDPWD"));
-	char	*pwd = ft_strjoin("PWD=", getenv("PWD"));
-	char	*home = ft_strjoin("HOME=", getenv("HOME"));
+	char	*oldpwd;
+	if (getenv("OLDPWD") != NULL)
+		oldpwd = ft_strjoin("OLDPWD=", getenv("OLDPWD"));
+	else
+		oldpwd = ft_strdup("OLDPWD=/");
+
+	char	*pwd;
+	if (getenv("PWD") != NULL)
+		pwd = ft_strjoin("PWD=", getenv("PWD"));
+	else
+		pwd = ft_strdup("PWD=/");
+
+	char	*home;
+	if (getenv("HOME") != NULL)
+		home = ft_strjoin("HOME=", getenv("HOME"));
+	else
+		home = ft_strdup("HOME=/");
 
 	int		mock_argc = 1;
 	char	**mock_argv = (char *[]){"./minishell", NULL};

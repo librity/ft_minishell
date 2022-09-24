@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 21:40:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:25:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 \******************************************************************************/
 
 # define ENVHT_REINIT_WRN "Can't reinitialize envht."
-# define ENVHT_REDESTROY_WRN "Can't envht if it's not initialized."
+# define ENVHT_REDESTROY_WRN "Can't destroy envht if it's not initialized."
 
 /******************************************************************************\
  * PARSER
