@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 14:26:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 15:33:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 # define CD_TOO_MANY_ARGS 1
 # define CD_NO_FILE_OR_DIR 1
 # define CD_PWD_UPDATE 2
+# define CD_OLD_PWD_UPDATE 3
 
 # define CD_NULL_PATH_ERR "CD_NULL_PATH"
 

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 15:54:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 15:25:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@
 
 # define PWD "pwd"
 # define PWD_KEY "PWD"
+# define OLD_PWD_KEY "OLD_PWD"
 
 # define EXPORT "export"
 
