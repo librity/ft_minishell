@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 16:33:07 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 16:04:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:58:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 char	*last_exit(void)
 {
 	return (c()->last_exit);
+}
+
+int	last_exit_int(void)
+{
+	return (ft_atoi(last_exit()));
 }
 
 bool	initialize_last_exit(void)
@@ -35,8 +40,6 @@ bool	destroy_last_exit(void)
 
 bool	set_last_exit(int exit_status)
 {
-	if (exit_status < 0)
-		return (false);
 	if (c()->last_exit != NULL)
 		ft_strdel(&c()->last_exit);
 	c()->last_exit = ft_itoa(exit_status);

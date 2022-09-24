@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:14:58 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/24 14:26:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:57:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static bool	handled_bad_status(char **tokens)
 static int	resolve_exit_status(char **tokens)
 {
 	if (*tokens == NULL)
-		return (EXIT_SUCCESS);
+		return (last_exit_int());
 	if (handled_bad_status(tokens))
 		return (EXIT_BAD_STATUS);
 	if (handled_too_many_args(tokens + 1))
@@ -48,14 +48,14 @@ static int	resolve_exit_status(char **tokens)
 
 int	bi_exit(char **tokens)
 {
-	unsigned char	exit_status;
+	int	exit_status;
 
 	if (tokens == NULL || *tokens == NULL)
 		return (EXIT_BAD_TOKENS);
 	tokens++;
-	cleanup_shell();
 	printf(EXIT "\n");
 	exit_status = resolve_exit_status(tokens);
+	cleanup_shell();
 	exit(exit_status);
 	return (exit_status);
 }

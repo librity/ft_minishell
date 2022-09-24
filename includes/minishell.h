@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 17:09:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:30:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char			*envht_get(char *key);
 bool			envht_delete(char *key);
 
 char			*last_exit(void);
+int				last_exit_int(void);
 bool			initialize_last_exit(void);
 bool			destroy_last_exit(void);
 bool			set_last_exit(int exit_status);

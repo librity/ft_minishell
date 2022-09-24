@@ -6,41 +6,60 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 14:18:16 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:57:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
-pid_t		_pid;
-int			_wstatus;
-
 static void	test_exit(int expected_status, char **tokens)
 {
-	int	bi_exit_status;
+	pid_t	pid;
+	int		wstatus;
+	int		bi_exit_status;
 
-	_pid = fork();
-	if (_pid == CHILD_PROCESS_ID)
+	pid = fork();
+	if (pid == CHILD_PROCESS_ID)
 	{
 		bi_exit_status = bi_exit(tokens);
 		exit(bi_exit_status);
 	}
-	mu_check(_pid == wait(&_wstatus));
-	mu_assert_int_eq(expected_status, WEXITSTATUS(_wstatus));
+	mu_check(pid == wait(&wstatus));
+	mu_assert_int_eq(expected_status, WEXITSTATUS(wstatus));
 }
 
 void	setup(void)
 {
 	mock_initialize_shell();
+	set_last_exit(0);
 }
 void	teardown(void)
 {
 	cleanup_shell();
 }
 
-MU_TEST(trivial_tst)
+MU_TEST(no_args_tst)
 {
-	test_exit(EXIT_SUCCESS, (char *[]){"exit", NULL});
+	set_last_exit(42);
+	test_exit(42, (char *[]){"exit", NULL});
+
+	set_last_exit(1);
+	test_exit(1, (char *[]){"exit", NULL});
+
+	set_last_exit(2);
+	test_exit(2, (char *[]){"exit", NULL});
+
+	set_last_exit(4);
+	test_exit(4, (char *[]){"exit", NULL});
+
+	set_last_exit(99);
+	test_exit(99, (char *[]){"exit", NULL});
+
+	set_last_exit(-42);
+	test_exit(214, (char *[]){"exit", NULL});
+
+	set_last_exit(0);
+	test_exit(0, (char *[]){"exit", NULL});
 }
 
 MU_TEST(arg_tst)
@@ -69,7 +88,7 @@ MU_TEST_SUITE(exit_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	MU_RUN_TEST(trivial_tst);
+	MU_RUN_TEST(no_args_tst);
 	MU_RUN_TEST(arg_tst);
 
 	MU_RUN_TEST(bad_status_tst);

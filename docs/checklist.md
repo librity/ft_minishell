@@ -56,7 +56,7 @@
 
 ## Built-ins
 
-- [ ] Your shell must implement the following built-ins:
+- [x] Your shell must implement the following built-ins:
   - [x] `echo` with option `-n`
   - [x] `cd` with only a relative or absolute path
     - [x] Testar caminhos relativos.
@@ -81,7 +81,7 @@
     - [x] Mostrar erro caso tenha mais de 1 argumento.
   - [x] `exit` with no options
     - [x] Mostrar `exit`.
-    - [ ] Se não recebe argumento, utiliza o codigo de saida do último commando (`last_exit`).
+    - [x] Se não recebe argumento, utiliza o codigo de saida do último commando (`last_exit`).
     - [x] Se recebe um argumento, utilizá-lo como código de saida.
     - [x] Mostrar erro caso tenha mais de 1 argumento.
     - [x] Se o argumento não é um número retornar erro.
@@ -197,6 +197,7 @@
 - [ ] Testar múltiplos redirecionamentos na mesma pipeline.
 - [x] Último pipe é redirecionado para `STDOUT`.
 - [ ] Heredoc roda antes que todos os outros redirecionamentos, possivelmente dentro do processo pai.
+- [ ] Atualiza o `last_exit` com o exit status do foreground pipeline.
 - Built-ins:
   - [ ] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
   - [ ] Se o commando é um builtin dentro de uma pipeline executá-lo em um `fork()`.
