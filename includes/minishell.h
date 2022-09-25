@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 17:30:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/25 11:04:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,16 +143,18 @@ void			add_heredoc(t_parse_list **list, char *delimiter);
 t_parse			*new_read_file(char *delimiter);
 void			add_read_file(t_parse_list **list, char *file_path);
 
-void			destroy_parse_list(t_dlist **plist);
+void			destroy_parse_list(t_parse_list **list);
 
-char			**get_parse_tokens(t_parse_list *node);
-char			*get_parse_file_path(t_parse_list *node);
-char			*get_parse_delimiter(t_parse_list *node);
-t_parse_type	get_parse_type(t_parse_list *node);
+char			**get_parse_tokens(t_parse_node *node);
+char			*get_parse_file_path(t_parse_node *node);
+char			*get_parse_delimiter(t_parse_node *node);
+t_parse_type	get_parse_type(t_parse_node *node);
 
 /******************************************************************************\
  * EXECUTOR
 \******************************************************************************/
+
+void			execute(t_parse_list *pipeline);
 
 void			execute_pipeline(t_parse_list *list);
 
@@ -167,7 +169,7 @@ void			handle_truncate(t_parse_list *node);
 void			handle_append(t_parse_list *node);
 void			handle_exec(t_parse_list *node);
 
-void			execute_or_die(char **tokens);
+void			execve_or_die(char **tokens);
 
 char			*find_executable(char *command, char **paths);
 char			*find_executable_or_die(char *command, char **paths);
