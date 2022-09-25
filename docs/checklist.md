@@ -56,16 +56,36 @@
 
 ## Built-ins
 
-- [ ] Your shell must implement the following built-ins:
-  - [ ] `echo` with option `-n`
-  - [ ] `cd` with only a relative or absolute path
-  - [ ] `pwd` with no options
-  - [ ] `export` with no options
-    - [ ] Verificar nome de variável com erro.
-  - [ ] `unset` with no options
-  - [ ] `env` with no options or arguments
-  - [ ] `exit` with no options
-  - [ ] (OPTIONAL) `help` prints a help message listing all commands
+- [x] Your shell must implement the following built-ins:
+  - [x] `echo` with option `-n`
+  - [x] `cd` with only a relative or absolute path
+    - [x] Testar caminhos relativos.
+    - [x] Testar caminhos absolutos.
+    - [x] Sem argumentos vai para a `HOME`.
+    - [x] Mostrar erro caso tenha mais de 1 argumento.
+    - [x] Mostrar erro caso o caminho não existe.
+    - [x] Mostrar erro caso o caminho não seja um diretório.
+    - [x] Atualizar `PWD`.
+    - [x] Atualizar `OLD_PWD`.
+    - [ ] (OPCIONAL) `cd -` te leva ao `$OLD_PWD`.
+  - [x] `pwd` with no options
+  - [x] `export` with no options
+    - [x] Sem argumentos, jogar as variáveis na tela.
+    - [x] Inserir uma ou mais variáveis.
+    - [x] Verificar variável sem valor.
+    - [x] Verificar variável sem chave com erro.
+    - [x] Verificar variável vazia com erro.
+    - [x] Verificar nome de variável com erro.
+  - [x] `unset` with no options
+  - [x] `env` with no options or arguments
+    - [x] Mostrar erro caso tenha mais de 1 argumento.
+  - [x] `exit` with no options
+    - [x] Mostrar `exit`.
+    - [x] Se não recebe argumento, utiliza o codigo de saida do último commando (`last_exit`).
+    - [x] Se recebe um argumento, utilizá-lo como código de saida.
+    - [x] Mostrar erro caso tenha mais de 1 argumento.
+    - [x] Se o argumento não é um número retornar erro.
+  - [x] (OPTIONAL) `help` prints a help message listing all commands
 
 ## Prompt
 
@@ -94,6 +114,7 @@
   - [x] String vazia.
   - [x] Ponteiro nulo.
   - [ ] Não expandir delimitador de heredoc.
+  - [ ] (OPCIONAL) Expandir `~` para `$HOME` (Tilde Expansion).
 - [x] Renomear Expansor para Expander
 
 ## Lexer
@@ -176,6 +197,7 @@
 - [ ] Testar múltiplos redirecionamentos na mesma pipeline.
 - [x] Último pipe é redirecionado para `STDOUT`.
 - [ ] Heredoc roda antes que todos os outros redirecionamentos, possivelmente dentro do processo pai.
+- [ ] Atualiza o `last_exit` com o exit status do foreground pipeline.
 - Built-ins:
   - [ ] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
   - [ ] Se o commando é um builtin dentro de uma pipeline executá-lo em um `fork()`.

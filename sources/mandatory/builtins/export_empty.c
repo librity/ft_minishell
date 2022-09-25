@@ -1,47 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   last_exit.c                                        :+:      :+:    :+:   */
+/*   export_empty.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 16:33:07 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 18:58:12 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/21 15:53:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*last_exit(void)
+static bool	is_empty_variable(char *declaration)
 {
-	return (c()->last_exit);
-}
+	char	*equals;
 
-int	last_exit_int(void)
-{
-	return (ft_atoi(last_exit()));
-}
-
-bool	initialize_last_exit(void)
-{
-	if (c()->last_exit != NULL)
+	equals = ft_strchr(declaration, '=');
+	if (equals != NULL)
 		return (false);
-	c()->last_exit = ft_itoa(DEFAULT_LAST_EXIT);
+	if (*(equals + 1) != '\0')
+		return (false);
 	return (true);
 }
 
-bool	destroy_last_exit(void)
+bool	exp_handled_empty_variable(char **tokens, t_export *_ctl)
 {
-	if (c()->last_exit == NULL)
+	if (!is_empty_variable(*tokens))
 		return (false);
-	ft_strdel(&c()->last_exit);
+	exp_cleanup(_ctl);
 	return (true);
 }
 
-bool	set_last_exit(int exit_status)
+bool	exp_handled_empty_value(t_export *_ctl)
 {
-	if (c()->last_exit != NULL)
-		ft_strdel(&c()->last_exit);
-	c()->last_exit = ft_itoa(exit_status);
+	if (!ft_streq(_ctl->value, ""))
+		return (false);
+	exp_cleanup(_ctl);
 	return (true);
 }

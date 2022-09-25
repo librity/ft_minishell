@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   help.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 14:23:40 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/24 17:09:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	cleanup(void)
+int	bi_help(char **tokens)
 {
-	cleanup_shell();
-}
-
-void	die(char *message)
-{
-	print_error(message);
-	cleanup();
-	exit(EXIT_FAILURE);
-}
-
-void	die_perror(char *location, int exit_status)
-{
-	ft_putstr_fd(MINISHELL_PREFIX, STDERR_FILENO);
-	perror(location);
-	cleanup();
-	exit(exit_status);
-}
-
-void	die_full(char *location, char *message, int exit_status)
-{
-	print_location_error(location, message);
-	cleanup();
-	exit(exit_status);
+	if (tokens == NULL || *tokens == NULL)
+		return (HELP_BAD_TOKENS);
+	printf(HELP_MSG);
+	return (EXIT_SUCCESS);
 }

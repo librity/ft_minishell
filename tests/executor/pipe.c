@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 14:06:42 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 19:42:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,17 +151,17 @@ MU_TEST_SUITE(pipe_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	// MU_RUN_TEST(e_tst);
-	// MU_RUN_TEST(ep_e_tst);
+	MU_RUN_TEST(e_tst);
+	MU_RUN_TEST(ep_e_tst);
 
-	// MU_RUN_TEST(te_tst);
-	// MU_RUN_TEST(ae_tst);
+	MU_RUN_TEST(te_tst);
+	MU_RUN_TEST(ae_tst);
 
-	// MU_RUN_TEST(re_tst);
-	// MU_RUN_TEST(he_tst);
+	MU_RUN_TEST(re_tst);
+	MU_RUN_TEST(he_tst);
 
-	// MU_RUN_TEST(e_relative_tst);
-	// MU_RUN_TEST(e_absolute_tst);
+	MU_RUN_TEST(e_relative_tst);
+	MU_RUN_TEST(e_absolute_tst);
 
 	// FAILING
 	// MU_RUN_TEST(hhre_tst);

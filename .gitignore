@@ -59,7 +59,7 @@ dkms.conf
 
 # Tests
 test
-# tests/sandbox/*
+tests/sandbox/*
 !tests/sandbox/.keep
 
 # Examples

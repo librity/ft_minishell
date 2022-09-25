@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   export_dump.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 14:23:40 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/21 15:52:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	cleanup(void)
+static void	print_item(t_ht_item *item)
 {
-	cleanup_shell();
+	if (item == NULL)
+		return ;
+	if (item->key == NULL)
+		return ;
+	if (item->value == NULL)
+		return ;
+	printf("declare -x %s=\"%s\"\n", item->key, item->value);
 }
 
-void	die(char *message)
+bool	exp_dump(char **tokens)
 {
-	print_error(message);
-	cleanup();
-	exit(EXIT_FAILURE);
-}
-
-void	die_perror(char *location, int exit_status)
-{
-	ft_putstr_fd(MINISHELL_PREFIX, STDERR_FILENO);
-	perror(location);
-	cleanup();
-	exit(exit_status);
-}
-
-void	die_full(char *location, char *message, int exit_status)
-{
-	print_location_error(location, message);
-	cleanup();
-	exit(exit_status);
+	if (ft_strarr_len(tokens) > 1)
+		return (false);
+	ht_for_each(envht(), &print_item);
+	return (true);
 }

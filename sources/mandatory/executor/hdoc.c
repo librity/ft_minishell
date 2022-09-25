@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:47:21 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/14 14:06:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:02:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	get_hdoc_stream(char *delimiter, int pipe[2])
 		if (ft_streq(line, delimiter))
 		{
 			free(line);
-			shell_exit();
+			quit();
 		}
 		line = ft_strjoin_free(line, "\n");
 		str_to_pipe(pipe, line);

@@ -57,6 +57,9 @@ declare -x COLORTERM=\"truecolor\"
 
 ## `cd`
 
+- `cd -` takes you to `$OLD_PWD`
+- https://stackoverflow.com/questions/10382299/how-can-i-return-to-the-previous-working-directory-quickly-in-bash
+
 ## `pwd`
 
 ## `unset`

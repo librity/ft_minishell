@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 20:35:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:30:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define MINISHELL_H
 
 # include <fcntl.h>
+# include <limits.h>
 # include <stdio.h>
 # include <sys/wait.h>
 
 # include <defines.h>
 # include <errors.h>
-# include <warnings.h>
-
 # include <structs.h>
+# include <warnings.h>
 
 /******************************************************************************\
  * CONTROL
@@ -48,6 +48,7 @@ char			*envht_get(char *key);
 bool			envht_delete(char *key);
 
 char			*last_exit(void);
+int				last_exit_int(void);
 bool			initialize_last_exit(void);
 bool			destroy_last_exit(void);
 bool			set_last_exit(int exit_status);
@@ -178,6 +179,44 @@ void			hdoc_to_stdin(char *delimiter);
 pid_t			fork_or_die(void);
 
 /******************************************************************************\
+ * BUILTINS
+\******************************************************************************/
+
+char			**builtins(void);
+bool			is_builtin(char *cmd);
+
+int				bi_cd(char **argv);
+bool			cd_could_change_dir(char **tokens);
+
+int				bi_echo(char **tokens);
+
+int				bi_pwd(char **tokens);
+
+int				bi_export(char **tokens);
+bool			exp_dump(char **tokens);
+typedef struct s_export
+{
+	char		*key;
+	char		*value;
+	int			status;
+}				t_export;
+int				exp_insert(char **tokens);
+void			exp_cleanup(t_export *_ctl);
+bool			exp_handled_invalid_variable(char **tokens, t_export *_ctl);
+bool			exp_handled_empty_variable(char **tokens, t_export *_ctl);
+bool			exp_handled_empty_value(t_export *_ctl);
+char			*exp_extract_key(char *declaration);
+char			*exp_extract_value(char *declaration);
+
+int				bi_exit(char **tokens);
+
+int				bi_unset(char **tokens);
+
+int				bi_env(char **tokens);
+
+int				bi_help(char **tokens);
+
+/******************************************************************************\
  * FILES
 \******************************************************************************/
 
@@ -233,6 +272,8 @@ char			*ht_item_to_string(t_ht_item *item);
 
 int				ht_get_index(char *message);
 t_dlist			**ht_get_index_list(t_hash_table *table, int index);
+
+void			ht_for_each(t_hash_table *table, t_ht_for_each_cb callback);
 
 /******************************************************************************\
  * CRYPTO
@@ -301,13 +342,14 @@ bool			at_heredoc(char *line);
 void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
 
-void			shell_exit(void);
+void			quit(void);
 
 void			die(char *message);
 void			die_perror(char *location, int exit_status);
 void			die_full(char *location, char *message, int exit_status);
 
 void			print_error(char *message);
+void			print_location_error(char *location, char *message);
 void			print_warning(char *message);
 
 #endif

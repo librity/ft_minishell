@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 14:23:40 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/24 16:03:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	cleanup(void)
+int	bi_pwd(char **tokens)
 {
-	cleanup_shell();
-}
+	char	*_pwd;
 
-void	die(char *message)
-{
-	print_error(message);
-	cleanup();
-	exit(EXIT_FAILURE);
-}
-
-void	die_perror(char *location, int exit_status)
-{
-	ft_putstr_fd(MINISHELL_PREFIX, STDERR_FILENO);
-	perror(location);
-	cleanup();
-	exit(exit_status);
-}
-
-void	die_full(char *location, char *message, int exit_status)
-{
-	print_location_error(location, message);
-	cleanup();
-	exit(exit_status);
+	if (tokens == NULL || *tokens == NULL)
+		return (PWD_BAD_TOKENS);
+	if (ft_strarr_len(tokens) != 1)
+		return (PWD_TOO_MANY_ARGS);
+	_pwd = envht_get(PWD_KEY);
+	if (_pwd == NULL)
+		return (PWD_MISSING_PWD_ENV_VAR);
+	printf("%s\n", _pwd);
+	return (EXIT_SUCCESS);
 }

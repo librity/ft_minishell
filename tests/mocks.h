@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 13:22:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:45:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,27 @@
 
 # include <minishell.h>
 
+static char	*mock_env_var(char *variable)
+{
+	char *env_value;
+	char *result;
+
+
+	env_value = getenv(variable);
+	if (env_value == NULL)
+		return (ft_strjoin(variable, "=/"));
+	result = ft_strdup(variable);
+	result = ft_strjoin_free(result, "=");
+	result = ft_strjoin_free(result, env_value);
+	return (result);
+}
+
 void mock_initialize_shell(void)
 {
+	char	*oldpwd = mock_env_var("OLDPWD");
+	char	*pwd = mock_env_var("PWD");
+	char	*home = mock_env_var("HOME");
+
 	int		mock_argc = 1;
 	char	**mock_argv = (char *[]){"./minishell", NULL};
 	char	**mock_envp = (char *[]){
@@ -44,7 +63,7 @@ void mock_initialize_shell(void)
 	"RBENV_SHELL=bash",
 	"EDITOR=nano",
 	"GTK_MODULES=gail:atk-bridge",
-	"PWD=/home/lgeniole/code/ft/minishell",
+	pwd,
 	"XDG_SESSION_DESKTOP=ubuntu",
 	"LOGNAME=lgeniole",
 	"XDG_SESSION_TYPE=x11",
@@ -53,11 +72,8 @@ void mock_initialize_shell(void)
 	"XAUTHORITY=/run/user/1000/gdm/Xauthority",
 	"GJS_DEBUG_TOPICS=JS ERROR;JS LOG",
 	"WINDOWPATH=2",
-	"c=foo",
-	"HOME=/home/lgeniole",
-	"b=2",
+	home,
 	"USERNAME=lgeniole",
-	"a=",
 	"IM_CONFIG_PHASE=1",
 	"LC_PAPER=en_CA.UTF-8",
 	"LANG=en_US.UTF-8",
@@ -65,7 +81,6 @@ void mock_initialize_shell(void)
 	"XDG_CURRENT_DESKTOP=ubuntu:GNOME",
 	"INVOCATION_ID=0a8fc8b228e742e4b4ad56802e1ffb5b",
 	"MANAGERPID=2330",
-	"foo=bar",
 	"ALACRITTY_SOCKET=/run/user/1000/Alacritty-:1-4739.sock",
 	"GJS_DEBUG_OUTPUT=stderr",
 	"NVM_DIR=/home/lgeniole/.nvm",
@@ -98,14 +113,17 @@ void mock_initialize_shell(void)
 	"GIO_LAUNCHED_DESKTOP_FILE_PID=4739",
 	"GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/Alacritty.desktop",
 	"LC_NUMERIC=en_CA.UTF-8",
-	"OLDPWD=/home/lgeniole/code/ft",
+	oldpwd,
 	"GOPATH=/home/lgeniole/code/go",
 	"TERM_PROGRAM=tmux",
 	"_=/usr/bin/env",
 	NULL};
 
 	initialize_shell(mock_argc, mock_argv, mock_envp);
-}
 
+	free(oldpwd);
+	free(pwd);
+	free(home);
+}
 
 #endif

@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   help.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/21 14:23:40 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/24 17:07:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "../tests.h"
 
-static void	cleanup(void)
+void	setup(void)
+{
+	mock_initialize_shell();
+}
+void	teardown(void)
 {
 	cleanup_shell();
 }
 
-void	die(char *message)
+MU_TEST(trivial_tst)
 {
-	print_error(message);
-	cleanup();
-	exit(EXIT_FAILURE);
+	mu_check(0 == bi_help((char *[]){"help", NULL}));
 }
 
-void	die_perror(char *location, int exit_status)
+
+MU_TEST_SUITE(help_suite)
 {
-	ft_putstr_fd(MINISHELL_PREFIX, STDERR_FILENO);
-	perror(location);
-	cleanup();
-	exit(exit_status);
+	MU_SUITE_CONFIGURE(&setup, &teardown);
+
+	MU_RUN_TEST(trivial_tst);
 }
 
-void	die_full(char *location, char *message, int exit_status)
+MU_MAIN
 {
-	print_location_error(location, message);
-	cleanup();
-	exit(exit_status);
+	MU_DIVIDER;
+	MU_RUN_SUITE(help_suite);
+	MU_REPORT();
+	return (MU_EXIT_CODE);
 }
