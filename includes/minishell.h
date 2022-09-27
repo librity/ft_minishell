@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/25 11:04:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:03:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,12 +180,14 @@ void			hdoc_to_stdin(char *delimiter);
 
 pid_t			fork_or_die(void);
 
+void			execute_builtin(char **tokens);
+
 /******************************************************************************\
  * BUILTINS
 \******************************************************************************/
 
-char			**builtins(void);
-bool			is_builtin(char *cmd);
+t_builtin		find_builtin(char *name);
+bool			is_builtin(char *name);
 
 int				bi_cd(char **argv);
 bool			cd_could_change_dir(char **tokens);

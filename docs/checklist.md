@@ -72,7 +72,8 @@
   - [x] `export` with no options
     - [x] Sem argumentos, jogar as variáveis na tela.
     - [x] Inserir uma ou mais variáveis.
-    - [x] Verificar variável sem valor.
+    - [x] Pular variáveis sem atribuição (sem `=`).
+    - [ ] Adicionar variável com atribuição e sem valor (`value = ""`).
     - [x] Verificar variável sem chave com erro.
     - [x] Verificar variável vazia com erro.
     - [x] Verificar nome de variável com erro.

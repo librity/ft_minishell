@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 15:53:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/25 12:33:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,21 @@ MU_TEST(trivial_tst)
 
 MU_TEST(no_value_tst)
 {
-	mu_check(0 == bi_export((char *[]){"export", "idade=", NULL}));
-	mu_check(NULL == envht_get("idade"));
+	mu_check(0 == bi_export((char *[]){"export", "laura=", NULL}));
+	mu_assert_string_eq(envht_get("laura"), "");
 
-	mu_check(0 == bi_export((char *[]){"export", "with=walk", "idade=", "fire=me", NULL}));
+	mu_check(0 == bi_export((char *[]){"export", "with=walk", "palmer=", "fire=me", NULL}));
+	mu_assert_string_eq(envht_get("with"), "walk");
+	mu_assert_string_eq(envht_get("palmer"), "");
+	mu_assert_string_eq(envht_get("fire"), "me");
+}
+
+MU_TEST(no_assignment_tst)
+{
+	mu_check(0 == bi_export((char *[]){"export", "garmonbozia", NULL}));
+	mu_check(NULL == envht_get("garmonbozia"));
+
+	mu_check(0 == bi_export((char *[]){"export", "with=walk", "garmonbozia", "fire=me", NULL}));
 	mu_assert_string_eq(envht_get("with"), "walk");
 	mu_check(NULL == envht_get("idade"));
 	mu_assert_string_eq(envht_get("fire"), "me");
@@ -152,6 +163,7 @@ MU_TEST_SUITE(export_suite)
 	MU_RUN_TEST(trivial_tst);
 
 	MU_RUN_TEST(no_value_tst);
+	MU_RUN_TEST(no_assignment_tst);
 	MU_RUN_TEST(no_key_tst);
 	MU_RUN_TEST(empty_tst);
 

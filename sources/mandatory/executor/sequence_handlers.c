@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/25 11:28:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:03:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,6 @@ void	handle_append(t_parse_list *node)
 	stdout_to_file(fd);
 }
 
-void	execve_builtin(char **tokens)
-{
-	int	status;
-
-	if (ft_streq(CD, *tokens))
-		status = bi_cd(tokens);
-	if (ft_streq(EXIT, *tokens))
-		status = bi_exit(tokens);
-	if (ft_streq(ECHO, *tokens))
-		status = bi_echo(tokens);
-	if (ft_streq(PWD, *tokens))
-		status = bi_pwd(tokens);
-	if (ft_streq(EXPORT, *tokens))
-		status = bi_export(tokens);
-	if (ft_streq(UNSET, *tokens))
-		status = bi_unset(tokens);
-	if (ft_streq(HELP, *tokens))
-		status = bi_help(tokens);
-	if (ft_streq(ENV, *tokens))
-		status = bi_env(tokens);
-	set_last_exit(status);
-}
-
 void	handle_exec(t_parse_list *node)
 {
 	char	**tokens;
@@ -80,7 +57,7 @@ void	handle_exec(t_parse_list *node)
 	tokens = get_parse_tokens(node);
 	if (is_builtin(*tokens))
 	{
-		execve_builtin(tokens);
+		execute_builtin(tokens);
 		return ;
 	}
 	execve_or_die(tokens);
