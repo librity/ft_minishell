@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 19:42:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:52:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,37 +92,6 @@ MU_TEST(re_tst)
 	destroy_parse_list(&_plist);
 }
 
-MU_TEST(he_tst)
-{
-	_plist = NULL;
-
-	add_heredoc(&_plist, "exit");
-	add_exec(&_plist, (char *[]){"grep", "a", NULL});
-
-	write_to_stdin("a\nb\nc\nexit\nada\naaa");
-	execute_pipe(_plist);
-	ft_dump_stdin();
-
-	destroy_parse_list(&_plist);
-}
-
-
-MU_TEST(hhre_tst)
-{
-	_plist = NULL;
-
-	add_heredoc(&_plist, "1");
-	add_heredoc(&_plist, "2");
-	add_read_file(&_plist, "tests/sandbox/hhre_tst");
-	add_exec(&_plist, (char *[]){"grep", "a", NULL});
-
-	// write_to_stdin("a\nb\nc\n1\nada\naaa\n2\nabc\ndfg\naba");
-	execute_pipe(_plist);
-	ft_dump_stdin();
-
-	destroy_parse_list(&_plist);
-}
-
 MU_TEST(e_relative_tst)
 {
 	_plist = NULL;
@@ -151,20 +120,26 @@ MU_TEST_SUITE(pipe_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
+	// ACCEPTABLE LEAKS: ls
 	MU_RUN_TEST(e_tst);
+
+	// ACCEPTABLE LEAKS: ls grep
 	MU_RUN_TEST(ep_e_tst);
 
+	// ACCEPTABLE LEAKS: ls
 	MU_RUN_TEST(te_tst);
+
+	// ACCEPTABLE LEAKS: ls
 	MU_RUN_TEST(ae_tst);
 
+	// ACCEPTABLE LEAKS: grep
 	MU_RUN_TEST(re_tst);
-	MU_RUN_TEST(he_tst);
 
+	// ACCEPTABLE LEAKS: bash
 	MU_RUN_TEST(e_relative_tst);
-	MU_RUN_TEST(e_absolute_tst);
 
-	// FAILING
-	// MU_RUN_TEST(hhre_tst);
+	// ACCEPTABLE LEAKS: ls
+	MU_RUN_TEST(e_absolute_tst);
 }
 
 MU_MAIN

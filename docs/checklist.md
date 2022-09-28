@@ -73,7 +73,7 @@
     - [x] Sem argumentos, jogar as variáveis na tela.
     - [x] Inserir uma ou mais variáveis.
     - [x] Pular variáveis sem atribuição (sem `=`).
-    - [ ] Adicionar variável com atribuição e sem valor (`value = ""`).
+    - [x] Adicionar variável com atribuição e sem valor (`value = ""`).
     - [x] Verificar variável sem chave com erro.
     - [x] Verificar variável vazia com erro.
     - [x] Verificar nome de variável com erro.
@@ -100,7 +100,7 @@
 
 ## Expander
 
-- [ ] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
+- [x] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [x] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
   - [x] Adicionar variável `last_exit` ao `t_minishell`.
   - [x] Inicializar `$?` com `"0"`.
@@ -189,7 +189,9 @@
 - [ ] Implement redirections:
   - [x] `<` should redirect input.
   - [x] `>` should redirect output.
-  - [ ] `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
+  - [ ] `heredoc`: `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
+    - [ ] Heredoc roda antes que todos os outros redirecionamentos, possivelmente dentro do processo pai.
+    - [ ] Resolver os leaks de memória (`hdoc.c`).
   - [x] `>>` should redirect output in append mode.
 - [x] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
 - [x] Executar pipe com `fork()` e redirecionamentos.
@@ -197,12 +199,14 @@
 - [x] Executar todos os pipes de uma pipeline.
 - [ ] Testar múltiplos redirecionamentos na mesma pipeline.
 - [x] Último pipe é redirecionado para `STDOUT`.
-- [ ] Heredoc roda antes que todos os outros redirecionamentos, possivelmente dentro do processo pai.
-- [ ] Atualiza o `last_exit` com o exit status do foreground pipeline.
+- [x] Atualiza o `last_exit` com o exit status do foreground pipeline.
 - Built-ins:
-  - [ ] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
-  - [ ] Se o commando é um builtin dentro de uma pipeline executá-lo em um `fork()`.
-  - [ ] Se o commando é um builtin fora de uma pipeline executá-lo sem `fork()`.
+  - [x] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
+  - [x] Se o commando é um builtin dentro de uma pipeline executá-lo em um `fork()`.
+  - [x] Se o commando é um builtin fora de uma pipeline executá-lo sem `fork()`.
+    - [x] Salvar e restaurar `STDIN`, `STDOUT` e `STDERR` no processo principal.
+  - [ ] Testar múltiplos redirecionamentos no mesmo builtin.
+  - [ ] Testar múltiplos redirecionamentos na mesma pipeline comm builtins.
 
 # Bonus
 
