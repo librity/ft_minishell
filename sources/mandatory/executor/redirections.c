@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sequence_handlers.c                                :+:      :+:    :+:   */
+/*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/27 11:03:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:33:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,4 @@ void	handle_append(t_parse_list *node)
 	file_path = get_parse_file_path(node);
 	fd = open_append_or_die(file_path);
 	stdout_to_file(fd);
-}
-
-void	handle_exec(t_parse_list *node)
-{
-	char	**tokens;
-
-	tokens = get_parse_tokens(node);
-	if (is_builtin(*tokens))
-	{
-		execute_builtin(tokens);
-		return ;
-	}
-	execve_or_die(tokens);
-	exit(EXIT_FAILURE);
 }

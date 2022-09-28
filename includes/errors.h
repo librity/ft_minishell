@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 17:08:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:01:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define HEREDOC_DELIMITER_ERR "Can't read a heredoc with NULL delimiter."
 # define HEREDOC_LOCATION_ERR "heredoc"
 
+# define EXEC_BAD_TOKENS_ERR "Can't execute command with NULL or empty tokens."
+
 /******************************************************************************\
  * FILES
 \******************************************************************************/
@@ -49,6 +51,8 @@
 /******************************************************************************\
  * BUILTINS
 \******************************************************************************/
+
+# define BAD_BUILTIN_ERR "Can't execute unsupported builtin."
 
 # define NO_FILE_DIR_ERR "No such file or directory"
 # define TOO_MANY_ARGS_ERR "too many arguments"

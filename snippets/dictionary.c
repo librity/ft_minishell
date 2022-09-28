@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 15:34:46 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/27 15:49:16 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:11:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void *find_my_dict(char *name)
 	return (ft_dict_find(_builtins, name));
 }
 
-bool is_in_mid_dict(char *name)
+bool is_in_my_dict(char *name)
 {
 	if (find_my_dict(name) == NULL)
 		return (false);
@@ -79,22 +79,22 @@ int main(void)
 	t_vfuncv callback;
 	char *str;
 
-	printf("%s is in my_dict %d\n", "string", is_in_mid_dict("string"));
+	printf("%s is in my_dict %d\n", "string", is_in_my_dict("string"));
 	str = find_my_dict("string");
 	printf("%s: %s\n", "string", str);
 	printf("===\n");
 
-	printf("%s is in my_dict %d\n", "function", is_in_mid_dict("function"));
+	printf("%s is in my_dict %d\n", "function", is_in_my_dict("function"));
 	callback = find_my_dict("function");
 	callback();
 	printf("===\n");
 
-	printf("%s is in my_dict %d\n", "number", is_in_mid_dict("number"));
+	printf("%s is in my_dict %d\n", "number", is_in_my_dict("number"));
 	number = *(int *)find_my_dict("number");
 	printf("%s: %d\n", "number", number);
 	printf("===\n");
 
-	printf("%s is in my_dict %d\n", "badbad", is_in_mid_dict("badbad"));
+	printf("%s is in my_dict %d\n", "badbad", is_in_my_dict("badbad"));
 	printf("%s: %p\n", "badbad", find_my_dict("badbad"));
 	printf("===\n");
 

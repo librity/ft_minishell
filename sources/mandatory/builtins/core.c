@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:18:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/27 15:02:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:42:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,17 @@ bool	is_builtin(char *name)
 	if (find_builtin(name) == NULL)
 		return (false);
 	return (true);
+}
+
+int	execute_builtin(char **tokens)
+{
+	t_builtin	builtin_cb;
+
+	builtin_cb = find_builtin(*tokens);
+	if (builtin_cb == NULL)
+	{
+		print_error(BAD_BUILTIN_ERR);
+		return (EXIT_FAILURE);
+	}
+	return (builtin_cb(tokens));
 }

@@ -1,28 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   last_pipe.c                                        :+:      :+:    :+:   */
+/*   executors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 12:07:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:44:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	handle_last_child(t_parse_list *pipeline)
+void	handle_fork_exec(t_parse_list *node)
 {
-	fork_handle_pipe_sequence(pipeline);
+	char	**tokens;
+	int		status;
+
+	tokens = get_parse_tokens(node);
+	if (tokens == NULL || *tokens == NULL)
+	{
+		print_error(EXEC_BAD_TOKENS_ERR);
+		exit(EXIT_FAILURE);
+	}
+	if (is_builtin(*tokens))
+	{
+		status = execute_builtin(tokens);
+		exit(status);
+	}
+	execve_or_die(tokens);
+	exit(EXIT_FAILURE);
 }
 
-void	execute_last_pipe(t_parse_list *pipeline)
+int	handle_builtin_exec(t_parse_list *node)
 {
-	pid_t	pid;
+	char	**tokens;
 
-	pid = fork_or_die();
-	if (pid == CHILD_PROCESS_ID)
-		handle_last_child(pipeline);
-	waitpid(pid, NULL, 0);
+	tokens = get_parse_tokens(node);
+	if (tokens == NULL || *tokens == NULL)
+	{
+		print_error(EXEC_BAD_TOKENS_ERR);
+		exit(EXIT_FAILURE);
+	}
+	return (execute_builtin(tokens));
 }

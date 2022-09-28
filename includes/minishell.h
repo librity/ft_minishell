@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/27 15:03:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:06:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,18 +156,22 @@ t_parse_type	get_parse_type(t_parse_node *node);
 
 void			execute(t_parse_list *pipeline);
 
+bool			handled_single_builtin(t_parse_list *pipeline);
 void			execute_pipeline(t_parse_list *list);
 
 void			execute_pipe(t_parse_list *plist);
 void			execute_last_pipe(t_parse_list *plist);
 
-void			handle_pipe_sequence(t_parse_list *node);
+void			fork_handle_pipe_sequence(t_parse_list *node);
+int				handle_builtin_sequence(t_parse_list *node);
 
 void			handle_read_file(t_parse_list *node);
 void			handle_heredoc(t_parse_list *node);
 void			handle_truncate(t_parse_list *node);
 void			handle_append(t_parse_list *node);
-void			handle_exec(t_parse_list *node);
+
+void			handle_fork_exec(t_parse_list *node);
+int				handle_builtin_exec(t_parse_list *node);
 
 void			execve_or_die(char **tokens);
 
@@ -180,14 +184,13 @@ void			hdoc_to_stdin(char *delimiter);
 
 pid_t			fork_or_die(void);
 
-void			execute_builtin(char **tokens);
-
 /******************************************************************************\
  * BUILTINS
 \******************************************************************************/
 
 t_builtin		find_builtin(char *name);
 bool			is_builtin(char *name);
+int				execute_builtin(char **tokens);
 
 int				bi_cd(char **argv);
 bool			cd_could_change_dir(char **tokens);

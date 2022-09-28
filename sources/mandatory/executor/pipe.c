@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/13 20:30:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:05:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	handle_child(t_parse_list *pipeline, int pipe[2])
 {
 	stdout_to_pipe(pipe);
 	close_pipe(pipe);
-	handle_pipe_sequence(pipeline);
+	fork_handle_pipe_sequence(pipeline);
 }
 
 void	execute_pipe(t_parse_list *pipeline)
