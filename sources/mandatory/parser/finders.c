@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   finders.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 22:04:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 14:55:46 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/28 14:51:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	close_or_die(int close_me)
+t_parse_node	*find_first_exec(t_parse_list *node)
 {
-	close_me = close(close_me);
-	if (close_me < 0)
-		die_perror(CLOSE_LOC, EXIT_FAILURE);
-	return (close_me);
+	while (node != NULL && get_parse_type(node) != PT_PIPE)
+	{
+		if (get_parse_type(node) == PT_EXEC)
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
 }

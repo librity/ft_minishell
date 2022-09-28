@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:47:21 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/23 14:02:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:54:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	get_hdoc_stream(char *delimiter, int pipe[2])
 		ft_putstr(HDOC_FEED);
 		status = ft_get_next_line(STDIN_FILENO, &line);
 		if (status == GNL_ERROR)
-			die_perror(HEREDOC_LOCATION_ERR, EXIT_FAILURE);
+			die_perror(HEREDOC_LOC, EXIT_FAILURE);
 		if (ft_streq(line, delimiter))
 		{
 			free(line);

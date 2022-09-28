@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 12:06:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:02:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,8 @@ char			*get_parse_file_path(t_parse_node *node);
 char			*get_parse_delimiter(t_parse_node *node);
 t_parse_type	get_parse_type(t_parse_node *node);
 
+t_parse_node	*find_first_exec(t_parse_list *node);
+
 /******************************************************************************\
  * EXECUTOR
 \******************************************************************************/
@@ -235,6 +237,12 @@ int				open_file_or_die(char *path);
 int				open_truncate_or_die(char *path);
 int				open_append_or_die(char *path);
 
+int				dup_or_die(int dup_me);
+int				dup2_or_die(int from, int to);
+
+void			save_ioe(t_proc_fds *ioe);
+void			restore_ioe(t_proc_fds *ioe);
+
 /******************************************************************************\
  * PIPES
 \******************************************************************************/
@@ -245,11 +253,8 @@ void			close_pipe(int pipe_fds[2]);
 void			file_to_stdin(int infile_fd);
 void			stdout_to_file(int outfile_fd);
 
-void			stdin_to_pipe(int pipe_fds[2]);
 void			pipe_to_stdin(int pipe_fds[2]);
-
 void			stdout_to_pipe(int pipe_fds[2]);
-void			pipe_to_stdout(int pipe_fds[2]);
 
 void			str_to_pipe(int pipe_fds[2], char *str);
 

@@ -6,22 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 10:39:54 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 12:06:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:05:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-static t_parse_node	*find_first_exec(t_parse_list *node)
-{
-	while (node != NULL && get_parse_type(node) != PT_PIPE)
-	{
-		if (get_parse_type(node) == PT_EXEC)
-			return (node);
-		node = node->next;
-	}
-	return (NULL);
-}
 
 static bool	firs_exec_is_builtin(t_parse_list *pipeline)
 {
@@ -41,10 +30,13 @@ static bool	firs_exec_is_builtin(t_parse_list *pipeline)
 
 static void	handle_single_builtin(t_parse_list *pipeline)
 {
-	int	status;
+	int			status;
+	t_proc_fds	ioe;
 
+	save_ioe(&ioe);
 	status = handle_builtin_sequence(pipeline);
 	set_last_exit(status);
+	restore_ioe(&ioe);
 }
 
 bool	handled_single_builtin(t_parse_list *pipeline)
