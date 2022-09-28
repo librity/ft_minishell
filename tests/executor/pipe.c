@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 19:42:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:03:57 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,20 @@ MU_TEST(e_tst)
 {
 	_plist = NULL;
 
-	ft_dlst_add(&_plist, new_exec((char *[]){"ls", "-a", NULL}));
+	// ft_dlst_add(&_plist, new_exec((char *[]){"ls", NULL}));
+	// execute_pipe(_plist);
+	// ft_dump_stdin();
+	// destroy_parse_list(&_plist);
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	// ft_dlst_add(&_plist, new_exec((char *[]){"ls", "-a", NULL}));
+	// execute_pipe(_plist);
+	// ft_dump_stdin();
+	// destroy_parse_list(&_plist);
 
-	destroy_parse_list(&_plist);
+	// ft_dlst_add(&_plist, new_exec((char *[]){"ls", "-la", NULL}));
+	// execute_pipe(_plist);
+	// ft_dump_stdin();
+	// destroy_parse_list(&_plist);
 }
 
 MU_TEST(ep_e_tst)
@@ -147,24 +155,51 @@ MU_TEST(e_absolute_tst)
 	destroy_parse_list(&_plist);
 }
 
+MU_TEST(failed_ls_tst)
+{
+	ft_dlst_add(&_plist, new_exec((char *[]){"ls", "sources" "tests", NULL}));
+	execute_pipe(_plist);
+	ft_dump_stdin();
+	destroy_parse_list(&_plist);
+}
+
+MU_TEST(failed_cat_tst)
+{
+	ft_dlst_add(&_plist, new_exec((char *[]){"cat", "main.c" "Makefile", NULL}));
+	execute_pipe(_plist);
+	ft_dump_stdin();
+	destroy_parse_list(&_plist);
+}
+
+MU_TEST(failed_mkdir_tst)
+{
+	ft_dlst_add(&_plist, new_exec((char *[]){"cat", "file1" "file2", NULL}));
+	execute_pipe(_plist);
+	ft_dump_stdin();
+	destroy_parse_list(&_plist);
+}
+
 MU_TEST_SUITE(pipe_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	MU_RUN_TEST(e_tst);
-	MU_RUN_TEST(ep_e_tst);
+	//MU_RUN_TEST(e_tst);
+	//MU_RUN_TEST(ep_e_tst);
 
-	MU_RUN_TEST(te_tst);
-	MU_RUN_TEST(ae_tst);
+	//MU_RUN_TEST(te_tst);
+	//MU_RUN_TEST(ae_tst);
 
-	MU_RUN_TEST(re_tst);
-	MU_RUN_TEST(he_tst);
+	//MU_RUN_TEST(re_tst);
+	//MU_RUN_TEST(he_tst);
 
-	MU_RUN_TEST(e_relative_tst);
-	MU_RUN_TEST(e_absolute_tst);
+	//MU_RUN_TEST(e_relative_tst);
+	//MU_RUN_TEST(e_absolute_tst);
 
-	// FAILING
-	// MU_RUN_TEST(hhre_tst);
+	//FAILING
+	//cp, mv
+	//MU_RUN_TEST(hhre_tst);
+	//MU_RUN_TEST(failed_ls_tst);
+	MU_RUN_TEST(failed_mkdir_tst);
 }
 
 MU_MAIN
