@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 15:02:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:25:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,9 +211,8 @@ typedef struct s_export
 }				t_export;
 int				exp_insert(char **tokens);
 void			exp_cleanup(t_export *_ctl);
-bool			exp_handled_invalid_variable(char **tokens, t_export *_ctl);
-bool			exp_handled_empty_variable(char **tokens, t_export *_ctl);
-bool			exp_handled_empty_value(t_export *_ctl);
+bool			exp_handled_bad_key(char **tokens, t_export *_ctl);
+bool			exp_handled_no_assignment(char **tokens, t_export *_ctl);
 char			*exp_extract_key(char *declaration);
 char			*exp_extract_value(char *declaration);
 

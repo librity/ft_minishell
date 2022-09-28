@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 15:50:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:25:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,11 @@ int	exp_insert(char **tokens)
 	while (++tokens && *tokens != NULL)
 	{
 		_ctl.key = exp_extract_key(*tokens);
-		if (exp_handled_invalid_variable(tokens, &_ctl))
+		if (exp_handled_bad_key(tokens, &_ctl))
 			continue ;
-		if (exp_handled_empty_variable(tokens, &_ctl))
+		if (exp_handled_no_assignment(tokens, &_ctl))
 			continue ;
 		_ctl.value = exp_extract_value(*tokens);
-		if (exp_handled_empty_value(&_ctl))
-			continue ;
 		insert_variable(&_ctl);
 	}
 	return (_ctl.status);
