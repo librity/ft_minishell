@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/06 16:04:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:47:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	add_pipe(t_parse_list **list)
 	t_parse	*_parse;
 
 	_parse = new_pipe();
-	ft_dlst_add_lalloc(lalloc(), list, _parse);
+	ft_dlst_addb_lalloc(lalloc(), list, _parse);
 }
 
 t_parse_list	*find_next_parse_pipe(t_parse_list *node)

@@ -88,7 +88,7 @@
     - [x] Se o argumento não é um número retornar erro.
   - [x] (OPTIONAL) `help` prints a help message listing all commands
 - [ ] Add all allocated memory used in a REPL to `lalloc()`
-  - [ ] Remove all uses of `destroy_parse()`
+  - [x] Remove all uses of `destroy_parse()`
 
 ## Prompt
 

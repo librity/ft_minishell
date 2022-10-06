@@ -6,19 +6,19 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 19:42:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:00:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
-t_parse_list	*_plist;
+t_parse_list *_plist;
 
-void	setup(void)
+void setup(void)
 {
 	mock_initialize_shell();
 }
-void	teardown(void)
+void teardown(void)
 {
 	cleanup_shell();
 }
@@ -27,25 +27,40 @@ MU_TEST(e_tst)
 {
 	_plist = NULL;
 
-	ft_dlst_add(&_plist, new_exec((char *[]){"ls", NULL}));
-
+	add_exec(&_plist, (char *[]){"ls", NULL});
 	execute_pipeline(_plist);
-	// execve("/usr/bin/ls", (char *[]){"ls", NULL}, envht_to_envp());
 
-	destroy_parse_list(&_plist);
+	// execve("/usr/bin/ls", (char *[]){"ls", NULL}, envht_to_envp());
+}
+
+MU_TEST(ls_multiple_arg_tst)
+{
+	_plist = NULL;
+	add_exec(&_plist, (char *[]){"ls", "sources/", "tests/", NULL});
+	execute_pipeline(_plist);
+
+	_plist = NULL;
+	add_exec(&_plist, (char *[]){"ls", "sources", "tests", NULL});
+	execute_pipeline(_plist);
+}
+
+MU_TEST(ls_err_tst)
+{
+	_plist = NULL;
+
+	add_exec(&_plist, (char *[]){"ls", "ls", NULL});
+	execute_pipeline(_plist);
 }
 
 MU_TEST(ep_e_tst)
 {
 	_plist = NULL;
 
-	ft_dlst_add(&_plist, new_exec((char *[]){"ls", "-a", NULL}));
-	ft_dlst_add(&_plist, new_pipe());
-	ft_dlst_add(&_plist, new_exec((char *[]){"grep", "main", NULL}));
+	add_exec(&_plist, (char *[]){"ls", "-a", NULL});
+	add_pipe(&_plist);
+	add_exec(&_plist, (char *[]){"grep", "main", NULL});
 
 	execute_pipeline(_plist);
-
-	destroy_parse_list(&_plist);
 }
 
 MU_TEST_SUITE(pipeline_suite)
@@ -53,6 +68,9 @@ MU_TEST_SUITE(pipeline_suite)
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
 	MU_RUN_TEST(e_tst);
+	MU_RUN_TEST(ls_multiple_arg_tst);
+	MU_RUN_TEST(ls_err_tst);
+
 	MU_RUN_TEST(ep_e_tst);
 }
 

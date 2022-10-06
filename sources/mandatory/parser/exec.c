@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/06 16:11:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:46:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	add_exec(t_parse_list **list, char **tokens)
 	_parse = new_exec_length(tokens, length);
 	if (_parse == NULL)
 		return ;
-	ft_dlst_add_lalloc(lalloc(), list, _parse);
+	ft_dlst_addb_lalloc(lalloc(), list, _parse);
 }

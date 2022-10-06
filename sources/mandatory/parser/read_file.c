@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/06 16:04:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:47:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	add_read_file(t_parse_list **list, char *file_path)
 	t_parse	*_parse;
 
 	_parse = new_read_file(file_path);
-	ft_dlst_add_lalloc(lalloc(), list, _parse);
+	ft_dlst_addb_lalloc(lalloc(), list, _parse);
 }
