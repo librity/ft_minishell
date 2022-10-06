@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 22:36:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:05:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_parse	*new_truncate(char *file_path)
 	new = new_parse();
 	new->type = PT_TRUNCATE;
 	new->file_path = ft_strdup_null(file_path);
+	ft_add_lalloc(lalloc(), new->file_path);
 	return (new);
 }
 
@@ -27,5 +28,5 @@ void	add_truncate(t_parse_list **list, char *file_path)
 	t_parse	*_parse;
 
 	_parse = new_truncate(file_path);
-	ft_dlst_add(list, _parse);
+	ft_dlst_add_lalloc(lalloc(), list, _parse);
 }

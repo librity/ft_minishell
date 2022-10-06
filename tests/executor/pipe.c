@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 17:52:04 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:57:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,26 +120,15 @@ MU_TEST_SUITE(pipe_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	// ACCEPTABLE LEAKS: ls
-	MU_RUN_TEST(e_tst);
+	MU_RUN_TEST(e_tst); // ACCEPTABLE LEAKS: ls
+	MU_RUN_TEST(ep_e_tst); // ACCEPTABLE LEAKS: ls grep
 
-	// ACCEPTABLE LEAKS: ls grep
-	MU_RUN_TEST(ep_e_tst);
+	MU_RUN_TEST(te_tst); // ACCEPTABLE LEAKS: ls
+	MU_RUN_TEST(ae_tst); // ACCEPTABLE LEAKS: ls
+	MU_RUN_TEST(re_tst); // ACCEPTABLE LEAKS: grep
 
-	// ACCEPTABLE LEAKS: ls
-	MU_RUN_TEST(te_tst);
-
-	// ACCEPTABLE LEAKS: ls
-	MU_RUN_TEST(ae_tst);
-
-	// ACCEPTABLE LEAKS: grep
-	MU_RUN_TEST(re_tst);
-
-	// ACCEPTABLE LEAKS: bash
-	MU_RUN_TEST(e_relative_tst);
-
-	// ACCEPTABLE LEAKS: ls
-	MU_RUN_TEST(e_absolute_tst);
+	MU_RUN_TEST(e_relative_tst); // ACCEPTABLE LEAKS: bash
+	MU_RUN_TEST(e_absolute_tst); // ACCEPTABLE LEAKS: ls
 }
 
 MU_MAIN

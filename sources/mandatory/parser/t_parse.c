@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 22:36:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:27:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_parse	*new_parse(void)
 {
 	t_parse	*new_node;
 
-	new_node = ft_scalloc(sizeof(t_parse), 1);
+	new_node = ft_clalloc(lalloc(), sizeof(t_parse), 1);
 	return (new_node);
 }
 
