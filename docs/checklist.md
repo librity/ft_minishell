@@ -34,6 +34,16 @@
 - [ ] Pass all testers
   - [ ] https://github.com/LucasKuhn/myshell_tester
 
+## Memória
+
+- [ ] Adicionar toda memoria do loop (REPL) no `lalloc()`
+  - [ ] Prompt
+  - [ ] Expander
+  - [ ] Lexer
+  - [x] Parser
+- [ ] Liberar memória antes de sair do loop com `free_lalloc()`
+- [x] Remover todos os usos de `destroy_parse()`
+
 ## Variáveis
 
 - [x] Implementar uma Hash Table:
@@ -87,8 +97,6 @@
     - [x] Mostrar erro caso tenha mais de 1 argumento.
     - [x] Se o argumento não é um número retornar erro.
   - [x] (OPTIONAL) `help` prints a help message listing all commands
-- [ ] Add all allocated memory used in a REPL to `lalloc()`
-  - [x] Remove all uses of `destroy_parse()`
 
 ## Prompt
 
