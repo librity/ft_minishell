@@ -159,6 +159,7 @@
 - [x] `t_parse_list`:
   - [x] Criar uma lista linkada onde cada nó é um operador ou um executável.
   - [x] Lidar com redirecionamentos intercalados.
+- [ ] Fix `ft_dlst_addb_lalloc()` and `ft_dlst_add_lalloc()`.
 
 ## Syntax Validator
 
@@ -210,13 +211,16 @@
 - [ ] Testar múltiplos redirecionamentos na mesma pipeline.
 - [x] Último pipe é redirecionado para `STDOUT`.
 - [x] Atualiza o `last_exit` com o exit status do foreground pipeline.
-- Built-ins:
+- [ ] Built-ins:
   - [x] Se o commando é um builtin executá-lo antes buscá-lo no sistema.
   - [x] Se o commando é um builtin dentro de uma pipeline executá-lo em um `fork()`.
   - [x] Se o commando é um builtin fora de uma pipeline executá-lo sem `fork()`.
     - [x] Salvar e restaurar `STDIN`, `STDOUT` e `STDERR` no processo principal.
   - [ ] Testar múltiplos redirecionamentos no mesmo builtin.
   - [ ] Testar múltiplos redirecionamentos na mesma pipeline comm builtins.
+- [ ] Fechar fds de redirecionamento depois de executar o builtin isolado
+  - [ ] Com testes
+- [ ] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
 
 # Bonus
 

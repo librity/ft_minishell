@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 11:44:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:10:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,13 @@ void	handle_fork_exec(t_parse_list *node)
 
 	tokens = get_parse_tokens(node);
 	if (tokens == NULL || *tokens == NULL)
-	{
-		print_error(EXEC_BAD_TOKENS_ERR);
-		exit(EXIT_FAILURE);
-	}
+		die(EXEC_BAD_TOKENS_ERR);
 	if (is_builtin(*tokens))
 	{
 		status = execute_builtin(tokens);
-		exit(status);
+		quit_status(status);
 	}
 	execve_or_die(tokens);
-	exit(EXIT_FAILURE);
 }
 
 int	handle_builtin_exec(t_parse_list *node)

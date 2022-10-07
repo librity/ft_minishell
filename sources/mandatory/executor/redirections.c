@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handlers.c                                         :+:      :+:    :+:   */
+/*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 11:33:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:56:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	handle_read_file(t_parse_list *node)
 	path = get_parse_file_path(node);
 	fd = open_infile_or_die(path);
 	file_to_stdin(fd);
+	close_or_die(fd);
 }
 
 void	handle_heredoc(t_parse_list *node)
@@ -38,6 +39,7 @@ void	handle_truncate(t_parse_list *node)
 	file_path = get_parse_file_path(node);
 	fd = open_truncate_or_die(file_path);
 	stdout_to_file(fd);
+	close_or_die(fd);
 }
 
 void	handle_append(t_parse_list *node)
@@ -48,4 +50,5 @@ void	handle_append(t_parse_list *node)
 	file_path = get_parse_file_path(node);
 	fd = open_append_or_die(file_path);
 	stdout_to_file(fd);
+	close_or_die(fd);
 }

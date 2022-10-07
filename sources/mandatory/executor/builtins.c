@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 10:39:54 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 15:05:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:01:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	firs_exec_is_builtin(t_parse_list *pipeline)
+static bool	first_exec_is_builtin(t_parse_list *pipeline)
 {
 	t_parse_node	*node;
 	char			**tokens;
@@ -43,7 +43,7 @@ bool	handled_single_builtin(t_parse_list *pipeline)
 {
 	if (count_parse_pipes(pipeline) > 0)
 		return (false);
-	if (!firs_exec_is_builtin(pipeline))
+	if (!first_exec_is_builtin(pipeline))
 		return (false);
 	handle_single_builtin(pipeline);
 	return (true);

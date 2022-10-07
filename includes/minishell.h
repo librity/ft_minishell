@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 17:25:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:24:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,6 +354,7 @@ void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
 
 void			quit(void);
+void			quit_status(int status);
 
 void			die(char *message);
 void			die_perror(char *location, int exit_status);
