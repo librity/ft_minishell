@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/10/07 14:03:19 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:19:26 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,15 @@ MU_TEST(get_advanced_tst)
 	get_line();
 	mu_assert_string_eq("2", line_cmd());
 	free(line_cmd());
+
+	get_line();
+	mu_check(NULL == line_cmd());
+
+	get_line();
+	mu_check(NULL == line_cmd());
+
+	get_line();
+	mu_check(NULL == line_cmd());
 }
 
 MU_TEST_SUITE(example_suite)
@@ -152,9 +161,9 @@ MU_TEST_SUITE(example_suite)
 	MU_SUITE_CONFIGURE(&example_setup, &example_teardown);
 
 	MU_RUN_TEST(get_line_cmd_tst);
-	// MU_RUN_TEST(get_basic_tst);
-	// MU_RUN_TEST(get_medium_tst);
-	// MU_RUN_TEST(get_advanced_tst);
+	MU_RUN_TEST(get_basic_tst);
+	MU_RUN_TEST(get_medium_tst);
+	MU_RUN_TEST(get_advanced_tst);
 }
 
 int	main(void)
