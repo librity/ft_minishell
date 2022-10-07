@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 00:26:22 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/09/04 00:26:52 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:12:16 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 char	*get_cmd_line(char	*tmp)
 {
-	set_line_cmd(ft_strdup(""));
-	while (line_cmd() != NULL && !*line_cmd())
+	char	*line;
+
+	line = (ft_strdup(""));
+	while (line != NULL && !*line)
 	{
-		free(line_cmd());
+		free(line);
 		printf(GB "%s " WB "in ", getenv("USER"));
-		set_line_cmd(readline(tmp));
-		if (ft_streq(line_cmd(), "exit"))
-			exit(0);
+		line = readline(tmp);
 	}
-	return (line_cmd());
+	return (line);
 }

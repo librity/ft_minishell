@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 00:18:43 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:15:51 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,11 @@ void		free_memory(void);
 \******************************************************************************/
 
 int			init_shell(void);
-void		get_tokens(void);
+void		get_line(void);
 
-
-char		*pwd(void);
 char		*get_cmd_line(char	*tmp);
 
 bool		vf_clone_quote(char *line);
-char		*exec_cmd(void);
-char		*get_cmd_path(char *cmd);
-void		remove_quote(void);
-
 
 /******************************************************************************\
  * LEXER
