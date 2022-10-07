@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 15:24:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:45:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <limits.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # include <defines.h>
 # include <errors.h>
@@ -55,6 +57,12 @@ bool			set_last_exit(int exit_status);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
+
+/******************************************************************************\
+ * PROMPT
+\******************************************************************************/
+
+char			*prompt(void);
 
 /******************************************************************************\
  * LEXER
@@ -352,6 +360,8 @@ bool			at_heredoc(char *line);
 
 void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
+
+int				repl(void);
 
 void			quit(void);
 void			quit_status(int status);
