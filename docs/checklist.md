@@ -107,6 +107,11 @@
   - [ ] `Ctrl-C` displays a new prompt on a new line.
   - [ ] `Ctrl-D` exits the shell.
   - [ ] `Ctrl-\` does nothing.
+- [ ] Adicionar PS1 (ex: `lgeniole@dev1:~/code/ft/minishell$`):
+  - [x] Nome do usuário.
+  - [x] Hostname.
+  - [ ] Current dir.
+  - [ ] Cores.
 
 ## Expander
 
@@ -184,6 +189,7 @@
   - [ ] Não pode ter `|` sem próximo commando.
   - [ ] Não pode ter `|` seguido de `|`.
   - [ ] Primeiro token não pode ser `|`.
+  - [ ] Printa mensagem de erro.
 
 ## Trimmer
 

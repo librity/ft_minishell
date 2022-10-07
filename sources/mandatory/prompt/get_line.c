@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/07 16:54:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:05:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ char	*prompt(void)
 	char	*cmd_line;
 
 	cmd_line = read_prompt();
-	// add_history(cmd_line);
+	add_history(cmd_line);
 	return (cmd_line);
 }

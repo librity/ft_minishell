@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/07 16:56:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:09:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ int	repl(void)
 
 	while (true)
 	{
-		// input = NULL;
-		// tokens = NULL;
-		// plist = NULL;
 		input = prompt();
 		ft_debug("input = %s", input);
 		if (input == NULL)
