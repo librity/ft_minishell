@@ -6,41 +6,40 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/07 15:49:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:54:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static char	*pwd(void)
+static char	*build_ps1(void)
 {
 	char	path[PATH_MAX];
+	char	*ps1;
 
-	return (ft_strjoin(getcwd(path, PATH_MAX), "$ "));
+	getcwd(path, PATH_MAX);
+	ps1 = ft_strjoin(getenv("USER"), ":");
+	ps1 = ft_strjoin_free(ps1, path);
+	ps1 = ft_strjoin_free(ps1, "$ ");
+	return (ps1);
 }
 
-static char	*get_cmd_line(char *tmp)
+static char	*read_prompt(void)
 {
 	char	*line;
+	char	*ps1;
 
-	line = (ft_strdup(""));
-	while (line != NULL && !*line)
-	{
-		free(line);
-		printf(GB "%s " WB "in ", getenv("USER"));
-		line = readline(tmp);
-	}
+	ps1 = build_ps1();
+	line = readline(ps1);
+	free(ps1);
 	return (line);
 }
 
 char	*prompt(void)
 {
-	char	*path;
 	char	*cmd_line;
 
-	path = pwd();
-	cmd_line = get_cmd_line(path);
-	free(path);
-	add_history(cmd_line);
+	cmd_line = read_prompt();
+	// add_history(cmd_line);
 	return (cmd_line);
 }

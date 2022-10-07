@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 00:32:32 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 15:13:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:27:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_minishell	*c(void)
 
 void	initialize_control(int argc, char **argv, char **envp)
 {
-	c()->debug = true;
+	c()->debug = false;
 	c()->argc = argc;
 	c()->argv = argv;
 	c()->envp = envp;
