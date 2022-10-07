@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   ioe.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 22:04:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 14:55:46 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/28 14:39:58 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/28 15:05:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	close_or_die(int close_me)
+void	save_ioe(t_proc_fds *ioe)
 {
-	close_me = close(close_me);
-	if (close_me < 0)
-		die_perror(CLOSE_LOC, EXIT_FAILURE);
-	return (close_me);
+	ioe->input = dup_or_die(STDIN_FILENO);
+	ioe->output = dup_or_die(STDOUT_FILENO);
+	ioe->error = dup_or_die(STDERR_FILENO);
+}
+
+void	restore_ioe(t_proc_fds *ioe)
+{
+	dup2_or_die(ioe->input, STDIN_FILENO);
+	close_or_die(ioe->input);
+	dup2_or_die(ioe->output, STDOUT_FILENO);
+	close_or_die(ioe->output);
+	dup2_or_die(ioe->error, STDERR_FILENO);
+	close_or_die(ioe->error);
 }

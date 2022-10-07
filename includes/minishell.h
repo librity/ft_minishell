@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 17:30:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:24:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,31 +143,39 @@ void			add_heredoc(t_parse_list **list, char *delimiter);
 t_parse			*new_read_file(char *delimiter);
 void			add_read_file(t_parse_list **list, char *file_path);
 
-void			destroy_parse_list(t_dlist **plist);
+void			destroy_parse_list(t_parse_list **list);
 
-char			**get_parse_tokens(t_parse_list *node);
-char			*get_parse_file_path(t_parse_list *node);
-char			*get_parse_delimiter(t_parse_list *node);
-t_parse_type	get_parse_type(t_parse_list *node);
+char			**get_parse_tokens(t_parse_node *node);
+char			*get_parse_file_path(t_parse_node *node);
+char			*get_parse_delimiter(t_parse_node *node);
+t_parse_type	get_parse_type(t_parse_node *node);
+
+t_parse_node	*find_first_exec(t_parse_list *node);
 
 /******************************************************************************\
  * EXECUTOR
 \******************************************************************************/
 
+void			execute(t_parse_list *pipeline);
+
+bool			handled_single_builtin(t_parse_list *pipeline);
 void			execute_pipeline(t_parse_list *list);
 
 void			execute_pipe(t_parse_list *plist);
 void			execute_last_pipe(t_parse_list *plist);
 
-void			handle_pipe_sequence(t_parse_list *node);
+void			fork_handle_pipe_sequence(t_parse_list *node);
+int				handle_builtin_sequence(t_parse_list *node);
 
 void			handle_read_file(t_parse_list *node);
 void			handle_heredoc(t_parse_list *node);
 void			handle_truncate(t_parse_list *node);
 void			handle_append(t_parse_list *node);
-void			handle_exec(t_parse_list *node);
 
-void			execute_or_die(char **tokens);
+void			handle_fork_exec(t_parse_list *node);
+int				handle_builtin_exec(t_parse_list *node);
+
+void			execve_or_die(char **tokens);
 
 char			*find_executable(char *command, char **paths);
 char			*find_executable_or_die(char *command, char **paths);
@@ -182,8 +190,9 @@ pid_t			fork_or_die(void);
  * BUILTINS
 \******************************************************************************/
 
-char			**builtins(void);
-bool			is_builtin(char *cmd);
+t_builtin		find_builtin(char *name);
+bool			is_builtin(char *name);
+int				execute_builtin(char **tokens);
 
 int				bi_cd(char **argv);
 bool			cd_could_change_dir(char **tokens);
@@ -202,9 +211,8 @@ typedef struct s_export
 }				t_export;
 int				exp_insert(char **tokens);
 void			exp_cleanup(t_export *_ctl);
-bool			exp_handled_invalid_variable(char **tokens, t_export *_ctl);
-bool			exp_handled_empty_variable(char **tokens, t_export *_ctl);
-bool			exp_handled_empty_value(t_export *_ctl);
+bool			exp_handled_bad_key(char **tokens, t_export *_ctl);
+bool			exp_handled_no_assignment(char **tokens, t_export *_ctl);
 char			*exp_extract_key(char *declaration);
 char			*exp_extract_value(char *declaration);
 
@@ -228,6 +236,12 @@ int				open_file_or_die(char *path);
 int				open_truncate_or_die(char *path);
 int				open_append_or_die(char *path);
 
+int				dup_or_die(int dup_me);
+int				dup2_or_die(int from, int to);
+
+void			save_ioe(t_proc_fds *ioe);
+void			restore_ioe(t_proc_fds *ioe);
+
 /******************************************************************************\
  * PIPES
 \******************************************************************************/
@@ -238,11 +252,8 @@ void			close_pipe(int pipe_fds[2]);
 void			file_to_stdin(int infile_fd);
 void			stdout_to_file(int outfile_fd);
 
-void			stdin_to_pipe(int pipe_fds[2]);
 void			pipe_to_stdin(int pipe_fds[2]);
-
 void			stdout_to_pipe(int pipe_fds[2]);
-void			pipe_to_stdout(int pipe_fds[2]);
 
 void			str_to_pipe(int pipe_fds[2], char *str);
 
@@ -343,6 +354,7 @@ void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
 
 void			quit(void);
+void			quit_status(int status);
 
 void			die(char *message);
 void			die_perror(char *location, int exit_status);

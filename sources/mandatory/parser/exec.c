@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/11 23:16:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:46:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_parse	*new_exec(char **tokens)
 	new = new_parse();
 	new->type = PT_EXEC;
 	new->tokens = ft_strarr_dup(tokens);
+	ft_add_lalloc_strarr(lalloc(), new->tokens);
 	return (new);
 }
 
@@ -42,6 +43,7 @@ t_parse	*new_exec_length(char **tokens, int length)
 		new->tokens[length] = ft_strdup(tokens[length]);
 		length--;
 	}
+	ft_add_lalloc_strarr(lalloc(), new->tokens);
 	return (new);
 }
 
@@ -60,5 +62,5 @@ void	add_exec(t_parse_list **list, char **tokens)
 	_parse = new_exec_length(tokens, length);
 	if (_parse == NULL)
 		return ;
-	ft_dlst_add(list, _parse);
+	ft_dlst_addb_lalloc(lalloc(), list, _parse);
 }
