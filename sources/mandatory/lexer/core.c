@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 00:41:55 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/04 14:17:01 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 21:06:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**lex(char *input)
 	char	**tokens;
 
 	tokens = tokenize(input);
+	ft_add_lalloc_strarr(lalloc(), tokens);
 	debug_tokens(input, tokens);
 	return (tokens);
 }

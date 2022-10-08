@@ -6,32 +6,28 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/07 17:09:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 21:54:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/**
+ * TODO: Mensagem de erro de sintaxe especifica.
+ */
 int	repl(void)
 {
-	char			*input;
+	char			*line;
 	char			**tokens;
 	t_parse_list	*plist;
 
 	while (true)
 	{
-		input = prompt();
-		ft_debug("input = %s", input);
-		if (input == NULL)
-			continue ;
-		ft_add_lalloc(lalloc(), input);
-		input = expand(input);
-		ft_add_lalloc(lalloc(), input);
-		tokens = lex(input);
-		ft_add_lalloc_strarr(lalloc(), tokens);
+		line = prompt();
+		line = expand(line);
+		tokens = lex(line);
 		if (!tokens_are_valid(tokens))
 		{
-			// TODO: Mensagem de erro especifica.
 			print_error("SYNTAX ERROR!");
 			free_lalloc();
 			continue ;

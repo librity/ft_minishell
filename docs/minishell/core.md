@@ -20,6 +20,22 @@ prompt() => "ls -la $foo | grep \"main\">output"
 expander() => "ls -la bar | grep \"main\">output"
 lexer() => {"ls", "-la", "bar", "|", "grep", "\"main\"", ">", "output", NULL }
 syntax() => true
+trimmer() => {"ls", "-la", "bar", "|", "grep", "main", ">", "output", NULL }
+parser() => (t_dlist){
+	{argv: {"ls", "-la", "bar", NULL},  type: "executable"},
+	{                                   type: "pipe"},
+	{argv: {"grep", "\"main\"", NULL},  type: "executable"},
+	{file: "output",                    type: "truncate"}
+}
+executor()
+```
+
+OR:
+
+```c
+prompt() => "ls -la $foo | grep \"main\">output"
+expander() => "ls -la bar | grep \"main\">output"
+lexer() => {"ls", "-la", "bar", "|", "grep", "\"main\"", ">", "output", NULL }
 parser() => (t_dlist){
 	{argv: {"ls", "-la", "bar", NULL},  type: "executable"},
 	{                                   type: "pipe"},
