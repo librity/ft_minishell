@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   original_tty_attr.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 20:33:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/08 13:58:18 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/08 13:32:05 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/08 13:36:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	initialize_shell(int argc, char **argv, char **envp)
+t_termios	*original_tty_attr(void)
 {
-	initialize_control(argc, argv, envp);
-	initialize_last_exit();
-	initialize_envht();
+	return (&c()->original_tty_attr);
+}
+
+void	save_tty_flags(void)
+{
+	int	result;
+
+	result = tcgetattr(STDIN_FILENO, &c()->original_tty_attr);
+	if (result == -1)
+		die(TTY_GET_ATTR_ERR);
 }

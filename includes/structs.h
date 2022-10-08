@@ -6,15 +6,23 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 15:03:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:22:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# include <libft.h>
+# include <termios.h>
 # include <stdint.h>
+
+# include <libft.h>
+
+/******************************************************************************\
+ * TTY
+\******************************************************************************/
+
+typedef struct termios		t_termios;
 
 /******************************************************************************\
  * HASH TABLE
@@ -42,6 +50,8 @@ typedef void		(*t_ht_for_each_cb)(t_ht_item *);
 typedef struct s_minishell
 {
 	bool			debug;
+
+	t_termios		original_tty_attr;
 
 	int				argc;
 	char			**argv;

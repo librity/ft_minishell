@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 21:06:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:36:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # include <warnings.h>
 
 /******************************************************************************\
+ * TTY
+\******************************************************************************/
+
+void			disable_tty_raw_mode(void);
+void			enable_tty_raw_mode(void);
+
+/******************************************************************************\
  * CONTROL
 \******************************************************************************/
 
@@ -35,6 +42,9 @@ void			deinitialize_control(void);
 
 bool			debug(void);
 void			set_debug(bool verbose);
+
+t_termios		*original_tty_attr(void);
+void			save_tty_flags(void);
 
 int				argc(void);
 char			**argv(void);

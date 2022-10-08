@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/07 21:53:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:55:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ static char	*read_prompt(void)
 	char	*ps1;
 
 	ps1 = build_ps1();
-	line = NULL;
-	while (line == NULL)
-		line = readline(ps1);
+	line = readline(ps1);
 	free(ps1);
 	return (line);
 }
@@ -42,7 +40,11 @@ char	*prompt(void)
 	char	*line;
 
 	line = read_prompt();
-	add_history(line);
-	ft_add_lalloc(lalloc(), line);
+	if (line != NULL)
+	{
+		add_history(line);
+		ft_add_lalloc(lalloc(), line);
+	}
+	ft_bdebug(debug(), "prompt = '%s'", line);
 	return (line);
 }

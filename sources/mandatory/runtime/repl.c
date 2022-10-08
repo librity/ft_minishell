@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/07 21:54:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/08 14:54:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	repl(void)
 	while (true)
 	{
 		line = prompt();
+		if (line == NULL)
+			quit();
 		line = expand(line);
 		tokens = lex(line);
 		if (!tokens_are_valid(tokens))

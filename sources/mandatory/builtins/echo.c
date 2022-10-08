@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:11:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 16:00:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:40:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	handle_flags(char ***tokens, bool *linebreak)
 {
 	(*tokens)++;
 	*linebreak = true;
-	if (ft_streq(**tokens, ECHO_NO_LINEBREAK_FLAG))
+	if (ft_streq(**tokens, BI_ECHO_NO_LINEBREAK_FLAG))
 	{
 		*linebreak = false;
 		(*tokens)++;
