@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_line.c                                         :+:      :+:    :+:   */
+/*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/08 14:55:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:06:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ char	*prompt(void)
 	char	*line;
 
 	line = read_prompt();
-	if (line != NULL)
-	{
-		add_history(line);
-		ft_add_lalloc(lalloc(), line);
-	}
 	ft_bdebug(debug(), "prompt = '%s'", line);
+	if (line == NULL)
+		return (line);
+	ft_add_lalloc(lalloc(), line);
+	if (!ft_streq(line, EMPTY_STR))
+		add_history(line);
 	return (line);
 }

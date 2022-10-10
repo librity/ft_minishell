@@ -41,6 +41,7 @@
   - [ ] Syntax Validator
   - [ ] Trimmer
   - [ ] Executor
+- [ ] Add `-d` and `--debug` flags (`./minishell -d`)
 
 ## Memória
 
