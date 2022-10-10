@@ -472,3 +472,4 @@ test
 # Examples
 examples/example.c
 docs/temp.md
+testers/lucaskuhn/test_files/invalid_permission

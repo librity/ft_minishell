@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/10/10 15:40:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:08:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ MU_TEST(initialize_tst)
 {
 	initialize_control(42, (void *)42, (void *)42);
 
-	// mu_check(true == c()->debug);
+	mu_check(false == c()->debug);
 	mu_assert_int_eq(42, c()->argc);
 	mu_check((void *)42 == c()->argv);
 	mu_check((void *)42 == c()->envp);
@@ -69,11 +69,10 @@ MU_TEST(deinitialize_tst)
 
 MU_TEST(debug_tst)
 {
-	set_debug(true);
-	mu_check(debug() == true);
-
-	set_debug(false);
 	mu_check(debug() == false);
+
+	enable_debug();
+	mu_check(debug() == true);
 
 	ft_bzero(c(), sizeof(t_minishell));
 }

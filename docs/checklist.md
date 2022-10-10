@@ -41,7 +41,7 @@
   - [ ] Syntax Validator
   - [ ] Trimmer
   - [ ] Executor
-- [ ] Add `-d` and `--debug` flags (`./minishell -d`)
+- [x] Add `-d` and `--debug` flags (`./minishell -d`)
 
 ## REPL
 

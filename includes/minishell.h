@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:05:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:01:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			initialize_control(int argc, char **argv, char **envp);
 void			deinitialize_control(void);
 
 bool			debug(void);
-void			set_debug(bool verbose);
+void			enable_debug(void);
 
 t_termios		*original_tty_attr(void);
 void			save_tty_flags(void);
@@ -379,6 +379,12 @@ void			die_full(char *location, char *message, int exit_status);
 void			print_error(char *message);
 void			print_location_error(char *location, char *message);
 void			print_warning(char *message);
+
+/******************************************************************************\
+ * FLAGS
+\******************************************************************************/
+
+void			handle_debug_flag(void);
 
 /******************************************************************************\
  * TERMIOS
