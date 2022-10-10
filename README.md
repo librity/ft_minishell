@@ -30,7 +30,6 @@
 
 - [🐚 Cone Snails](#cone_snails)
 - [🧐 About](#about)
-- [✅ Checklist](#checklist)
 - [🏁 Getting Started](#getting_started)
 - [🧪 Tests](#tests)
 - [📝 Notes](#notes)
@@ -62,14 +61,29 @@ As deadly as they may be, Cone Snails got nothing on minishells.
 
 ## 🧐 About <a name = "about"></a>
 
-- [Tasks](./agile/tasks.md)
-- [Docs](./docs)
+A fully featured shell based on bash.
+It reads a command from the user, lexes it, parses it, and executes it.
+It can handle pipes, file redirections and heredocs.
+It has a working history and responds to signals.
+It also took 12 years to make (🤭).
 
-## ✅ Checklist <a name = "checklist"></a>
-
-- [Checklist](./agile/checklist.md)
+For more details and examples you can read
+the [Docs](./docs) and the [Checklist](./docs/checklist.md).
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
+
+### 📦 Dependencies
+
+You will need to install `libreadline-dev`.
+You can get it through apt-get (recommended):
+
+```bash
+$ sudo apt-get install libreadline-dev
+```
+
+Or you could build it yourself if you're into that:
+
+- https://git.savannah.gnu.org/cgit/readline.git?h=devel
 
 ### 🖥️ Installing
 
