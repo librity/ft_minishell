@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:40:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/08 21:33:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/08 21:36:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void init_sigaction(struct sigaction *action, void (*handler)(int), int sig)
 
 void sighandler_interrupt(int signal)
 {
-	printf("sighandler_int: %d\n", signal);
+	printf("sighandler_interrupt: signal: %d\n", signal);
+	exit(42);
 }
 
 int main(void)
