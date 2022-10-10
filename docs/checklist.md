@@ -138,6 +138,12 @@
     - [ ] `Ctrl-C` (`SIGINT` signal).
     - [ ] `Ctrl-D` (`EOF` no `STDIN`).
     - [ ] `Ctrl-\` (`SIGQUIT` signal).
+  - [ ] Criar e utilizar
+    - [ ] `sigemptyset_or_die()`
+    - [ ] `sigaction_or_die()`
+    - [ ] `rl_on_new_line_or_die()`
+    - [ ] `rl_replace_line_or_die()`
+    - [ ] `rl_redisplay_or_die()`
 
 ## Expander
 
