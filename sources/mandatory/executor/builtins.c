@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 10:39:54 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 15:01:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:46:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ static bool	first_exec_is_builtin(t_parse_list *pipeline)
 static void	handle_single_builtin(t_parse_list *pipeline)
 {
 	int			status;
-	t_proc_fds	ioe;
 
-	save_ioe(&ioe);
 	status = handle_builtin_sequence(pipeline);
 	set_last_exit(status);
-	restore_ioe(&ioe);
 }
 
 bool	handled_single_builtin(t_parse_list *pipeline)

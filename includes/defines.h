@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 17:21:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:40:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@
  * BUILTINS
 \******************************************************************************/
 
-# define ECHO "echo"
-# define ECHO_NO_LINEBREAK_FLAG "-n"
+# define BI_ECHO "echo"
+# define BI_ECHO_NO_LINEBREAK_FLAG "-n"
 
 # define CD "cd"
 # define HOME_KEY "HOME"

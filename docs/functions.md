@@ -1,5 +1,7 @@
 # Allowed Functions
 
+- https://github.com/hashlyschool/42_minishell#%D1%80%D0%B0%D0%B7%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8-external-functs
+
 ### `malloc()`
 
 - https://man7.org/linux/man-pages/man3/malloc.3.html
@@ -155,6 +157,8 @@ $ sudo apt-get install libreadline-dev
 
 ### `rl_redisplay()`
 
+- https://tiswww.case.edu/php/chet/readline/readline.html#index-rl_005fredisplay
+
 ### `add_history()`
 
 - https://tiswww.case.edu/php/chet/readline/history.html
@@ -172,6 +176,8 @@ $ sudo apt-get install libreadline-dev
 ### `sigemptyset()`
 
 - https://linux.die.net/man/3/sigemptyset
+- https://stackoverflow.com/questions/20684290/signal-handling-and-sigemptyset
+- https://stackoverflow.com/questions/20684290/signal-handling-and-sigemptyset
 
 ### `sigaddset()`
 

@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/09/06 13:56:32 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/10/07 15:51:47 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ CCF_STRICT = -Wall -Wextra -Werror
 CCF_OPTIMIZATION = -O3
 CCF_DEBUG = -g
 CCF_LEAK = -fsanitize=leak
+CCF_LIBS = -lreadline
 
 MAKE_EXTERNAL = make -C
 SAFE_MAKEDIR = mkdir -p
@@ -78,6 +79,7 @@ $(NAME): $(LIBFT) $(M_ARCHIVE)
 	$(CC_FULL) \
 		$(M_MAIN) \
 		$(M_ARCHIVES) \
+		$(CCF_LIBS) \
 		-o $(NAME)
 
 $(M_ARCHIVE): $(M_HEADER) $(M_OBJECTS)
@@ -155,6 +157,7 @@ $(TESTS_PATH)/%.out: $(TESTS_PATH)/%.c
 	$(CC_TEST)\
 		$< \
 		$(M_ARCHIVES) \
+		$(CCF_LIBS) \
 		-o $@
 	./$@
 
@@ -166,6 +169,7 @@ $(TESTS_PATH)/%.vg.out: $(TESTS_PATH)/%.c
 	$(CC_VGTEST)\
 		$< \
 		$(M_ARCHIVES) \
+		$(CCF_LIBS) \
 		-o $@
 	$(VG) $(VG_FLAGS) ./$@
 
@@ -228,6 +232,7 @@ vg_build: $(LIBFT) $(M_ARCHIVE)
 	$(CC_VG) \
 		$(M_MAIN) \
 		$(M_ARCHIVES) \
+		$(CCF_LIBS) \
 		-o $(NAME)
 
 vglog_clean: fclean

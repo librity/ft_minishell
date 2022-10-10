@@ -33,16 +33,37 @@
 - [ ] Not use more than one global variable. Think about it. You will have to explain its purpose.
 - [ ] Pass all testers
   - [ ] https://github.com/LucasKuhn/myshell_tester
+- [ ] Add `debug()` messages:
+  - [x] Prompt
+  - [x] Expander
+  - [x] Lexer
+  - [ ] Parser
+  - [ ] Syntax Validator
+  - [ ] Trimmer
+  - [ ] Executor
+- [ ] Add `-d` and `--debug` flags (`./minishell -d`)
+
+## REPL
+
+- [x] Ler commando do usuário
+- [x] Expandir
+- [x] Lexar
+- [x] Vericar Sintaxe
+- [x] Remover Aspas
+- [x] Parsear
+- [x] Executar
+- [x] Repetir
 
 ## Memória
 
-- [ ] Adicionar toda memoria do loop (REPL) no `lalloc()`
-  - [ ] Prompt
-  - [ ] Expander
-  - [ ] Lexer
+- [x] Adicionar toda memoria do loop (REPL) no `lalloc()`
+  - [x] Prompt
+  - [x] Expander
+  - [x] Lexer
   - [x] Parser
-- [ ] Liberar memória antes de sair do loop com `free_lalloc()`
+- [x] Liberar memória antes de sair do loop com `free_lalloc()`
 - [x] Remover todos os usos de `destroy_parse()`
+- [x] Liberar histroy do readline com `rl_clear_history()`
 
 ## Variáveis
 
@@ -100,13 +121,23 @@
 
 ## Prompt
 
-- [ ] Display a prompt when waiting for a new command.
-- [ ] Have a working history.
+- [x] Display a prompt when waiting for a new command.
+- [ ] Adicionar PS1 (ex: `lgeniole@dev1:~/code/ft/minishell$`):
+  - [x] Nome do usuário.
+  - [ ] Hostname.
+  - [x] Current dir.
+  - [ ] Cores.
+- [x] Have a working history.
+  - [x] Não adicionar linha vazia (`""`)
 - [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
-- [ ] In interactive mode:
-  - [ ] `Ctrl-C` displays a new prompt on a new line.
-  - [ ] `Ctrl-D` exits the shell.
-  - [ ] `Ctrl-\` does nothing.
+  - [x] In interactive mode:
+    - [x] `Ctrl-C` displays a new prompt on a new line (`SIGINT` signal).
+    - [x] `Ctrl-D` exits the shell (`EOF` no `STDIN`).
+    - [x] `Ctrl-\` does nothing (`SIGQUIT` signal).
+  - [ ] No fork (processo filho):
+    - [ ] `Ctrl-C` (`SIGINT` signal).
+    - [ ] `Ctrl-D` (`EOF` no `STDIN`).
+    - [ ] `Ctrl-\` (`SIGQUIT` signal).
 
 ## Expander
 
@@ -163,27 +194,30 @@
 
 ## Syntax Validator
 
-- [ ] Aspas:
-  - [ ] Aspas simples que não fecham.
-  - [ ] Aspas duplas que não fecham.
-- [ ] Variáveis:
-  - [ ] Nome de variáveis não pode começar com número.
-  - [ ] Nome de variáveis não pode conter metacharacters:
+- [x] Aspas:
+  - [x] Aspas simples que não fecham.
+  - [x] Aspas duplas que não fecham.
+- [x] Variáveis:
+  - [x] Nome de variáveis não pode começar com número.
+  - [x] Nome de variáveis não pode conter metacharacters:
     - `?`, `'`, `"`, `\`, `$`, <code>\`</code>, `=`, `*`, `@`, `~`, `<`, `>`, `(`, `)`, `!`, `|`, `&`, `;`, `space`, `newline`
-- [ ] Nome de arquivo:
-  - [ ] Linux: não pode conter `/`.
-  - [ ] Não pode conter characters especias fora de aspas: `|`, `;`, <code>\`</code>, `(`, `)`, `!`, `!`.
-- [ ] Input do usuário:
-  - [ ] Não pode ter `;` fora de aspas.
-  - [ ] Não pode ter `\` fora de aspas.
-  - [ ] Não pode ter `>` sem nome do arquivo.
-  - [ ] Não pode ter `>>` sem nome do arquivo.
-  - [ ] Não pode ter `<` sem nome do arquivo.
-  - [ ] Não pode ter `<<` sem delimitador.
-  - [ ] Não pode ter `<<` seguido de outro operador: `|`, `>`, `>>`, `<`, `<<`.
-  - [ ] Não pode ter `|` sem próximo commando.
-  - [ ] Não pode ter `|` seguido de `|`.
-  - [ ] Primeiro token não pode ser `|`.
+- [x] Nome de arquivo:
+  - [x] Linux: não pode conter `/`.
+  - [x] Não pode conter characters especias fora de aspas: `|`, `;`, <code>\`</code>, `(`, `)`, `!`, `!`.
+- [x] Input do usuário:
+  - [x] Não pode ter `;` fora de aspas.
+  - [x] Não pode ter `\` fora de aspas.
+  - [x] Não pode ter `>` sem nome do arquivo.
+  - [x] Não pode ter `>>` sem nome do arquivo.
+  - [x] Não pode ter `<` sem nome do arquivo.
+  - [x] Não pode ter `<<` sem delimitador.
+  - [x] Não pode ter `<<` seguido de outro operador: `|`, `>`, `>>`, `<`, `<<`.
+  - [x] Não pode ter `|` sem próximo commando.
+  - [x] Não pode ter `|` seguido de `|`.
+  - [x] Primeiro token não pode ser `|`.
+  - [ ] Printar mensagem de erro.
+- [x] Validar sintaxe dos `char **tokens`
+- [ ] (OPCIONAL) Validar sintaxe da `t_parse_list plist`
 
 ## Trimmer
 

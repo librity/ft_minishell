@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:18:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 14:58:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:39:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_builtin	find_builtin(char *name)
 {
 	const t_dict	*_builtins[] = {
-		&(const t_dict){ECHO, bi_echo},
+		&(const t_dict){BI_ECHO, bi_echo},
 		&(const t_dict){CD, bi_cd},
 		&(const t_dict){PWD, bi_pwd},
 		&(const t_dict){EXPORT, bi_export},

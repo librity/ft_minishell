@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/05 16:53:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:41:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ MU_TEST(destroy_tst)
 
 MU_TEST(destroy_null_tst)
 {
-	stdout_to_devnull();
+	supress_stdout();
 
 	ht_destroy(NULL);
 

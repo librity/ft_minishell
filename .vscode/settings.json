@@ -68,6 +68,7 @@
     "stdio.h": "c",
     "errors.h": "c",
     "warnings.h": "c",
-    "unistd.h": "c"
+    "unistd.h": "c",
+    "mocks.h": "c"
   }
 }

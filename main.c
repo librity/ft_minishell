@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 15:45:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:16:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 static void	initialize(int argc, char **argv, char **envp)
 {
-	char	**env_vars;
-
 	initialize_shell(argc, argv, envp);
-	env_vars = envht_to_envp();
-	ft_put_strarr(env_vars);
-	ft_free_strarr(env_vars);
 }
 
-static void	repl(void)
+static void	run_shell(void)
 {
+	repl();
 }
 
 static void	cleanup(void)
@@ -34,7 +30,7 @@ static void	cleanup(void)
 int	main(int argc, char **argv, char **envp)
 {
 	initialize(argc, argv, envp);
-	repl();
+	run_shell();
 	cleanup();
 	return (EXIT_SUCCESS);
 }

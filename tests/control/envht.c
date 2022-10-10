@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:27:24 by aroque            #+#    #+#             */
-/*   Updated: 2022/09/06 15:31:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:41:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ MU_TEST(initialize_tst)
 	mu_check(NULL != envht());
 
 	_envht = c()->envht;
-	stdout_to_devnull();
+	supress_stdout();
 	initialize_envht();
 	restore_stdout();
 	mu_check(_envht == envht());
@@ -80,7 +80,7 @@ void envht_init_die_1(void)
 			"garmon",
 			"bo=zia",
 			NULL};
-	stdout_to_devnull();
+	supress_stdout();
 	initialize_envht();
 }
 void envht_init_die_2(void)
@@ -90,7 +90,7 @@ void envht_init_die_2(void)
 			"gar=mon",
 			"bo=zia",
 			NULL};
-	stdout_to_devnull();
+	supress_stdout();
 	initialize_envht();
 }
 MU_TEST(initialize_die_tst)
@@ -122,7 +122,7 @@ MU_TEST(initialize_empty_variable_tst)
 
 MU_TEST(destroy_tst)
 {
-	stdout_to_devnull();
+	supress_stdout();
 	destroy_envht();
 	restore_stdout();
 
@@ -131,7 +131,7 @@ MU_TEST(destroy_tst)
 	destroy_envht();
 	mu_check(c()->envht == NULL);
 
-	stdout_to_devnull();
+	supress_stdout();
 	destroy_envht();
 	restore_stdout();
 }

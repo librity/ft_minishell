@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 15:24:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:05:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <limits.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # include <defines.h>
 # include <errors.h>
@@ -33,6 +35,11 @@ void			deinitialize_control(void);
 
 bool			debug(void);
 void			set_debug(bool verbose);
+
+t_termios		*original_tty_attr(void);
+void			save_tty_flags(void);
+
+t_sigaction		*signal_action(void);
 
 int				argc(void);
 char			**argv(void);
@@ -57,6 +64,12 @@ t_list			**lalloc(void);
 void			free_lalloc(void);
 
 /******************************************************************************\
+ * PROMPT
+\******************************************************************************/
+
+char			*prompt(void);
+
+/******************************************************************************\
  * LEXER
 \******************************************************************************/
 
@@ -69,8 +82,9 @@ char			**tokenize_variable(char *declaration);
  * EXPANDER
 \******************************************************************************/
 
-char			*expand(char *input);
+char			*expand(char *line);
 
+char			*expand_line(char *line);
 char			**isolate_variables(char *input);
 
 /******************************************************************************\
@@ -353,6 +367,8 @@ bool			at_heredoc(char *line);
 void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
 
+void			repl(void);
+
 void			quit(void);
 void			quit_status(int status);
 
@@ -363,5 +379,24 @@ void			die_full(char *location, char *message, int exit_status);
 void			print_error(char *message);
 void			print_location_error(char *location, char *message);
 void			print_warning(char *message);
+
+/******************************************************************************\
+ * TERMIOS
+\******************************************************************************/
+
+void			disable_tty_raw_mode(void);
+void			enable_tty_raw_mode(void);
+
+/******************************************************************************\
+ * SIGNALS
+\******************************************************************************/
+
+void			set_interactive_shell_hooks(void);
+
+void			set_signal_hook(t_sigaction *action,
+					t_signal handler,
+					int signal);
+
+void			handle_interrupt_signal(int signal);
 
 #endif
