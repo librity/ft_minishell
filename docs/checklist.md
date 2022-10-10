@@ -161,7 +161,7 @@
   - [x] Variáveis dentro de aspas simples e duplas.
   - [x] String vazia.
   - [x] Ponteiro nulo.
-  - [ ] Não expandir delimitador de heredoc.
+  - [ ] (OPCIONAL) Não expandir delimitador de heredoc.
   - [ ] (OPCIONAL) Expandir `~` para `$HOME` (Tilde Expansion).
 - [x] Renomear Expansor para Expander
 
@@ -258,7 +258,7 @@
     - [x] Salvar e restaurar `STDIN`, `STDOUT` e `STDERR` no processo principal.
   - [ ] Testar múltiplos redirecionamentos no mesmo builtin.
   - [ ] Testar múltiplos redirecionamentos na mesma pipeline comm builtins.
-- [ ] Fechar fds de redirecionamento depois de executar o builtin isolado
+- [x] Fechar fds de redirecionamento depois de executar o builtin isolado
   - [ ] Com testes
 - [ ] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
 

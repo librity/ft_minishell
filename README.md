@@ -28,21 +28,46 @@
 
 ## 📜 Table of Contents
 
-- [About](#about)
-- [Checklist](#checklist)
-- [Getting Started](#getting_started)
-- [Tests](#tests)
-- [Notes](#notes)
-- [42 São Paulo](#ft_sp)
-- [Resources](#resources)
+- [🐚 Cone Snails](#cone_snails)
+- [🧐 About](#about)
+- [✅ Checklist](#checklist)
+- [🏁 Getting Started](#getting_started)
+- [🧪 Tests](#tests)
+- [📝 Notes](#notes)
+- [🛸 42 São Paulo](#ft_sp)
+- [📚 Resources](#resources)
+
+## 🐚 Cone Snails <a name = "cone_snails"></a>
+
+[Cone snails, cone shells, or cones](https://wikiless.org/wiki/Cone_snail?lang=en)
+are a large group of small- to large-sized
+**extremely venomous predatory**
+sea snails, marine gastropod molluscs.
+
+![A group of shells of various species of cone snails](https://wikiless.org/media/wikipedia/commons/7/7f/Sto%C5%BCki2.jpg)
+
+The intricate color patterns of cones have made them one of the most popular collectible shells.
+
+Most of the cone snails that hunt worms rather than fish
+are probably not a risk to humans, with the possible exception of larger species.
+Symptoms of a more serious cone snail sting include intense,
+localized pain, swelling, numbness and tingling and vomiting.
+Symptoms can start immediately or can be delayed for days.
+Severe cases involve muscle paralysis, changes in vision,
+and respiratory failure that can lead to death.
+
+<sup>SOURCE: https://wikiless.org/wiki/Cone_snail?lang=en</sup>
+
+As deadly as they may be, Cone Snails got nothing on minishells.
 
 ## 🧐 About <a name = "about"></a>
 
-- [Checklist](./agile/checklist.md)
 - [Tasks](./agile/tasks.md)
 - [Docs](./docs)
 
 ## ✅ Checklist <a name = "checklist"></a>
+
+- [Checklist](./agile/checklist.md)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
