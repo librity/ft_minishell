@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/08 13:36:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:08:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@
 # include <errors.h>
 # include <structs.h>
 # include <warnings.h>
-
-/******************************************************************************\
- * TTY
-\******************************************************************************/
-
-void			disable_tty_raw_mode(void);
-void			enable_tty_raw_mode(void);
 
 /******************************************************************************\
  * CONTROL
@@ -384,5 +377,12 @@ void			die_full(char *location, char *message, int exit_status);
 void			print_error(char *message);
 void			print_location_error(char *location, char *message);
 void			print_warning(char *message);
+
+/******************************************************************************\
+ * TERMIOS
+\******************************************************************************/
+
+void			disable_tty_raw_mode(void);
+void			enable_tty_raw_mode(void);
 
 #endif

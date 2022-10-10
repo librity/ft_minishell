@@ -110,6 +110,7 @@
 
 - [ ] Display a prompt when waiting for a new command.
 - [ ] Have a working history.
+  - [ ] Não adicionar linha vazia (`""`)
 - [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
 - [ ] In interactive mode:
   - [ ] `Ctrl-C` displays a new prompt on a new line.
