@@ -1,6 +1,11 @@
 #!/bin/bash
 
-MINISHELL_PATH="../../minishell"
+MINISHELL_DIR="../.."
+MINISHELL_PATH="$MINISHELL_DIR/minishell"
+
+echo -n Building minishell...
+make -s -C $MINISHELL_DIR re
+echo DONE!
 
 # Run a specific test if the file name was specified
 if [[ $1 ]]; then
@@ -47,7 +52,9 @@ echo "                                                                          
 
 PROMPT=$(echo -e "\nexit\n" | $MINISHELL_PATH | head -n 1 | sed -r "s:\x1B\[[0-9;]*[mK]::g")
 
-echo PROMPT: $PROMPT
+echo
+echo PROMPT: "'$PROMPT'"
+echo
 
 for testfile in ${test_lists[*]}; do
 

@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:16:11 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/10 15:59:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+void	set_signal_hook(t_sigaction *action, t_signal handler, int signal)
 {
-	initialize_shell(argc, argv, envp);
-}
-
-static void	run_shell(void)
-{
-	repl();
-}
-
-static void	cleanup(void)
-{
-	cleanup_shell();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	run_shell();
-	cleanup();
-	return (EXIT_SUCCESS);
+	action->sa_handler = handler;
+	action->sa_flags = SA_RESTART;
+	sigemptyset(&action->sa_mask);
+	sigaction(signal, action, NULL);
 }

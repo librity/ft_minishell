@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:40:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 14:48:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:52:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,15 @@ int main(void)
 			break;
 
 		// Add input to readline history.
-		add_history(input);
+		if (strlen(input) > 0)
+			add_history(input);
 
 		// Do stuff...
 
 		// Free buffer that was allocated by readline
 		free(input);
 	}
+
+	rl_clear_history();
 	return 0;
 }

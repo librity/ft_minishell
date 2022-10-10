@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:34:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:16:11 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/10 16:05:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize(int argc, char **argv, char **envp)
+static void	set_interrupt_signal_hook(void)
 {
-	initialize_shell(argc, argv, envp);
+	set_signal_hook(signal_action(), handle_interrupt_signal, SIGINT);
 }
 
-static void	run_shell(void)
+static void	set_quit_signal_hook(void)
 {
-	repl();
+	set_signal_hook(signal_action(), SIG_IGN, SIGQUIT);
 }
 
-static void	cleanup(void)
+void	set_interactive_shell_hooks(void)
 {
-	cleanup_shell();
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	initialize(argc, argv, envp);
-	run_shell();
-	cleanup();
-	return (EXIT_SUCCESS);
+	set_interrupt_signal_hook();
+	set_quit_signal_hook();
 }

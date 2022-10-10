@@ -6,23 +6,33 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/10 15:04:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:05:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+static void	trim_parse_exec(char **tokens)
+{
+	t_parse_list	*plist;
+
+	trim_tokens(tokens);
+	plist = parse(tokens);
+	execute(plist);
+	free_lalloc();
+}
+
 /**
  * TODO: Mensagem de erro de sintaxe especifica.
  */
-int	repl(void)
+void	repl(void)
 {
-	char			*line;
-	char			**tokens;
-	t_parse_list	*plist;
+	char	*line;
+	char	**tokens;
 
 	while (true)
 	{
+		set_interactive_shell_hooks();
 		line = prompt();
 		if (line == NULL)
 			quit();
@@ -39,10 +49,6 @@ int	repl(void)
 			free_lalloc();
 			continue ;
 		}
-		trim_tokens(tokens);
-		plist = parse(tokens);
-		execute(plist);
-		free_lalloc();
+		trim_parse_exec(tokens);
 	}
-	return (0);
 }

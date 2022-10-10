@@ -109,19 +109,23 @@
 
 ## Prompt
 
-- [ ] Display a prompt when waiting for a new command.
-- [ ] Have a working history.
-  - [ ] Não adicionar linha vazia (`""`)
-- [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
-- [ ] In interactive mode:
-  - [ ] `Ctrl-C` displays a new prompt on a new line.
-  - [ ] `Ctrl-D` exits the shell.
-  - [ ] `Ctrl-\` does nothing.
+- [x] Display a prompt when waiting for a new command.
 - [ ] Adicionar PS1 (ex: `lgeniole@dev1:~/code/ft/minishell$`):
   - [x] Nome do usuário.
-  - [x] Hostname.
-  - [ ] Current dir.
+  - [ ] Hostname.
+  - [x] Current dir.
   - [ ] Cores.
+- [x] Have a working history.
+  - [x] Não adicionar linha vazia (`""`)
+- [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
+  - [x] In interactive mode:
+    - [x] `Ctrl-C` displays a new prompt on a new line (`SIGINT` signal).
+    - [x] `Ctrl-D` exits the shell (`EOF` no `STDIN`).
+    - [x] `Ctrl-\` does nothing (`SIGQUIT` signal).
+  - [ ] No fork (processo filho):
+    - [ ] `Ctrl-C` (`SIGINT` signal).
+    - [ ] `Ctrl-D` (`EOF` no `STDIN`).
+    - [ ] `Ctrl-\` (`SIGQUIT` signal).
 
 ## Expander
 

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 14:08:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:05:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void			set_debug(bool verbose);
 
 t_termios		*original_tty_attr(void);
 void			save_tty_flags(void);
+
+t_sigaction		*signal_action(void);
 
 int				argc(void);
 char			**argv(void);
@@ -365,7 +367,7 @@ bool			at_heredoc(char *line);
 void			initialize_shell(int argc, char **argv, char **envp);
 void			cleanup_shell(void);
 
-int				repl(void);
+void			repl(void);
 
 void			quit(void);
 void			quit_status(int status);
@@ -384,5 +386,17 @@ void			print_warning(char *message);
 
 void			disable_tty_raw_mode(void);
 void			enable_tty_raw_mode(void);
+
+/******************************************************************************\
+ * SIGNALS
+\******************************************************************************/
+
+void			set_interactive_shell_hooks(void);
+
+void			set_signal_hook(t_sigaction *action,
+					t_signal handler,
+					int signal);
+
+void			handle_interrupt_signal(int signal);
 
 #endif
