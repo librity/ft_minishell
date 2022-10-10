@@ -34,14 +34,25 @@
 - [ ] Pass all testers
   - [ ] https://github.com/LucasKuhn/myshell_tester
 - [ ] Add `debug()` messages:
-  - [ ] Prompt
-  - [ ] Expander
+  - [x] Prompt
+  - [x] Expander
   - [x] Lexer
   - [ ] Parser
   - [ ] Syntax Validator
   - [ ] Trimmer
   - [ ] Executor
 - [ ] Add `-d` and `--debug` flags (`./minishell -d`)
+
+## REPL
+
+- [x] Ler commando do usuário
+- [x] Expandir
+- [x] Lexar
+- [x] Vericar Sintaxe
+- [x] Remover Aspas
+- [x] Parsear
+- [x] Executar
+- [x] Repetir
 
 ## Memória
 
@@ -52,6 +63,7 @@
   - [x] Parser
 - [x] Liberar memória antes de sair do loop com `free_lalloc()`
 - [x] Remover todos os usos de `destroy_parse()`
+- [x] Liberar histroy do readline com `rl_clear_history()`
 
 ## Variáveis
 
