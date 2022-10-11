@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 22:25:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:08:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,11 +401,16 @@ void			enable_tty_raw_mode(void);
 \******************************************************************************/
 
 void			set_interactive_shell_hooks(void);
+void			set_fork_hooks(void);
+
+void			disable_interrupt_signal(void);
 
 void			set_signal_hook(t_sigaction *action,
 					t_signal handler,
 					int signal);
 
 void			handle_interrupt_signal(int signal);
+void			handle_fork_interrupt_signal(int signal);
+void			handle_fork_quit(int signal);
 
 #endif
