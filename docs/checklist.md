@@ -37,9 +37,9 @@
   - [x] Prompt
   - [x] Expander
   - [x] Lexer
+  - [x] Syntax Validator
+  - [x] Trimmer
   - [ ] Parser
-  - [ ] Syntax Validator
-  - [ ] Trimmer
   - [ ] Executor
 - [x] Add `-d` and `--debug` flags (`./minishell -d`)
 

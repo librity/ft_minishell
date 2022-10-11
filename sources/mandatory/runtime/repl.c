@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/10 16:05:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:20:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	trim_parse_exec(char **tokens)
 {
 	t_parse_list	*plist;
 
-	trim_tokens(tokens);
+	trim(tokens);
 	plist = parse(tokens);
 	execute(plist);
 	free_lalloc();
@@ -45,6 +45,7 @@ void	repl(void)
 		tokens = lex(line);
 		if (!tokens_are_valid(tokens))
 		{
+			ft_bdebug(debug(), "FOUND SYNTAX ERROR!");
 			print_error("SYNTAX ERROR!");
 			free_lalloc();
 			continue ;

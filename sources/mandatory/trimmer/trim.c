@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   trim.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:13:05 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/08 20:31:19 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/11 15:20:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*expand(char *line)
+static void	debug_tokens(char **tokens)
 {
-	char	*result;
+	if (!debug())
+		return ;
+	ft_yellowb("DEBUG:\t");
+	ft_putstr("trimmed tokens = { ");
+	ft_put_strarr_inline(tokens);
+	ft_putstr(", NULL };\n");
+}
 
-	if (line == NULL)
-		return (NULL);
-	result = expand_line(line);
-	ft_add_lalloc(lalloc(), result);
-	ft_bdebug(debug(), "expand = \"%s\"", result);
-	return (result);
+void	trim(char **tokens)
+{
+	trim_tokens(tokens);
+	debug_tokens(tokens);
 }

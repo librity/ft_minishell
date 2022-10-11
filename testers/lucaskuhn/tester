@@ -3,9 +3,15 @@
 MINISHELL_DIR="../.."
 MINISHELL_PATH="$MINISHELL_DIR/minishell"
 
+fail_build()
+{
+	echo 'FAILED!'
+	exit 1
+}
+
 echo
 echo -n 'Building minishell... '
-make -s -C $MINISHELL_DIR re || (echo 'FAILED!' ; exit)
+make -s -C $MINISHELL_DIR re || fail_build
 echo 'DONE!'
 echo
 
