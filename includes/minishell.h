@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 20:01:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 22:25:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errors.h>
 # include <structs.h>
 # include <warnings.h>
+# include <banners.h>
 
 /******************************************************************************\
  * CONTROL
@@ -379,6 +380,8 @@ void			die_full(char *location, char *message, int exit_status);
 void			print_error(char *message);
 void			print_location_error(char *location, char *message);
 void			print_warning(char *message);
+
+void			print_banner(void);
 
 /******************************************************************************\
  * FLAGS

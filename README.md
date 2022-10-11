@@ -117,6 +117,8 @@ $ make -s test t=lexer
 
 ## 📝 Notes <a name = "notes"></a>
 
+- [Docs](./docs)
+
 ## 🛸 42 São Paulo <a name = "ft_sp"></a>
 
 Part of the larger [42 Network](https://www.42.fr/42-network/),
@@ -133,3 +135,5 @@ that offers a healthy alternative to traditional education:
 It's an amazing school, and I'm grateful for the opportunity.
 
 ## 📚 Resources <a name = "resources"></a>
+
+- [Docs](./docs)
