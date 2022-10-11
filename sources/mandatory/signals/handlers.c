@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:54:12 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 00:15:02 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:21:42 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ void	handler_interrupt_signal_fork(int sig)
 void	handler_sigquit_fork(int sig)
 {
 	(void)sig;
-	printf("chegeu\n");
-	exit(1);
-	printf("[1]     quit       ./minishell\n");
+	printf("[1]+   quit       ./minishell\n");
 	exit(0);
 }
 
