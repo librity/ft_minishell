@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:12:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 10:54:07 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:56:38 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*skip_single_quotes(char *line)
 {
-	return (ft_strchr(line, SINGLE_QUOTE));
+	return (ft_strchr(++line, SINGLE_QUOTE));
 }
 
 char	*skip_double_quotes(char *line)

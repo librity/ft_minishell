@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   isolate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/06 16:30:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:56:47 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static char	*insert_double_quote_delimiters(char *line)
 
 static char	*skip_or_delimit(char *line)
 {
-	if (at_dollar(line))
-		return (insert_delimiter(line));
 	if (at_single_quote(line))
 		return (skip_single_quotes(line));
+	if (at_dollar(line))
+		return (insert_delimiter(line));
 	if (at_double_quote(line))
 		return (insert_double_quote_delimiters(line));
 	return (line);
