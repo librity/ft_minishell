@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:05:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 00:00:28 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -398,5 +398,9 @@ void			set_signal_hook(t_sigaction *action,
 					int signal);
 
 void			handle_interrupt_signal(int signal);
+void			handler_interrupt_signal_fork(int sig);
+void			set_interactive_forks_hooks(t_sigaction *sa);
+void			handler_sigquit_fork(int sig);
+
 
 #endif
