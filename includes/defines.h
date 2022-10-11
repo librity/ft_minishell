@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 16:46:04 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:39:03 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,6 @@ of subsequently executed commands. \n\
  * EXPAND
 \******************************************************************************/
 
-#define DOLLA_SEGUENCE_INVALID " \0\""
+# define DOLLA_SEGUENCE_INVALID " \"\0"
 
 #endif

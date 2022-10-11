@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/11 16:38:35 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:14:10 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	repl(void)
 			continue ;
 		}
 		line = expand(line);
+		// printf("line = %s\n\n", line);
 		tokens = lex(line);
 		if (!tokens_are_valid(tokens))
 		{
@@ -52,3 +53,5 @@ void	repl(void)
 		trim_parse_exec(tokens);
 	}
 }
+
+//echo "exit_code ->$? user ->$USER home -> $HOME"

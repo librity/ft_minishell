@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 21:06:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:11:59 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 static char	*find_key_end(char *var)
 {
+	//printf("value = %c\n", *var);
 	while (*var != NULL_CHAR)
 	{
+		if (*var == '?')
+			return (var + 1);
+		if (*var == ' ')
+			return (var);
 		if (*var == SINGLE_QUOTE)
 			return (var);
 		if (*var == DOUBLE_QUOTE)
@@ -45,7 +50,10 @@ static char	*insert_value(char *variable)
 	char	*key_end;
 
 	key_end = find_key_end(variable);
+	//printf("key_end = %s\n", key_end);
 	key = ft_substr(variable, 0, key_end - variable);
+	//printf("key = %s\n", key);
+	//exit(0);
 	value = resolve_value(key);
 	expanded = ft_strjoin(value, key_end);
 	free(key);
@@ -58,6 +66,15 @@ static void	insert_values(char *token, char **vars)
 	char	**first;
 	bool	first_is_var;
 
+	// printf("\n varns \n");
+	// while (*vars)
+	// {
+	// 	printf("varns = %s\n", *vars);
+	// 	vars++;
+	// }
+	// printf("\n");
+	// exit(0);
+
 	first_is_var = *token == DOLLAR;
 	first = vars;
 	while (*vars != NULL)
@@ -67,6 +84,7 @@ static void	insert_values(char *token, char **vars)
 			vars++;
 			continue ;
 		}
+		//printf("token = %s\n", *vars);
 		*vars = insert_value(*vars);
 		vars++;
 	}
