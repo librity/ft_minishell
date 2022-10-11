@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 10:21:07 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:57:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	set_quit_signal_hook(void)
 
 void	set_interactive_shell_hooks(void)
 {
-
 	set_interrupt_signal_hook();
 	set_quit_signal_hook();
 }
