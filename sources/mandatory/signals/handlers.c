@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:54:12 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:21:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:51:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ void	handle_fork_quit(int signal)
 	printf("[1]+   quit       ./minishell\n");
 	exit(0);
 }
-
