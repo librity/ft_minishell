@@ -33,6 +33,7 @@
 - [ ] Not use more than one global variable. Think about it. You will have to explain its purpose.
 - [ ] Pass all testers
   - [ ] https://github.com/LucasKuhn/myshell_tester
+    - [ ] Habilitar testes desativados (`pipes_bckp` e `redirects_bckp`).
 - [ ] Add `debug()` messages:
   - [x] Prompt
   - [x] Expander
