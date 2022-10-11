@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/08 13:40:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:46:04 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,11 @@ of subsequently executed commands. \n\
 # define MINISHELL_PREFIX "minishell: "
 # define PRINT_ERROR_PREFIX "minishell: ERROR: "
 # define PRINT_WARNING_PREFIX "minishell: WRNNG: "
+
+/******************************************************************************\
+ * EXPAND
+\******************************************************************************/
+
+#define DOLLA_SEGUENCE_INVALID " \0\""
 
 #endif
