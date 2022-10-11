@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 00:06:22 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:50:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void	handle_child(t_parse_list *pipeline, int pipe[2])
 {
-	t_sigaction sa;
-
-	set_interactive_forks_hooks(&sa);
 	stdout_to_pipe(pipe);
 	close_pipe(pipe);
 	fork_handle_pipe_sequence(pipeline);

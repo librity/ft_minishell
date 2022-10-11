@@ -4,7 +4,7 @@ MINISHELL_DIR="../.."
 MINISHELL_PATH="$MINISHELL_DIR/minishell"
 
 echo -n Building minishell...
-make -s -C $MINISHELL_DIR re
+make -s -C $MINISHELL_DIR re || exit
 echo DONE!
 
 # Run a specific test if the file name was specified

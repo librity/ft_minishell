@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 00:00:28 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:41:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,15 +392,14 @@ void			enable_tty_raw_mode(void);
 \******************************************************************************/
 
 void			set_interactive_shell_hooks(void);
+void			set_fork_hooks(void);
 
 void			set_signal_hook(t_sigaction *action,
 					t_signal handler,
 					int signal);
 
 void			handle_interrupt_signal(int signal);
-void			handler_interrupt_signal_fork(int sig);
-void			set_interactive_forks_hooks(t_sigaction *sa);
-void			handler_sigquit_fork(int sig);
-
+void			handle_fork_interrupt_signal(int signal);
+void			handle_fork_quit(int signal);
 
 #endif
