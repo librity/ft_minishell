@@ -6,7 +6,7 @@
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/11 18:41:48 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:33:30 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,16 @@ void	repl(void)
 			continue ;
 		}
 		line = expand(line);
-		// printf("line = %s\n\n", line); 
+		// printf("line = %s\n\n", line);
 		tokens = lex(line);
+
+		// while (*tokens)
+		// {
+		// 	printf("tokens = %s\n", *tokens);
+		// 	tokens++;
+		// }
+		// printf("\n");
+		// exit(0);
 		if (!tokens_are_valid(tokens))
 		{
 			print_error("SYNTAX ERROR!");
