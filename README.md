@@ -146,10 +146,16 @@ $ cd ft_minishell
 $ make
 ```
 
-Run the examples with:
+This should create a `minishell` executable in the root folder:
 
 ```bash
-$ ./scripts/run.sh
+./minishell
+```
+
+You can also run it in debug mode with the flag `-d`:
+
+```bash
+./minishell -d
 ```
 
 ## 🧪 Tests <a name = "tests"></a>
@@ -163,7 +169,14 @@ $ make -s tests
 Or individual tests with:
 
 ```bash
-$ make -s test t=lexer
+$ make -s test t=lexer/tokens
+```
+
+You can also run them with `valgrind`:
+
+```bash
+$ make -s vgtests
+$ make -s vgtest t=lexer/tokens
 ```
 
 ## 📝 Notes <a name = "notes"></a>

@@ -142,6 +142,7 @@ Wait for a process to change state.
 - https://tiswww.case.edu/php/chet/readline/readline.html
 - https://web.mit.edu/gnu/doc/html/rlman_2.html#SEC31
 - https://www.gnu.org/software/bash/manual/html_node/Readline-Interaction.html
+- http://readline.kablamo.org/emacs.html
 
 ```bash
 $ sudo apt-get install libreadline-dev
