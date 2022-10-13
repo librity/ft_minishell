@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   hooks_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:05:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:02:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ void	set_interactive_shell_hooks(void)
 {
 	set_interrupt_signal_hook();
 	set_quit_signal_hook();
+}
+
+void	disable_interrupt_signal(void)
+{
+	set_signal_hook(signal_action(), SIG_IGN, SIGINT);
 }

@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 10:39:54 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/13 11:31:16 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/10/10 19:56:50 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/10 20:07:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	handle_pipeline(t_parse_list *pipeline)
+void	handle_debug_flag(void)
 {
-	if (handled_single_builtin(pipeline))
+	char	*flag;
+
+	if (argc() < 2)
 		return ;
-	execute_pipeline(pipeline);
-}
-
-void	execute(t_parse_list *pipeline)
-{
-	t_proc_fds	ioe;
-
-	save_ioe(&ioe);
-	handle_pipeline(pipeline);
-	restore_ioe(&ioe);
+	if (argv() == NULL)
+		return ;
+	flag = argv()[1];
+	if (flag == NULL)
+		return ;
+	if (!ft_streq(flag, DEBUG_FLAG) && !ft_streq(flag, DEBUG_FLAG_LONG))
+		return ;
+	enable_debug();
 }

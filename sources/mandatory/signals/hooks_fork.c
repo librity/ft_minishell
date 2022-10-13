@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   hooks_fork.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:13:05 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/11 14:41:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*expand(char *line)
+static void	set_interrupt_fork_signal_hook(void)
 {
-	char	*result;
+	set_signal_hook(signal_action(), handle_fork_interrupt_signal, SIGINT);
+}
 
-	if (line == NULL)
-		return (NULL);
-	result = expand_line(line);
-	ft_add_lalloc(lalloc(), result);
-	ft_bdebug(debug(), "expand = \"%s\"", result);
-	return (result);
+static void	set_quit_fork_signal_hook(void)
+{
+	set_signal_hook(signal_action(), handle_fork_quit, SIGQUIT);
+}
+
+void	set_fork_hooks(void)
+{
+	set_interrupt_fork_signal_hook();
+	set_quit_fork_signal_hook();
 }

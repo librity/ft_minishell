@@ -33,15 +33,16 @@
 - [ ] Not use more than one global variable. Think about it. You will have to explain its purpose.
 - [ ] Pass all testers
   - [ ] https://github.com/LucasKuhn/myshell_tester
+    - [ ] Habilitar testes desativados (`pipes_bckp` e `redirects_bckp`).
 - [ ] Add `debug()` messages:
   - [x] Prompt
   - [x] Expander
   - [x] Lexer
+  - [x] Syntax Validator
+  - [x] Trimmer
   - [ ] Parser
-  - [ ] Syntax Validator
-  - [ ] Trimmer
   - [ ] Executor
-- [ ] Add `-d` and `--debug` flags (`./minishell -d`)
+- [x] Add `-d` and `--debug` flags (`./minishell -d`)
 
 ## REPL
 
@@ -138,6 +139,12 @@
     - [ ] `Ctrl-C` (`SIGINT` signal).
     - [ ] `Ctrl-D` (`EOF` no `STDIN`).
     - [ ] `Ctrl-\` (`SIGQUIT` signal).
+  - [ ] Criar e utilizar
+    - [ ] `sigemptyset_or_die()`
+    - [ ] `sigaction_or_die()`
+    - [ ] `rl_on_new_line_or_die()`
+    - [ ] `rl_replace_line_or_die()`
+    - [ ] `rl_redisplay_or_die()`
 
 ## Expander
 
@@ -155,7 +162,7 @@
   - [x] Variáveis dentro de aspas simples e duplas.
   - [x] String vazia.
   - [x] Ponteiro nulo.
-  - [ ] Não expandir delimitador de heredoc.
+  - [ ] (OPCIONAL) Não expandir delimitador de heredoc.
   - [ ] (OPCIONAL) Expandir `~` para `$HOME` (Tilde Expansion).
 - [x] Renomear Expansor para Expander
 
@@ -252,7 +259,7 @@
     - [x] Salvar e restaurar `STDIN`, `STDOUT` e `STDERR` no processo principal.
   - [ ] Testar múltiplos redirecionamentos no mesmo builtin.
   - [ ] Testar múltiplos redirecionamentos na mesma pipeline comm builtins.
-- [ ] Fechar fds de redirecionamento depois de executar o builtin isolado
+- [x] Fechar fds de redirecionamento depois de executar o builtin isolado
   - [ ] Com testes
 - [ ] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
 

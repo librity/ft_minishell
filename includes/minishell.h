@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:05:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:55:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errors.h>
 # include <structs.h>
 # include <warnings.h>
+# include <banners.h>
 
 /******************************************************************************\
  * CONTROL
@@ -34,7 +35,7 @@ void			initialize_control(int argc, char **argv, char **envp);
 void			deinitialize_control(void);
 
 bool			debug(void);
-void			set_debug(bool verbose);
+void			enable_debug(void);
 
 t_termios		*original_tty_attr(void);
 void			save_tty_flags(void);
@@ -123,6 +124,8 @@ char			**find_next_operator(char **tokens);
 /******************************************************************************\
  * TRIMMER
 \******************************************************************************/
+
+void			trim(char **tokens);
 
 void			trim_tokens(char **tokens);
 void			trim_token(char *token);
@@ -380,6 +383,14 @@ void			print_error(char *message);
 void			print_location_error(char *location, char *message);
 void			print_warning(char *message);
 
+void			print_banner(void);
+
+/******************************************************************************\
+ * FLAGS
+\******************************************************************************/
+
+void			handle_debug_flag(void);
+
 /******************************************************************************\
  * TERMIOS
 \******************************************************************************/
@@ -392,11 +403,23 @@ void			enable_tty_raw_mode(void);
 \******************************************************************************/
 
 void			set_interactive_shell_hooks(void);
+void			set_fork_hooks(void);
+
+void			disable_interrupt_signal(void);
 
 void			set_signal_hook(t_sigaction *action,
 					t_signal handler,
 					int signal);
 
 void			handle_interrupt_signal(int signal);
+void			handle_fork_interrupt_signal(int signal);
+void			handle_fork_quit(int signal);
+
+/******************************************************************************\
+ * UTILS
+\******************************************************************************/
+
+int				tmp_atoi(const char *nptr);
+int				tokens_is_long(char *nptr);
 
 #endif

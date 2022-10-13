@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   trim.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 10:39:54 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/13 11:31:16 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/09/08 20:31:19 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/11 15:20:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	handle_pipeline(t_parse_list *pipeline)
+static void	debug_tokens(char **tokens)
 {
-	if (handled_single_builtin(pipeline))
+	if (!debug())
 		return ;
-	execute_pipeline(pipeline);
+	ft_yellowb("DEBUG:\t");
+	ft_putstr("trimmed tokens = { ");
+	ft_put_strarr_inline(tokens);
+	ft_putstr(", NULL };\n");
 }
 
-void	execute(t_parse_list *pipeline)
+void	trim(char **tokens)
 {
-	t_proc_fds	ioe;
-
-	save_ioe(&ioe);
-	handle_pipeline(pipeline);
-	restore_ioe(&ioe);
+	trim_tokens(tokens);
+	debug_tokens(tokens);
 }

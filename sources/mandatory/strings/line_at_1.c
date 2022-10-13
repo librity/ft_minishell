@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:01:14 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/05 17:40:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:58:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,9 @@ bool	at_space(char *line)
 
 bool	at_dollar(char *line)
 {
+	if (line == NULL || *line == 0)
+		return (false);
+	if (ft_strchr(DOLLA_SEGUENCE_INVALID, line[1]))
+		return (false);
 	return (*line == DOLLAR);
 }

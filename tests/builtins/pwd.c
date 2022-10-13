@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 15:53:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:16:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ MU_TEST(trivial_tst)
 
 MU_TEST(args_tst)
 {
-	mu_check(1 == bi_pwd((char *[]){"pwd", "a", NULL}));
-	mu_check(1 == bi_pwd((char *[]){"pwd", "b", "c", NULL}));
-	mu_check(1 == bi_pwd((char *[]){"pwd", "fire", "walk", "with", "me", NULL}));
+	mu_check(0 == bi_pwd((char *[]){"pwd", "a", NULL}));
+	mu_check(0 == bi_pwd((char *[]){"pwd", "b", "c", NULL}));
+	mu_check(0 == bi_pwd((char *[]){"pwd", "fire", "walk", "with", "me", NULL}));
 }
 
 MU_TEST_SUITE(pwd_suite)
