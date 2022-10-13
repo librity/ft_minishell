@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   tmp_atoi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:15:33 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/12 17:17:56 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:16:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int converte_number_int(const char *nptr)
+static int	converte_number_int(const char *nptr)
 {
-	int result;
+	int	result;
 
 	result = 0;
 	while ((*nptr >= '0' && *nptr <= '9') || *nptr >= '-')

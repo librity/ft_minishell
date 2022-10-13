@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_is_long.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:31:09 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/12 17:34:03 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:16:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ bool	is_digit(char *nptr)
 	return (true);
 }
 
-bool	check_storo_negative(char	*nptr)
+bool	check_storo_negative(char *nptr)
 {
-	int len;
+	int	len;
 
 	nptr++;
 	len = ft_strlen(nptr);
@@ -40,7 +40,7 @@ bool	check_storo_negative(char	*nptr)
 
 bool	check_storo_positivo(char *nptr)
 {
-	int len;
+	int	len;
 
 	if (*nptr == '+')
 		nptr++;

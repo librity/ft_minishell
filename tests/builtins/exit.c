@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 18:57:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:15:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ MU_TEST(arg_tst)
 MU_TEST(bad_status_tst)
 {
 	test_exit(2, (char *[]){"exit", "sdasdad", NULL});
-	test_exit(2, (char *[]){"exit", "dsads", "1", "10", NULL});
+	test_exit(1, (char *[]){"exit", "dsads", "1", "10", NULL});
 }
 
 MU_TEST(too_many_arguments_tst)
