@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:43:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/24 16:03:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:34:10 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	bi_pwd(char **tokens)
 
 	if (tokens == NULL || *tokens == NULL)
 		return (PWD_BAD_TOKENS);
-	if (ft_strarr_len(tokens) != 1)
-		return (PWD_TOO_MANY_ARGS);
 	_pwd = envht_get(PWD_KEY);
 	if (_pwd == NULL)
 		return (PWD_MISSING_PWD_ENV_VAR);

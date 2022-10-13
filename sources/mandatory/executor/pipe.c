@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 17:07:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:21:41 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	execute_pipe(t_parse_list *pipeline)
 {
 	pid_t	pid;
 	int		pipe[2];
+	int		status;
 
 	pipe_or_die(pipe);
 	pid = fork_or_die();
@@ -30,5 +31,5 @@ void	execute_pipe(t_parse_list *pipeline)
 		handle_child(pipeline, pipe);
 	pipe_to_stdin(pipe);
 	close_pipe(pipe);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, &status, 0);
 }

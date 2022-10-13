@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   tmp_atoi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 10:39:54 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/13 11:31:16 by wwallas-         ###   ########.fr       */
+/*   Created: 2022/10/12 17:15:33 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/10/12 17:17:56 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	handle_pipeline(t_parse_list *pipeline)
+static int converte_number_int(const char *nptr)
 {
-	if (handled_single_builtin(pipeline))
-		return ;
-	execute_pipeline(pipeline);
+	int result;
+
+	result = 0;
+	while ((*nptr >= '0' && *nptr <= '9') || *nptr >= '-')
+	{
+		result = (*nptr - 48) + (result * 10);
+		nptr++;
+	}
+	return (result);
 }
 
-void	execute(t_parse_list *pipeline)
+int	tmp_atoi(const char *nptr)
 {
-	t_proc_fds	ioe;
+	int	result;
+	int	sig;
 
-	save_ioe(&ioe);
-	handle_pipeline(pipeline);
-	restore_ioe(&ioe);
+	sig = 1;
+	if (*nptr == '-')
+		sig = -1;
+	if (*nptr == '+' || *nptr == '-')
+		nptr++;
+	result = converte_number_int(nptr) * sig;
+	return (result);
 }
