@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:02:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:05:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	execute_pipe(t_parse_list *pipeline)
 		handle_child(pipeline, pipe);
 	pipe_to_stdin(pipe);
 	close_pipe(pipe);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, NULL, WNOHANG);
 }

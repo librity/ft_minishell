@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:47:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:57:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static char	*skip_or_delimit(char *line)
 		return (skip_single_quotes(line));
 	if (at_double_quote(line))
 		return (insert_double_quote_delimiters(line));
+	if (at_dollar(line))
+		return (insert_delimiter(line));
 	return (line);
 }
 

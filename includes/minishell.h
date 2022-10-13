@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:19:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:55:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -414,5 +414,12 @@ void			set_signal_hook(t_sigaction *action,
 void			handle_interrupt_signal(int signal);
 void			handle_fork_interrupt_signal(int signal);
 void			handle_fork_quit(int signal);
+
+/******************************************************************************\
+ * UTILS
+\******************************************************************************/
+
+int				tmp_atoi(const char *nptr);
+int				tokens_is_long(char *nptr);
 
 #endif

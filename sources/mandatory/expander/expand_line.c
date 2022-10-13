@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:48:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:05:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ static char	*find_key_end(char *var)
 {
 	while (*var != NULL_CHAR)
 	{
+		if (*var == '?')
+			return (var + 1);
+		if (*var == ' ')
+			return (var);
 		if (*var == SINGLE_QUOTE)
 			return (var);
 		if (*var == DOUBLE_QUOTE)
