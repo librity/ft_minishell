@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:21:05 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 15:16:07 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:28:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*find_file(char *command, char **paths)
 	char	*path;
 	int		file_exists;
 
-	if (ft_starts_with(command, "/") || ft_starts_with(command, "./"))
+	if (is_relative_or_absolute_path(command))
 	{
 		file_exists = access(command, F_OK);
 		if (file_exists == 0)
@@ -51,18 +51,17 @@ char	*find_executable_or_die(char *command, char **paths)
 	int		can_execute;
 
 	path = find_file(command, paths);
-	ft_bdebug(debug(), "path = %s", path);
 	if (path == NULL)
 	{
-		if (ft_starts_with(command, "/") || ft_starts_with(command, "./"))
-			die_full(command, "No such file or directory", 127);
-		die_full(command, "command not found", 127);
+		if (is_relative_or_absolute_path(command))
+			die_full(command, NO_FILE_DIR_ERR, 127);
+		die_full(command, NO_CMD_ERR, 127);
 	}
 	if (is_directory(path))
 	{
-		if (ft_starts_with(command, "/") || ft_starts_with(command, "./"))
+		if (is_relative_or_absolute_path(command))
 			die_full(command, IS_DIR_ERR, 126);
-		die_full(command, "command not found", 127);
+		die_full(command, NO_CMD_ERR, 127);
 	}
 	can_execute = access(path, X_OK);
 	if (can_execute < 0)
