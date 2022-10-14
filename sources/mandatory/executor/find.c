@@ -6,65 +6,48 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:21:05 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 15:28:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:42:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static char	*build_executable_path(char *path, char *command)
+static void	can_execute_or_die(char *path)
 {
-	char	*executable;
+	int	can_execute;
 
-	executable = ft_strjoin(path, "/");
-	executable = ft_strjoin_free(executable, command);
-	return (executable);
+	can_execute = access(path, X_OK);
+	if (can_execute < 0)
+		die_full(path, PERMISSION_ERR, 126);
 }
 
-char	*find_file(char *command, char **paths)
+static char	*handle_relative_or_absolute_path(char *path)
+{
+	int	file_exists;
+
+	file_exists = access(path, F_OK);
+	if (file_exists != 0)
+		die_full(path, NO_FILE_DIR_ERR, 127);
+	if (is_directory(path))
+		die_full(path, IS_DIR_ERR, 126);
+	can_execute_or_die(path);
+	return (path);
+}
+
+static char	*handle_raw_command(char *command, char **paths)
 {
 	char	*path;
-	int		file_exists;
 
-	if (is_relative_or_absolute_path(command))
-	{
-		file_exists = access(command, F_OK);
-		if (file_exists == 0)
-			return (command);
-		return (NULL);
-	}
-	while (*paths)
-	{
-		path = build_executable_path(*paths, command);
-		file_exists = access(path, F_OK);
-		if (file_exists == 0)
-			return (path);
-		free(path);
-		paths++;
-	}
-	return (NULL);
+	path = find_in_paths(command, paths);
+	if (path == NULL || is_directory(path))
+		die_full(path, NO_CMD_ERR, 127);
+	can_execute_or_die(path);
+	return (path);
 }
 
 char	*find_executable_or_die(char *command, char **paths)
 {
-	char	*path;
-	int		can_execute;
-
-	path = find_file(command, paths);
-	if (path == NULL)
-	{
-		if (is_relative_or_absolute_path(command))
-			die_full(command, NO_FILE_DIR_ERR, 127);
-		die_full(command, NO_CMD_ERR, 127);
-	}
-	if (is_directory(path))
-	{
-		if (is_relative_or_absolute_path(command))
-			die_full(command, IS_DIR_ERR, 126);
-		die_full(command, NO_CMD_ERR, 127);
-	}
-	can_execute = access(path, X_OK);
-	if (can_execute < 0)
-		die_full(command, PERMISSION_ERR, 126);
-	return (path);
+	if (is_relative_or_absolute_path(command))
+		return (handle_relative_or_absolute_path(command));
+	return (handle_raw_command(command, paths));
 }
