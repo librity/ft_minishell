@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 14:15:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:45:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # define PERMISSION_ERR "Permission denied"
 
 # define IS_DIR_ERR "Is a directory"
+
+# define WAIT_LOC "wait"
+# define WAITPID_LOC "waitpid"
 
 /******************************************************************************\
  * FILES

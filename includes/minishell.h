@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 16:21:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:44:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,9 @@ bool			is_relative_or_absolute_path(char *path);
 void			hdoc_to_stdin(char *delimiter);
 
 pid_t			fork_or_die(void);
+
+pid_t			wait_or_die(int *stats);
+pid_t			waitpid_or_die(pid_t pid, int *stats, int options);
 
 /******************************************************************************\
  * BUILTINS
