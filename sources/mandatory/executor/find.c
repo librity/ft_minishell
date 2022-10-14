@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:21:05 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 14:43:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:59:47 by wwallas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ char	*find_executable_or_die(char *command, char **paths)
 		die_full(command, "command not found", 127);
 	}
 	if (is_directory(path))
-		die_full(command, IS_DIR_ERR, 126);
+	{
+		if (ft_starts_with(command, "./"))
+			die_full(command, IS_DIR_ERR, 126);
+		die_full(command, "command not found", 127);
+	}
 	can_execute = access(path, X_OK);
 	if (can_execute < 0)
 		die_full(command, PERMISSION_ERR, 126);
