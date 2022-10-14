@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 13:11:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:56:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ void			trim_token(char *token);
 
 t_parse_list	*parse(char **tokens);
 
+t_parse_list	*parse_tokens(char **tokens);
 t_parse			*new_parse(void);
 void			destroy_parse(t_parse **pnode);
 

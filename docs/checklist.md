@@ -40,7 +40,7 @@
   - [x] Lexer
   - [x] Syntax Validator
   - [x] Trimmer
-  - [ ] Parser
+  - [x] Parser
   - [ ] Executor
 - [x] Add `-d` and `--debug` flags (`./minishell -d`)
 
