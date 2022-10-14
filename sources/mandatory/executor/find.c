@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:21:05 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 14:59:47 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:16:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ char	*find_file(char *command, char **paths)
 	char	*path;
 	int		file_exists;
 
-	file_exists = access(command, F_OK);
-	if (file_exists == 0)
-		return (command);
+	if (ft_starts_with(command, "/") || ft_starts_with(command, "./"))
+	{
+		file_exists = access(command, F_OK);
+		if (file_exists == 0)
+			return (command);
+		return (NULL);
+	}
 	while (*paths)
 	{
 		path = build_executable_path(*paths, command);
@@ -50,13 +54,13 @@ char	*find_executable_or_die(char *command, char **paths)
 	ft_bdebug(debug(), "path = %s", path);
 	if (path == NULL)
 	{
-		if (ft_starts_with(command, "./"))
+		if (ft_starts_with(command, "/") || ft_starts_with(command, "./"))
 			die_full(command, "No such file or directory", 127);
 		die_full(command, "command not found", 127);
 	}
 	if (is_directory(path))
 	{
-		if (ft_starts_with(command, "./"))
+		if (ft_starts_with(command, "/") || ft_starts_with(command, "./"))
 			die_full(command, IS_DIR_ERR, 126);
 		die_full(command, "command not found", 127);
 	}
