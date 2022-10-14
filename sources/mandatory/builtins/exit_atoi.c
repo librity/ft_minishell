@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tmp_atoi.c                                         :+:      :+:    :+:   */
+/*   exit_atoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:15:33 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/13 17:16:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:29:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	converte_number_int(const char *nptr)
+static int	string_to_int(const char *str)
 {
 	int	result;
 
 	result = 0;
-	while ((*nptr >= '0' && *nptr <= '9') || *nptr >= '-')
+	while (ft_isdigit(*str))
 	{
-		result = (*nptr - 48) + (result * 10);
-		nptr++;
+		result = (*str - '0') + (result * 10);
+		str++;
 	}
 	return (result);
 }
 
-int	tmp_atoi(const char *nptr)
+int	exit_atoi(const char *str)
 {
-	int	result;
-	int	sig;
+	int	sign;
 
-	sig = 1;
-	if (*nptr == '-')
-		sig = -1;
-	if (*nptr == '+' || *nptr == '-')
-		nptr++;
-	result = converte_number_int(nptr) * sig;
-	return (result);
+	sign = 1;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '+' || *str == '-')
+		str++;
+	return (string_to_int(str) * sign);
 }

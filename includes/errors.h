@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 14:08:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:20:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # define HEREDOC_LOC "heredoc"
 
 # define EXEC_BAD_TOKENS_ERR "Can't execute command with NULL or empty tokens."
+
+# define PERMISSION_ERR "Permission denied"
 
 /******************************************************************************\
  * FILES

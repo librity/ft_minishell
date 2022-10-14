@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/13 16:55:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:11:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <fcntl.h>
+# include <errno.h>
 # include <limits.h>
 # include <stdio.h>
 # include <sys/wait.h>
@@ -234,6 +235,8 @@ char			*exp_extract_key(char *declaration);
 char			*exp_extract_value(char *declaration);
 
 int				bi_exit(char **tokens);
+int				exit_atoi(const char *nptr);
+int				exit_status_is_too_long(char *nptr);
 
 int				bi_unset(char **tokens);
 
@@ -414,12 +417,5 @@ void			set_signal_hook(t_sigaction *action,
 void			handle_interrupt_signal(int signal);
 void			handle_fork_interrupt_signal(int signal);
 void			handle_fork_quit(int signal);
-
-/******************************************************************************\
- * UTILS
-\******************************************************************************/
-
-int				tmp_atoi(const char *nptr);
-int				tokens_is_long(char *nptr);
 
 #endif

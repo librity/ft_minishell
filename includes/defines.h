@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/13 16:54:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:13:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
  * EXPANDER
 \******************************************************************************/
 
-# define DOLLA_SEGUENCE_INVALID " \"\0"
+# define BAD_DOLLAR_SEQUENCE " \"\0"
 
 /******************************************************************************\
  * LEXER
@@ -196,6 +196,8 @@ of subsequently executed commands. \n\
 # define MINISHELL_PREFIX "minishell: "
 # define PRINT_ERROR_PREFIX "minishell: ERROR: "
 # define PRINT_WARNING_PREFIX "minishell: WRNNG: "
+
+# define USE_ERRNO -1
 
 /******************************************************************************\
  * FLAGS

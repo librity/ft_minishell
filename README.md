@@ -114,7 +114,7 @@ As deadly as they may be, cone snails ain't got nothing on minishells.
 
 A fully featured shell based on bash.
 It reads a command from the user, lexes it, parses it, and executes it.
-It can handle pipes, file redirections and heredocs.
+It handles pipes, file redirections and heredocs.
 It has a working history and responds to signals.
 It also took 12 years to make (🤭).
 
