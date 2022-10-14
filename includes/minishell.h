@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 15:41:17 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:21:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ char			*expand(char *line);
 
 char			*expand_line(char *line);
 char			**isolate_variables(char *input);
+
+bool			is_empty_variable(char *variable);
 
 /******************************************************************************\
  * SYNTAX
