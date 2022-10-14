@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 13:20:14 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:15:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 
 # define PERMISSION_ERR "Permission denied"
 
+# define IS_DIR_ERR "Is a directory"
+
 /******************************************************************************\
  * FILES
 \******************************************************************************/
@@ -52,6 +54,8 @@
 
 # define CLOSE_ERR "Can't close required file descriptor."
 # define CLOSE_LOC "close"
+
+# define STAT_LOC "stat"
 
 /******************************************************************************\
  * PIPES

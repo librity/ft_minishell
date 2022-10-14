@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 13:56:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:14:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -262,6 +263,8 @@ int				dup2_or_die(int from, int to);
 
 void			save_ioe(t_proc_fds *ioe);
 void			restore_ioe(t_proc_fds *ioe);
+
+bool			is_directory(char *path);
 
 /******************************************************************************\
  * PIPES

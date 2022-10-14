@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:21:05 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 13:31:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:15:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*find_executable_or_die(char *command, char **paths)
 	path = find_executable(command, paths);
 	if (path == NULL)
 		die_full(command, NO_FILE_DIR_ERR, 127);
+	if (is_directory(path))
+		die_full(command, IS_DIR_ERR, 126);
 	can_execute = access(path, X_OK);
 	if (can_execute < 0)
 		die_full(command, PERMISSION_ERR, 126);
