@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 14:14:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:20:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ int				handle_builtin_exec(t_parse_list *node);
 
 void			execve_or_die(char **tokens);
 
-char			*find_executable(char *command, char **paths);
+char			*find_file(char *command, char **paths);
 char			*find_executable_or_die(char *command, char **paths);
 
 char			**get_paths_or_die(void);
