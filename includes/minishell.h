@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 16:44:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:37:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void			execute_pipeline(t_parse_list *list);
 void			execute_pipe(t_parse_list *plist);
 void			execute_last_pipe(t_parse_list *plist);
 
-void			fork_handle_pipe_sequence(t_parse_list *node);
+void			handle_fork_sequence(t_parse_list *node);
 int				handle_builtin_sequence(t_parse_list *node);
 
 void			handle_read_file(t_parse_list *node);
@@ -212,8 +212,8 @@ void			hdoc_to_stdin(char *delimiter);
 
 pid_t			fork_or_die(void);
 
-pid_t			wait_or_die(int *stats);
-pid_t			waitpid_or_die(pid_t pid, int *stats, int options);
+pid_t			wait_or_die(int *status);
+pid_t			waitpid_or_die(pid_t pid, int *status, int options);
 
 /******************************************************************************\
  * BUILTINS
