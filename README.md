@@ -43,7 +43,7 @@ are a large group of small- to large-sized
 **extremely venomous predatory**
 sea snails, marine gastropod molluscs.
 
-![A group of shells of various species of cone snails](https://wikiless.org/media/wikipedia/commons/7/7f/Sto%C5%BCki2.jpg)
+![A group of shells of various species of cone snails](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/12_Conidae_seashells.webp/1200px-12_Conidae_seashells.webp.png)
 
 The intricate color patterns of cones have made them one of the most popular collectible shells.
 

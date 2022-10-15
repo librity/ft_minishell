@@ -16,9 +16,9 @@
 - [ ] All allocated heap memory properly freed, no memory leaks.
   - [ ] Use gcc `-fsanitize=leak` flag.
   - [ ] Check memory leaks with `valgrind`.
-- [ ] `.linux` file (42 Workspaces)
+- [x] `.linux` file (42 Workspaces)
 - [ ] Test in workspaces
-- [ ] Program name `myshell`
+- [x] Program name `minishell`
 - [ ] Turn in `Makefile`, `*.h`, `*.c` , `.linux` , `.gitignore`
 - [ ] Allowed functions:
   - [ ] `readline` `rl_clear_history` `rl_on_new_line` `rl_replace_line`
@@ -30,7 +30,7 @@
   - [ ] `ioctl` `getenv` `tcsetattr` `tcgetattr` `tgetent` `tgetflag` `tgetnum`
   - [ ] `tgetstr` `tgoto` `tputs`
   - [ ] `libft` allowed
-- [ ] Not use more than one global variable. Think about it. You will have to explain its purpose.
+- [x] Not use more than one global variable. Think about it. You will have to explain its purpose.
 - [ ] Pass all testers
   - [ ] https://github.com/LucasKuhn/myshell_tester
     - [ ] Habilitar testes desativados (`pipes_bckp` e `redirects_bckp`).
@@ -127,7 +127,7 @@
   - [x] Nome do usuário.
   - [ ] Hostname.
   - [x] Current dir.
-  - [ ] Cores.
+  - [ ] Com cores.
 - [x] Have a working history.
   - [x] Não adicionar linha vazia (`""`)
 - [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
@@ -168,9 +168,9 @@
 
 ## Lexer
 
-- [ ] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
-- [ ] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
-- [ ] Handle `"` (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for `$` (dollar sign).
+- [x] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
+- [x] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
+- [x] Handle `"` (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for `$` (dollar sign).
 - [x] Casos:
   - [x] Tokenização simples
   - [x] Tokenização com aspas simples `'`
@@ -222,8 +222,8 @@
   - [x] Não pode ter `|` sem próximo commando.
   - [x] Não pode ter `|` seguido de `|`.
   - [x] Primeiro token não pode ser `|`.
-  - [ ] Printar mensagem de erro.
 - [x] Validar sintaxe dos `char **tokens`
+  - [ ] Com mensagems de erro.
 - [ ] (OPCIONAL) Validar sintaxe da `t_parse_list plist`
 
 ## Trimmer
@@ -261,7 +261,7 @@
   - [ ] Testar múltiplos redirecionamentos na mesma pipeline comm builtins.
 - [x] Fechar fds de redirecionamento depois de executar o builtin isolado
   - [ ] Com testes
-- [ ] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
+- [x] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
 
 # Bonus
 
