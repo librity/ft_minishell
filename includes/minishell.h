@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/15 23:44:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 01:36:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,10 +183,7 @@ void			execute(t_parse_list *pipeline);
 bool			handled_single_builtin(t_parse_list *pipeline);
 void			execute_pipeline(t_parse_list *list);
 
-void			execute_pipe(t_parse_list *pipeline,
-					pid_t *pids, int **pipes, int index);
-void			execute_last_pipe(t_parse_list *pipeline,
-					pid_t *pids, int **pipes, int index);
+void			spawn_pipes(t_execute_pl *ctl, t_parse_list *pipeline);
 
 void			handle_fork_sequence(t_parse_list *node);
 int				handle_builtin_sequence(t_parse_list *node);

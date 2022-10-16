@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 14:12:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 01:32:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,27 +118,16 @@ typedef int					(*t_builtin)(char **);
  * EXECUTOR
 \******************************************************************************/
 
-typedef enum e_input_type
+typedef struct s_execute_pl
 {
-	IT_NULL = 0,
-	IT_READ_FILE,
-	IT_HEREDOC,
-}							t_input_type;
+	int						**pipes;
+	int						pipe_count;
 
-typedef enum e_output_type
-{
-	OT_NULL = 0,
-	OT_TRUNCATE,
-	OT_APPEND,
-}							t_output_type;
+	pid_t					*pids;
+	int						pid_count;
+}							t_execute_pl;
 
-typedef struct s_file
-{
-	char					*path;
-	int						fd;
-}							t_file;
-
-typedef struct s_exec
+typedef struct s_execve
 {
 	char					*path;
 	char					**argv;
@@ -148,21 +137,7 @@ typedef struct s_exec
 	char					**paths;
 
 	int						code;
-}							t_exec;
-
-typedef struct s_fork
-{
-	t_input_type			in_type;
-	t_file					infile;
-	char					*delimiter;
-
-	t_exec					exec;
-
-	t_output_type			out_type;
-	t_file					outfile;
-}							t_fork;
-
-typedef t_dlist				t_fork_list;
+}							t_execve;
 
 /******************************************************************************\
  * FILES

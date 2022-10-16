@@ -6,15 +6,15 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:35:27 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/15 02:01:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 01:32:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	initialize_execve(t_exec *exec, char **tokens)
+static void	initialize_execve(t_execve *exec, char **tokens)
 {
-	ft_bzero(exec, sizeof(t_exec));
+	ft_bzero(exec, sizeof(t_execve));
 	exec->argv = tokens;
 	exec->paths = get_paths_or_die();
 	exec->cmd = tokens[0];
@@ -24,7 +24,7 @@ static void	initialize_execve(t_exec *exec, char **tokens)
 
 void	execve_or_die(char **tokens)
 {
-	t_exec	exec;
+	t_execve	exec;
 
 	if (tokens == NULL)
 		die(EXECUTE_NULL_ERR);
