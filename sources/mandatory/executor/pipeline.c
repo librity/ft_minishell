@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:33:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 00:42:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 01:14:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	execute_pipeline(t_parse_list *pipeline)
 
 
 
+
 	if (pipe_count == 0)
 		execute_single_pipe(pipeline, pids);
 	else
@@ -96,7 +97,7 @@ void	execute_pipeline(t_parse_list *pipeline)
 		execute_first_pipe(pipeline, pids, pipes);
 		pipeline = find_next_parse_pipe(pipeline)->next;
 		index = 1;
-		while (index < pipe_count - 1)
+		while (index < pipe_count)
 		{
 			execute_pipe(pipeline, pids, pipes, index);
 			pipeline = find_next_parse_pipe(pipeline)->next;
