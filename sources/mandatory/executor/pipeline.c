@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:33:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 01:36:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 14:39:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	wait_for_all(pid_t *pids, int pid_count)
 	index = 0;
 	while (index < pid_count)
 	{
-		waitpid_or_die(pids[index], &fork_status, 0);
+		waitpid(pids[index], &fork_status, WUNTRACED);
 		exit_status = WEXITSTATUS(fork_status);
 		set_last_exit(exit_status);
 		index++;

@@ -6,14 +6,15 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/06 17:06:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:03:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
-t_parse_list *_plist;
-t_parse *_pnode;
+t_parse_list	*_plist;
+t_parse 		*_pnode;
+pid_t			_pids[1];
 
 void setup(void)
 {
@@ -31,9 +32,9 @@ MU_TEST(he_tst)
 	add_heredoc(&_plist, "exit");
 	add_exec(&_plist, (char *[]){"grep", "a", NULL});
 
-	write_to_stdin("a\nb\nc\nexit\nada\naaa");
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	write_to_stdin("abc\na\nb\nc\nexit\nada\naaa");
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(hhre_tst)
@@ -46,8 +47,8 @@ MU_TEST(hhre_tst)
 	add_exec(&_plist, (char *[]){"grep", "a", NULL});
 
 	// write_to_stdin("a\nb\nc\n1\nada\naaa\n2\nabc\ndfg\naba");
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST_SUITE(pipe_suite)

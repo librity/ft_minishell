@@ -7,8 +7,8 @@
   - [ ] Add `.keep` to object dirs
   - [ ] Create non-phony rule for each lib archive
 - [ ] Follows `norminette 3.3.51`
-- [ ] Compiles with workspace's `clang` (version `12.0.1`)
-  - [ ] Switch Makefile's `CC`to `clang` before submitting.
+- [ ] Compiles with workspace's `cc` (`clang` version `12.0.1`)
+  - [ ] Switch Makefile's `clang-12` to `CC` before submitting.
 - [ ] Compiles with `-Wall -Wextra -Werror`
 - [ ] Makefile rules: `$(NAME)` `all` `clean` `fclean` `re`
 - [ ] Should not quit unexpectedly (segmentation fault, bus error, double
@@ -262,6 +262,7 @@
 - [x] Fechar fds de redirecionamento depois de executar o builtin isolado
   - [ ] Com testes
 - [x] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
+- [x] Executar pipes sem bloquear processos (`forks()` -> `waits()`)
 
 # Bonus
 

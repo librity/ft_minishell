@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 01:36:01 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:06:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,8 @@ bool			handled_single_builtin(t_parse_list *pipeline);
 void			execute_pipeline(t_parse_list *list);
 
 void			spawn_pipes(t_execute_pl *ctl, t_parse_list *pipeline);
+void			spawn_single_pipe(t_parse_list *pipeline, pid_t *pids);
+void			spawn_multiple_pipes(t_execute_pl *ctl, t_parse_list *pipeline);
 
 void			handle_fork_sequence(t_parse_list *node);
 int				handle_builtin_sequence(t_parse_list *node);
@@ -421,11 +423,18 @@ void			enable_tty_raw_mode(void);
 void			set_interactive_shell_hooks(void);
 void			set_fork_hooks(void);
 
-void			disable_interrupt_signal(void);
-
 void			set_signal_hook(t_sigaction *action,
 					t_signal handler,
 					int signal);
+
+void			set_interrupt_signal_hook(void);
+void			set_quit_signal_hook(void);
+void			set_interactive_shell_hooks(void);
+
+void			set_interrupt_fork_signal_hook(void);
+void			set_quit_fork_signal_hook(void);
+void			disable_interrupt_signal(void);
+void			set_fork_hooks(void);
 
 void			handle_interrupt_signal(int signal);
 void			handle_fork_interrupt_signal(int signal);
