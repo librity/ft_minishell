@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 23:31:16 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:45:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ pid_t	waitpid_or_die(pid_t pid, int *status, int options)
 
 	result = waitpid(pid, status, options);
 	if (result < 0)
-		die_perror(WAITPID_LOC, USE_ERRNO);
-	if (status != NULL && !WIFEXITED(*status))
 		die_perror(WAITPID_LOC, USE_ERRNO);
 	return (result);
 }

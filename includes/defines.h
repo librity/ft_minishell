@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 13:13:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:51:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,5 +205,11 @@ of subsequently executed commands. \n\
 
 # define DEBUG_FLAG "-d"
 # define DEBUG_FLAG_LONG "--debug"
+
+/******************************************************************************\
+ * SIGNALS
+\******************************************************************************/
+
+# define FORK_QUIT_MSG "[1]+   quit       ./minishell\n"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:54:12 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:51:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:51:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,19 @@ void	handle_interrupt_signal(int signal)
 
 void	handle_fork_interrupt_signal(int signal)
 {
-	ft_bdebug(debug(),
-		"handle_fork_interrupt_signal: signal: %d", signal);
+	if (debug())
+		ft_debug("handle_fork_interrupt_signal: signal: %d", signal);
+	else
+		printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 	exit (0);
 }
 
 void	handle_fork_quit(int signal)
 {
 	ft_bdebug(debug(), "handle_fork_quit: signal: %d", signal);
-	printf("[1]+   quit       ./minishell\n");
+	printf(FORK_QUIT_MSG);
 	exit(0);
 }

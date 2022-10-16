@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:35:27 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 22:48:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/15 02:01:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	execve_or_die(char **tokens)
 	initialize_execve(&exec, tokens);
 	exec.code = execve(exec.path, exec.argv, exec.envp);
 	if (exec.code < 0)
-		die_perror(exec.path, EXIT_FAILURE);
+		die_perror(exec.path, USE_ERRNO);
 	quit_status(exec.code);
 }
