@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 11:58:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:09:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,6 @@ of subsequently executed commands. \n\
  * SIGNALS
 \******************************************************************************/
 
-# define FORK_QUIT_MSG "[1]+   quit       ./minishell\n"
+# define FORK_QUIT_MSG "Quit\n"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:47:21 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 11:58:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:22:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,18 @@ void	hdoc_to_stdin(char *delimiter)
 	pid_t	pid;
 	int		pipe[2];
 
-	disable_quit_signal();
+	set_hdoc_hooks();
 	if (delimiter == NULL)
 		die(HEREDOC_DELIMITER_ERR);
 	pipe_or_die(pipe);
 	pid = fork_or_die();
 	if (pid == CHILD_PROCESS_ID)
 	{
-		set_hdoc_hooks();
 		get_hdoc_stream(delimiter, pipe);
 		return ;
 	}
 	pipe_to_stdin(pipe);
 	close_pipe(pipe);
 	waitpid_or_die(pid, NULL, 0);
+	set_fork_hooks();
 }

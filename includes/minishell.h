@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 11:51:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:18:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -437,6 +437,7 @@ void			set_signal_hook(t_sigaction *action,
 
 void			disable_interrupt_signal(void);
 void			disable_quit_signal(void);
+void			disable_signals(void);
 
 void			set_interactive_shell_hooks(void);
 void			set_fork_hooks(void);
