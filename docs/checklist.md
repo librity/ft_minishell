@@ -224,7 +224,7 @@
   - [x] Não pode ter `|` seguido de `|`.
   - [x] Primeiro token não pode ser `|`.
 - [x] Validar sintaxe dos `char **tokens`
-  - [ ] (OPCIONAL) Com mensagens de erro.
+  - [x] (OPCIONAL) Com mensagens de erro.
 - [ ] (OPCIONAL) Validar sintaxe da `t_parse_list plist`
 
 ## Trimmer
@@ -239,12 +239,12 @@
 ## Executor
 
 - [x] Implement pipes (`|` character). The output of each command in the pipeline is connected to the input of the next command via a pipe.
-- [ ] Implement redirections:
+- [x] Implement redirections:
   - [x] `<` should redirect input.
   - [x] `>` should redirect output.
   - [x] `heredoc`: `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
     - [x] Heredoc roda antes que todos os outros redirecionamentos.
-    - [ ] Resolver os leaks de memória (`hdoc.c`).
+    - [x] Resolver os leaks de memória (`hdoc.c`).
   - [x] `>>` should redirect output in append mode.
 - [x] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
 - [x] Executar pipe com `fork()` e redirecionamentos.
@@ -261,7 +261,6 @@
   - [ ] Testar múltiplos redirecionamentos no mesmo builtin.
   - [ ] Testar múltiplos redirecionamentos na mesma pipeline comm builtins.
 - [x] Fechar fds de redirecionamento depois de executar o builtin isolado
-  - [ ] Com testes
 - [x] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
 - [x] Executar pipes sem bloquear processos (`forks()` -> `waits()`)
 

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 13:44:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:52:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,13 @@ char			**tokenize(char *input);
 
 char			**tokenize_variable(char *declaration);
 
+char			**operators(void);
+bool			is_operator(char *token);
+char			**find_next_operator(char **tokens);
+
+char			**find_next_pipe(char **tokens);
+int				count_pipes(char **tokens);
+
 /******************************************************************************\
  * EXPANDER
 \******************************************************************************/
@@ -104,11 +111,11 @@ bool			is_empty_variable(char *variable);
  * SYNTAX
 \******************************************************************************/
 
-bool			has_valid_quotes(char *line);
-
+bool			line_is_valid(char *line);
+bool			tokens_are_valid(char **tokens);
 bool			is_valid_variable(char *variable);
 
-bool			tokens_are_valid(char **tokens);
+bool			has_valid_quotes(char *line);
 
 bool			tokens_have_semicolon(char **tokens);
 bool			tokens_have_backslash(char **tokens);
@@ -118,8 +125,6 @@ bool			has_valid_read_file(char **tokens);
 bool			has_valid_heredoc(char **tokens);
 
 bool			has_valid_pipe(char **tokens);
-char			**find_next_pipe(char **tokens);
-int				count_pipes(char **tokens);
 
 bool			is_valid_filename(char *filename);
 
@@ -129,9 +134,7 @@ bool			is_metachar(char c);
 bool			has_specialchar(char *str);
 bool			is_specialchar(char c);
 
-char			**operators(void);
-bool			is_operator(char *token);
-char			**find_next_operator(char **tokens);
+void			print_syntax_error(char *token);
 
 /******************************************************************************\
  * TRIMMER

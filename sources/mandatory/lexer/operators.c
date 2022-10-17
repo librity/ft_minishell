@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon.c                                        :+:      :+:    :+:   */
+/*   operators.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:34:06 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 15:36:27 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 15:44:08 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 15:45:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	has_semicolon(char *token)
+char	**operators(void)
 {
-	while (token != NULL && *token != '\0')
-	{
-		if (*token == SEMICOLON)
-			return (true);
-		token = skip_quotes(token);
-		if (token != NULL)
-			token++;
-	}
-	return (false);
+	static char	*_operators[] = {
+		PIPE,
+		TRUNCATE, APPEND,
+		READ_FILE, HEREDOC,
+		NULL};
+
+	return (_operators);
 }
 
-bool	tokens_have_semicolon(char **tokens)
+bool	is_operator(char *token)
 {
+	return (ft_str_in_strarr(operators(), token));
+}
+
+char	**find_next_operator(char **tokens)
+{
+	if (tokens == NULL)
+		return (NULL);
 	while (*tokens != NULL)
 	{
-		if (has_semicolon(*tokens))
-		{
-			print_syntax_error(*tokens);
-			return (true);
-		}
+		if (is_operator(*tokens))
+			return (tokens);
 		tokens++;
 	}
-	return (false);
+	return (tokens);
 }

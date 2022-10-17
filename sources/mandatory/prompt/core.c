@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/17 15:01:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:57:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	*prompt(void)
 	if (line == NULL)
 		return (line);
 	ft_add_lalloc(lalloc(), line);
+	increase_line_count();
 	if (!ft_streq(line, EMPTY_STR))
 		add_history(line);
 	return (line);

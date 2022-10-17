@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon.c                                        :+:      :+:    :+:   */
+/*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:34:06 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 15:36:27 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 15:45:27 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 15:45:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	has_semicolon(char *token)
+char	**find_next_pipe(char **tokens)
 {
-	while (token != NULL && *token != '\0')
-	{
-		if (*token == SEMICOLON)
-			return (true);
-		token = skip_quotes(token);
-		if (token != NULL)
-			token++;
-	}
-	return (false);
-}
-
-bool	tokens_have_semicolon(char **tokens)
-{
+	if (tokens == NULL)
+		return (NULL);
 	while (*tokens != NULL)
 	{
-		if (has_semicolon(*tokens))
-		{
-			print_syntax_error(*tokens);
-			return (true);
-		}
+		if (ft_streq(*tokens, PIPE))
+			return (tokens);
 		tokens++;
 	}
-	return (false);
+	return (tokens);
+}
+
+int	count_pipes(char **tokens)
+{
+	int	pipe_count;
+
+	if (tokens == NULL)
+		return (0);
+	pipe_count = 0;
+	while (*tokens != NULL)
+	{
+		if (ft_streq(*tokens, PIPE))
+			pipe_count++;
+		tokens++;
+	}
+	return (pipe_count);
 }

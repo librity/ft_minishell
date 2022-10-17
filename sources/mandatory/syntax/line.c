@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon.c                                        :+:      :+:    :+:   */
+/*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:34:06 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 15:36:27 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 15:48:52 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 15:52:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	has_semicolon(char *token)
+bool	line_is_valid(char *line)
 {
-	while (token != NULL && *token != '\0')
+	if (!has_valid_quotes(line))
 	{
-		if (*token == SEMICOLON)
-			return (true);
-		token = skip_quotes(token);
-		if (token != NULL)
-			token++;
+		print_error(QUOTES_ERR);
+		return (false);
 	}
-	return (false);
-}
-
-bool	tokens_have_semicolon(char **tokens)
-{
-	while (*tokens != NULL)
-	{
-		if (has_semicolon(*tokens))
-		{
-			print_syntax_error(*tokens);
-			return (true);
-		}
-		tokens++;
-	}
-	return (false);
+	return (true);
 }
