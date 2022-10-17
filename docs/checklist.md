@@ -15,6 +15,7 @@
       free, etc.)
 - [ ] All allocated heap memory properly freed, no memory leaks.
   - [ ] Use gcc `-fsanitize=leak` flag.
+  - [ ] Remove flag before submitting (`readline()` leaks).
   - [ ] Check memory leaks with `valgrind`.
 - [x] `.linux` file (42 Workspaces)
 - [ ] Test in workspaces
@@ -123,12 +124,11 @@
 ## Prompt
 
 - [x] Display a prompt when waiting for a new command.
-- [ ] Adicionar PS1 (ex: `lgeniole@dev1:~/code/ft/minishell$`):
+- [x] Adicionar PS1 (ex: `lgeniole@dev1:~/code/ft/minishell$`):
   - [x] Nome do usuário.
-  - [ ] Hostname.
   - [x] Current dir.
-    - [ ] Com `~` contraction.
-  - [ ] Com cores.
+    - [x] Com `~`.
+  - [x] Com cores.
 - [x] Have a working history.
   - [x] Não adicionar linha vazia (`""`)
 - [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
@@ -136,10 +136,10 @@
     - [x] `Ctrl-C` displays a new prompt on a new line (`SIGINT` signal).
     - [x] `Ctrl-D` exits the shell (`EOF` no `STDIN`).
     - [x] `Ctrl-\` does nothing (`SIGQUIT` signal).
-  - [ ] No fork (processo filho):
-    - [ ] `Ctrl-C` (`SIGINT` signal).
-    - [ ] `Ctrl-D` (`EOF` no `STDIN`).
-    - [ ] `Ctrl-\` (`SIGQUIT` signal).
+  - [x] No fork (processo filho):
+    - [x] `Ctrl-C` (`SIGINT` signal).
+    - [x] `Ctrl-D` (`EOF` no `STDIN`).
+    - [x] `Ctrl-\` (`SIGQUIT` signal).
   - [ ] Criar e utilizar
     - [ ] `sigemptyset_or_die()`
     - [ ] `sigaction_or_die()`
@@ -267,5 +267,5 @@
 
 # Bonus
 
-- [ ] && and || with parenthesis for priorities.
 - [ ] Wildcards \* should work for the current working directory.
+- [ ] && and || with parenthesis for priorities.

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 14:10:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:28:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@
 
 # define CHILD_PROCESS_ID 0
 
-# define PATH_KEY "PATH"
-
 # define HDOC_FEED "> "
 
 # define EKEYEXPIRED 127
@@ -98,11 +96,8 @@
 # define BI_ECHO_NO_LINEBREAK_FLAG "-n"
 
 # define CD "cd"
-# define HOME_KEY "HOME"
 
 # define PWD "pwd"
-# define PWD_KEY "PWD"
-# define OLDPWD_KEY "OLDPWD"
 
 # define EXPORT "export"
 
@@ -182,6 +177,13 @@ of subsequently executed commands. \n\
 
 # define HASH_TABLE_SIZE 10000
 # define HT_BAD_INDEX -1
+
+# define HOME_KEY "HOME"
+# define PWD_KEY "PWD"
+# define OLDPWD_KEY "OLDPWD"
+# define PATH_KEY "PATH"
+# define USERNAME_KEY "USERNAME"
+# define USER_KEY "USER"
 
 /******************************************************************************\
  * CRYPTO
