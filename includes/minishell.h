@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:05:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:52:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 # define MINISHELL_H
 
 # include <fcntl.h>
+# include <errno.h>
 # include <limits.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -24,6 +26,7 @@
 # include <errors.h>
 # include <structs.h>
 # include <warnings.h>
+# include <banners.h>
 
 /******************************************************************************\
  * CONTROL
@@ -34,7 +37,7 @@ void			initialize_control(int argc, char **argv, char **envp);
 void			deinitialize_control(void);
 
 bool			debug(void);
-void			set_debug(bool verbose);
+void			enable_debug(void);
 
 t_termios		*original_tty_attr(void);
 void			save_tty_flags(void);
@@ -60,6 +63,14 @@ bool			initialize_last_exit(void);
 bool			destroy_last_exit(void);
 bool			set_last_exit(int exit_status);
 
+int				line_count(void);
+void			increase_line_count(void);
+
+t_proc_fds		*ioe(void);
+int				ioe_in(void);
+int				ioe_out(void);
+int				ioe_err(void);
+
 t_list			**lalloc(void);
 void			free_lalloc(void);
 
@@ -78,6 +89,13 @@ char			**tokenize(char *input);
 
 char			**tokenize_variable(char *declaration);
 
+char			**operators(void);
+bool			is_operator(char *token);
+char			**find_next_operator(char **tokens);
+
+char			**find_next_pipe(char **tokens);
+int				count_pipes(char **tokens);
+
 /******************************************************************************\
  * EXPANDER
 \******************************************************************************/
@@ -87,15 +105,17 @@ char			*expand(char *line);
 char			*expand_line(char *line);
 char			**isolate_variables(char *input);
 
+bool			is_empty_variable(char *variable);
+
 /******************************************************************************\
  * SYNTAX
 \******************************************************************************/
 
-bool			has_valid_quotes(char *line);
-
+bool			line_is_valid(char *line);
+bool			tokens_are_valid(char **tokens);
 bool			is_valid_variable(char *variable);
 
-bool			tokens_are_valid(char **tokens);
+bool			has_valid_quotes(char *line);
 
 bool			tokens_have_semicolon(char **tokens);
 bool			tokens_have_backslash(char **tokens);
@@ -105,8 +125,6 @@ bool			has_valid_read_file(char **tokens);
 bool			has_valid_heredoc(char **tokens);
 
 bool			has_valid_pipe(char **tokens);
-char			**find_next_pipe(char **tokens);
-int				count_pipes(char **tokens);
 
 bool			is_valid_filename(char *filename);
 
@@ -116,13 +134,13 @@ bool			is_metachar(char c);
 bool			has_specialchar(char *str);
 bool			is_specialchar(char c);
 
-char			**operators(void);
-bool			is_operator(char *token);
-char			**find_next_operator(char **tokens);
+void			print_syntax_error(char *token);
 
 /******************************************************************************\
  * TRIMMER
 \******************************************************************************/
+
+void			trim(char **tokens);
 
 void			trim_tokens(char **tokens);
 void			trim_token(char *token);
@@ -133,6 +151,7 @@ void			trim_token(char *token);
 
 t_parse_list	*parse(char **tokens);
 
+t_parse_list	*parse_tokens(char **tokens);
 t_parse			*new_parse(void);
 void			destroy_parse(t_parse **pnode);
 
@@ -153,6 +172,7 @@ void			add_append(t_parse_list **list, char *file_path);
 
 t_parse			*new_heredoc(char *file_path);
 void			add_heredoc(t_parse_list **list, char *delimiter);
+bool			has_heredoc(t_parse_node *node);
 
 t_parse			*new_read_file(char *delimiter);
 void			add_read_file(t_parse_list **list, char *file_path);
@@ -175,10 +195,11 @@ void			execute(t_parse_list *pipeline);
 bool			handled_single_builtin(t_parse_list *pipeline);
 void			execute_pipeline(t_parse_list *list);
 
-void			execute_pipe(t_parse_list *plist);
-void			execute_last_pipe(t_parse_list *plist);
+void			spawn_pipes(t_execute_pl *ctl, t_parse_list *pipeline);
+void			spawn_single_pipe(t_parse_list *pipeline, pid_t *pids);
+void			spawn_multiple_pipes(t_execute_pl *ctl, t_parse_list *pipeline);
 
-void			fork_handle_pipe_sequence(t_parse_list *node);
+void			handle_fork_sequence(t_parse_list *node);
 int				handle_builtin_sequence(t_parse_list *node);
 
 void			handle_read_file(t_parse_list *node);
@@ -191,14 +212,21 @@ int				handle_builtin_exec(t_parse_list *node);
 
 void			execve_or_die(char **tokens);
 
-char			*find_executable(char *command, char **paths);
 char			*find_executable_or_die(char *command, char **paths);
 
 char			**get_paths_or_die(void);
+char			*find_in_paths(char *command, char **paths);
+
+bool			is_absolute_path(char *path);
+bool			is_relative_path(char *path);
+bool			is_relative_or_absolute_path(char *path);
 
 void			hdoc_to_stdin(char *delimiter);
 
 pid_t			fork_or_die(void);
+
+pid_t			wait_or_die(int *status);
+pid_t			waitpid_or_die(pid_t pid, int *status, int options);
 
 /******************************************************************************\
  * BUILTINS
@@ -231,6 +259,8 @@ char			*exp_extract_key(char *declaration);
 char			*exp_extract_value(char *declaration);
 
 int				bi_exit(char **tokens);
+int				exit_atoi(const char *nptr);
+int				exit_status_is_too_long(char *nptr);
 
 int				bi_unset(char **tokens);
 
@@ -256,12 +286,15 @@ int				dup2_or_die(int from, int to);
 void			save_ioe(t_proc_fds *ioe);
 void			restore_ioe(t_proc_fds *ioe);
 
+bool			is_directory(char *path);
+
 /******************************************************************************\
  * PIPES
 \******************************************************************************/
 
 void			pipe_or_die(int pipe_fds[2]);
 void			close_pipe(int pipe_fds[2]);
+void			close_pipes(int **pipes);
 
 void			file_to_stdin(int infile_fd);
 void			stdout_to_file(int outfile_fd);
@@ -380,6 +413,14 @@ void			print_error(char *message);
 void			print_location_error(char *location, char *message);
 void			print_warning(char *message);
 
+void			print_banner(void);
+
+/******************************************************************************\
+ * FLAGS
+\******************************************************************************/
+
+void			handle_debug_flag(void);
+
 /******************************************************************************\
  * TERMIOS
 \******************************************************************************/
@@ -392,11 +433,18 @@ void			enable_tty_raw_mode(void);
 \******************************************************************************/
 
 void			set_interactive_shell_hooks(void);
+void			set_fork_hooks(void);
 
 void			set_signal_hook(t_sigaction *action,
 					t_signal handler,
 					int signal);
 
-void			handle_interrupt_signal(int signal);
+void			disable_interrupt_signal(void);
+void			disable_quit_signal(void);
+void			disable_signals(void);
+
+void			set_interactive_shell_hooks(void);
+void			set_fork_hooks(void);
+void			set_hdoc_hooks(void);
 
 #endif

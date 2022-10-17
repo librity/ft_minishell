@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 17:07:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 15:45:27 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 15:45:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	handle_child(t_parse_list *pipeline, int pipe[2])
+char	**find_next_pipe(char **tokens)
 {
-	stdout_to_pipe(pipe);
-	close_pipe(pipe);
-	fork_handle_pipe_sequence(pipeline);
+	if (tokens == NULL)
+		return (NULL);
+	while (*tokens != NULL)
+	{
+		if (ft_streq(*tokens, PIPE))
+			return (tokens);
+		tokens++;
+	}
+	return (tokens);
 }
 
-void	execute_pipe(t_parse_list *pipeline)
+int	count_pipes(char **tokens)
 {
-	pid_t	pid;
-	int		pipe[2];
+	int	pipe_count;
 
-	pipe_or_die(pipe);
-	pid = fork_or_die();
-	if (pid == CHILD_PROCESS_ID)
-		handle_child(pipeline, pipe);
-	pipe_to_stdin(pipe);
-	close_pipe(pipe);
-	waitpid(pid, NULL, 0);
+	if (tokens == NULL)
+		return (0);
+	pipe_count = 0;
+	while (*tokens != NULL)
+	{
+		if (ft_streq(*tokens, PIPE))
+			pipe_count++;
+		tokens++;
+	}
+	return (pipe_count);
 }

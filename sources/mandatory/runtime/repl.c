@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/10 16:05:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:58:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,12 @@ static void	trim_parse_exec(char **tokens)
 {
 	t_parse_list	*plist;
 
-	trim_tokens(tokens);
+	trim(tokens);
 	plist = parse(tokens);
 	execute(plist);
 	free_lalloc();
 }
 
-/**
- * TODO: Mensagem de erro de sintaxe especifica.
- */
 void	repl(void)
 {
 	char	*line;
@@ -43,9 +40,8 @@ void	repl(void)
 		}
 		line = expand(line);
 		tokens = lex(line);
-		if (!tokens_are_valid(tokens))
+		if (!line_is_valid(line) || !tokens_are_valid(tokens))
 		{
-			print_error("SYNTAX ERROR!");
 			free_lalloc();
 			continue ;
 		}

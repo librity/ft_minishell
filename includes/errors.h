@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:27:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 14:08:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:52:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 \******************************************************************************/
 
 # define ENVP_TO_ENVHT_ERR "Can't initialize envht from envp variables."
+
+/******************************************************************************\
+ * SYNTAX
+\******************************************************************************/
+
+# define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
+# define QUOTES_ERR "Line doesn't have closing quotes."
 
 /******************************************************************************\
  * EXECUTOR
@@ -38,6 +45,13 @@
 
 # define EXEC_BAD_TOKENS_ERR "Can't execute command with NULL or empty tokens."
 
+# define PERMISSION_ERR "Permission denied"
+
+# define IS_DIR_ERR "Is a directory"
+
+# define WAIT_LOC "wait"
+# define WAITPID_LOC "waitpid"
+
 /******************************************************************************\
  * FILES
 \******************************************************************************/
@@ -50,6 +64,8 @@
 
 # define CLOSE_ERR "Can't close required file descriptor."
 # define CLOSE_LOC "close"
+
+# define STAT_LOC "stat"
 
 /******************************************************************************\
  * PIPES

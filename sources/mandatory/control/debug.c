@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 00:38:44 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/08/21 00:39:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/10 19:58:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	debug(void)
 	return (c()->debug);
 }
 
-void	set_debug(bool debug)
+void	enable_debug(void)
 {
-	c()->debug = debug;
+	c()->debug = true;
 }

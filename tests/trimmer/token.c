@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 23:06:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:35:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,18 @@ MU_TEST(mixed_quote_tst)
 	test_trim_token("\"\"\"\"\"\"", "\'\"\"\"\"\"\"\'");
 }
 
+MU_TEST(empty_tst)
+{
+	test_trim_token("helloworld", "hello\"\"world");
+	test_trim_token("helloworld", "hello\'\'world");
+
+	test_trim_token("helloworld", "hello\"\"\"\"world");
+	test_trim_token("helloworld", "hello\'\'\'\'world");
+
+	test_trim_token("helloworld", "hello\"\"\'\'world");
+	test_trim_token("helloworld", "hello\'\'\"\"world");
+}
+
 MU_TEST_SUITE(token_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -99,6 +111,8 @@ MU_TEST_SUITE(token_suite)
 	MU_RUN_TEST(double_quote_tst);
 
 	MU_RUN_TEST(mixed_quote_tst);
+
+	MU_RUN_TEST(empty_tst);
 }
 
 MU_MAIN

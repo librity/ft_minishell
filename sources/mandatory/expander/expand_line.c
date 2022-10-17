@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/07 21:06:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:22:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ static char	*find_key_end(char *var)
 {
 	while (*var != NULL_CHAR)
 	{
+		if (*var == '?')
+			return (var + 1);
+		if (*var == ' ')
+			return (var);
 		if (*var == SINGLE_QUOTE)
 			return (var);
 		if (*var == DOUBLE_QUOTE)
@@ -37,19 +41,21 @@ static char	*resolve_value(char *key)
 	return (value);
 }
 
-static char	*insert_value(char *variable)
+static char	*insert_value(char *var)
 {
 	char	*key;
 	char	*value;
 	char	*expanded;
 	char	*key_end;
 
-	key_end = find_key_end(variable);
-	key = ft_substr(variable, 0, key_end - variable);
+	if (is_empty_variable(var))
+		return (var);
+	key_end = find_key_end(var);
+	key = ft_substr(var, 0, key_end - var);
 	value = resolve_value(key);
 	expanded = ft_strjoin(value, key_end);
 	free(key);
-	free(variable);
+	free(var);
 	return (expanded);
 }
 

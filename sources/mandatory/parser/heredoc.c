@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:28:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/06 16:47:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:44:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,18 @@ void	add_heredoc(t_parse_list **list, char *delimiter)
 
 	_parse = new_heredoc(delimiter);
 	ft_dlst_addb_lalloc(lalloc(), list, _parse);
+}
+
+bool	has_heredoc(t_parse_node *node)
+{
+	t_parse	*parse;
+
+	while (node != NULL)
+	{
+		parse = node->content;
+		if (parse->type == PT_HEREDOC)
+			return (true);
+		node = node->next;
+	}
+	return (false);
 }

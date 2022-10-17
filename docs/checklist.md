@@ -1,4 +1,4 @@
-# Mandatory
+# - [x] Mandatory
 
 - [ ] Don't turn in libs as submodules.
 - [ ] Makefile should explicitly name all source files (`make dump_sources`).
@@ -7,18 +7,19 @@
   - [ ] Add `.keep` to object dirs
   - [ ] Create non-phony rule for each lib archive
 - [ ] Follows `norminette 3.3.51`
-- [ ] Compiles with workspace's `clang` (version `12.0.1`)
-  - [ ] Switch Makefile's `CC`to `clang` before submitting.
+- [ ] Compiles with workspace's `cc` (`clang` version `12.0.1`)
+  - [ ] Switch Makefile's `clang-12` to `CC` before submitting.
 - [ ] Compiles with `-Wall -Wextra -Werror`
 - [ ] Makefile rules: `$(NAME)` `all` `clean` `fclean` `re`
 - [ ] Should not quit unexpectedly (segmentation fault, bus error, double
       free, etc.)
 - [ ] All allocated heap memory properly freed, no memory leaks.
   - [ ] Use gcc `-fsanitize=leak` flag.
+  - [ ] Remove flag before submitting (`readline()` leaks).
   - [ ] Check memory leaks with `valgrind`.
-- [ ] `.linux` file (42 Workspaces)
+- [x] `.linux` file (42 Workspaces)
 - [ ] Test in workspaces
-- [ ] Program name `myshell`
+- [x] Program name `minishell`
 - [ ] Turn in `Makefile`, `*.h`, `*.c` , `.linux` , `.gitignore`
 - [ ] Allowed functions:
   - [ ] `readline` `rl_clear_history` `rl_on_new_line` `rl_replace_line`
@@ -30,20 +31,21 @@
   - [ ] `ioctl` `getenv` `tcsetattr` `tcgetattr` `tgetent` `tgetflag` `tgetnum`
   - [ ] `tgetstr` `tgoto` `tputs`
   - [ ] `libft` allowed
-- [ ] Not use more than one global variable. Think about it. You will have to explain its purpose.
+- [x] Not use more than one global variable. Think about it. You will have to explain its purpose.
 - [ ] Pass all testers
   - [ ] https://github.com/LucasKuhn/myshell_tester
+    - [ ] Habilitar testes desativados (`pipes_bckp` e `redirects_bckp`).
 - [ ] Add `debug()` messages:
   - [x] Prompt
   - [x] Expander
   - [x] Lexer
-  - [ ] Parser
-  - [ ] Syntax Validator
-  - [ ] Trimmer
+  - [x] Syntax Validator
+  - [x] Trimmer
+  - [x] Parser
   - [ ] Executor
-- [ ] Add `-d` and `--debug` flags (`./minishell -d`)
+- [x] Add `-d` and `--debug` flags (`./minishell -d`)
 
-## REPL
+## - [x] REPL
 
 - [x] Ler commando do usuário
 - [x] Expandir
@@ -54,7 +56,7 @@
 - [x] Executar
 - [x] Repetir
 
-## Memória
+## - [x] Memória
 
 - [x] Adicionar toda memoria do loop (REPL) no `lalloc()`
   - [x] Prompt
@@ -65,7 +67,7 @@
 - [x] Remover todos os usos de `destroy_parse()`
 - [x] Liberar histroy do readline com `rl_clear_history()`
 
-## Variáveis
+## - [x] Variáveis
 
 - [x] Implementar uma Hash Table:
   - [x] Implementar uma função criptográfica com poucas colisões (`md5()`).
@@ -85,7 +87,7 @@
 - [x] Inserir `envp` no `envht` na inicialização do shell.
 - [x] Gerar `envp` a partir do `envht` (para os `execve()`).
 
-## Built-ins
+## - [x] Built-ins
 
 - [x] Your shell must implement the following built-ins:
   - [x] `echo` with option `-n`
@@ -119,27 +121,33 @@
     - [x] Se o argumento não é um número retornar erro.
   - [x] (OPTIONAL) `help` prints a help message listing all commands
 
-## Prompt
+## - [x] Prompt
 
 - [x] Display a prompt when waiting for a new command.
-- [ ] Adicionar PS1 (ex: `lgeniole@dev1:~/code/ft/minishell$`):
+- [x] Adicionar PS1 (ex: `lgeniole@dev1:~/code/ft/minishell$`):
   - [x] Nome do usuário.
-  - [ ] Hostname.
   - [x] Current dir.
-  - [ ] Cores.
+    - [x] Com `~`.
+  - [x] Com cores.
 - [x] Have a working history.
   - [x] Não adicionar linha vazia (`""`)
-- [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
+- [x] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
   - [x] In interactive mode:
     - [x] `Ctrl-C` displays a new prompt on a new line (`SIGINT` signal).
     - [x] `Ctrl-D` exits the shell (`EOF` no `STDIN`).
     - [x] `Ctrl-\` does nothing (`SIGQUIT` signal).
-  - [ ] No fork (processo filho):
-    - [ ] `Ctrl-C` (`SIGINT` signal).
-    - [ ] `Ctrl-D` (`EOF` no `STDIN`).
-    - [ ] `Ctrl-\` (`SIGQUIT` signal).
+  - [x] No fork (processo filho):
+    - [x] `Ctrl-C` (`SIGINT` signal).
+    - [x] `Ctrl-D` (`EOF` no `STDIN`).
+    - [x] `Ctrl-\` (`SIGQUIT` signal).
+  - [ ] Criar e utilizar
+    - [ ] `sigemptyset_or_die()`
+    - [ ] `sigaction_or_die()`
+    - [ ] `rl_on_new_line_or_die()`
+    - [ ] `rl_replace_line_or_die()`
+    - [ ] `rl_redisplay_or_die()`
 
-## Expander
+## - [x] Expander
 
 - [x] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [x] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
@@ -155,15 +163,15 @@
   - [x] Variáveis dentro de aspas simples e duplas.
   - [x] String vazia.
   - [x] Ponteiro nulo.
-  - [ ] Não expandir delimitador de heredoc.
+  - [ ] (OPCIONAL) Não expandir delimitador de heredoc.
   - [ ] (OPCIONAL) Expandir `~` para `$HOME` (Tilde Expansion).
 - [x] Renomear Expansor para Expander
 
-## Lexer
+## - [x] Lexer
 
-- [ ] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
-- [ ] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
-- [ ] Handle `"` (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for `$` (dollar sign).
+- [x] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
+- [x] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
+- [x] Handle `"` (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for `$` (dollar sign).
 - [x] Casos:
   - [x] Tokenização simples
   - [x] Tokenização com aspas simples `'`
@@ -178,7 +186,7 @@
   - [x] Tokenização por redireção heredoc `<<`
   - [ ] (OPCIONAL) Tokenização por comentário `#`
 
-## Parser
+## - [x] Parser
 
 - [x] `t_parse`:
   - [x] Criar nó para executável.
@@ -192,7 +200,7 @@
   - [x] Lidar com redirecionamentos intercalados.
 - [ ] Fix `ft_dlst_addb_lalloc()` and `ft_dlst_add_lalloc()`.
 
-## Syntax Validator
+## - [x] Syntax Validator
 
 - [x] Aspas:
   - [x] Aspas simples que não fecham.
@@ -215,11 +223,11 @@
   - [x] Não pode ter `|` sem próximo commando.
   - [x] Não pode ter `|` seguido de `|`.
   - [x] Primeiro token não pode ser `|`.
-  - [ ] Printar mensagem de erro.
 - [x] Validar sintaxe dos `char **tokens`
+  - [x] (OPCIONAL) Com mensagens de erro.
 - [ ] (OPCIONAL) Validar sintaxe da `t_parse_list plist`
 
-## Trimmer
+## - [x] Trimmer
 
 - [x] Remover aspas para o parser.
 - [x] Casos:
@@ -228,15 +236,15 @@
   - [x] Não remover aspas simples dentro de aspas duplas.
   - [x] Não remover aspas duplas dentro de aspas simples.
 
-## Executor
+## - [x] Executor
 
 - [x] Implement pipes (`|` character). The output of each command in the pipeline is connected to the input of the next command via a pipe.
-- [ ] Implement redirections:
+- [x] Implement redirections:
   - [x] `<` should redirect input.
   - [x] `>` should redirect output.
-  - [ ] `heredoc`: `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
-    - [ ] Heredoc roda antes que todos os outros redirecionamentos, possivelmente dentro do processo pai.
-    - [ ] Resolver os leaks de memória (`hdoc.c`).
+  - [x] `heredoc`: `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
+    - [x] Heredoc roda antes que todos os outros redirecionamentos.
+    - [x] Resolver os leaks de memória (`hdoc.c`).
   - [x] `>>` should redirect output in append mode.
 - [x] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).
 - [x] Executar pipe com `fork()` e redirecionamentos.
@@ -252,11 +260,11 @@
     - [x] Salvar e restaurar `STDIN`, `STDOUT` e `STDERR` no processo principal.
   - [ ] Testar múltiplos redirecionamentos no mesmo builtin.
   - [ ] Testar múltiplos redirecionamentos na mesma pipeline comm builtins.
-- [ ] Fechar fds de redirecionamento depois de executar o builtin isolado
-  - [ ] Com testes
-- [ ] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
+- [x] Fechar fds de redirecionamento depois de executar o builtin isolado
+- [x] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
+- [x] Executar pipes sem bloquear processos (`forks()` -> `waits()`)
 
-# Bonus
+# - [ ] Bonus
 
-- [ ] && and || with parenthesis for priorities.
 - [ ] Wildcards \* should work for the current working directory.
+- [ ] && and || with parenthesis for priorities.

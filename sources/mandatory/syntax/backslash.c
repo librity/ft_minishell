@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backslach.c                                        :+:      :+:    :+:   */
+/*   backslash.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 17:09:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:36:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ bool	tokens_have_backslash(char **tokens)
 	while (*tokens != NULL)
 	{
 		if (has_backslash(*tokens))
+		{
+			print_syntax_error(*tokens);
 			return (true);
+		}
 		tokens++;
 	}
 	return (false);

@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handlers.c                                         :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 15:54:12 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:03:36 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 15:34:41 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 15:53:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	handle_interrupt_signal(int signal)
+void	print_syntax_error(char *token)
 {
-	ft_bdebug(debug(), "DEBUG: handle_interrupt_signal: signal: %d\n", signal);
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	printf(SYNTAX_ERR, token);
 }

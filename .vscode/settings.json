@@ -69,6 +69,8 @@
     "errors.h": "c",
     "warnings.h": "c",
     "unistd.h": "c",
-    "mocks.h": "c"
+    "mocks.h": "c",
+    "history.h": "c",
+    "stat.h": "c"
   }
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 00:32:32 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/10 16:44:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:49:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initialize_control(int argc, char **argv, char **envp)
 	c()->argc = argc;
 	c()->argv = argv;
 	c()->envp = envp;
+	c()->line_count = 0;
 }
 
 void	deinitialize_control(void)
