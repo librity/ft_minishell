@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:14:58 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/14 13:03:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:24:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ int	bi_exit(char **tokens)
 	printf(EXIT "\n");
 	exit_status = resolve_exit_status(tokens);
 	cleanup_shell();
-	exit(exit_status);
+	quit_status(exit_status);
 	return (exit_status);
 }

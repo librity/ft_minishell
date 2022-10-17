@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 20:21:05 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 15:42:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:30:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*handle_raw_command(char *command, char **paths)
 
 	path = find_in_paths(command, paths);
 	if (path == NULL || is_directory(path))
-		die_full(path, NO_CMD_ERR, 127);
+		die_full(command, NO_CMD_ERR, 127);
 	can_execute_or_die(path);
 	return (path);
 }
