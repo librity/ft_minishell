@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:33:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 13:14:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:13:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	initialize_pipeline(t_execute_pl *ctl, t_parse_list *pipeline)
+static void	initialize_pipeline(t_execute_pl *ctl, t_parse_list *pipeline)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ void	initialize_pipeline(t_execute_pl *ctl, t_parse_list *pipeline)
 	ctl->pipes[i] = NULL;
 }
 
-void	wait_for_all(pid_t *pids, int pid_count)
+static void	wait_for_all(pid_t *pids, int pid_count)
 {
 	int	index;
 	int	fork_status;
@@ -39,7 +39,7 @@ void	wait_for_all(pid_t *pids, int pid_count)
 	index = 0;
 	while (index < pid_count)
 	{
-		waitpid(pids[index], &fork_status, WUNTRACED);
+		waitpid_or_die(pids[index], &fork_status, WUNTRACED);
 		exit_status = WEXITSTATUS(fork_status);
 		set_last_exit(exit_status);
 		index++;
