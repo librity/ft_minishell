@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 13:55:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:10:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@
 
 # define EKEYEXPIRED 127
 
-# define HDOC_EOF_MSG_1 "\nminishell: warning: here-document at line "
+# define HDOC_EOF_MSG_1 "minishell: warning: here-document at line "
 # define HDOC_EOF_MSG_2 " delimited by end-of-file (wanted `"
 # define HDOC_EOF_MSG_3 "')\n"
 

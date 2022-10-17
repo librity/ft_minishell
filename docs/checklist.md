@@ -127,6 +127,7 @@
   - [x] Nome do usuário.
   - [ ] Hostname.
   - [x] Current dir.
+    - [ ] Com `~` contraction.
   - [ ] Com cores.
 - [x] Have a working history.
   - [x] Não adicionar linha vazia (`""`)
@@ -223,7 +224,7 @@
   - [x] Não pode ter `|` seguido de `|`.
   - [x] Primeiro token não pode ser `|`.
 - [x] Validar sintaxe dos `char **tokens`
-  - [ ] Com mensagems de erro.
+  - [ ] (OPCIONAL) Com mensagens de erro.
 - [ ] (OPCIONAL) Validar sintaxe da `t_parse_list plist`
 
 ## Trimmer
@@ -241,8 +242,8 @@
 - [ ] Implement redirections:
   - [x] `<` should redirect input.
   - [x] `>` should redirect output.
-  - [ ] `heredoc`: `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
-    - [ ] Heredoc roda antes que todos os outros redirecionamentos, possivelmente dentro do processo pai.
+  - [x] `heredoc`: `<<` should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
+    - [x] Heredoc roda antes que todos os outros redirecionamentos.
     - [ ] Resolver os leaks de memória (`hdoc.c`).
   - [x] `>>` should redirect output in append mode.
 - [x] Search and launch the right executable (based on the `PATH` variable or using a relative or an absolute path).

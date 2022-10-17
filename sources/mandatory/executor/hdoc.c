@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:47:21 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 13:48:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:59:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,12 @@ static void	quit_hdoc(int pipe[2], char *line)
 
 static void	get_hdoc_stream(char *delimiter, int pipe[2])
 {
-	int		status;
 	char	*line;
 
 	while (true)
 	{
-		ft_putstr_fd(HDOC_FEED, ioe_out());
-		status = ft_get_next_line(ioe_in(), &line);
-		if (status == GNL_ERROR)
-			die_perror(HEREDOC_LOC, EXIT_FAILURE);
-		if (status == GNL_FOUND_EOF)
+		line = readline(HDOC_FEED);
+		if (line == NULL)
 		{
 			print_eof_message(delimiter);
 			quit_hdoc(pipe, line);
@@ -61,13 +57,14 @@ void	hdoc_to_stdin(char *delimiter)
 	pid_t	pid;
 	int		pipe[2];
 
-	set_hdoc_hooks();
+	disable_signals();
 	if (delimiter == NULL)
 		die(HEREDOC_DELIMITER_ERR);
 	pipe_or_die(pipe);
 	pid = fork_or_die();
 	if (pid == CHILD_PROCESS_ID)
 	{
+		set_hdoc_hooks();
 		get_hdoc_stream(delimiter, pipe);
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:35:12 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 13:02:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:12:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	handle_interrupt(int signal)
 {
 	(void)signal;
+	ft_putstr_fd("\n", ioe_out());
 	quit();
 }
 
