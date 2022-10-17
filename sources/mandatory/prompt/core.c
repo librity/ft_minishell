@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:53:14 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/17 14:46:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:01:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ static char	*build_ps1(void)
 {
 	char	path[PATH_MAX];
 	char	*ps1;
+	char	*username;
 
 	build_path(path);
+	username = getenv(USERNAME_KEY);
 	ps1 = ft_strdup(CB);
-	ps1 = ft_strjoin_free(ps1, getenv(USERNAME_KEY));
+	if (username != NULL)
+		ps1 = ft_strjoin_free(ps1, username);
 	ps1 = ft_strjoin_free(ps1, WB ":" YB);
 	ps1 = ft_strjoin_free(ps1, path);
 	ps1 = ft_strjoin_free(ps1, "$ " RC);
