@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 15:03:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:31:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ MU_TEST(he_tst)
 	add_heredoc(&_plist, "exit");
 	add_exec(&_plist, (char *[]){"grep", "a", NULL});
 
-	write_to_stdin("abc\na\nb\nc\nexit\nada\naaa");
+	write_to_stdin_with_teardown("abc\na\nb\nc\nexit\nada\naaa", &cleanup_shell);
 	spawn_single_pipe(_plist, _pids);
-	wait(NULL);
+	waitpid(_pids[0], NULL, 0);
 }
 
 MU_TEST(hhre_tst)
@@ -46,20 +46,17 @@ MU_TEST(hhre_tst)
 	add_read_file(&_plist, "tests/sandbox/hhre_tst");
 	add_exec(&_plist, (char *[]){"grep", "a", NULL});
 
-	// write_to_stdin("a\nb\nc\n1\nada\naaa\n2\nabc\ndfg\naba");
+	write_to_stdin_with_teardown("a\nb\nc\n1\nada\naaa\n2\nabc\ndfg\naba", &cleanup_shell);
 	spawn_single_pipe(_plist, _pids);
-	wait(NULL);
+	waitpid(_pids[0], NULL, 0);
 }
 
 MU_TEST_SUITE(pipe_suite)
 {
 	MU_SUITE_CONFIGURE(&setup, &teardown);
 
-	// LEAKING!
 	MU_RUN_TEST(he_tst);
-
-	// FAILING!
-	// MU_RUN_TEST(hhre_tst);
+	MU_RUN_TEST(hhre_tst);
 }
 
 MU_MAIN
