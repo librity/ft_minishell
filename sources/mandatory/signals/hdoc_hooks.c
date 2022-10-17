@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks_shell.c                                      :+:      :+:    :+:   */
+/*   hdoc_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 14:43:55 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 11:35:12 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 11:37:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	set_interrupt_signal_hook(void)
+static void	handle_hdoc_interrupt_signal(int signal)
 {
-	set_signal_hook(signal_action(), handle_interrupt_signal, SIGINT);
+	if (debug())
+		ft_debug("handle_hdoc_interrupt_signal: signal: %d", signal);
+	else
+		printf("\n");
+	quit();
 }
 
-void	set_quit_signal_hook(void)
+static void	set_interrupt_hdoc_signal_hook(void)
 {
-	set_signal_hook(signal_action(), SIG_IGN, SIGQUIT);
+	set_signal_hook(signal_action(), handle_hdoc_interrupt_signal, SIGINT);
 }
 
-void	set_interactive_shell_hooks(void)
+void	set_hdoc_hooks(void)
 {
-	set_interrupt_signal_hook();
-	set_quit_signal_hook();
+	set_interrupt_hdoc_signal_hook();
 }

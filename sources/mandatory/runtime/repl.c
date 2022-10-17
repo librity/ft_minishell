@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/14 13:34:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:59:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	repl(void)
 		line = prompt();
 		if (line == NULL)
 			quit();
+		increase_line_count();
 		if (ft_streq(line, EMPTY_STR))
 		{
 			free_lalloc();
@@ -45,7 +46,6 @@ void	repl(void)
 		tokens = lex(line);
 		if (!tokens_are_valid(tokens))
 		{
-			ft_bdebug(debug(), "FOUND SYNTAX ERROR!");
 			print_error("SYNTAX ERROR!");
 			free_lalloc();
 			continue ;

@@ -6,31 +6,31 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:47:21 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 11:18:42 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:58:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	handle_hdoc_interrupt_signal(int signal)
+static void	print_eof_message(char *delimiter)
 {
-	if (debug())
-		ft_debug("handle_hdoc_interrupt_signal: signal: %d", signal);
-	else
-		printf("\n");
+	char	*line_count_string;
+
+	line_count_string = ft_itoa(line_count());
+	ft_putstr_fd(HDOC_EOF_MSG_1, ioe_out());
+	ft_putstr_fd(line_count_string, ioe_out());
+	ft_putstr_fd(HDOC_EOF_MSG_2, ioe_out());
+	ft_putstr_fd(delimiter, ioe_out());
+	ft_putstr_fd(HDOC_EOF_MSG_3, ioe_out());
+	free(line_count_string);
+}
+
+static void	quit_hdoc(int pipe[2], char *line)
+{
+	free(line);
+	close_pipe(pipe);
 	quit();
 }
-
-void	set_interrupt_hdoc_signal_hook(void)
-{
-	set_signal_hook(signal_action(), handle_hdoc_interrupt_signal, SIGINT);
-}
-
-void	set_hdoc_hooks(void)
-{
-	set_interrupt_hdoc_signal_hook();
-}
-
 
 static void	get_hdoc_stream(char *delimiter, int pipe[2])
 {
@@ -43,12 +43,13 @@ static void	get_hdoc_stream(char *delimiter, int pipe[2])
 		status = ft_get_next_line(ioe_in(), &line);
 		if (status == GNL_ERROR)
 			die_perror(HEREDOC_LOC, EXIT_FAILURE);
-		if (ft_streq(line, delimiter))
+		if (status == GNL_FOUND_EOF)
 		{
-			free(line);
-			close_pipe(pipe);
-			quit();
+			print_eof_message(delimiter);
+			quit_hdoc(pipe, line);
 		}
+		if (ft_streq(line, delimiter))
+			quit_hdoc(pipe, line);
 		line = ft_strjoin_free(line, "\n");
 		str_to_pipe(pipe, line);
 		free(line);

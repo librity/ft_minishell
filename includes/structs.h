@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 10:48:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:49:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_minishell
 
 	t_hash_table			*envht;
 	char					*last_exit;
+	int						line_count;
 
 	t_proc_fds				ioe;
 
