@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/14 23:37:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:02:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	handle_fork_sequence(t_parse_list *node)
 {
 	t_parse_type	type;
 
+	set_fork_hooks();
 	while (node != NULL && get_parse_type(node) != PT_PIPE)
 	{
 		type = get_parse_type(node);

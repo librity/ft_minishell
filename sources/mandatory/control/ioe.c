@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks_fork.c                                       :+:      :+:    :+:   */
+/*   ioe.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 11:13:15 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 10:13:32 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 10:17:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	set_interrupt_fork_signal_hook(void)
+t_proc_fds	*ioe(void)
 {
-	set_signal_hook(signal_action(), handle_fork_interrupt_signal, SIGINT);
+	return (&c()->ioe);
 }
 
-void	set_quit_fork_signal_hook(void)
+int	ioe_in(void)
 {
-	set_signal_hook(signal_action(), handle_fork_quit, SIGQUIT);
+	return (c()->ioe.input);
 }
 
-void	set_fork_hooks(void)
+int	ioe_out(void)
 {
-	set_interrupt_fork_signal_hook();
-	set_quit_fork_signal_hook();
+	return (c()->ioe.input);
+}
+
+int	ioe_err(void)
+{
+	return (c()->ioe.error);
 }

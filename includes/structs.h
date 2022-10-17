@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:20:45 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 01:32:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:48:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ typedef struct s_ht_item
 typedef void				(*t_ht_for_each_cb)(t_ht_item *);
 
 /******************************************************************************\
+ * FILES
+\******************************************************************************/
+
+typedef struct stat			t_stat;
+
+typedef struct s_proc_fds
+{
+	int						input;
+	int						output;
+	int						error;
+}							t_proc_fds;
+
+/******************************************************************************\
  * CONTROL
 \******************************************************************************/
 
@@ -68,6 +81,8 @@ typedef struct s_minishell
 
 	t_hash_table			*envht;
 	char					*last_exit;
+
+	t_proc_fds				ioe;
 
 	t_list					*lalloc;
 }							t_minishell;
@@ -138,19 +153,6 @@ typedef struct s_execve
 
 	int						code;
 }							t_execve;
-
-/******************************************************************************\
- * FILES
-\******************************************************************************/
-
-typedef struct stat			t_stat;
-
-typedef struct s_proc_fds
-{
-	int						input;
-	int						output;
-	int						error;
-}							t_proc_fds;
 
 /******************************************************************************\
  * CRYPTO

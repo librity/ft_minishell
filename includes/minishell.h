@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 15:06:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:12:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ int				last_exit_int(void);
 bool			initialize_last_exit(void);
 bool			destroy_last_exit(void);
 bool			set_last_exit(int exit_status);
+
+t_proc_fds		*ioe(void);
+int				ioe_in(void);
+int				ioe_out(void);
+int				ioe_err(void);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
@@ -427,13 +432,15 @@ void			set_signal_hook(t_sigaction *action,
 					t_signal handler,
 					int signal);
 
+void			disable_interrupt_signal(void);
+void			disable_quit_signal(void);
+
 void			set_interrupt_signal_hook(void);
 void			set_quit_signal_hook(void);
 void			set_interactive_shell_hooks(void);
 
 void			set_interrupt_fork_signal_hook(void);
 void			set_quit_fork_signal_hook(void);
-void			disable_interrupt_signal(void);
 void			set_fork_hooks(void);
 
 void			handle_interrupt_signal(int signal);

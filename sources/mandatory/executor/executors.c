@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 20:29:16 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:01:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	handle_fork_exec(t_parse_list *node)
 	char	**tokens;
 	int		status;
 
-	set_fork_hooks();
 	tokens = get_parse_tokens(node);
 	if (tokens == NULL || *tokens == NULL)
 		die(EXEC_BAD_TOKENS_ERR);
