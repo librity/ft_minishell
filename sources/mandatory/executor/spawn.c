@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks_shell.c                                      :+:      :+:    :+:   */
+/*   spawn.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:02:15 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/13 15:33:02 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 14:07:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	set_interrupt_signal_hook(void)
+void	spawn_single_pipe(t_parse_list *pipeline, pid_t *pids)
 {
-	set_signal_hook(signal_action(), handle_interrupt_signal, SIGINT);
+	pids[0] = fork_or_die();
+	if (pids[0] != CHILD_PROCESS_ID)
+		return ;
+	handle_fork_sequence(pipeline);
 }
 
-static void	set_quit_signal_hook(void)
+void	spawn_pipes(t_execute_pl *ctl, t_parse_list *pipeline)
 {
-	set_signal_hook(signal_action(), SIG_IGN, SIGQUIT);
-}
-
-void	set_interactive_shell_hooks(void)
-{
-	set_interrupt_signal_hook();
-	set_quit_signal_hook();
-}
-
-void	disable_interrupt_signal(void)
-{
-	set_signal_hook(signal_action(), SIG_IGN, SIGINT);
+	set_fork_hooks();
+	if (has_heredoc(pipeline))
+		disable_signals();
+	if (ctl->pipe_count == 0)
+	{
+		spawn_single_pipe(pipeline, ctl->pids);
+		return ;
+	}
+	spawn_multiple_pipes(ctl, pipeline);
 }

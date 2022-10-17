@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handlers.c                                         :+:      :+:    :+:   */
+/*   shell_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 15:54:12 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/11 15:51:55 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 12:56:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	handle_interrupt_signal(int signal)
+static void	handle_interrupt(int signal)
 {
-	if (debug())
-		ft_debug("handle_interrupt_signal: signal: %d", signal);
-	else
-		printf("\n");
+	(void)signal;
+	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
 }
 
-void	handle_fork_interrupt_signal(int signal)
+static void	set_interrupt_hook(void)
 {
-	ft_bdebug(debug(),
-		"handle_fork_interrupt_signal: signal: %d", signal);
-	exit (0);
+	set_signal_hook(signal_action(), handle_interrupt, SIGINT);
 }
 
-void	handle_fork_quit(int signal)
+void	set_interactive_shell_hooks(void)
 {
-	ft_bdebug(debug(), "handle_fork_quit: signal: %d", signal);
-	printf("[1]+   quit       ./minishell\n");
-	exit(0);
+	set_interrupt_hook();
+	disable_quit_signal();
 }

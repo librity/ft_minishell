@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sequence.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/13 11:33:51 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:47:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	fork_handle_pipe_sequence(t_parse_list *node)
+void	handle_fork_sequence(t_parse_list *node)
 {
 	t_parse_type	type;
 
@@ -31,7 +31,7 @@ void	fork_handle_pipe_sequence(t_parse_list *node)
 			handle_fork_exec(node);
 		node = node->next;
 	}
-	exit(EXIT_SUCCESS);
+	quit();
 }
 
 int	handle_builtin_sequence(t_parse_list *node)

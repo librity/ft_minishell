@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   spawn_single.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:22:08 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/06 17:05:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:32:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
-t_parse_list *_plist;
-t_parse *_pnode;
+t_parse_list	*_plist;
+t_parse 		*_pnode;
+pid_t			_pids[1];
 
 void setup(void)
 {
@@ -30,8 +31,8 @@ MU_TEST(e_tst)
 
 	add_exec(&_plist, (char *[]){"ls", "-a", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(ep_e_tst)
@@ -39,14 +40,13 @@ MU_TEST(ep_e_tst)
 	_plist = NULL;
 
 	add_exec(&_plist, (char *[]){"ls", "-a", NULL});
-	add_pipe(&_plist);
 	add_exec(&_plist, (char *[]){"grep", "main", "main.c", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	spawn_single_pipe(_plist->next, _pids);
 
-	execute_pipe(_plist->next->next);
-	ft_dump_stdin();
+	wait(NULL);
+	wait(NULL);
 }
 
 MU_TEST(te_tst)
@@ -56,8 +56,8 @@ MU_TEST(te_tst)
 	add_truncate(&_plist, "tests/sandbox/te_tst");
 	add_exec(&_plist, (char *[]){"ls", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(ae_tst)
@@ -67,8 +67,8 @@ MU_TEST(ae_tst)
 	add_append(&_plist, "tests/sandbox/ae_tst");
 	add_exec(&_plist, (char *[]){"ls", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(re_tst)
@@ -78,8 +78,8 @@ MU_TEST(re_tst)
 	add_read_file(&_plist, "tests/sandbox/re_tst");
 	add_exec(&_plist, (char *[]){"grep", "a", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(e_relative_tst)
@@ -88,8 +88,8 @@ MU_TEST(e_relative_tst)
 
 	add_exec(&_plist, (char *[]){"tests/sandbox/ls", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(e_absolute_tst)
@@ -98,8 +98,8 @@ MU_TEST(e_absolute_tst)
 
 	add_exec(&_plist, (char *[]){"/bin/ls", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(ls_tst)
@@ -107,8 +107,8 @@ MU_TEST(ls_tst)
 	_plist = NULL;
 	add_exec(&_plist, (char *[]){"ls", "sources", "tests", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(cat_tst)
@@ -116,8 +116,8 @@ MU_TEST(cat_tst)
 	_plist = NULL;
 	add_exec(&_plist, (char *[]){"cat", "main.c", "Makefile", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST(cat_err_tst)
@@ -125,8 +125,8 @@ MU_TEST(cat_err_tst)
 	_plist = NULL;
 	add_exec(&_plist, (char *[]){"cat", "file1", "file2", NULL});
 
-	execute_pipe(_plist);
-	ft_dump_stdin();
+	spawn_single_pipe(_plist, _pids);
+	wait(NULL);
 }
 
 MU_TEST_SUITE(pipe_suite)

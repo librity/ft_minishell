@@ -43,7 +43,7 @@ are a large group of small- to large-sized
 **extremely venomous predatory**
 sea snails, marine gastropod molluscs.
 
-![A group of shells of various species of cone snails](https://wikiless.org/media/wikipedia/commons/7/7f/Sto%C5%BCki2.jpg)
+![A group of shells of various species of cone snails](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/12_Conidae_seashells.webp/1200px-12_Conidae_seashells.webp.png)
 
 The intricate color patterns of cones have made them one of the most popular collectible shells.
 
@@ -114,7 +114,7 @@ As deadly as they may be, cone snails ain't got nothing on minishells.
 
 A fully featured shell based on bash.
 It reads a command from the user, lexes it, parses it, and executes it.
-It can handle pipes, file redirections and heredocs.
+It handles pipes, file redirections and heredocs.
 It has a working history and responds to signals.
 It also took 12 years to make (🤭).
 

@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon.c                                        :+:      :+:    :+:   */
+/*   exit_atoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:34:06 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 15:36:27 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/12 17:15:33 by wwallas-          #+#    #+#             */
+/*   Updated: 2022/10/14 13:29:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	has_semicolon(char *token)
+static int	string_to_int(const char *str)
 {
-	while (token != NULL && *token != '\0')
+	int	result;
+
+	result = 0;
+	while (ft_isdigit(*str))
 	{
-		if (*token == SEMICOLON)
-			return (true);
-		token = skip_quotes(token);
-		if (token != NULL)
-			token++;
+		result = (*str - '0') + (result * 10);
+		str++;
 	}
-	return (false);
+	return (result);
 }
 
-bool	tokens_have_semicolon(char **tokens)
+int	exit_atoi(const char *str)
 {
-	while (*tokens != NULL)
-	{
-		if (has_semicolon(*tokens))
-		{
-			print_syntax_error(*tokens);
-			return (true);
-		}
-		tokens++;
-	}
-	return (false);
+	int	sign;
+
+	sign = 1;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '+' || *str == '-')
+		str++;
+	return (string_to_int(str) * sign);
 }

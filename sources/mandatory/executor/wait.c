@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executors.c                                        :+:      :+:    :+:   */
+/*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:23:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 13:20:16 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:45:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	handle_fork_exec(t_parse_list *node)
+pid_t	wait_or_die(int *status)
 {
-	char	**tokens;
-	int		status;
+	pid_t	result;
 
-	tokens = get_parse_tokens(node);
-	if (tokens == NULL || *tokens == NULL)
-		die(EXEC_BAD_TOKENS_ERR);
-	if (is_builtin(*tokens))
-	{
-		status = execute_builtin(tokens);
-		quit_status(status);
-	}
-	execve_or_die(tokens);
+	result = wait(status);
+	if (result < 0)
+		die_perror(WAIT_LOC, USE_ERRNO);
+	return (result);
 }
 
-int	handle_builtin_exec(t_parse_list *node)
+pid_t	waitpid_or_die(pid_t pid, int *status, int options)
 {
-	char	**tokens;
+	pid_t	result;
 
-	tokens = get_parse_tokens(node);
-	if (tokens == NULL || *tokens == NULL)
-		die(EXEC_BAD_TOKENS_ERR);
-	return (execute_builtin(tokens));
+	result = waitpid(pid, status, options);
+	if (result < 0)
+		die_perror(WAITPID_LOC, USE_ERRNO);
+	return (result);
 }

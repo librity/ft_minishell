@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon.c                                        :+:      :+:    :+:   */
+/*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:34:06 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 15:36:27 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/02/27 21:13:08 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/14 15:26:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	has_semicolon(char *token)
+bool	is_absolute_path(char *path)
 {
-	while (token != NULL && *token != '\0')
-	{
-		if (*token == SEMICOLON)
-			return (true);
-		token = skip_quotes(token);
-		if (token != NULL)
-			token++;
-	}
-	return (false);
+	return (ft_starts_with(path, "/"));
 }
 
-bool	tokens_have_semicolon(char **tokens)
+bool	is_relative_path(char *path)
 {
-	while (*tokens != NULL)
-	{
-		if (has_semicolon(*tokens))
-		{
-			print_syntax_error(*tokens);
-			return (true);
-		}
-		tokens++;
-	}
-	return (false);
+	return (ft_starts_with(path, "./") || ft_starts_with(path, "../"));
+}
+
+bool	is_relative_or_absolute_path(char *path)
+{
+	return (is_relative_path(path) || is_absolute_path(path));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wwallas- <wwallas-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:14:58 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/12 17:34:24 by wwallas-         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:24:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	handled_bad_status(char **tokens)
 {
 	char	*message;
 
-	if (tokens_is_long(*tokens))
+	if (exit_status_is_too_long(*tokens))
 		return (false);
 	message = ft_strdup(*tokens);
 	message = ft_strjoin_free(message, ": numeric argument required");
@@ -43,7 +43,7 @@ static int	resolve_exit_status(char **tokens)
 		return (EXIT_BAD_STATUS);
 	if (handled_too_many_args(tokens + 1))
 		return (EXIT_TOO_MANY_ARGS);
-	return (tmp_atoi(*tokens));
+	return (exit_atoi(*tokens));
 }
 
 int	bi_exit(char **tokens)
@@ -58,6 +58,6 @@ int	bi_exit(char **tokens)
 	printf(EXIT "\n");
 	exit_status = resolve_exit_status(tokens);
 	cleanup_shell();
-	exit(exit_status);
+	quit_status(exit_status);
 	return (exit_status);
 }

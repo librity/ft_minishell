@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tmp_atoi.c                                         :+:      :+:    :+:   */
+/*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 17:15:33 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/13 17:16:49 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 15:45:27 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 15:45:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	converte_number_int(const char *nptr)
+char	**find_next_pipe(char **tokens)
 {
-	int	result;
-
-	result = 0;
-	while ((*nptr >= '0' && *nptr <= '9') || *nptr >= '-')
+	if (tokens == NULL)
+		return (NULL);
+	while (*tokens != NULL)
 	{
-		result = (*nptr - 48) + (result * 10);
-		nptr++;
+		if (ft_streq(*tokens, PIPE))
+			return (tokens);
+		tokens++;
 	}
-	return (result);
+	return (tokens);
 }
 
-int	tmp_atoi(const char *nptr)
+int	count_pipes(char **tokens)
 {
-	int	result;
-	int	sig;
+	int	pipe_count;
 
-	sig = 1;
-	if (*nptr == '-')
-		sig = -1;
-	if (*nptr == '+' || *nptr == '-')
-		nptr++;
-	result = converte_number_int(nptr) * sig;
-	return (result);
+	if (tokens == NULL)
+		return (0);
+	pipe_count = 0;
+	while (*tokens != NULL)
+	{
+		if (ft_streq(*tokens, PIPE))
+			pipe_count++;
+		tokens++;
+	}
+	return (pipe_count);
 }

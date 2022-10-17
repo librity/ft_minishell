@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:00:33 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/08 18:10:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:42:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ static bool	has_valid_file_redirection(char **tokens, char *identifier)
 		if (ft_streq(*tokens, identifier))
 		{
 			filename = *(tokens + 1);
-			if (filename == NULL)
+			if (filename == NULL || !is_valid_filename(filename))
+			{
+				print_syntax_error(*tokens);
 				return (false);
-			if (!is_valid_filename(filename))
-				return (false);
+			}
 		}
 		tokens++;
 	}

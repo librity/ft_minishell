@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon.c                                        :+:      :+:    :+:   */
+/*   disable.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:34:06 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 15:36:27 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 11:11:28 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 13:18:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	has_semicolon(char *token)
+void	disable_interrupt_signal(void)
 {
-	while (token != NULL && *token != '\0')
-	{
-		if (*token == SEMICOLON)
-			return (true);
-		token = skip_quotes(token);
-		if (token != NULL)
-			token++;
-	}
-	return (false);
+	set_signal_hook(signal_action(), SIG_IGN, SIGINT);
 }
 
-bool	tokens_have_semicolon(char **tokens)
+void	disable_quit_signal(void)
 {
-	while (*tokens != NULL)
-	{
-		if (has_semicolon(*tokens))
-		{
-			print_syntax_error(*tokens);
-			return (true);
-		}
-		tokens++;
-	}
-	return (false);
+	set_signal_hook(signal_action(), SIG_IGN, SIGQUIT);
+}
+
+void	disable_signals(void)
+{
+	disable_interrupt_signal();
+	disable_quit_signal();
 }

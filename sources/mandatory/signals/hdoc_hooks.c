@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semicolon.c                                        :+:      :+:    :+:   */
+/*   hdoc_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:34:06 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 15:36:27 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/10/17 11:35:12 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/10/17 14:12:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static bool	has_semicolon(char *token)
+static void	handle_interrupt(int signal)
 {
-	while (token != NULL && *token != '\0')
-	{
-		if (*token == SEMICOLON)
-			return (true);
-		token = skip_quotes(token);
-		if (token != NULL)
-			token++;
-	}
-	return (false);
+	(void)signal;
+	ft_putstr_fd("\n", ioe_out());
+	quit();
 }
 
-bool	tokens_have_semicolon(char **tokens)
+static void	set_interrupt_hook(void)
 {
-	while (*tokens != NULL)
-	{
-		if (has_semicolon(*tokens))
-		{
-			print_syntax_error(*tokens);
-			return (true);
-		}
-		tokens++;
-	}
-	return (false);
+	set_signal_hook(signal_action(), handle_interrupt, SIGINT);
+}
+
+void	set_hdoc_hooks(void)
+{
+	set_interrupt_hook();
+	disable_quit_signal();
 }
