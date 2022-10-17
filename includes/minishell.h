@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:42:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/17 13:18:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:44:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ void			add_append(t_parse_list **list, char *file_path);
 
 t_parse			*new_heredoc(char *file_path);
 void			add_heredoc(t_parse_list **list, char *delimiter);
+bool			has_heredoc(t_parse_node *node);
 
 t_parse			*new_read_file(char *delimiter);
 void			add_read_file(t_parse_list **list, char *file_path);
