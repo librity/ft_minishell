@@ -1,4 +1,4 @@
-# Mandatory
+# - [x] Mandatory
 
 - [ ] Don't turn in libs as submodules.
 - [ ] Makefile should explicitly name all source files (`make dump_sources`).
@@ -45,7 +45,7 @@
   - [ ] Executor
 - [x] Add `-d` and `--debug` flags (`./minishell -d`)
 
-## REPL
+## - [x] REPL
 
 - [x] Ler commando do usuário
 - [x] Expandir
@@ -56,7 +56,7 @@
 - [x] Executar
 - [x] Repetir
 
-## Memória
+## - [x] Memória
 
 - [x] Adicionar toda memoria do loop (REPL) no `lalloc()`
   - [x] Prompt
@@ -67,7 +67,7 @@
 - [x] Remover todos os usos de `destroy_parse()`
 - [x] Liberar histroy do readline com `rl_clear_history()`
 
-## Variáveis
+## - [x] Variáveis
 
 - [x] Implementar uma Hash Table:
   - [x] Implementar uma função criptográfica com poucas colisões (`md5()`).
@@ -87,7 +87,7 @@
 - [x] Inserir `envp` no `envht` na inicialização do shell.
 - [x] Gerar `envp` a partir do `envht` (para os `execve()`).
 
-## Built-ins
+## - [x] Built-ins
 
 - [x] Your shell must implement the following built-ins:
   - [x] `echo` with option `-n`
@@ -121,7 +121,7 @@
     - [x] Se o argumento não é um número retornar erro.
   - [x] (OPTIONAL) `help` prints a help message listing all commands
 
-## Prompt
+## - [x] Prompt
 
 - [x] Display a prompt when waiting for a new command.
 - [x] Adicionar PS1 (ex: `lgeniole@dev1:~/code/ft/minishell$`):
@@ -131,7 +131,7 @@
   - [x] Com cores.
 - [x] Have a working history.
   - [x] Não adicionar linha vazia (`""`)
-- [ ] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
+- [x] Handle `Ctrl-C`, `Ctrl-D` and `Ctrl-\` which should behave like in bash.
   - [x] In interactive mode:
     - [x] `Ctrl-C` displays a new prompt on a new line (`SIGINT` signal).
     - [x] `Ctrl-D` exits the shell (`EOF` no `STDIN`).
@@ -147,7 +147,7 @@
     - [ ] `rl_replace_line_or_die()`
     - [ ] `rl_redisplay_or_die()`
 
-## Expander
+## - [x] Expander
 
 - [x] Handle environment variables (`$` followed by a sequence of characters) which should expand to their values.
 - [x] Handle `$?` which should expand to the exit status of the most recently executed foreground pipeline.
@@ -167,7 +167,7 @@
   - [ ] (OPCIONAL) Expandir `~` para `$HOME` (Tilde Expansion).
 - [x] Renomear Expansor para Expander
 
-## Lexer
+## - [x] Lexer
 
 - [x] Not interpret unclosed quotes or special characters which are not required by the subject such as `\` (backslash) or `;` (semicolon).
 - [x] Handle `'` (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
@@ -186,7 +186,7 @@
   - [x] Tokenização por redireção heredoc `<<`
   - [ ] (OPCIONAL) Tokenização por comentário `#`
 
-## Parser
+## - [x] Parser
 
 - [x] `t_parse`:
   - [x] Criar nó para executável.
@@ -200,7 +200,7 @@
   - [x] Lidar com redirecionamentos intercalados.
 - [ ] Fix `ft_dlst_addb_lalloc()` and `ft_dlst_add_lalloc()`.
 
-## Syntax Validator
+## - [x] Syntax Validator
 
 - [x] Aspas:
   - [x] Aspas simples que não fecham.
@@ -227,7 +227,7 @@
   - [x] (OPCIONAL) Com mensagens de erro.
 - [ ] (OPCIONAL) Validar sintaxe da `t_parse_list plist`
 
-## Trimmer
+## - [x] Trimmer
 
 - [x] Remover aspas para o parser.
 - [x] Casos:
@@ -236,7 +236,7 @@
   - [x] Não remover aspas simples dentro de aspas duplas.
   - [x] Não remover aspas duplas dentro de aspas simples.
 
-## Executor
+## - [x] Executor
 
 - [x] Implement pipes (`|` character). The output of each command in the pipeline is connected to the input of the next command via a pipe.
 - [x] Implement redirections:
@@ -264,7 +264,7 @@
 - [x] Criar e utilizar `wait_or_die()` `waitpid_or_die()`
 - [x] Executar pipes sem bloquear processos (`forks()` -> `waits()`)
 
-# Bonus
+# - [ ] Bonus
 
 - [ ] Wildcards \* should work for the current working directory.
 - [ ] && and || with parenthesis for priorities.
