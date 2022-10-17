@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:51:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/10/16 14:42:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:04:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	disable_interrupt_signal(void)
 
 void	set_fork_hooks(void)
 {
-	disable_interrupt_signal();
+	set_interrupt_fork_signal_hook();
 	set_quit_fork_signal_hook();
 }

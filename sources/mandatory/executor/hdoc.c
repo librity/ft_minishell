@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:47:21 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/09/28 14:54:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/16 18:16:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	hdoc_to_stdin(char *delimiter)
 	pid_t	pid;
 	int		pipe[2];
 
-	ft_debug("delimiter= %s", delimiter);
 	if (delimiter == NULL)
 		die(HEREDOC_DELIMITER_ERR);
 	pipe_or_die(pipe);
