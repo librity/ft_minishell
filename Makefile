@@ -6,12 +6,13 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/10/16 00:22:31 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/10/18 19:42:57 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
+# CC = cc
 # CC = gcc
 # CC = clang
 CC = clang-12
@@ -23,8 +24,8 @@ CC_STRICT = $(CC_BASIC) \
 	$(CCF_STRICT)
 
 CC_FULL = $(CC_STRICT) \
-	$(CCF_LEAK) \
 	$(CCF_DEBUG)
+#	$(CCF_LEAK) \
 #	$(CCF_OPTIMIZATION) \
 
 CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(INCLUDES_PATH)

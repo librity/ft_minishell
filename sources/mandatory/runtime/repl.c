@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   repl.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 00:00:56 by wwallas-          #+#    #+#             */
-/*   Updated: 2022/10/17 15:58:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/10/18 06:52:48 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static char	*line_or_quit(void)
+{
+	char	*line;
+
+	line = prompt();
+	if (line == NULL)
+	{
+		printf("\n");
+		quit();
+	}
+	return (line);
+}
 
 static void	trim_parse_exec(char **tokens)
 {
@@ -30,9 +43,7 @@ void	repl(void)
 	while (true)
 	{
 		set_interactive_shell_hooks();
-		line = prompt();
-		if (line == NULL)
-			quit();
+		line = line_or_quit();
 		if (ft_streq(line, EMPTY_STR))
 		{
 			free_lalloc();
