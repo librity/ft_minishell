@@ -288,7 +288,7 @@ echo foo*
 ### _Expansion/Substitution Priority_
 
 1. Brace expansion
-2. Tilde expansion
+2. Tilde `~` expansion
 3. Variable expansion, arithmetic expansion, command substitution
    1. Evaluated inside out, from the most nested to the least
 4. Filename expansion
